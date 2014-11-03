@@ -1,0 +1,10 @@
+---
+:backends:
+  - yaml
+  - json
+:yaml:
+  :datadir: /vagrant/resources/puppet/hieradata-vxlan
+:json:
+  :datadir: /vagrant/resources/puppet/hieradata-vxlan
+:hierarchy:
+  - hosts-vxlan
