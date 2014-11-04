@@ -16,7 +16,8 @@ include apt
 #}
 
 ### Install Deps Packages
-$deps = [ "build-essential",
+$deps = [
+          "build-essential",
           "debhelper",
           "python-software-properties",
           "dkms",

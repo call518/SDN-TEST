@@ -16,19 +16,20 @@ include apt
 #}
 
 ### Install Deps Packages
-$deps = [ "build-essential",
-          "debhelper",
-          "python-software-properties",
-          "dkms",
-          "fakeroot",
-          "graphviz",
-          "linux-headers-generic",
-          "python-all",
-          "python-qt4",
-          "python-zopeinterface",
-          "python-twisted-conch",
-          "python-twisted-web",
-          "xauth",
+$deps = [ 
+#          "build-essential",
+#          "debhelper",
+#          "python-software-properties",
+#          "dkms",
+#          "fakeroot",
+#          "graphviz",
+#          "linux-headers-generic",
+#          "python-all",
+#          "python-qt4",
+#          "python-zopeinterface",
+#          "python-twisted-conch",
+#          "python-twisted-web",
+#          "xauth",
           "openvswitch-datapath-dkms",
           "wireshark",
 ]
