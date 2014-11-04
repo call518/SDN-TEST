@@ -1,8 +1,13 @@
 #!/bin/bash
 
-### WEB GUI URL ###
-# http://{ODL-IP-Address}:8181/dlux/index.html
+echo
+echo -e " ======================================================================="
+echo -e "  [Install Feature] feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch"
+echo -e "  [Web GUI URL] http://{ODL-IP-Address}:9191/dlux/index.html"
+echo -e " ======================================================================="
+echo
+
+sleep 3
 
 ## for Mininet
-echo "feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch" | ./bin/karaf
 ./bin/karaf
