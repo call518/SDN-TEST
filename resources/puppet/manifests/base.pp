@@ -7,6 +7,22 @@ package {"git":
     ensure => "installed"
 }
 
+package {"vim":
+    ensure => "installed"
+}
+
+exec { "echo 'set bg=dark' >> /etc/vim/vimrc":
+    user    => "root",
+    timeout => "0",
+    require => Package["vim"],
+}
+
+exec { "echo 'set ts=4' >> /etc/vim/vimrc":
+    user    => "root",
+    timeout => "0",
+    require => Package["vim"],
+}
+
 $hosts = hiera("hosts")
 
 file { "/etc/hosts":
