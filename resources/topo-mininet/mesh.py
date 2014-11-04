@@ -13,8 +13,8 @@ See below for a command to wait until STP is up.
 
 Example:
 
-# mn --controller remote,ip=192.168.50.10,port=6633 --switch ovsk,protocols=OpenFlow13 ---custom mesh.py -topo mesh
-# mn --controller remote,ip=192.168.50.10,port=6633 --switch ovsk,protocols=OpenFlow13 ---custom mesh.py -topo mesh --pre ipconf
+# mn --controller remote,ip=192.168.50.10,port=6633 --switch ovsk,protocols=OpenFlow13 --custom mesh.py --topo mesh
+# mn --controller remote,ip=192.168.50.10,port=6633 --switch ovsk,protocols=OpenFlow13 --custom mesh.py --topo mesh --pre ipconf
 mininet> sh time bash -c 'while ! ovs-ofctl show s1x1 | grep FORWARD; do sleep 1; done'
 """
 
