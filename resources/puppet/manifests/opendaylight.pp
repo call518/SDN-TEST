@@ -71,21 +71,40 @@ exec { "Wget ODL-Helium":
     timeout  => "0",
 }
 
-exec { "Extract ODL-Helium":
-    command => "unzip ${odl_dist_helium_name}.zip",
-    creates => "/home/vagrant/${odl_dist_helium_name}",
+exec { "Extract ODL-Helium (for OpenStack)":
+    command => "unzip ${odl_dist_helium_name}.zip -d opendaylight-openstack",
+    creates => "/home/vagrant/opendaylight-openstack",
     cwd     => "/home/vagrant",
     user    => "vagrant",
     timeout => "0",
     require => Exec["Wget ODL-Helium"],
 }
 
-file { "Put ODL-Helium-Script":
-    path     => "/home/vagrant/${odl_dist_helium_name}/run-helium.sh",
+exec { "Extract ODL-Helium (for Mininet)":
+    command => "unzip ${odl_dist_helium_name}.zip -d opendaylight-mininet",
+    creates => "/home/vagrant/opendaylight-mininet",
+    cwd     => "/home/vagrant",
+    user    => "vagrant",
+    timeout => "0",
+    require => Exec["Wget ODL-Helium"],
+}
+
+file { "Put ODL-Helium-Run-Script (for OpenStack)":
+    path     => "/home/vagrant/opendaylight-openstack/run-openstack.sh",
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/run-helium.sh",
+    source   => "/vagrant/resources/puppet/files/run-openstack.sh",
     replace  => true,
-    require  => Exec["Extract ODL-Helium"],
+    require  => Exec["Extract ODL-Helium (for OpenStack)"],
+}
+
+file { "Put ODL-Helium-Run-Script (for Mininet)":
+    path     => "/home/vagrant/opendaylight-mininet/run-mininet.sh",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/run-mininet.sh",
+    replace  => true,
+    require  => Exec["Extract ODL-Helium (for Mininet)"],
 }
