@@ -16,20 +16,20 @@ include apt
 #}
 
 ### Install Deps Packages
-$deps = [ "build-essential",
-          "debhelper",
-          "python-software-properties",
-          "dkms",
-          "fakeroot",
-          "graphviz",
-          "linux-headers-generic",
-          "python-all",
-          "python-qt4",
-          "python-zopeinterface",
-          "python-twisted-conch",
-          "python-twisted-web",
-          "xauth",
-]
+#$deps = [ "build-essential",
+#          "debhelper",
+#          "python-software-properties",
+#          "dkms",
+#          "fakeroot",
+#          "graphviz",
+#          "linux-headers-generic",
+#          "python-all",
+#          "python-qt4",
+#          "python-zopeinterface",
+#          "python-twisted-conch",
+#          "python-twisted-web",
+#          "xauth",
+#]
 
 ### Export Env: Global %PATH for "Exec"
 #Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
@@ -41,9 +41,9 @@ $deps = [ "build-essential",
 #    timeout => "0",
 #}
 
-package { $deps:
-    ensure   => installed,
-}
+#package { $deps:
+#    ensure   => installed,
+#}
 
 ### Oracle Java/JDK 7
 apt::ppa { "ppa:webupd8team/java": }
