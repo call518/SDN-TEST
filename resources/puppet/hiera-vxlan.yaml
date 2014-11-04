@@ -7,4 +7,4 @@
 :json:
   :datadir: /vagrant/resources/puppet/hieradata-vxlan
 :hierarchy:
-  - hosts-vxlan
+  - hosts

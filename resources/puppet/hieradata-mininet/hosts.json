@@ -1,0 +1,16 @@
+{
+  "hosts": {
+    "opendaylight": {
+      "name": "opendaylight",
+      "ipaddress": "192.168.40.10"
+    },
+    "mininet": {
+      "name": "mininet",
+      "ipaddress": "192.168.40.15"
+    }
+    "routeflow": {
+      "name": "routeflow",
+      "ipaddress": "192.168.40.16"
+    }
+  }
+}

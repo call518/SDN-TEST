@@ -25,39 +25,33 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provision "shell", path: "resources/puppet/scripts/upgrade_puppet.sh"
   config.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
 
-  config.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-  end
+  #config.vm.provision "puppet" do |puppet|
+  #    puppet.working_directory = "/vagrant/resources/puppet"
+  #    puppet.hiera_config_path = "resources/puppet/hiera.yaml"
+  #    puppet.manifests_path = "resources/puppet/manifests"
+  #    puppet.manifest_file  = "base.pp"
+  #end
 
-  #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
-  num_compute_nodes = 1 ## (Max: 3)
+#################################################################################################################
 
-  ## ip pre-configuration
-  control_ip = "192.168.50.20" ## DevStack Controller Node
-  compute_ip_base = "192.168.50." ## DevStac Compute Nodes
-  compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
-
-  ## OpenDaylight (Pre-Built)
-  config.vm.define "opendaylight" do |opendaylight|
-    opendaylight.vm.hostname = "opendaylight"
-    opendaylight.vm.network "private_network", ip: "192.168.50.10"
-    opendaylight.vm.network "forwarded_port", guest: 8080, host: 8080
-    opendaylight.vm.network "forwarded_port", guest: 8181, host: 8181
-    opendaylight.vm.provider :virtualbox do |vb|
+  ## OpenDaylight for Mininet
+  config.vm.define "opendaylight-mininet" do |odl_mininet|
+    odl_mininet.vm.hostname = "opendaylight-mininet"
+    odl_mininet.vm.network "private_network", ip: "192.168.40.10"
+    odl_mininet.vm.network "forwarded_port", guest: 8080, host: 8080
+    odl_mininet.vm.network "forwarded_port", guest: 8181, host: 8181
+    odl_mininet.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
-    opendaylight.vm.provision "puppet" do |puppet|
+    odl_mininet.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera.yaml"
+      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "opendaylight.pp"
+      puppet.manifest_file  = "opendaylight-mininet.pp"
     end
   end
 
@@ -66,7 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     mininet.vm.box = "trusty64"
     mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     mininet.vm.hostname = "mininet"
-    mininet.vm.network "private_network", ip: "192.168.50.15"
+    mininet.vm.network "private_network", ip: "192.168.40.15"
     #mininet.vm.network "forwarded_port", guest: 1234, host: 1234
     mininet.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -77,7 +71,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     mininet.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera.yaml"
+      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininet.pp"
     end
@@ -86,7 +80,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## RouteFlow & OpenDaylight(Source)
   config.vm.define "routeflow" do |routeflow|
     routeflow.vm.hostname = "routeflow"
-    routeflow.vm.network "private_network", ip: "192.168.50.15"
+    routeflow.vm.network "private_network", ip: "192.168.40.16"
     routeflow.vm.network "forwarded_port", guest: 8080, host: 8090
     routeflow.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -98,11 +92,42 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     routeflow.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera.yaml"
+      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "routeflow.pp"
     end
   end
+
+#################################################################################################################
+
+  ## OpenDaylight for OpenStack (Pre-Built)
+  config.vm.define "opendaylight-openstack" do |odl_openstack|
+    odl_openstack.vm.hostname = "opendaylight-openstack"
+    odl_openstack.vm.network "private_network", ip: "192.168.50.10"
+    odl_openstack.vm.network "forwarded_port", guest: 8080, host: 8080
+    odl_openstack.vm.network "forwarded_port", guest: 8181, host: 8181
+    odl_openstack.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+    end
+    odl_openstack.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-openstack.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "opendaylight-openstack.pp"
+    end
+  end
+
+  #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
+  num_compute_nodes = 1 ## (Max: 3)
+
+  ## ip pre-configuration
+  control_ip = "192.168.50.20" ## DevStack Controller Node
+  compute_ip_base = "192.168.50." ## DevStac Compute Nodes
+  compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
@@ -122,7 +147,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera.yaml"
+      puppet.hiera_config_path = "resources/puppet/hiera-openstack.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "devstack-control.pp"
     end
@@ -148,12 +173,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
       compute.vm.provision "puppet" do |puppet|
         puppet.working_directory = "/vagrant/resources/puppet"
-        puppet.hiera_config_path = "resources/puppet/hiera.yaml"
+        puppet.hiera_config_path = "resources/puppet/hiera-openstack.yaml"
         puppet.manifests_path = "resources/puppet/manifests"
         puppet.manifest_file  = "devstack-compute.pp"
       end
     end
   end
+
+#################################################################################################################
 
   ## VXLAN - Router (Must be deploy first)
   config.vm.define "vxlan_router" do |vxlan_router|

@@ -44,7 +44,7 @@ enable_service neutron quantum nova n-cpu n-novnc rabbit odl-compute
 # ODL WITH ML2
 Q_PLUGIN=ml2
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=opendaylight,logger
-ODL_MGR_IP=<%= @hosts['opendaylight']['ipaddress'] %>
+ODL_MGR_IP=<%= @hosts['opendaylight-openstack']['ipaddress'] %>
 
 ENABLE_TENANT_TUNNELS=True
 # Q_ML2_TENANT_NETWORK_TYPE=vlan
@@ -61,6 +61,6 @@ EXTRA_OPTS=(scheduler_default_filters=AllHostsFilter)
 minimize_polling=True
 
 [ml2_odl]
-url=http://<%= @hosts['opendaylight']['ipaddress'] %>:8080/controller/nb/v2/neutron
+url=http://<%= @hosts['opendaylight-openstack']['ipaddress'] %>:8080/controller/nb/v2/neutron
 username=admin
 password=admin

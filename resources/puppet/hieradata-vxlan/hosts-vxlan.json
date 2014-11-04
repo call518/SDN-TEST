@@ -1,5 +1,5 @@
 {
-  "hosts-vxlan": {
+  "hosts": {
     "vxlan-server1": {
       "name": "vxlan-server1",
       "ipaddress": "192.168.1.10"

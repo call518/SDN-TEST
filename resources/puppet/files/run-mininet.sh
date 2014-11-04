@@ -5,3 +5,4 @@
 
 ## for Mininet
 echo "feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch" | ./bin/karaf
+./bin/karaf
