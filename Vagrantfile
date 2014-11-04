@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "puppetlabs-precise64"
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box" # (Puppetlabs)
-  config.ssh.forward_x11 = true
+  #config.ssh.forward_x11 = true
 
   #config.vm.box = "precise32"
   #config.vm.box = "precise64"
@@ -138,6 +138,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "forwarded_port", guest: 80, host: 8081
+    #control.vm.network "forwarded_port", guest: 6080, host: 6080
     control.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
@@ -164,6 +165,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       compute.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
       compute.vm.network "private_network", ip: "#{compute_ip}"
+      #compute.vm.network "forwarded_port", guest: 6080, host: 6080
       compute.vm.provider :virtualbox do |vb|
         #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
         vb.customize ["modifyvm", :id, "--cpus", "2"]
