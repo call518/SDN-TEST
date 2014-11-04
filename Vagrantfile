@@ -38,8 +38,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "opendaylight-mininet" do |odl_mininet|
     odl_mininet.vm.hostname = "opendaylight-mininet"
     odl_mininet.vm.network "private_network", ip: "192.168.40.10"
-    odl_mininet.vm.network "forwarded_port", guest: 8080, host: 8080
-    odl_mininet.vm.network "forwarded_port", guest: 8181, host: 8181
+    odl_mininet.vm.network "forwarded_port", guest: 8080, host: 9090
+    odl_mininet.vm.network "forwarded_port", guest: 8181, host: 9191
     odl_mininet.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
