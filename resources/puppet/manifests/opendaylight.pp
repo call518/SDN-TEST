@@ -72,7 +72,7 @@ exec { "Wget ODL-Helium":
 }
 
 exec { "Extract ODL-Helium (for OpenStack)":
-    command => "unzip ${odl_dist_helium_name}.zip -d opendaylight-openstack",
+    command => "unzip ${odl_dist_helium_name}.zip && mv ${odl_dist_helium_name} opendaylight-openstack",
     creates => "/home/vagrant/opendaylight-openstack",
     cwd     => "/home/vagrant",
     user    => "vagrant",
@@ -81,7 +81,7 @@ exec { "Extract ODL-Helium (for OpenStack)":
 }
 
 exec { "Extract ODL-Helium (for Mininet)":
-    command => "unzip ${odl_dist_helium_name}.zip -d opendaylight-mininet",
+    command => "unzip ${odl_dist_helium_name}.zip && mv ${odl_dist_helium_name} opendaylight-mininet",
     creates => "/home/vagrant/opendaylight-mininet",
     cwd     => "/home/vagrant",
     user    => "vagrant",
