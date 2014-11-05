@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "puppetlabs-precise64"
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box" # (Puppetlabs)
-  #config.ssh.forward_x11 = true
+  config.ssh.forward_x11 = true
 
   #config.vm.box = "precise32"
   #config.vm.box = "precise64"
