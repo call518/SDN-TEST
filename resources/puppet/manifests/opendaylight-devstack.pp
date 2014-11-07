@@ -92,8 +92,8 @@ file { "Put ODL-Helium-Run-Script (for OpenStack)":
     require  => Exec["Extract ODL-Helium (for OpenStack)"],
 }
 
-exec { "dos2unix /home/vagrant/devstack/local.conf":
-    cwd     => "/home/vagrant/opendaylight-devstack/run-devstack.sh",
+exec { "dos2unix run-devstack.sh":
+    cwd     => "/home/vagrant/opendaylight-devstack",
     user    => "root",
     timeout => "0",
     require => File["Put ODL-Helium-Run-Script (for OpenStack)"],
