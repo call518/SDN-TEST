@@ -74,8 +74,8 @@ exec { "Wget ODL-Helium":
 }
 
 exec { "Extract ODL-Helium (for OpenStack)":
-    command => "unzip ${odl_dist_helium_name}.zip && mv ${odl_dist_helium_name} opendaylight-openstack",
-    creates => "/home/vagrant/opendaylight-openstack",
+    command => "unzip ${odl_dist_helium_name}.zip && mv ${odl_dist_helium_name} opendaylight-devstack",
+    creates => "/home/vagrant/opendaylight-devstack",
     cwd     => "/home/vagrant",
     user    => "vagrant",
     timeout => "0",
@@ -83,17 +83,17 @@ exec { "Extract ODL-Helium (for OpenStack)":
 }
 
 file { "Put ODL-Helium-Run-Script (for OpenStack)":
-    path     => "/home/vagrant/opendaylight-openstack/run-openstack.sh",
+    path     => "/home/vagrant/opendaylight-devstack/run-devstack.sh",
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/run-openstack.sh",
+    source   => "/vagrant/resources/puppet/files/run-devstack.sh",
     replace  => true,
     require  => Exec["Extract ODL-Helium (for OpenStack)"],
 }
 
 exec { "dos2unix /home/vagrant/devstack/local.conf":
-    cwd     => "/home/vagrant/opendaylight-openstack/run-openstack.sh",
+    cwd     => "/home/vagrant/opendaylight-devstack/run-devstack.sh",
     user    => "root",
     timeout => "0",
     require => File["Put ODL-Helium-Run-Script (for OpenStack)"],
