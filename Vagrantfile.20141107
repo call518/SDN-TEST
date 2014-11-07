@@ -37,25 +37,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ## OpenDaylight for Mininet
-  config.vm.define "opendaylight-mininet" do |opendaylight_mininet|
-    opendaylight_mininet.vm.hostname = "opendaylight-mininet"
-    opendaylight_mininet.vm.network "private_network", ip: "192.168.40.10"
-    opendaylight_mininet.vm.network "forwarded_port", guest: 8080, host: 9090
-    opendaylight_mininet.vm.network "forwarded_port", guest: 8181, host: 9191
-    opendaylight_mininet.vm.provider :virtualbox do |vb|
+  config.vm.define "opendaylight-mininet" do |odl_mininet|
+    odl_mininet.vm.hostname = "opendaylight-mininet"
+    odl_mininet.vm.network "private_network", ip: "192.168.40.10"
+    odl_mininet.vm.network "forwarded_port", guest: 8080, host: 9090
+    odl_mininet.vm.network "forwarded_port", guest: 8181, host: 9191
+    odl_mininet.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-    end
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
+    odl_mininet.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
@@ -76,12 +70,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "1024"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-    end
-    mininet.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
     end
     mininet.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -108,12 +96,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-    end
-    routeflow.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "routeflow.pp"
     end
   end
@@ -130,31 +112,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
 
   ## OpenDaylight for OpenStack (Pre-Built)
-#  config.vm.define "opendaylight-devstack" do |opendaylight_devstack|
-#    opendaylight_devstack.vm.hostname = "opendaylight-devstack"
-#    opendaylight_devstack.vm.network "private_network", ip: "192.168.50.10"
-#    opendaylight_devstack.vm.network "forwarded_port", guest: 8080, host: 8080
-#    opendaylight_devstack.vm.network "forwarded_port", guest: 8181, host: 8181
-#    opendaylight_devstack.vm.provider :virtualbox do |vb|
-#      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-#      vb.customize ["modifyvm", :id, "--cpus", "2"]
-#      vb.customize ["modifyvm", :id, "--memory", "2048"]
-#      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-#      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-#    end
-#    opendaylight_openstack.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "base.pp"
-#    end
-#    opendaylight_devstack.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "opendaylight-devstack.pp"
-#    end
-#  end
+  config.vm.define "opendaylight-openstack" do |odl_openstack|
+    odl_openstack.vm.hostname = "opendaylight-openstack"
+    odl_openstack.vm.network "private_network", ip: "192.168.50.10"
+    odl_openstack.vm.network "forwarded_port", guest: 8080, host: 8080
+    odl_openstack.vm.network "forwarded_port", guest: 8181, host: 8181
+    odl_openstack.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+    end
+    odl_openstack.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-openstack.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "opendaylight-openstack.pp"
+    end
+  end
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
@@ -164,32 +140,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
-    control.vm.network "forwarded_port", guest: 8080, host: 8080
-    control.vm.network "forwarded_port", guest: 8181, host: 8181
     control.vm.network "forwarded_port", guest: 80, host: 8081
     #control.vm.network "forwarded_port", guest: 6080, host: 6080
     control.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
-      vb.customize ["modifyvm", :id, "--memory", "3072"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-    end
-    control.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "opendaylight-devstack.pp"
-    end
-    control.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
+      puppet.hiera_config_path = "resources/puppet/hiera-openstack.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "devstack-control.pp"
     end
@@ -216,13 +178,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
       compute.vm.provision "puppet" do |puppet|
         puppet.working_directory = "/vagrant/resources/puppet"
-        puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-        puppet.manifests_path = "resources/puppet/manifests"
-        puppet.manifest_file  = "base.pp"
-      end
-      compute.vm.provision "puppet" do |puppet|
-        puppet.working_directory = "/vagrant/resources/puppet"
-        puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
+        puppet.hiera_config_path = "resources/puppet/hiera-openstack.yaml"
         puppet.manifests_path = "resources/puppet/manifests"
         puppet.manifest_file  = "devstack-compute.pp"
       end
@@ -258,12 +214,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-    end
-    vxlan_router.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "vxlan_router.pp"
     end
   end
@@ -290,12 +240,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-    end
-    vxlan_server1.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "vxlan_servers.pp"
     end
   end
@@ -318,12 +262,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vxlan_server2.vm.provision "shell", inline: <<-SCRIPT
       route del default && route add default gw 192.168.2.1
     SCRIPT
-    vxlan_server2.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-    end
     vxlan_server2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"

@@ -1,5 +1,5 @@
 ##### DevStack Compute ########################
-import "base.pp"
+#import "base.pp"
 
 include apt
 
@@ -15,7 +15,7 @@ vcsrepo { "/home/vagrant/devstack":
     before => File["/home/vagrant/devstack/local.conf"]
 }
 
-#$hosts = hiera("hosts")
+$hosts = hiera("hosts")
 
 file { "/home/vagrant/devstack/local.conf":
     ensure => present,
