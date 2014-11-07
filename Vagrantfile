@@ -100,6 +100,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 #################################################################################################################
 
+  ## ip pre-configuration
+  control_ip = "192.168.50.20" ## DevStack Controller Node
+  compute_ip_base = "192.168.50." ## DevStac Compute Nodes
+  compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
+
   ## OpenDaylight for OpenStack (Pre-Built)
   config.vm.define "opendaylight-openstack" do |odl_openstack|
     odl_openstack.vm.hostname = "opendaylight-openstack"
@@ -123,11 +128,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
   num_compute_nodes = 1 ## (Max: 3)
-
-  ## ip pre-configuration
-  control_ip = "192.168.50.20" ## DevStack Controller Node
-  compute_ip_base = "192.168.50." ## DevStac Compute Nodes
-  compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
