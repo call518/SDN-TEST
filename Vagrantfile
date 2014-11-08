@@ -164,9 +164,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
-    control.vm.network "forwarded_port", guest: 8080, host: 8080
-    control.vm.network "forwarded_port", guest: 8181, host: 8181 # URL: http://localhost:8181/dlux/index.html
-    control.vm.network "forwarded_port", guest: 80, host: 8081
+    control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
+    control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
+    control.vm.network "forwarded_port", guest: 80, host: 8081 # DevStack CTL (http://localhost)
     #control.vm.network "forwarded_port", guest: 6080, host: 6080
     control.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
