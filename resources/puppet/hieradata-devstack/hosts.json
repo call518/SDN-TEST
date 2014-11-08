@@ -2,12 +2,12 @@
   "hosts": {
     "opendaylight-devstack": {
       "name": "opendaylight-openstack",
-//      "ipaddress": "192.168.50.10"
-      "ipaddress": "192.168.50.20"
+      "ipaddress": "192.168.50.10"
     },
     "devstack-control": {
       "name": "devstack-control",
-      "ipaddress": "192.168.50.20"
+      "ipaddress": "192.168.50.10"
+      //"ipaddress": "192.168.50.20"
     },
     "devstack-compute-1": {
       "name": "devstack-compute-1",
