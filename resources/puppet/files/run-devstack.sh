@@ -7,6 +7,6 @@ echo -e "  [Web GUI URL] http://{ODL-IP-Address}:8181/dlux/index.html"
 echo -e " ======================================================================="
 echo -e "  Waiting.............."
 
-sleep 3
+#sleep 3
 
 ./bin/karaf
