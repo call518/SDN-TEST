@@ -112,7 +112,7 @@ file { "Put RF-Proxy`s pom.xml":
     require  => Vcsrepo["/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy"],
 }
 
-exec  { "Build RFProxy":
+exec  { "Build ODL with RFProxy":
     #command  => "echo 'Starting Build RFProxy...' && mvn clean -q install -DskipTests -e",
     command  => "mvn clean install -DskipTests -e",
     user     => "vagrant",
@@ -129,7 +129,7 @@ exec  { "Build ODL":
     cwd      => "/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/",
     logoutput => true,
     timeout  => "0",
-    require  => Exec["Build RFProxy"],
+    require  => Exec["Build ODL with RFProxy"],
 }
 
 exec  { "Make RouteFlow-Tests":
