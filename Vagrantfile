@@ -8,19 +8,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #  vb.gui = true
   #end
 
-  config.vm.box = "puppetlabs-precise64"
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box" # (Puppetlabs)
+  #config.vm.box = "puppetlabs-precise64"
+  #config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
   config.ssh.forward_x11 = true
 
   #config.vm.box = "precise32"
+  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-i386-vagrant-disk1.box"
   #config.vm.box = "precise64"
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-i386-vagrant-disk1.box" # (Official)
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box" # (Official)
+  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
   #config.vm.box = "trusty32"
+  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
   #config.vm.box = "trusty64"
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box" # (Official)
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box" # (Official)
+  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
   #config.vm.provision "shell", path: "resources/puppet/scripts/upgrade_puppet.sh"
   config.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
@@ -38,6 +38,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## OpenDaylight for Mininet
   config.vm.define "opendaylight-mininet" do |opendaylight_mininet|
+    opendaylight_mininet.vm.box = "trusty64"
+    opendaylight_mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     opendaylight_mininet.vm.hostname = "opendaylight-mininet"
     opendaylight_mininet.vm.network "private_network", ip: "192.168.40.10"
     opendaylight_mininet.vm.network "forwarded_port", guest: 8080, host: 9090
@@ -69,7 +71,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     mininet.vm.hostname = "mininet"
     mininet.vm.network "private_network", ip: "192.168.40.15"
-    #mininet.vm.network "forwarded_port", guest: 1234, host: 1234
     mininet.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
@@ -93,6 +94,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## RouteFlow & OpenDaylight(Source)
   config.vm.define "routeflow" do |routeflow|
+    routeflow.vm.box = "trusty64"
+    routeflow.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     routeflow.vm.hostname = "routeflow"
     routeflow.vm.network "private_network", ip: "192.168.40.16"
     routeflow.vm.network "forwarded_port", guest: 8080, host: 8090
@@ -158,8 +161,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
-    #control.vm.box = "trusty64"
-    #control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    control.vm.box = "trusty64"
+    control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     control.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
     control.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
     control.vm.hostname = "devstack-control"
@@ -200,8 +203,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "devstack-compute-#{n+1}" do |compute|
       compute_ip = compute_ips[n]
       compute_index = n+1
-      #compute.vm.box = "trusty64"
-      #compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+      compute.vm.box = "trusty64"
+      compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
       compute.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
       compute.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
