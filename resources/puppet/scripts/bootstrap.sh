@@ -38,7 +38,8 @@ echo "Installing unzip..."
 apt-get install -y unzip >/dev/null
 
 #if which puppet > /dev/null 2>&1 -a apt-cache policy | grep --quiet apt.puppetlabs.com; then
-if which puppet > /dev/null 2>&1; then
+#if which puppet > /dev/null 2>&1; then
+if [ `puppet -V | cut -d. -f1` -ge 3 ]; then 
   echo "Puppet is already installed."
 else
   ## Install the PuppetLabs repo
