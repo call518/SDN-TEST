@@ -132,10 +132,10 @@ exec  { "Build ODL":
     require  => Exec["Build ODL with RFProxy"],
 }
 
-#file { "/home/vagrant/opendaylight-with-rfproxy":
-#  ensure => link,
-#  target => "/home/vagrant/opendaylight-with-rfproxy",
-#}
+file { "/home/vagrant/opendaylight":
+  ensure => link,
+  target => "/home/vagrant/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/target/distribution.opendaylight-osgipackage/opendaylight",
+}
 
 exec  { "Make RouteFlow-TestSuite":
     command  => "make rfclient",
@@ -153,4 +153,15 @@ exec  { "Build LXC-Env.":
     logoutput => true,
     timeout  => "0",
     require  => Exec["Make RouteFlow-TestSuite"],
+}
+
+file { "Put rf-topo-mininet":
+    path     => "/home/vagrant/rf-topo-mininet",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/rf-topo-mininet",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
 }
