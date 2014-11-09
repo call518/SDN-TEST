@@ -49,6 +49,13 @@ package { $deps:
     before   => Package["mininet"],
 }
 
+exec { "Enable Backport-Precise":
+    command => "if \"`lsb_release --codename --short`\" == \"precise\"; then cp /vagrant/resource/sources-precise-backport.list /etc/apt/",
+    user    => "root",
+    timeout  => "0",
+    before  => Package["mininet"],
+}
+
 ### Mininet
 package { "mininet":
     ensure   => installed,
