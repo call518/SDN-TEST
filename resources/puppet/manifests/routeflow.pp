@@ -99,7 +99,7 @@ exec  { "Copy RF-Proxy-Source":
     user     => "vagrant",
     cwd      => "/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin",
     timeout  => "0",
-    require  => [Vcsrepo["/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin"], Vcsrepo["/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy"]],
+    require  => [Vcsrepo["/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin"], Vcsrepo["/home/vagrant/opendaylight-with-rfproxy"]],
 }
 
 $odl_rfproxy_pom = "/home/vagrant/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/pom.xml"
@@ -109,7 +109,7 @@ file { "Put RF-Proxy`s pom.xml":
     group    => "vagrant",
     source   => "/vagrant/resources/puppet/files/pom-odl.xml",
     replace  => true,
-    require  => Vcsrepo["/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy"],
+    require  => Vcsrepo["/home/vagrant/opendaylight-with-rfproxy"],
 }
 
 exec  { "Build ODL with RFProxy":
