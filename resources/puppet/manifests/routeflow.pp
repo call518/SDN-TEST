@@ -86,7 +86,7 @@ vcsrepo { "/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin":
     revision => "0c8074dbe6332792c0532d253d6fb82e44c9a86c",
 }
 
-vcsrepo { "/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy":
+vcsrepo { "/home/vagrant/opendaylight-with-rfproxy":
     ensure   => present,
     provider => git,
     user     => "vagrant",
@@ -95,14 +95,14 @@ vcsrepo { "/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy":
 }
 
 exec  { "Copy RF-Proxy-Source":
-    command  => "cp -af pom.xml ../opendaylight-with-rfproxy/opendaylight/ && cp -af src ../opendaylight-with-rfproxy/opendaylight/",
+    command  => "cp -af pom.xml ../../opendaylight-with-rfproxy/opendaylight/ && cp -af src ../../opendaylight-with-rfproxy/opendaylight/",
     user     => "vagrant",
     cwd      => "/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin",
     timeout  => "0",
     require  => [Vcsrepo["/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin"], Vcsrepo["/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy"]],
 }
 
-$odl_rfproxy_pom = "/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/pom.xml"
+$odl_rfproxy_pom = "/home/vagrant/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/pom.xml"
 file { "Put RF-Proxy`s pom.xml":
     path     => $odl_rfproxy_pom,
     owner    => "vagrant",
@@ -116,7 +116,7 @@ exec  { "Build ODL with RFProxy":
     #command  => "echo 'Starting Build RFProxy...' && mvn clean -q install -DskipTests -e",
     command  => "mvn clean install -DskipTests -e",
     user     => "vagrant",
-    cwd      => "/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy/opendaylight",
+    cwd      => "/home/vagrant/opendaylight-with-rfproxy/opendaylight",
     logoutput => true,
     timeout  => "0",
     require  => [File["Put RF-Proxy`s pom.xml"], Exec["Copy RF-Proxy-Source"]],
@@ -126,13 +126,18 @@ exec  { "Build ODL":
     #command  => "echo 'Starting Build ODL...' && mvn clean -q install -DskipTests  -Dmaven.compile.fork=true",
     command  => "mvn clean install -DskipTests  -Dmaven.compile.fork=true",
     user     => "vagrant",
-    cwd      => "/home/vagrant/RouteFlow-Test/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/",
+    cwd      => "/home/vagrant/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/",
     logoutput => true,
     timeout  => "0",
     require  => Exec["Build ODL with RFProxy"],
 }
 
-exec  { "Make RouteFlow-Tests":
+#file { "/home/vagrant/opendaylight-with-rfproxy":
+#  ensure => link,
+#  target => "/home/vagrant/opendaylight-with-rfproxy",
+#}
+
+exec  { "Make RouteFlow-TestSuite":
     command  => "make rfclient",
     user     => "vagrant",
     cwd      => "/home/vagrant/RouteFlow-Test/RouteFlow",
@@ -147,5 +152,5 @@ exec  { "Build LXC-Env.":
     cwd      => "/home/vagrant/RouteFlow-Test/RouteFlow/rftest",
     logoutput => true,
     timeout  => "0",
-    require  => Exec["Make RouteFlow-Tests"],
+    require  => Exec["Make RouteFlow-TestSuite"],
 }
