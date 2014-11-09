@@ -36,8 +36,9 @@ $deps = [
           "libboost-program-options-dev",
           "libboost-thread-dev",
           "libboost-filesystem-dev",
+          "iproute",
           #"iproute-dev",	# precise
-          "iproute2-dev",	# trusyt
+          #"iproute2-dev",	# trusyt
           "openvswitch-switch",
           "mongodb",
           "python-pymongo",
