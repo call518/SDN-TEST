@@ -11,6 +11,14 @@ package {"vim":
     ensure => "installed"
 }
 
+package {"unzip":
+    ensure => "installed"
+}
+
+package { "dos2unix":
+    ensure   => installed,
+}
+
 exec { "echo 'set bg=dark' >> /etc/vim/vimrc":
     user    => "root",
     timeout => "0",
@@ -30,11 +38,6 @@ file { "/etc/hosts":
     owner => "root",
     group => "root",
     content => template("/vagrant/resources/puppet/templates/hosts.erb")
-}
-
-package { "dos2unix":
-    ensure   => installed,
-    require  => File["/etc/hosts"],
 }
 
 exec { "dos2unix /etc/hosts":

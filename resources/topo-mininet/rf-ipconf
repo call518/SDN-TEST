@@ -1,0 +1,4 @@
+h1 route add default gw 172.31.1.1
+h2 route add default gw 172.31.2.1
+h3 route add default gw 172.31.3.1
+h4 route add default gw 172.31.4.1
