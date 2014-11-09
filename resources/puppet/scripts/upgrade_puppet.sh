@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ `puppet -V | cut -d. -f1` -ge 3 ]; then 
+if [ `puppet -V | cut -d. -f1` -le 2 ]; then 
 	apt-get update
 	apt-get install --yes lsb-release
 	DISTRIB_CODENAME=$(lsb_release --codename --short)
