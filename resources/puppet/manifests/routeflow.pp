@@ -155,6 +155,18 @@ exec  { "Build LXC-Env.":
     require  => Exec["Make RouteFlow-TestSuite"],
 }
 
+file { "Put rftest2 Script":
+    path     => "/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/rftest2",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+    require  => Exec["Build LXC-Env."],
+}
+
 file { "Put rf-topo-mininet":
     path     => "/home/vagrant/rf-topo-mininet",
     owner    => "vagrant",
