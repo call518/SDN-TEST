@@ -40,6 +40,7 @@ $deps = [
           "openvswitch-switch",
           "mongodb",
           "python-pymongo",
+          "gunicorn",
           "lxc",
 ]
 
@@ -161,6 +162,18 @@ file { "Put rftest2 Script":
     group    => "vagrant",
     mode     => 0755,
     source   => "/vagrant/resources/puppet/files/rftest2",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+    require  => Exec["Build LXC-Env."],
+}
+
+file { "Put rf_web Command Sample":
+    path     => "/home/vagrant/RouteFlow-Test/RouteFlow/rfweb/rf_web.cmd",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/rf_web.cmd",
     ensure   => directory,
     replace  => true,
     recurse  => true,

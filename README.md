@@ -73,7 +73,7 @@ https://sites.google.com/site/routeflow/home
 
       `./run.sh`
 
- * Web-UI
+ * ODL Web-UI
 
       Browser `http://{Vagratn Host IP}:8080`
 
@@ -84,6 +84,14 @@ https://sites.google.com/site/routeflow/home
       `cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/`
 
       `sudo ./rftest2`
+
+  * RouteFlow Web-UI
+
+      `cd /home/vagrant/RouteFlow-Test/RouteFlow/rfweb`
+
+      `gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application`
+
+      Browser `http://Vagrant Host IP}:8111/index.html`
 
 ### Run Mininet
 

@@ -105,6 +105,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     routeflow.vm.hostname = "routeflow"
     routeflow.vm.network "private_network", ip: "192.168.40.16"
     routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
+    routeflow.vm.network "forwarded_port", guest: 8111, host: 8111
     routeflow.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
