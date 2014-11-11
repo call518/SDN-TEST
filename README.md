@@ -12,26 +12,39 @@ Vagrant-based SDN Test Suite.
 
 # OpenDaylight /w Mininet
 
+SDN Controller, OpenDaylight TESTing with Mininet
+
+### Components of VM
+
+ * OpenDaylight(Helium)
+ * Mininet 2.1.x
+ * Wireshark /w OF Plugin
+
 ### Run OpenDaylight (Helium Pre-Built Binary)
-  
+
+ * Run ODL Helium
+
       `cd /home/vagrant/opendaylight`
 
       `./run-mininet.sh`
 
       `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
 
+ * Web-UI
+
+      Browser `http://{Vagrant Host IP}:8181/dlux/index.html`
+
 ### Run Mininet
 
-  * Common Topology
+ * Common Topology
 
       `sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
 
 ![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/tree.png)
 
-  * Custom Topology
+ * Custom Topology
 
       `cd /home/vagrant/topo-mininet`
-
 
 # RouteFlow
 
@@ -39,56 +52,46 @@ RouteFlow, is an open source project to provide virtualized IP routing services 
 
 https://sites.google.com/site/routeflow/home
 
-### Architecture of TEST
+### Architecture of Demo
 
 ![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)
 
-### Components of "routeflow" VM
+### Components of VM
 
  * RouteFlow
  * OpenDaylight(Built Hydrogen) & RFProxy(for ODL)
  * Mininet
+ * NOX(Default: Disabled)
+   * `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
+ * LXC Container (for Simulation Quagga's OSPF, BGP, RIP)
 
-### Private Network
+### Run OpenDaylight (Hydrogen)
 
-1. A large number of tenants
-  * A large number of VLANs
-  * Traffic Isolation by VXLAN (16,777,216)
-2. Large layer 2 network
-  * VxLAN: Multicast instead of Broadcast
-  * VxLAN: Decrease in MAC Flooding
-  * Controller: Eliminate Broadcast
-3. No added central server & H/W
-4. Cost & Scalability
+ * Run ODL Hydrogen
 
-# Movies
+      `cd /home/vagrant/opendaylight`
 
-[PoC Demo](https://docs.google.com/file/d/0B_p_P2odDTXARElKZ3ZZSmFRbGM/edit)
+      `./run.sh`
 
-# Concept
+ * Web-UI
 
-### Introduction of EYWA
+      Browser `http://{Vagratn Host IP}:8080`
 
-![Introduction of EYWA](https://gitlab.com/call518/eywa-on-opennebula/raw/master/assets/introduction_of_eywa.png)
+### Run RouteFlow Demo
 
-### Guest Virtual Network of EYWA
+  * Run RouteFlow Tutorial-2
 
-![Guest Virtual Network of EYWA](https://gitlab.com/call518/eywa-on-opennebula/raw/master/assets/guest_virtual_network_of_eywa.png)
+      `cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/`
 
-### Architecture of EYWA
+      `sudo ./rftest2`
 
-![Architecture of EYWA](https://gitlab.com/call518/eywa-on-opennebula/raw/master/assets/architecture_of_eywa.png)
+### Run Mininet
 
-# More Information
+  * Run Mininet (Virtual Infra)
 
-[Gitlab Wiki Home](https://gitlab.com/call518/eywa-on-opennebula/wikis/home)
+      `cd /home/vagrant/rf-topo-mininet/`
 
-[Limitation of Cloud Networking (SlideShare)](http://www.slideshare.net/baramdori/eywa-virtual-network-model-for-full-ha-and-lb20140204-v04)
+      `sudo ./run-routeflow-infra.sh`
 
-### EYWA-Controller
+# VXLAN /w OVS
 
-* [Notice] It is in developing. Current version(GitLab) is purpose for PoC
-
-# How To
-
-* [How to Configure Eywa With Opennebula](https://gitlab.com/call518/eywa-on-opennebula/wikis/howto-configure-eywa-with-opennebula)
