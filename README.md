@@ -32,7 +32,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
  * Web-UI
 
-      Browser `http://{Vagrant Host IP}:8181/dlux/index.html`
+      Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
 
 ### Run Mininet
 
@@ -75,7 +75,7 @@ https://sites.google.com/site/routeflow/home
 
  * ODL Web-UI
 
-      Browser `http://{Vagratn Host IP}:8080`
+      Browser: `http://{Vagratn Host IP}:8080`
 
 ### Run RouteFlow Tutorial-2
 
@@ -91,7 +91,7 @@ https://sites.google.com/site/routeflow/home
 
       `gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application`
 
-      Browser `http://Vagrant Host IP}:8111/index.html`
+      Browser: `http://Vagrant Host IP}:8111/index.html`
 
 ### Run Mininet
 
