@@ -10,7 +10,7 @@ Vagrant-based SDN Test Suite.
  * RouteFlow
  * VXLAN /w OVS
 
-`vagrant status
+vagrant status
 Current machine states:
 
 opendaylight-mininet      not created (virtualbox)
@@ -21,7 +21,7 @@ devstack-compute-2        not created (virtualbox)
 devstack-compute-3        not created (virtualbox)
 vxlan_router              not created (virtualbox)
 vxlan_server1             not created (virtualbox)
-vxlan_server2             not created (virtualbox)`
+vxlan_server2             not created (virtualbox)
 
 # OpenDaylight /w Mininet
 
