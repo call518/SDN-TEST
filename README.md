@@ -94,6 +94,8 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 ### Architecture of Demo
 
+RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-four-routers-with-ospf
+
 ![RouteFlow Architecture of Tutorial-2](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)
 
 ### Components of VM
