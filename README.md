@@ -10,6 +10,14 @@ Vagrant-based SDN Test Suite.
  * RouteFlow
  * VXLAN /w OVS
 
+# OpenDaylight /w Mininet
+
+1. OpenDaylight (Helium Pre-Built Binary)
+  * /home/vagrant/opendaylight
+  `./run-mininet.sh`
+  `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
+
+
 # RouteFlow
 
 RouteFlow, is an open source project to provide virtualized IP routing services over OpenFlow enabled hardware.
@@ -22,22 +30,9 @@ https://sites.google.com/site/routeflow/home
 
 ### Components of "routeflow" VM
 
-* RouteFlow
-* OpenDaylight(Built Hydrogen) & RFProxy(for ODL)
-* Mininet
-
-### Public Network
-
-1. Load Balancing
-  * Load Balancing by Unlimited VRs (Virtual Routers)
-  * Scale-Out
-  * Load balanced Inbound & Outbound Traffic
-2. High Availability
-  * HA by Unlimited VRs
-3. Traffic Engineering
-  * Save of Network Bandwidth
-  * Low latency
-4. VM Migration
+ * RouteFlow
+ * OpenDaylight(Built Hydrogen) & RFProxy(for ODL)
+ * Mininet
 
 ### Private Network
 
