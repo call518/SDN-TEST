@@ -22,7 +22,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Run OpenDaylight (Helium Pre-Built Binary)
 
- * Run ODL Helium
+ * Run ODL
 
       `cd /home/vagrant/opendaylight`
 
@@ -67,7 +67,7 @@ https://sites.google.com/site/routeflow/home
 
 ### Run OpenDaylight (Hydrogen)
 
- * Run ODL Hydrogen
+ * Run ODL
 
       `cd /home/vagrant/opendaylight`
 
@@ -77,9 +77,9 @@ https://sites.google.com/site/routeflow/home
 
       Browser `http://{Vagratn Host IP}:8080`
 
-### Run RouteFlow Demo
+### Run RouteFlow Tutorial-2
 
-  * Run RouteFlow Tutorial-2
+  * Run RouteFlow
 
       `cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/`
 
