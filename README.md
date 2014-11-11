@@ -29,7 +29,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Start Vagrant
 
-`vagrant up opendaylight-mininet`
+`host> vagrant up opendaylight-mininet`
 
 ### Components of VM
 
@@ -41,11 +41,13 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
  * Run ODL
 
-      `cd /home/vagrant/opendaylight-mininet`
+      `host> vagrant ssh opendaylight-mininet`
 
-      `./run-mininet.sh`
+      `vm> cd /home/vagrant/opendaylight-mininet`
 
-      `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
+      `vm> ./run-mininet.sh`
+
+      `vm> karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
 
  * Web-UI
 
@@ -55,13 +57,15 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
  * Common Topology
 
-      `sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
+      `host> vagrant ssh opendaylight-mininet`
+
+      `vm> sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
 
 ![Mininet Tree_Common](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/tree.png)
 
- * Custom Topology
+ * Custom Topologys
 
-      `cd /home/vagrant/topo-mininet`
+      `vm> cd /home/vagrant/topo-mininet`
 
 # RouteFlow
 
@@ -74,7 +78,7 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 ### Start Vagrant
 
-`vagrant up routeflow`
+`host> vagrant up routeflow`
 
 ### Architecture of Demo
 
@@ -93,6 +97,8 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
  * Run ODL
 
+      `host> vagrant ssh routeflow`
+
       `cd /home/vagrant/opendaylight`
 
       `./run.sh`
@@ -104,6 +110,8 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 ### Run RouteFlow Tutorial-2
 
   * Run RouteFlow
+
+      `host> vagrant ssh routeflow`
 
       `cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/`
 
@@ -130,9 +138,27 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
   * Run Mininet (Virtual Infra)
 
+      `host> vagrant ssh routeflow`
+
       `cd /home/vagrant/rf-topo-mininet/`
 
       `sudo ./run-routeflow-infra.sh`
+
+# DevStack /w OpenDaylight
+
+ * DevStack (Icehouse)
+   * Controller/Network Node: 1 Host
+   * Compute Node: 1 Host (Max: 3)
+ * OpenDaylight (Helium)
+
+### Start Vagrant
+
+1. `host> vagrant up devstack-control`
+2. `host> vagrant up devstack-compute-1`
+
+### Run Control/Network Node
+
+### Run Compute-1 Node
 
 # VXLAN /w OVS
 
@@ -144,11 +170,11 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 (Note) *Order is important!*
 
-1. `vagrant up vxlan-router`
+1. `host> vagrant up vxlan-router`
 
-2. `vagrant up vxlan-server1`
+2. `host> vagrant up vxlan-server1`
 
-3. `vagrant up vxlan-server2`
+3. `host> vagrant up vxlan-server2`
 
 ### Underlay
 
