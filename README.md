@@ -73,7 +73,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
       `vm> sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
 
-![Mininet Tree_Common](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/tree.png)
+![Mininet Tree Common](README.md.files/tree.png)
 
  * Custom Topologys
 
