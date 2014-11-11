@@ -2,17 +2,29 @@
 
 *SDN Test Suite*
 
-# What is EYWA
+# Intro
 
-EYWA is Elastic Load-balancing & high-availablitY Wired network Architecture, Next generation architecture for IaaS.
+Vagrant-based SDN Test Suite.
 
-Goal of EWYA is solve of network's bottleneck, SPOF, LB/HA, huge-L2 and multi-tenants problem.
+ * OpenDaylight /w Mininet
+ * RouteFlow
+* VXLAN /w OVS
 
-### Current Compute & Network....
+### RouteFlow
+
+RouteFlow, is an open source project to provide virtualized IP routing services over OpenFlow enabled hardware.
+
+https://sites.google.com/site/routeflow/home
+
+# Architecture of TEST
 
 ![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)
 
-# Merits of EYWA
+# Components of "routeflow" VM
+
+* RouteFlow
+* OpenDaylight(Built Hydrogen) & RFProxy(for ODL)
+* Mininet
 
 ### Public Network
 
