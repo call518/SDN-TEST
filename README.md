@@ -96,6 +96,13 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
       Browser: `http://Vagrant Host IP}:8111/index.html`
 
+### APPENDIX
+
+  * Tutorial-1 (rftest1)
+    * https://github.com/CPqD/RouteFlow/wiki/Tutorial-1:-rftest1
+  * Tutorial-2 (rftest2)
+    * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
+
 ![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/rf_web.png)
 
 ### Run Mininet
@@ -108,4 +115,14 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 # VXLAN /w OVS
 
-![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdh-test-vxlan-infra.png)
+ * Configuration of VXLAN tunnel ports in OVS
+ * Configuration of OpenFlow entries OVS
+ * Logical separation of traffic between tenants
+
+### Underlay
+
+![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-underlay.png)
+
+### Overlay
+
+![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-overlay.png)
