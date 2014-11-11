@@ -53,6 +53,8 @@ RouteFlow, is an open source project to provide virtualized IP routing services 
 Home: https://sites.google.com/site/routeflow/home
 Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
+(Note) OpenFlow1.0 Based
+
 ### Architecture of Demo
 
 ![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)

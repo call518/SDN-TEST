@@ -138,6 +138,15 @@ file { "/home/vagrant/opendaylight":
   target => "/home/vagrant/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/target/distribution.opendaylight-osgipackage/opendaylight",
 }
 
+exec  { "Set ODL OF10":
+    command  => "sed -i 's/^ovsdb\.of\.version=1\.3/#\ ovsdb\.of\.version=1\.3/g' config.ini ",
+    user     => "vagrant",
+    cwd      => "/home/vagrant/opendaylight/configuration",
+    logoutput => true,
+    timeout  => "0",
+    require  => Exec["Build ODL"],
+}
+
 exec  { "Make RouteFlow-TestSuite":
     command  => "make rfclient",
     user     => "vagrant",
