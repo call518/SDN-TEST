@@ -15,9 +15,9 @@ Vagrant-based SDN Test Suite.
 1. OpenDaylight (Helium Pre-Built Binary)
   * /home/vagrant/opendaylight
 
-  `./run-mininet.sh`
+    `./run-mininet.sh`
 
-  `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
+    `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
 
 
 # RouteFlow
