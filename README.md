@@ -108,3 +108,4 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 # VXLAN /w OVS
 
+![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdh-test-vxlan-infra.png)
