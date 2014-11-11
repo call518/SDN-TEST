@@ -12,7 +12,7 @@ Vagrant-based SDN Test Suite.
 
 # OpenDaylight /w Mininet
 
-1. OpenDaylight (Helium Pre-Built Binary)
+### Run OpenDaylight (Helium Pre-Built Binary)
   
       `cd /home/vagrant/opendaylight`
 
@@ -20,7 +20,7 @@ Vagrant-based SDN Test Suite.
 
       `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
 
-2. Mininet
+### Run Mininet
 
   * Common Topology
 
