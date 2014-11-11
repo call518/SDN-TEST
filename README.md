@@ -6,9 +6,9 @@
 
 Vagrant-based SDN Test Suite.
 
-* OpenDaylight /w Mininet
-* RouteFlow
-* VXLAN /w OVS
+ * OpenDaylight /w Mininet
+ * RouteFlow
+ * VXLAN /w OVS
 
 # RouteFlow
 
