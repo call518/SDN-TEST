@@ -10,9 +10,26 @@ Vagrant-based SDN Test Suite.
  * RouteFlow
  * VXLAN /w OVS
 
+`vagrant status
+Current machine states:
+
+opendaylight-mininet      not created (virtualbox)
+routeflow                 not created (virtualbox)
+devstack-control          not created (virtualbox)
+devstack-compute-1        not created (virtualbox)
+devstack-compute-2        not created (virtualbox)
+devstack-compute-3        not created (virtualbox)
+vxlan_router              not created (virtualbox)
+vxlan_server1             not created (virtualbox)
+vxlan_server2             not created (virtualbox)`
+
 # OpenDaylight /w Mininet
 
 SDN Controller, OpenDaylight TESTing with Mininet
+
+### Start Vagrant
+
+`vagrant up opendaylight-mininet`
 
 ### Components of VM
 
@@ -54,6 +71,10 @@ Home: https://sites.google.com/site/routeflow/home
 Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 (Note) OpenFlow1.0 Based
+
+### Start Vagrant
+
+`vagrant up routeflow`
 
 ### Architecture of Demo
 
@@ -118,6 +139,14 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
  * Configuration of VXLAN tunnel ports in OVS
  * Configuration of OpenFlow entries OVS
  * Logical separation of traffic between tenants
+
+### Start Vagrant
+
+(Note) *Order is important!*
+
+`vagrant up vxlan-router`
+`vagrant up vxlan-server1`
+`vagrant up vxlan-server2`
 
 ### Underlay
 
