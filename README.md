@@ -1,6 +1,6 @@
 # Description
 
-*EYWA on OpenNebula*
+*SDN Test Suite*
 
 # What is EYWA
 
@@ -10,7 +10,7 @@ Goal of EWYA is solve of network's bottleneck, SPOF, LB/HA, huge-L2 and multi-te
 
 ### Current Compute & Network....
 
-![Compute and Network...](https://gitlab.com/call518/eywa-on-opennebula/raw/master/assets/compute_and_network.png)
+![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)
 
 # Merits of EYWA
 
