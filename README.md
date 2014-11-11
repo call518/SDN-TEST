@@ -113,9 +113,9 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `host> vagrant ssh routeflow`
 
-      `cd /home/vagrant/opendaylight`
+      `vm> cd /home/vagrant/opendaylight`
 
-      `./run.sh`
+      `vm> ./run.sh`
 
  * Web-UI (OpenDaylight)
 
@@ -128,15 +128,17 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `host> vagrant ssh routeflow`
 
-      `cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/`
+      `vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/`
 
-      `sudo ./rftest2`
+      `vm> sudo ./rftest2`
 
   * RouteFlow Web-UI
 
-      `cd /home/vagrant/RouteFlow-Test/RouteFlow/rfweb`
+      `host> vagrant ssh routeflow`
 
-      `gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application`
+      `vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rfweb`
+
+      `vm> gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application`
 
       Browser: `http://Vagrant Host IP}:8111/index.html`
 
@@ -155,9 +157,9 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `host> vagrant ssh routeflow`
 
-      `cd /home/vagrant/rf-topo-mininet/`
+      `vm> cd /home/vagrant/rf-topo-mininet/`
 
-      `sudo ./run-routeflow-infra.sh`
+      `vm> sudo ./run-routeflow-infra.sh`
 
 # DevStack /w OpenDaylight
 
