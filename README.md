@@ -1,6 +1,6 @@
 # Description
 
-*SDN Test Suite*
+SDN Test Suite
 
 # Intro
 
@@ -41,7 +41,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
  * Run ODL
 
-      `cd /home/vagrant/opendaylight`
+      `cd /home/vagrant/opendaylight-mininet`
 
       `./run-mininet.sh`
 
