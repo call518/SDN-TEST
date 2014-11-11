@@ -36,7 +36,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Sample OpenDaylight Web-UI
 
-![OpenDaylight-Mininet-Web-UI](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/opendaylihg-mininet-1.png)
+![OpenDaylight-Mininet-Web-UI](README.md.files/opendaylihg-mininet-1.png)
 
 ### Start Vagrant
 
@@ -96,7 +96,7 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-four-routers-with-ospf
 
-![RouteFlow Architecture of Tutorial-2](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)
+![RouteFlow Architecture of Tutorial-2](README.md.files/setup-4sw.png)
 
 ### Components of VM
 
@@ -149,7 +149,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
   * Tutorial-2 (rftest2)
     * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
 
-![ScreenShot RF-Web](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/rf_web.png)
+![ScreenShot RF-Web](README.md.files/rf_web.png)
 
 ### Run Mininet
 
@@ -195,8 +195,8 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Underlay
 
-![VXLAN Underlay](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-underlay.png)
+![VXLAN Underlay](README.md.files/sdn-test-vxlan-underlay.png)
 
 ### Overlay
 
-![VXLAN Overlay](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-overlay.png)
+![VXLAN Overlay](README.md.files/sdn-test-vxlan-overlay.png)
