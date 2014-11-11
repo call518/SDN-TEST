@@ -39,7 +39,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Run OpenDaylight (Helium Pre-Built Binary)
 
- * Run ODL
+ * Run OpenDaylight
 
       `host> vagrant ssh opendaylight-mininet`
 
@@ -52,6 +52,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
  * Web-UI
 
       Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
+      Default ID/PW: `admin / admin`
 
 ### Run Mininet
 
@@ -87,7 +88,7 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 ### Components of VM
 
  * RouteFlow
- * OpenDaylight(Built Hydrogen) & RFProxy(for ODL)
+ * OpenDaylight(Built Hydrogen) & RFProxy(for OpenDaylight)
  * Mininet
  * NOX(Default: Disabled)
    * `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
@@ -95,7 +96,7 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 ### Run OpenDaylight (Hydrogen)
 
- * Run ODL
+ * Run OpenDaylight
 
       `host> vagrant ssh routeflow`
 
@@ -103,9 +104,10 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
       `./run.sh`
 
- * ODL Web-UI
+ * Web-UI (OpenDaylight)
 
       Browser: `http://{Vagratn Host IP}:8080`
+      Default ID/PW: `admin / admin`
 
 ### Run RouteFlow Tutorial-2
 
