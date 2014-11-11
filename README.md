@@ -57,7 +57,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
       `sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
 
-![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/tree.png)
+![Mininet Tree_Common](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/tree.png)
 
  * Custom Topology
 
@@ -78,7 +78,7 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 ### Architecture of Demo
 
-![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)
+![RouteFlow Architecture of Tutorial-2](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/setup-4sw.png)
 
 ### Components of VM
 
@@ -124,7 +124,7 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
   * Tutorial-2 (rftest2)
     * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
 
-![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/rf_web.png)
+![ScreenShot RF-Web](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/rf_web.png)
 
 ### Run Mininet
 
@@ -152,8 +152,8 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 ### Underlay
 
-![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-underlay.png)
+![VXLAN Underlay](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-underlay.png)
 
 ### Overlay
 
-![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-overlay.png)
+![VXLAN Overlay](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/sdn-test-vxlan-overlay.png)
