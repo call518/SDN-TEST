@@ -13,11 +13,24 @@ Vagrant-based SDN Test Suite.
 # OpenDaylight /w Mininet
 
 1. OpenDaylight (Helium Pre-Built Binary)
-  * /home/vagrant/opendaylight
+  
+      `cd /home/vagrant/opendaylight`
 
-    `./run-mininet.sh`
+      `./run-mininet.sh`
 
-    `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
+      `karaf> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
+
+2. Mininet
+
+  * Common Topology
+
+      `sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
+
+![Compute and Network...](https://gitlab.com/call518/sdn-test/raw/master/README.md.files/tree.png)
+
+  * Custom Topology
+
+      `cd /home/vagrant/topo-mininet`
 
 
 # RouteFlow
