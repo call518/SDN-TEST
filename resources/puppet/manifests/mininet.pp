@@ -105,7 +105,8 @@ vcsrepo { "/home/vagrant/loxigen":
 
 exec { "Install Wireshark OF Plugin":
     #command  => "make wireshark && cp loxi_output/wireshark/openflow.lua /usr/lib/x86_64-linux-gnu/wireshark/libwireshark3/plugins/",
-    command  => "make wireshark && cp loxi_output/wireshark/openflow.lua /usr/lib/wireshark/libwireshark1/plugins",
+    #command  => "make wireshark && cp loxi_output/wireshark/openflow.lua /usr/lib/wireshark/libwireshark1/plugins",
+    command  => "make wireshark && cp loxi_output/wireshark/openflow.lua `find /usr/lib/ -type d | grep wireshark | grep libwireshark | grep plugins | head -n 1`",
     user     => "root",
     cwd      => "/home/vagrant/loxigen/",
     timeout  => "0",
