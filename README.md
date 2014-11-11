@@ -4,13 +4,13 @@ SDN Test Suite
 
 # Intro
 
-Vagrant-based SDN Test Suite.
+### Vagrant-based SDN Test Suite.
 
  * OpenDaylight /w Mininet
  * RouteFlow
  * VXLAN /w OVS
 
-Vagrant VMs
+### Vagrant VMs
 
  * opendaylight-mininet
 
