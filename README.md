@@ -144,9 +144,11 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 (Note) *Order is important!*
 
-`vagrant up vxlan-router`
-`vagrant up vxlan-server1`
-`vagrant up vxlan-server2`
+1. `vagrant up vxlan-router`
+
+2. `vagrant up vxlan-server1`
+
+3. `vagrant up vxlan-server2`
 
 ### Underlay
 
