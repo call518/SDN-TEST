@@ -207,7 +207,6 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ### Demo Scenario (Creating Overlay Networks)
 
 CMD TXT: `/home/vagrant/devstack/devstack-overlay-demo-cmd.txt`
-Ref: http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
 
 ![DevStack & ODL Demo ScreenShot](etc-files/odl-devstack-overlay-demo.png)
 
@@ -241,6 +240,8 @@ controller> neutron net-create vxlan-net3 --tenant_id $(keystone tenant-list | g
 controller> neutron subnet-create vxlan-net3 10.100.3.0/24 --name vxlan-net3
 controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan-net3 | awk '{print $2}') vxlan-host3 --availability_zone=nova:devstack-compute-1
 ```
+
+Ref: http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
 
 # VXLAN /w OVS
 
