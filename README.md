@@ -189,7 +189,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 2. `host> vagrant up devstack-compute-1`
   * (Note) After 'devstack-control' completed...
 
-### Run OpenDaylight (Helium)
+### 1st, Run OpenDaylight (Helium)
 
 * Run by 'karaf'
 
@@ -206,7 +206,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
       Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
       Default ID/PW: `admin / admin`
 
-### Run Control/Network Node
+### 2nd, Run Control/Network Node
 
 #### Run stack.sh
 
@@ -218,7 +218,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       Browser: `http://{Vagratn Host IP}`
 
-### Run Compute-1 Node (also Compute-2, Compute-3)
+### 3rd, Run Compute-1 Node (also Compute-2, Compute-3)
 
 #### Run stack.sh
 
