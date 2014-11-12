@@ -185,8 +185,8 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Start Vagrant
 
-1. `host> vagrant up devstack-control` (about 10min)
-2. `host> vagrant up devstack-compute-1` (about 10min)
+1. `host> vagrant up devstack-control`
+2. `host> vagrant up devstack-compute-1`
   * (Note) After 'devstack-control' completed...
 
 ### 1st, Run OpenDaylight (Helium)
