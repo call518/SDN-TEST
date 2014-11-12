@@ -36,7 +36,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Sample OpenDaylight Web-UI
 
-![OpenDaylight-Mininet-Web-UI](README.md.files/opendaylihg-mininet-1.png)
+![OpenDaylight-Mininet-Web-UI](etc-files/opendaylihg-mininet-1.png)
 
 ### Start Vagrant
 
@@ -73,7 +73,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
       `vm> sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
 
-![Mininet Tree Common](README.md.files/tree.png)
+![Mininet Tree Common](etc-files/tree.png)
 
  * Custom Topologys
 
@@ -96,7 +96,7 @@ Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
 RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-four-routers-with-ospf
 
-![RouteFlow Architecture of Tutorial-2](README.md.files/setup-4sw.png)
+![RouteFlow Architecture of Tutorial-2](etc-files/setup-4sw.png)
 
 ### Components of VM
 
@@ -149,7 +149,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
   * Tutorial-2 (rftest2)
     * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
 
-![ScreenShot RF-Web](README.md.files/rf_web.png)
+![ScreenShot RF-Web](etc-files/rf_web.png)
 
 ### Run Mininet
 
@@ -211,12 +211,12 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ### Underlay
 
  * Underlay: 192.168.1.0/24, 192.168.2.0/24
-![VXLAN Underlay](README.md.files/sdn-test-vxlan-underlay.png)
+![VXLAN Underlay](etc-files/sdn-test-vxlan-underlay.png)
 
 ### Overlay
 
  * Overlay: 10.0.0.0/24 per Tenant
-![VXLAN Overlay](README.md.files/sdn-test-vxlan-overlay.png)
+![VXLAN Overlay](etc-files/sdn-test-vxlan-overlay.png)
 
 ### vxlan-router
 
