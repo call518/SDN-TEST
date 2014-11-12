@@ -210,11 +210,27 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Underlay
 
+ * Underlay: 192.168.1.0/24, 192.168.2.0/24
 ![VXLAN Underlay](README.md.files/sdn-test-vxlan-underlay.png)
 
 ### Overlay
 
+ * Overlay: 10.0.0.0/24 per Tenant
 ![VXLAN Overlay](README.md.files/sdn-test-vxlan-overlay.png)
+
+### vxlan-router
+
+ * Router Role, between 192.168.1.0/24 and 192.168.2.0/24
+
+### vxlan-server1
+
+ * IP: 192.168.1.10
+ * RED, BLUE Network's Underlay
+
+### vxlan-server2
+
+ * IP: 192.168.2.20
+ * RED, BLUE Network's Underlay
 
 # Refrences
 
