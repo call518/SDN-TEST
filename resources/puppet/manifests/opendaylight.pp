@@ -89,8 +89,7 @@ exec { "Extract ODL-Helium":
 
 exec { "Patch JMX Error":
     command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
-    creates => "/home/vagrant/opendaylight/etc",
-    cwd     => "/home/vagrant",
+    cws     => "/home/vagrant/opendaylight/etc",
     user    => "vagrant",
     timeout => "0",
     require => Exec["Extract ODL-Helium"],
