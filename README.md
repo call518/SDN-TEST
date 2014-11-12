@@ -217,12 +217,12 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 3. `host> vagrant up vxlan-server2`
 
-### Underlay
+### Underlay View
 
 * Underlay: 192.168.1.0/24, 192.168.2.0/24
 ![VXLAN Underlay](etc-files/sdn-test-vxlan-underlay.png)
 
-### Overlay
+### Overlay View
 
 * Overlay: 10.0.0.0/8 per Tenant
   * RED VNI: 100
@@ -240,12 +240,65 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
   * 10.0.0.1/8 (RED1)
   * 10.0.0.1/8 (BLUE1)
 
+#### Run vxlan-server1
+
+* Command TXT File: /home/vagrant/topo-vxlan/vxlan-server1/cmd-server1.txt
+
+      `cd /home/vagrant/topo-vxlan/vxlan-server1`
+
+      `sudo mn --custom vxlan-server1.py --topo vxlan-server1`
+
+      `mininet> sh ovs-vsctl add-port s1 vtep -- set interface vtep type=vxlan option:remote_ip=192.168.2.20 option:key=flow ofport_request=10`
+
+      `mininet> sh ovs-vsctl show`
+
+      `mininet> sh ovs-ofctl show s1`
+
+      `mininet> sh ovs-ofctl add-flows s1 flows1.txt`
+
+      `mininet> sh ovs-ofctl dump-flows s1`
+
+      `mininet> red1 ping 10.0.0.1`
+
+      `mininet> red1 ping 10.0.0.2`
+
+      `mininet> blue1 ping 10.0.0.1`
+
+      `mininet> blue1 ping 10.0.0.2`
+
 ### vxlan-server2
 
 * IP: 192.168.2.20
 * RED, BLUE Network's Underlay for 2 VMs
   * 10.0.0.2/8 (RED2)
   * 10.0.0.2/8 (BLUD2)
+
+#### Run vxlan-server2
+
+* Command TXT File: /home/vagrant/topo-vxlan/vxlan-server2/cmd-server2.txt
+
+      `cd /home/vagrant/topo-vxlan/vxlan-server2`
+
+      `sudo mn --custom vxlan-server2.py --topo vxlan-server2`
+
+      `mininet> sh ovs-vsctl add-port s2 vtep -- set interface vtep type=vxlan option:remote_ip=192.168.1.10 option:key=flow ofport_request=10`
+
+      `mininet> sh ovs-vsctl show`
+
+      `mininet> sh ovs-ofctl show s2`
+
+      `mininet> sh ovs-ofctl add-flows s2 flows2.txt`
+
+      `mininet> sh ovs-ofctl dump-flows s2`
+
+      `mininet> red2 ping 10.0.0.1`
+
+      `mininet> red2 ping 10.0.0.2`
+
+      `mininet> blue2 ping 10.0.0.1`
+
+      `mininet> blue2 ping 10.0.0.2`
+
 # Refrences
 
 https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
