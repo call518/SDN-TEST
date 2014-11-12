@@ -22,6 +22,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box = "trusty64"
   #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
+  #control.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
+  #control.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
+
   config.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
   config.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
   config.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
@@ -62,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "opendaylight-mininet.pp"
+      puppet.manifest_file  = "opendaylight.pp"
     end
     opendaylight_mininet.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -146,39 +149,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   compute_ip_base = "192.168.50." ## DevStac Compute Nodes
   compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
 
-  ## OpenDaylight for OpenStack (Pre-Built)
-#  config.vm.define "opendaylight-devstack" do |opendaylight_devstack|
-#    opendaylight_devstack.vm.hostname = "opendaylight-devstack"
-#    opendaylight_devstack.vm.network "private_network", ip: "192.168.50.10"
-#    opendaylight_devstack.vm.network "forwarded_port", guest: 8080, host: 8080
-#    opendaylight_devstack.vm.network "forwarded_port", guest: 8181, host: 8181
-#    opendaylight_devstack.vm.provider :virtualbox do |vb|
-#      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-#      vb.customize ["modifyvm", :id, "--cpus", "2"]
-#      vb.customize ["modifyvm", :id, "--memory", "2048"]
-#      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-#      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-#    end
-#    opendaylight_openstack.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "base.pp"
-#    end
-#    opendaylight_devstack.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "opendaylight-devstack.pp"
-#    end
-#  end
-
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
     control.vm.box = "trusty64"
     control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    control.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
-    control.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
@@ -202,7 +176,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "opendaylight-devstack.pp"
+      puppet.manifest_file  = "opendaylight.pp"
     end
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -219,8 +193,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       compute_index = n+1
       compute.vm.box = "trusty64"
       compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-      compute.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
-      compute.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
       compute.vm.network "private_network", ip: "#{compute_ip}"
       #compute.vm.network "forwarded_port", guest: 6080, host: 6080
