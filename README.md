@@ -175,7 +175,11 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Run Control/Network Node
 
-### Run Compute-1 Node
+      `host> vagrant ssh devstack-control`
+
+### Run Compute-1 Node (also Compute-2, Compute-3)
+
+      `host> vagrant ssh devstack-compute-1`
 
 # VXLAN /w OVS
 
