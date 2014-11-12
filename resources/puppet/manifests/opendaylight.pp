@@ -87,6 +87,15 @@ exec { "Extract ODL-Helium":
     require => Exec["Wget ODL-Helium"],
 }
 
+exec { "Extract ODL-Helium":
+    command => "sed -i 's/0\.0\.0\.0/127\.0\.0\.1/g' org.apache.karaf.management.cfg",
+    creates => "/home/vagrant/opendaylight/etc",
+    cwd     => "/home/vagrant",
+    user    => "vagrant",
+    timeout => "0",
+    require => Exec["Extract ODL-Helium"],
+}
+
 file { "Put ODL-Helium-Run-Script":
     path     => "/home/vagrant/opendaylight/run-karaf.sh",
     owner    => "vagrant",
