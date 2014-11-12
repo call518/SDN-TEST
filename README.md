@@ -225,6 +225,8 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ### Overlay
 
 * Overlay: 10.0.0.0/24 per Tenant
+  * RED VNI: 100
+  * BLUE VNI: 200
 ![VXLAN Overlay](etc-files/sdn-test-vxlan-overlay.png)
 
 ### vxlan-router
