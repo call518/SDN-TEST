@@ -15,10 +15,10 @@ class VXLANTestTopo2( Topo ):
 
         # Add hosts and switches
         red2 = self.addHost('red2',
-                          ip="10.0.0.2/24",
+                          ip="10.0.0.2/8",
                           mac="00:00:00:00:01:02")
         blue2 = self.addHost('blue2',
-                          ip="10.0.0.2/24",
+                          ip="10.0.0.2/8",
                           mac="00:00:00:00:02:02")
 
 
