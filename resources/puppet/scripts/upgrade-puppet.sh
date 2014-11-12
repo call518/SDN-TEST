@@ -16,7 +16,6 @@ if ! which puppet > /dev/null 2>&1 || [ `puppet -V | cut -d. -f1` -le 2 ]; then
 
 	apt-get update
 	apt-get install --yes puppet
-	puppet resource package puppet ensure=latest
-
 	sed -i 's/^templatedir=/#templatedir=/g' /etc/puppet/puppet.conf
+	puppet resource package puppet ensure=latest
 fi
