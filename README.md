@@ -12,7 +12,7 @@ SDN Test Suite
 
 ### Vagrant VMs
 
-```
+```bash
 opendaylight-mininet
 
 routeflow
