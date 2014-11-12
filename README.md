@@ -2,6 +2,12 @@
 
 SDN Test Suite
 
+### Tested Physical Env.
+
+* OS: Ubuntu 12.04.4 LTS amd64 (3.11.0-15-generic / 8Cores / 8GB RAM)
+* Vagrant: 1.6.5
+* VirtualBox: 4.3.18 r96516 (/w Oracle VM VirtualBox Extension Pack)
+
 # Intro
 
 ### Vagrant-based SDN Test Suite.
