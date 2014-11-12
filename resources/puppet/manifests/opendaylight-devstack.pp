@@ -63,18 +63,23 @@ file { "/etc/profile.d/java_home.sh":
     content => "export JAVA_HOME=\"${java_home}\"";
 }
 
-$odl_dist_helium_name = "distribution-karaf-0.2.0-Helium"
+$odl_dist_helium_name = "0.2.0-Helium"
+#$odl_dist_helium_name = "0.2.1-Helium-SR1"
 exec { "Wget ODL-Helium":
-    #command  => "wget http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/${odl_dist_helium_name}.zip",
-    command  => "wget https://plink.ucloud.com/public_link/link/be767e3b82bfdf2d -O ${odl_dist_helium_name}.zip",
-    creates  => "/home/vagrant/${odl_dist_helium_name}.zip",
+    ## 0.2.0-Helium
+    #command  => "wget https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
+    command  => "wget https://plink.ucloud.com/public_link/link/be767e3b82bfdf2d -O distribution-karaf-${odl_dist_helium_name}.zip",
+    ## 0.2.1-Helium-SR1
+    #command  => "wget https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
+    #command  => "wget https://plink.ucloud.com/public_link/link/867f945962c6a734 -O distribution-karaf-${odl_dist_helium_name}.zip",
+    creates  => "/home/vagrant/distribution-karaf-${odl_dist_helium_name}.zip",
     cwd      => "/home/vagrant",
     user     => "vagrant",
     timeout  => "0",
 }
 
 exec { "Extract ODL-Helium (for OpenStack)":
-    command => "unzip ${odl_dist_helium_name}.zip && mv ${odl_dist_helium_name} opendaylight-devstack",
+    command => "unzip distribution-karaf-${odl_dist_helium_name}.zip && mv distribution-karaf-${odl_dist_helium_name} opendaylight-devstack",
     creates => "/home/vagrant/opendaylight-devstack",
     cwd     => "/home/vagrant",
     user    => "vagrant",
