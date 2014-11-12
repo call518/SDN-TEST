@@ -1,0 +1,12 @@
+<<vxlan-server2>>
+srv2> cd /home/vagrant/topo-vxlan/vxlan-server2
+srv2> sudo mn --custom vxlan-server2.py --topo vxlan-server2
+srv2> mininet> sh ovs-vsctl add-port s2 vtep -- set interface vtep type=vxlan option:remote_ip=192.168.1.10 option:key=flow ofport_request=10
+srv2> mininet> sh ovs-vsctl show
+srv2> mininet> sh ovs-ofctl show s2
+srv2> mininet> sh ovs-ofctl add-flows s2 flows2.txt
+srv2> mininet> sh ovs-ofctl dump-flows s2
+srv2> mininet> red2 ping 10.0.0.1
+srv2> mininet> red2 ping 10.0.0.2
+srv2> mininet> blue2 ping 10.0.0.1
+srv2> mininet> blue2 ping 10.0.0.2
