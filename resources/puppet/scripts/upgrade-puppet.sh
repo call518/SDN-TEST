@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! which puppet -o [ `puppet -V | cut -d. -f1` -le 2 ]; then 
+if ! which puppet > /dev/null 2>&1 || [ `puppet -V | cut -d. -f1` -le 2 ]; then 
 	apt-get update
 	apt-get install --yes lsb-release
 	DISTRIB_CODENAME=$(lsb_release --codename --short)
