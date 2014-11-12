@@ -12,11 +12,11 @@ SDN Test Suite
 
 ### Vagrant VMs
 
- * opendaylight-mininet
+* opendaylight-mininet
 
- * routeflow
+* routeflow
 
- * devstack-control
+* devstack-control
 
 * Devstack-compute-1
 
