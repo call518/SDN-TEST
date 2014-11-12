@@ -234,13 +234,16 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ### vxlan-server1
 
 * IP: 192.168.1.10
-* RED, BLUE Network's Underlay
+* RED, BLUE Network's Underlay for 2 VMs
+  * 10.0.0.1 (RED)
+  * 10.0.0.1 (BLUE)
 
 ### vxlan-server2
 
 * IP: 192.168.2.20
-* RED, BLUE Network's Underlay
-
+* RED, BLUE Network's Underlay for 2 VMs
+  * 10.0.0.2 (RED)
+  * 10.0.0.2 (BLUD)
 # Refrences
 
 https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
