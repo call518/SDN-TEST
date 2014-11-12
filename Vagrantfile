@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #control.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
   #control.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
 
-  config.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+  #config.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
   config.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
   config.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
 
