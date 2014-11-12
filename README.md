@@ -102,10 +102,6 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ![RouteFlow Architecture of Tutorial-2](etc-files/setup-4sw.png)
 
-### Mapping Virtual-Router & Physical-Router
-
-![RouteFlow Mapping](etc-files/routeflow-mapping.png)
-
 ### Components of VM
 
 * RouteFlow
@@ -150,15 +146,6 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       Browser: `http://Vagrant Host IP}:8111/index.html`
 
-### APPENDIX
-
-* Tutorial-1 (rftest1)
-  * https://github.com/CPqD/RouteFlow/wiki/Tutorial-1:-rftest1
-* Tutorial-2 (rftest2)
-  * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
-
-![ScreenShot RF-Web](etc-files/rf_web.png)
-
 ### Run Mininet
 
 * Run Mininet (Virtual Infra)
@@ -168,6 +155,19 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
       `vm> cd /home/vagrant/rf-topo-mininet/`
 
       `vm> sudo ./run-routeflow-infra.sh`
+
+### RouteFlow Mapping Virtual-Router & Physical-Router
+
+![RouteFlow Mapping](etc-files/routeflow-mapping.png)
+
+### RouteFlow APPENDIX
+
+* Tutorial-1 (rftest1)
+  * https://github.com/CPqD/RouteFlow/wiki/Tutorial-1:-rftest1
+* Tutorial-2 (rftest2)
+  * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
+
+![ScreenShot RF-Web](etc-files/rf_web.png)
 
 # DevStack /w OpenDaylight
 
