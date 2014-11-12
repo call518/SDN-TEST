@@ -187,6 +187,24 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 1. `host> vagrant up devstack-control`
 2. `host> vagrant up devstack-compute-1`
+  * (Note) After 'devstack-control' completed...
+
+### Run OpenDaylight (Helium)
+
+* Run by 'karaf'
+
+      `host> vagrant ssh devstack-control`
+
+      `vm> cd /home/vagrant/opendaylight`
+
+      `vm> ./run-mininet.sh`
+
+      `opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core`
+
+* Web-UI
+
+      Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
+      Default ID/PW: `admin / admin`
 
 ### Run Control/Network Node
 
