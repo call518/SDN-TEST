@@ -139,7 +139,7 @@ file { "/home/vagrant/opendaylight":
 }
 
 exec  { "Set ODL OF10":
-    command  => "sed -i 's/^ovsdb\.of\.version=1\.3/#\ ovsdb\.of\.version=1\.3/g' config.ini ",
+    command  => "sed -i 's/^ovsdb\\.of\\.version=1\\.3/#\\ ovsdb\\.of\\.version=1\\.3/g' config.ini ",
     user     => "vagrant",
     cwd      => "/home/vagrant/opendaylight/configuration",
     logoutput => true,
