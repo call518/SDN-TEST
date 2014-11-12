@@ -250,7 +250,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ## VXLAN - Router (Must be deploy first)
-  config.vm.define "vxlan_router" do |vxlan_router|
+  config.vm.define "vxlan-router" do |vxlan_router|
     vxlan_router.vm.box = "trusty64"
     vxlan_router.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     vxlan_router.vm.hostname = "vxlan-router"
@@ -285,7 +285,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ## VXLAN - server1
-  config.vm.define "vxlan_server1" do |vxlan_server1|
+  config.vm.define "vxlan-server1" do |vxlan_server1|
     vxlan_server1.vm.box = "trusty64"
     vxlan_server1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     vxlan_server1.vm.hostname = "vxlan-server1"
@@ -317,7 +317,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ## VXLAN - server2
-  config.vm.define "vxlan_server2" do |vxlan_server2|
+  config.vm.define "vxlan-server2" do |vxlan_server2|
     vxlan_server2.vm.box = "trusty64"
     vxlan_server2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     vxlan_server2.vm.hostname = "vxlan-server2"

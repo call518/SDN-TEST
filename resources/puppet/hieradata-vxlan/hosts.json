@@ -1,5 +1,9 @@
 {
   "hosts": {
+    "vxlan-router": {
+      "name": "vxlan-router",
+      "ipaddress": "192.168.1.1"
+    },
     "vxlan-server1": {
       "name": "vxlan-server1",
       "ipaddress": "192.168.1.10"
@@ -7,10 +11,6 @@
     "vxlan-server2": {
       "name": "vxlan-server2",
       "ipaddress": "192.168.2.20"
-    },
-    "vxlan-router": {
-      "name": "vxlan-router",
-      "ipaddress": "192.168.1.1"
     }
   }
 }
