@@ -195,9 +195,9 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `host> vagrant ssh devstack-control`
 
-      `vm> cd /home/vagrant/opendaylight`
+      `vm> cd /home/vagrant/opendaylight-devstack`
 
-      `vm> ./run-mininet.sh`
+      `vm> ./run-devstack.sh`
 
       `opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core`
 
