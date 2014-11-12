@@ -30,3 +30,12 @@ exec { "dos2unix /home/vagrant/devstack/local.conf":
     timeout => "0",
     require => File["/home/vagrant/devstack/local.conf"],
 }
+
+file { "Put devstack-vxlan-gre-cmd.txt":
+    path     => "/home/vagrant/devstack/devstack-overlay-demo-cmd.txt",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0644,
+    source   => "/vagrant/resources/puppet/files/devstack-overlay-cmd.txt",
+    replace  => true,
+}
