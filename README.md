@@ -6,9 +6,9 @@ SDN Test Suite
 
 ### Vagrant-based SDN Test Suite.
 
- * OpenDaylight /w Mininet
- * RouteFlow
- * VXLAN /w OVS
+* OpenDaylight /w Mininet
+* RouteFlow
+* VXLAN /w OVS
 
 ### Vagrant VMs
 
@@ -44,13 +44,13 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Components of VM
 
- * OpenDaylight(Helium)
- * Mininet 2.1.x
- * Wireshark /w OF Plugin
+* OpenDaylight(Helium)
+* Mininet 2.1.x
+* Wireshark /w OF Plugin
 
 ### Run OpenDaylight (Helium Pre-Built Binary)
 
- * Run OpenDaylight
+* Run OpenDaylight
 
       `host> vagrant ssh opendaylight-mininet`
 
@@ -60,14 +60,14 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
       `opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
 
- * Web-UI
+* Web-UI
 
       Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
       Default ID/PW: `admin / admin`
 
 ### Run Mininet
 
- * Common Topology
+* Common Topology
 
       `host> vagrant ssh opendaylight-mininet`
 
@@ -75,7 +75,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ![Mininet Tree Common](etc-files/tree.png)
 
- * Custom Topologys
+* Custom Topologys
 
       `vm> cd /home/vagrant/topo-mininet`
 
@@ -104,16 +104,16 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Components of VM
 
- * RouteFlow
- * OpenDaylight(Built Hydrogen) & RFProxy(for OpenDaylight)
- * Mininet
- * NOX(Default: Disabled)
-   * `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
- * LXC Container (for Simulation Quagga's OSPF, BGP, RIP)
+* RouteFlow
+* OpenDaylight(Built Hydrogen) & RFProxy(for OpenDaylight)
+* Mininet
+* NOX(Default: Disabled)
+  * `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
+* LXC Container (for Simulation Quagga's OSPF, BGP, RIP)
 
 ### Run OpenDaylight (Hydrogen)
 
- * Run OpenDaylight
+* Run OpenDaylight
 
       `host> vagrant ssh routeflow`
 
@@ -121,14 +121,14 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `vm> ./run.sh`
 
- * Web-UI (OpenDaylight)
+* Web-UI (OpenDaylight)
 
       Browser: `http://{Vagratn Host IP}:8080`
       Default ID/PW: `admin / admin`
 
 ### Run RouteFlow Tutorial-2
 
-  * Run RouteFlow
+* Run RouteFlow
 
       `host> vagrant ssh routeflow`
 
@@ -136,7 +136,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `vm> sudo ./rftest2`
 
-  * RouteFlow Web-UI
+* RouteFlow Web-UI
 
       `host> vagrant ssh routeflow`
 
@@ -148,16 +148,16 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### APPENDIX
 
-  * Tutorial-1 (rftest1)
-    * https://github.com/CPqD/RouteFlow/wiki/Tutorial-1:-rftest1
-  * Tutorial-2 (rftest2)
-    * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
+* Tutorial-1 (rftest1)
+  * https://github.com/CPqD/RouteFlow/wiki/Tutorial-1:-rftest1
+* Tutorial-2 (rftest2)
+  * https://github.com/CPqD/RouteFlow/wiki/Tutorial-2:-rftest2
 
 ![ScreenShot RF-Web](etc-files/rf_web.png)
 
 ### Run Mininet
 
-  * Run Mininet (Virtual Infra)
+* Run Mininet (Virtual Infra)
 
       `host> vagrant ssh routeflow`
 
@@ -167,11 +167,11 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 # DevStack /w OpenDaylight
 
- * (Note) *Order is important!*
- * DevStack (Icehouse)
-   * Controller/Network Node: 1 Host
-   * Compute Node: 1 Host (Max: 3)
- * OpenDaylight (Helium)
+* (Note) *Order is important!*
+* DevStack (Icehouse)
+  * Controller/Network Node: 1 Host
+  * Compute Node: 1 Host (Max: 3)
+* OpenDaylight (Helium)
 
 ### Start Vagrant
 
@@ -198,10 +198,10 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 # VXLAN /w OVS
 
- * Configuration of VXLAN tunnel ports in OVS
- * Configuration of OpenFlow entries OVS
- * Logical separation of traffic between tenants
- * Ref. http://www.youtube.com/watch?v=tnSkHhsLqpM
+* Configuration of VXLAN tunnel ports in OVS
+* Configuration of OpenFlow entries OVS
+* Logical separation of traffic between tenants
+* Ref. http://www.youtube.com/watch?v=tnSkHhsLqpM
 
 ### Start Vagrant
 
@@ -215,27 +215,27 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Underlay
 
- * Underlay: 192.168.1.0/24, 192.168.2.0/24
+* Underlay: 192.168.1.0/24, 192.168.2.0/24
 ![VXLAN Underlay](etc-files/sdn-test-vxlan-underlay.png)
 
 ### Overlay
 
- * Overlay: 10.0.0.0/24 per Tenant
+* Overlay: 10.0.0.0/24 per Tenant
 ![VXLAN Overlay](etc-files/sdn-test-vxlan-overlay.png)
 
 ### vxlan-router
 
- * Router Role, between 192.168.1.0/24 and 192.168.2.0/24
+* Router Role, between 192.168.1.0/24 and 192.168.2.0/24
 
 ### vxlan-server1
 
- * IP: 192.168.1.10
- * RED, BLUE Network's Underlay
+* IP: 192.168.1.10
+* RED, BLUE Network's Underlay
 
 ### vxlan-server2
 
- * IP: 192.168.2.20
- * RED, BLUE Network's Underlay
+* IP: 192.168.2.20
+* RED, BLUE Network's Underlay
 
 # Refrences
 
