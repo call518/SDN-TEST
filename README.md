@@ -206,10 +206,10 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Demo Scenario (Creating Overlay Networks)
 
-CMD TXT: /home/vagrant/devstack/devstack-overlay-demo-cmd.txt
+CMD TXT: `/home/vagrant/devstack/devstack-overlay-demo-cmd.txt`
+Ref: http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
 
 ![DevStack & ODL Demo ScreenShot](etc-files/odl-devstack-overlay-demo.png)
-Ref: http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
 
 ```
 controller> cd /home/vagrant/devstack
