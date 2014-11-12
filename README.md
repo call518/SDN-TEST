@@ -237,8 +237,8 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 * IP: 192.168.1.10
 * RED, BLUE Network's Underlay for 2 VMs
-  * 10.0.0.1/8 (RED1)
-  * 10.0.0.1/8 (BLUE1)
+  * 10.0.0.1/8 (VNI100-RED1)
+  * 10.0.0.1/8 (VNI200-BLUE1)
 
 #### Run vxlan-server1
 
@@ -288,8 +288,8 @@ table=1,priority=100,actions=drop
 
 * IP: 192.168.2.20
 * RED, BLUE Network's Underlay for 2 VMs
-  * 10.0.0.2/8 (RED2)
-  * 10.0.0.2/8 (BLUD2)
+  * 10.0.0.2/8 (VNI100-RED2)
+  * 10.0.0.2/8 (VNI200-BLUE2)
 
 #### Run vxlan-server2
 
