@@ -78,12 +78,12 @@ exec { "service openvswitch-switch restart":
     require => Exec["dpkg-reconfigure openvswitch-datapath-dkms"],
 }
 
-file { "Put topo-mininet":
-    path     => "/home/vagrant/topo-mininet",
+file { "Put topo-vxlan":
+    path     => "/home/vagrant/topo-vxlan",
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/topo-mininet",
+    source   => "/vagrant/resources/topo-vxlan",
     ensure   => directory,
     replace  => true,
     recurse  => true,
