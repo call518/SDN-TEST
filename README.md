@@ -86,13 +86,17 @@ RouteFlow, is an open source project to provide virtualized IP routing services 
 Home: https://sites.google.com/site/routeflow/home
 Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
+### RouteFlow Design
+
+![RouteFlow Design](etc-files/routeflow-design.png)
+
 (Note) OpenFlow1.0 Based
 
 ### Start Vagrant
 
 `host> vagrant up routeflow`
 
-### Architecture of Demo
+### Architecture of Tutorial-2 Demo
 
 RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-four-routers-with-ospf
 
