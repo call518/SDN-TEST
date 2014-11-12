@@ -184,6 +184,8 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Run Control/Network Node
 
+#### Run stack.sh
+
       `host> vagrant ssh devstack-control`
 
       `vm> cd /home/vagrant/devstack`
@@ -192,7 +194,41 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       Browser: `http://{Vagratn Host IP}`
 
+#### Appendix: devstack-overlay-demo-cmd.txt (/home/vagrant/devstack)
+```
+controller> cd /home/vagrant/devstack
+controller> . ./openrc admin admin
+controller> export IMAGE=cirros-0.3.2-x86_64-uec
+
+\#\# 'gre1-host'(Instance) on 'gre1'(10.200.1.0/24)
+controller> neutron net-create gre1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 1300
+controller> neutron subnet-create gre1 10.200.1.0/24 --name gre1
+controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre1' | awk '{print $2}') gre1-host
+
+\#\# 'gre2-host'(Instance) on 'gre2'(10.200.2.0/24)
+controller> neutron net-create gre2 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 1310
+controller> neutron subnet-create gre2 10.200.2.0/24 --name gre2
+controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre2' | awk '{print $2}') gre2-host
+
+\#\# 'vxlan-host1'(Instance) on 'vxlan-net1'(10.100.1.0/24)
+controller> neutron net-create vxlan-net1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1600
+controller> neutron subnet-create vxlan-net1 10.100.1.0/24 --name vxlan-net1
+controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan-net1 | awk '{print $2}') vxlan-host1 --availability_zone=nova:devstack-control
+
+\#\# 'vxlan-host2'(Instance) on 'vxlan-net2'(10.100.2.0/24)
+controller> neutron net-create vxlan-net2 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1601
+controller> neutron subnet-create vxlan-net2 10.100.2.0/24 --name vxlan-net2
+controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan-net2 | awk '{print $2}') vxlan-host2 --availability_zone=nova:devstack-compute-1
+
+\#\# 'vxlan-host3'(Instance) on 'vxlan-net3'(10.100.3.0/24)
+controller> neutron net-create vxlan-net3 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1603
+controller> neutron subnet-create vxlan-net3 10.100.3.0/24 --name vxlan-net3
+controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan-net3 | awk '{print $2}') vxlan-host3 --availability_zone=nova:devstack-compute-1
+```
+
 ### Run Compute-1 Node (also Compute-2, Compute-3)
+
+#### Run stack.sh
 
       `host> vagrant ssh devstack-compute-1`
 
@@ -266,7 +302,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `mininet> blue1 ping 10.0.0.2`
 
-* Appendix: flows1.txt
+#### Appendix: flows1.txt
 
 ```
 table=0,in_port=1,actions=set_field:100->tun_id,resubmit(,1)
@@ -317,7 +353,7 @@ table=1,priority=100,actions=drop
 
       `mininet> blue2 ping 10.0.0.2`
 
-* Appendix: flows2.txt
+#### Appendix: flows2.txt
 
 ```
 table=0,in_port=1,actions=set_field:100->tun_id,resubmit(,1)
