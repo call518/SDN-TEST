@@ -86,11 +86,11 @@ RouteFlow, is an open source project to provide virtualized IP routing services 
 Home: https://sites.google.com/site/routeflow/home
 Video: https://www.youtube.com/watch?v=YduxuBTyjEw
 
+(Note) OpenFlow1.0 Based
+
 ### RouteFlow Design
 
 ![RouteFlow Design](etc-files/routeflow-design.png)
-
-(Note) OpenFlow1.0 Based
 
 ### Start Vagrant
 
