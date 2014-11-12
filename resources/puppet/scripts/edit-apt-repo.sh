@@ -13,4 +13,8 @@ sed -i 's/us.archive.ubuntu.com/ftp.daum.net/g' /etc/apt/sources.list 2> /dev/nu
 sed -i 's/security.ubuntu.com/ftp.daum.net/g' /etc/apt/sources.list 2> /dev/null
 sed -i 's/extras.ubuntu.com/ftp.daum.net/g' /etc/apt/sources.list 2> /dev/null
 
-sudo apt-get update
+if sudo apt-get update; then
+	echo "Success 'apt-get update'"
+else
+	echo "Failure 'apt-get update'"
+fi
