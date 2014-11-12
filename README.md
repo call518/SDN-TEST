@@ -12,25 +12,23 @@ SDN Test Suite
 
 ### Vagrant VMs
 
-```bash
-opendaylight-mininet
+ * opendaylight-mininet
 
-routeflow
+ * routeflow
 
-devstack-control
+ * devstack-control
 
-devstack-compute-1
+* Devstack-compute-1
 
-devstack-compute-2
+* devstack-compute-2
 
-devstack-compute-3
+* devstack-compute-3
 
-vxlan_router
+* vxlan-router
 
-vxlan_server1
+* vxlan-server1
 
-vxlan_server2
-```
+* vxlan-server2
 
 # OpenDaylight /w Mininet
 
