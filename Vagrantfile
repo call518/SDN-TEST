@@ -143,7 +143,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ## ip pre-configuration
-  control_ip = "192.168.50.20" ## DevStack Controller Node
+  control_ip = "192.168.50.10" ## DevStack Controller Node
   #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
   num_compute_nodes = 3 ## (Max: 3)
   compute_ip_base = "192.168.50." ## DevStac Compute Nodes
