@@ -12,23 +12,25 @@ SDN Test Suite
 
 ### Vagrant VMs
 
- * opendaylight-mininet
+```
+opendaylight-mininet
 
- * routeflow
+routeflow
 
- * devstack-control
+devstack-control
 
- * devstack-compute-1
+devstack-compute-1
 
- * devstack-compute-2
+devstack-compute-2
 
- * devstack-compute-3
+devstack-compute-3
 
- * vxlan_router
+vxlan_router
 
- * vxlan_server1
+vxlan_server1
 
- * vxlan_server2
+vxlan_server2
+```
 
 # OpenDaylight /w Mininet
 
@@ -167,6 +169,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 # DevStack /w OpenDaylight
 
+ * (Note) *Order is important!*
  * DevStack (Icehouse)
    * Controller/Network Node: 1 Host
    * Compute Node: 1 Host (Max: 3)
