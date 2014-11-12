@@ -34,7 +34,7 @@ SDN Test Suite
 
 SDN Controller, OpenDaylight TESTing with Mininet
 
-### Sample OpenDaylight Web-UI
+### Sample OpenDaylight Helium Web-UI
 
 ![OpenDaylight-Mininet-Web-UI](etc-files/opendaylihg-mininet-1.png)
 
