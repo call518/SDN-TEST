@@ -266,6 +266,24 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `mininet> blue1 ping 10.0.0.2`
 
+* Appendix: flows1.txt
+
+```
+table=0,in_port=1,actions=set_field:100->tun_id,resubmit(,1)
+table=0,in_port=2,actions=set_field:200->tun_id,resubmit(,1)
+table=0,actions=resubmit(,1)
+
+table=1,tun_id=100,dl_dst=00:00:00:00:00:01,actions=output:1
+table=1,tun_id=200,dl_dst=00:00:00:00:00:01,actions=output:2
+table=1,tun_id=100,dl_dst=00:00:00:00:00:02,actions=output:10
+table=1,tun_id=200,dl_dst=00:00:00:00:00:02,actions=output:10
+table=1,tun_id=100,arp,nw_dst=10.0.0.1,actions=output:1
+table=1,tun_id=200,arp,nw_dst=10.0.0.1,actions=output:2
+table=1,tun_id=100,arp,nw_dst=10.0.0.2,actions=output:10
+table=1,tun_id=200,arp,nw_dst=10.0.0.2,actions=output:10
+table=1,priority=100,actions=drop
+```
+
 ### vxlan-server2
 
 * IP: 192.168.2.20
@@ -298,6 +316,24 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
       `mininet> blue2 ping 10.0.0.1`
 
       `mininet> blue2 ping 10.0.0.2`
+
+* Appendix: flows2.txt
+
+```
+table=0,in_port=1,actions=set_field:100->tun_id,resubmit(,1)
+table=0,in_port=2,actions=set_field:200->tun_id,resubmit(,1)
+table=0,actions=resubmit(,1)
+
+table=1,tun_id=100,dl_dst=00:00:00:00:00:01,actions=output:10
+table=1,tun_id=200,dl_dst=00:00:00:00:00:01,actions=output:10
+table=1,tun_id=100,dl_dst=00:00:00:00:00:02,actions=output:1
+table=1,tun_id=200,dl_dst=00:00:00:00:00:02,actions=output:2
+table=1,tun_id=100,arp,nw_dst=10.0.0.1,actions=output:10
+table=1,tun_id=200,arp,nw_dst=10.0.0.1,actions=output:10
+table=1,tun_id=100,arp,nw_dst=10.0.0.2,actions=output:1
+table=1,tun_id=200,arp,nw_dst=10.0.0.2,actions=output:2
+table=1,priority=100,actions=drop
+```
 
 # Refrences
 
