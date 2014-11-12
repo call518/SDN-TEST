@@ -224,7 +224,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### Overlay
 
-* Overlay: 10.0.0.0/24 per Tenant
+* Overlay: 10.0.0.0/8 per Tenant
   * RED VNI: 100
   * BLUE VNI: 200
 ![VXLAN Overlay](etc-files/sdn-test-vxlan-overlay.png)
@@ -237,15 +237,15 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 * IP: 192.168.1.10
 * RED, BLUE Network's Underlay for 2 VMs
-  * 10.0.0.1 (RED)
-  * 10.0.0.1 (BLUE)
+  * 10.0.0.1/8 (RED1)
+  * 10.0.0.1/8 (BLUE1)
 
 ### vxlan-server2
 
 * IP: 192.168.2.20
 * RED, BLUE Network's Underlay for 2 VMs
-  * 10.0.0.2 (RED)
-  * 10.0.0.2 (BLUD)
+  * 10.0.0.2/8 (RED2)
+  * 10.0.0.2/8 (BLUD2)
 # Refrences
 
 https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
