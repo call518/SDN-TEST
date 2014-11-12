@@ -102,6 +102,10 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ![RouteFlow Architecture of Tutorial-2](etc-files/setup-4sw.png)
 
+### Mapping Virtual-Router & Physical-Router
+
+![RouteFlow Mapping](etc-files/routeflow-mapping.png)
+
 ### Components of VM
 
 * RouteFlow
