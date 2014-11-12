@@ -177,9 +177,19 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `host> vagrant ssh devstack-control`
 
+      `vm> cd /home/vagrant/devstack`
+
+      `vm> ./stack.sh
+
+      Browser: `http://{Vagratn Host IP}`
+
 ### Run Compute-1 Node (also Compute-2, Compute-3)
 
       `host> vagrant ssh devstack-compute-1`
+
+      `vm> cd /home/vagrant/devstack`
+
+      `vm> ./stack.sh
 
 # VXLAN /w OVS
 
