@@ -15,6 +15,13 @@ vcsrepo { "/home/vagrant/devstack":
     before => File["/home/vagrant/devstack/local.conf"]
 }
 
+exec { "git checkout stable/icehouse":
+    cwd     => "/home/vagrant/devstack/",
+    user    => "vagrant",
+    timeout => "0",
+    require => Vcsrepo["/home/vagrant/devstack"],
+}
+
 $hosts = hiera("hosts")
 
 file { "/home/vagrant/devstack/local.conf":
