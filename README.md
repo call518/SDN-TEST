@@ -180,6 +180,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 * (Note) *Order is important!*
 * DevStack
   * Controller/Network Node: 1 Host
+    * (Note) Minimum RAM Size: 5GB
   * Compute Node: 1 Host (Max: 3)
 * OpenDaylight (Helium Pre-Built)
 
