@@ -24,12 +24,12 @@ exec { "git checkout stable/icehouse && git pull":
     require => Vcsrepo["/home/vagrant/devstack"],
 }
 
-exec { "sudo pip install --upgrade requests setuptools oslo.middleware":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "vagrant",
-    timeout => "0",
-    require => Vcsrepo["/home/vagrant/devstack"],
-}
+#exec { "sudo pip install --upgrade requests setuptools oslo.middleware":
+#    cwd     => "/home/vagrant/devstack/",
+#    user    => "vagrant",
+#    timeout => "0",
+#    require => Vcsrepo["/home/vagrant/devstack"],
+#}
 
 $hosts = hiera("hosts")
 
