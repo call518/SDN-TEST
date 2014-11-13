@@ -19,6 +19,10 @@ package { "dos2unix":
     ensure   => installed,
 }
 
+package { "tsocks":
+    ensure   => installed,
+}
+
 exec { "echo 'set bg=dark' >> /etc/vim/vimrc":
     user    => "root",
     timeout => "0",
