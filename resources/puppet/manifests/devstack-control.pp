@@ -11,17 +11,17 @@ vcsrepo { "/home/vagrant/devstack":
     ensure => present,
     user => "vagrant",
     source => "https://github.com/openstack-dev/devstack.git",
-    #revision => "0b052589132fdfe9c6d3a9f70ddd3c9712ee435a",
+    revision => "0b052589132fdfe9c6d3a9f70ddd3c9712ee435a",
     before => File["/home/vagrant/devstack/local.conf"]
 }
 
 #exec { "git checkout stable/icehouse && git pull":
-exec { "git checkout stable/juno && git pull":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "vagrant",
-    timeout => "0",
-    require => Vcsrepo["/home/vagrant/devstack"],
-}
+##exec { "git checkout stable/juno && git pull":
+#    cwd     => "/home/vagrant/devstack/",
+#    user    => "vagrant",
+#    timeout => "0",
+#    require => Vcsrepo["/home/vagrant/devstack"],
+#}
 
 $hosts = hiera("hosts")
 
