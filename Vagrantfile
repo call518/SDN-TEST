@@ -75,33 +75,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-#  ## Mininet Node
-#  config.vm.define "mininet" do |mininet|
-#    mininet.vm.box = "trusty64"
-#    mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-#    mininet.vm.hostname = "mininet"
-#    mininet.vm.network "private_network", ip: "192.168.40.15"
-#    mininet.vm.provider :virtualbox do |vb|
-#      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-#      vb.customize ["modifyvm", :id, "--cpus", "2"]
-#      vb.customize ["modifyvm", :id, "--memory", "1024"]
-#      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-#      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-#    end
-#    mininet.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "base.pp"
-#    end
-#    mininet.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "mininet.pp"
-#    end
-#  end
-
   ## RouteFlow & OpenDaylight(Source) & Mininet
   config.vm.define "routeflow" do |routeflow|
     routeflow.vm.box = "precise64"
