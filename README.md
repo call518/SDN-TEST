@@ -24,7 +24,7 @@ SDN Test Suite
 
 * devstack-control
 
-* Devstack-compute-1
+* devstack-compute-1
 
 * devstack-compute-2
 
