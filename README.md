@@ -178,7 +178,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 # DevStack /w OpenDaylight
 
 * (Note) *Order is important!*
-* DevStack (Icehouse)
+* DevStack
   * Controller/Network Node: 1 Host
   * Compute Node: 1 Host (Max: 3)
 * OpenDaylight (Helium)
