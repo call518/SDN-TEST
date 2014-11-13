@@ -67,8 +67,8 @@ $odl_dist_helium_name = "0.2.0-Helium"
 #$odl_dist_helium_name = "0.2.1-Helium-SR1"
 exec { "Wget ODL-Helium":
     ## 0.2.0-Helium
-    #command  => "wget https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
-    command  => "wget https://plink.ucloud.com/public_link/link/be767e3b82bfdf2d -O distribution-karaf-${odl_dist_helium_name}.zip",
+    command  => "wget https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
+    #command  => "wget https://plink.ucloud.com/public_link/link/be767e3b82bfdf2d -O distribution-karaf-${odl_dist_helium_name}.zip",
     ## 0.2.1-Helium-SR1
     #command  => "wget https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
     #command  => "wget https://plink.ucloud.com/public_link/link/867f945962c6a734 -O distribution-karaf-${odl_dist_helium_name}.zip",
