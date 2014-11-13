@@ -15,7 +15,8 @@ vcsrepo { "/home/vagrant/devstack":
     before => File["/home/vagrant/devstack/local.conf"]
 }
 
-exec { "git checkout stable/icehouse":
+#exec { "git checkout stable/icehouse":
+exec { "git checkout stable/juno":
     cwd     => "/home/vagrant/devstack/",
     user    => "vagrant",
     timeout => "0",
