@@ -50,11 +50,11 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Components of VM
 
-* OpenDaylight(Helium)
+* OpenDaylight(Helium Pre-Built)
 * Mininet 2.1.x
 * Wireshark /w OF Plugin
 
-### Run OpenDaylight (Helium Pre-Built)
+### Run OpenDaylight (Helium)
 
 * Run OpenDaylight
 
@@ -111,7 +111,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ### Components of VM
 
 * RouteFlow
-* OpenDaylight(Hydrogen Pre-Built) & RFProxy(for OpenDaylight)
+* OpenDaylight(Hydrogen Source) & RFProxy(for OpenDaylight)
 * Mininet
 * NOX(Default: Disabled)
   * `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
@@ -181,7 +181,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 * DevStack
   * Controller/Network Node: 1 Host
   * Compute Node: 1 Host (Max: 3)
-* OpenDaylight (Helium)
+* OpenDaylight (Helium Pre-Built)
 
 ### Start Vagrant
 
@@ -189,7 +189,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 2. `host> vagrant up devstack-compute-1`
   * (Note) After 'devstack-control' completed...
 
-### 1st, Run OpenDaylight (Helium)
+### 1st, Run OpenDaylight (Helium Pre-Built)
 
 * Run by 'karaf'
 
