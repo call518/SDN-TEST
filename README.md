@@ -273,6 +273,7 @@ controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\
 * Configuration of OpenFlow entries OVS
 * Logical separation of traffic between tenants
 * Ref. http://www.youtube.com/watch?v=tnSkHhsLqpM
+* TODO: Flow by OpenDaylight
 
 ### Start Vagrant
 
