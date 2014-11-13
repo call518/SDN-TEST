@@ -23,6 +23,6 @@ if ! grep "^/swapfile"; then
 fi
 
 # Enable swap file immediately
-if [ `free -m | grep :Swap | awk '{print $2}'` -eq 0 ]; then
+if [ `free -m | grep ^Swap: | awk '{print $2}'` -eq 0 ]; then
 	/sbin/swapon /swapfile
 fi
