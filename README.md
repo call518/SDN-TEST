@@ -54,7 +54,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 * Mininet 2.1.x
 * Wireshark /w OF Plugin
 
-### Run OpenDaylight (Helium Pre-Built Binary)
+### Run OpenDaylight (Helium Pre-Built)
 
 * Run OpenDaylight
 
@@ -111,7 +111,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ### Components of VM
 
 * RouteFlow
-* OpenDaylight(Built Hydrogen) & RFProxy(for OpenDaylight)
+* OpenDaylight(Hydrogen Pre-Built) & RFProxy(for OpenDaylight)
 * Mininet
 * NOX(Default: Disabled)
   * `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
