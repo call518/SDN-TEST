@@ -11,7 +11,8 @@ vcsrepo { "/home/vagrant/devstack":
     ensure => present,
     user => "vagrant",
     source => "https://github.com/openstack-dev/devstack.git",
-    revision => "0b052589132fdfe9c6d3a9f70ddd3c9712ee435a",
+    #revision => "2d311df771bf5745d20ba7eeeb44adc7db0df54a",	## Juno
+    revision => "0b052589132fdfe9c6d3a9f70ddd3c9712ee435a",	## Icehouse
     before => File["/home/vagrant/devstack/local.conf"]
 }
 
