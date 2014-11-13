@@ -124,8 +124,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
-    control.vm.box = "trusty64"
-    control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    control.vm.box = "precise64"
+    control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    #control.vm.box = "trusty64"
+    #control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
@@ -164,8 +166,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "devstack-compute-#{n+1}" do |compute|
       compute_ip = compute_ips[n]
       compute_index = n+1
-      compute.vm.box = "trusty64"
-      compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+      compute.vm.box = "precise64"
+      compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+      #compute.vm.box = "trusty64"
+      #compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
       compute.vm.network "private_network", ip: "#{compute_ip}"
       #compute.vm.network "forwarded_port", guest: 6080, host: 6080
