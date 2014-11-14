@@ -19,7 +19,7 @@ package { "dos2unix":
     ensure   => installed,
 }
 
-package { "tsocks":
+package { "expect":
     ensure   => installed,
 }
 
