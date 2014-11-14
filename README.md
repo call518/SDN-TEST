@@ -234,7 +234,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 #### CMD TXT
 
-[/home/vagrant/devstack/devstack-overlay-demo-cmd.txt](resources/puppet/files/devstack-overlay-demo-cmd.txt)
+[devstack-control> cat /home/vagrant/devstack/devstack-overlay-demo-cmd.txt](resources/puppet/files/devstack-overlay-demo-cmd.txt)
 
 #### Sample ScreenShot
 
