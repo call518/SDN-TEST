@@ -137,7 +137,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #control.vm.network "forwarded_port", guest: 6080, host: 6080
     control.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--cpus", "4"]
       vb.customize ["modifyvm", :id, "--memory", "4096"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
@@ -176,7 +176,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #compute.vm.network "forwarded_port", guest: 6080, host: 6080
       compute.vm.provider :virtualbox do |vb|
         #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-        vb.customize ["modifyvm", :id, "--cpus", "2"]
+        vb.customize ["modifyvm", :id, "--cpus", "4"]
         vb.customize ["modifyvm", :id, "--memory", "1024"]
         #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
         #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
