@@ -19,9 +19,9 @@ package { "dos2unix":
     ensure   => installed,
 }
 
-package { "expect":
-    ensure   => installed,
-}
+#package { "expect":
+#    ensure   => installed,
+#}
 
 exec { "echo 'set bg=dark' >> /etc/vim/vimrc":
     user    => "root",
