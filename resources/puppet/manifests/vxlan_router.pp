@@ -10,7 +10,7 @@ resources { "firewall":
   purge => true
 }
 
-firewall { '100 s1 MASQUERADE':
+firewall { 's1 MASQUERADE':
   chain    => 'POSTROUTING',
   jump     => 'MASQUERADE',
   proto    => 'all',
@@ -19,7 +19,7 @@ firewall { '100 s1 MASQUERADE':
   table    => 'nat',
 }
 
-firewall { '101 s2 MASQUERADE':
+firewall { 's2 MASQUERADE':
   chain    => 'POSTROUTING',
   jump     => 'MASQUERADE',
   proto    => 'all',

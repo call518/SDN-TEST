@@ -61,3 +61,16 @@ exec { "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE":
     user    => "root",
     timeout => "0",
 }
+
+resources { "firewall":
+  purge => true
+}
+
+firewall { 'MASQUERADE to Public':
+  chain    => 'POSTROUTING',
+  jump     => 'MASQUERADE',
+  proto    => 'all',
+  outiface => "eth0",
+  source   => '172.24.4.0/24',
+  table    => 'nat',
+}
