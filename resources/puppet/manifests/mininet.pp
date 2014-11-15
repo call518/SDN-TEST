@@ -96,12 +96,11 @@ file { "Put topo-mininet":
 }
 
 file { "Put miniedit-2.1.0.9.py":
-    path     => "/home/vagrant/topo-mininet",
+    path     => "/home/vagrant/miniedit-2.1.0.9.py",
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
     source   => "/vagrant/resources/puppet/files/miniedit-2.1.0.9.py",
-    ensure   => directory,
     replace  => true,
     recurse  => true,
 }
