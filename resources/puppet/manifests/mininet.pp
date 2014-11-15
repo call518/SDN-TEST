@@ -30,7 +30,7 @@ $deps = [
 #          "python-twisted-conch",
 #          "python-twisted-web",
 #          "xauth",
-          "python-tk",
+#          "python-tk",
           "openvswitch-datapath-dkms",
           "wireshark",
 ]
@@ -96,15 +96,15 @@ file { "Put topo-mininet":
     recurse  => true,
 }
 
-file { "Put miniedit-2.1.0.9.py":
-    path     => "/home/vagrant/miniedit-2.1.0.9.py",
-    owner    => "vagrant",
-    group    => "vagrant",
-    mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/miniedit-2.1.0.9.py",
-    replace  => true,
-    recurse  => true,
-}
+#file { "Put miniedit-2.1.0.9.py":
+#    path     => "/home/vagrant/miniedit-2.1.0.9.py",
+#    owner    => "vagrant",
+#    group    => "vagrant",
+#    mode     => 0755,
+#    source   => "/vagrant/resources/puppet/files/miniedit-2.1.0.9.py",
+#    replace  => true,
+#    recurse  => true,
+#}
 
 vcsrepo { "/home/vagrant/loxigen":
     ensure   => present,
