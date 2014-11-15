@@ -30,6 +30,7 @@ $deps = [
 #          "python-twisted-conch",
 #          "python-twisted-web",
 #          "xauth",
+          "python-tk",
           "openvswitch-datapath-dkms",
           "wireshark",
 ]
