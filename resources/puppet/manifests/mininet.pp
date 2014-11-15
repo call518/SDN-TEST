@@ -95,6 +95,17 @@ file { "Put topo-mininet":
     recurse  => true,
 }
 
+file { "Put miniedit-2.1.0.9.py":
+    path     => "/home/vagrant/topo-mininet",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/miniedit-2.1.0.9.py",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+}
+
 vcsrepo { "/home/vagrant/loxigen":
     ensure   => present,
     provider => git,
