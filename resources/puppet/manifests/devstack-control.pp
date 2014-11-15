@@ -60,7 +60,7 @@ resources { "firewall":
   purge => true
 }
 
-firewall { 'MASQUERADE to Public':
+firewall { '100 MASQUERADE to Public':
   chain    => 'POSTROUTING',
   jump     => 'MASQUERADE',
   proto    => 'all',

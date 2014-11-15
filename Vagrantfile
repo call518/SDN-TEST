@@ -263,7 +263,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "vxlan_servers.pp"
+      puppet.manifest_file  = "vxlan-servers.pp"
     end
   end
 
@@ -295,7 +295,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "vxlan_servers.pp"
+      puppet.manifest_file  = "vxlan-servers.pp"
     end
   end
 
