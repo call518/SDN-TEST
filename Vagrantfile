@@ -217,10 +217,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
-    vxlan_router.vm.provision "shell", inline: <<-SCRIPT
-      sed -i 's/^#net.ipv4.ip_forward.*/net.ipv4.ip_forward=1/g' /etc/sysctl.conf && sysctl -p
-      iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-    SCRIPT
+    #vxlan_router.vm.provision "shell", inline: <<-SCRIPT
+    #  sed -i 's/^#net.ipv4.ip_forward.*/net.ipv4.ip_forward=1/g' /etc/sysctl.conf && sysctl -p
+    #  iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    #SCRIPT
     vxlan_router.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
