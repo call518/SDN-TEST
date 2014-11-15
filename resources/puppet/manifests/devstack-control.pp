@@ -56,12 +56,6 @@ file { "Put devstack-overlay-demo-cmd.txt":
     replace  => true,
 }
 
-exec { "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "root",
-    timeout => "0",
-}
-
 resources { "firewall":
   purge => true
 }
