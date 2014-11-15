@@ -83,7 +83,7 @@ file { "Put topo-vxlan":
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/topo-vxlan",
+    source   => "/vagrant/resources/puppet/files/topo-vxlan",
     ensure   => directory,
     replace  => true,
     recurse  => true,

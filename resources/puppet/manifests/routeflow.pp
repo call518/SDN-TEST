@@ -194,7 +194,7 @@ file { "Put rf-topo-mininet":
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/rf-topo-mininet",
+    source   => "/vagrant/resources/puppet/files/rf-topo-mininet",
     ensure   => directory,
     replace  => true,
     recurse  => true,
