@@ -57,15 +57,14 @@ file { "Put devstack-overlay-demo-cmd.txt":
 }
 
 resources { "firewall":
-  purge => true
+    purge => true
 }
 
 firewall { "100 MASQUERADE to Public":
-  chain    => "POSTROUTING",
-  jump     => "MASQUERADE",
-  proto    => "all",
-  outiface => "eth0",
-  source   => "172.24.4.0/24",
-  table    => "nat",
-  require  => Resources["firewall"],
+    chain    => "POSTROUTING",
+    jump     => "MASQUERADE",
+    proto    => "all",
+    outiface => "eth0",
+    source   => "172.24.4.0/24",
+    table    => "nat",
 }
