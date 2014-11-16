@@ -17,7 +17,6 @@ firewall { "100 s1 MASQUERADE":
     proto     => "all",
     source    => "192.168.1.0/24",
     jump      => "MASQUERADE",
-    logoutput => true,
 }
 
 firewall { "101 s2 MASQUERADE":
@@ -27,5 +26,4 @@ firewall { "101 s2 MASQUERADE":
     proto     => "all",
     source    => "192.168.2.0/24",
     jump      => "MASQUERADE",
-    logoutput => true,
 }

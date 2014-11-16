@@ -67,5 +67,4 @@ firewall { "100 MASQUERADE to Public":
     proto     => "all",
     source    => "172.24.4.0/24",
     jump      => "MASQUERADE",
-    logoutput => true,
 }
