@@ -32,6 +32,7 @@ exec { "iptables -F && iptables -t nat -F":
 exec { "iptables -t nat -A POSTROUTING -o eth0 -s 192.168.1.0/24 -j MASQUERADE":
     user    => "root",
     timeout => "0",
+    require => Exec["iptables -F && iptables -t nat -F"],
 }
 
 #firewall { "101 s2 MASQUERADE":
@@ -46,5 +47,6 @@ exec { "iptables -t nat -A POSTROUTING -o eth0 -s 192.168.1.0/24 -j MASQUERADE":
 exec { "iptables -t nat -A POSTROUTING -o eth0 -s 192.168.2.0/24 -j MASQUERADE":
     user    => "root",
     timeout => "0",
+    require => Exec["iptables -F && iptables -t nat -F"],
 }
 #####################################################################

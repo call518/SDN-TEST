@@ -82,5 +82,6 @@ exec { "iptables -F && iptables -t nat -F":
 exec { "iptables -t nat -A POSTROUTING -o eth0 -s 172.24.4.0/24 -j MASQUERADE":
     user    => "root",
     timeout => "0",
+    require => Exec["iptables -F && iptables -t nat -F"],
 }
 #####################################################################
