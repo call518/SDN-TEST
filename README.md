@@ -242,6 +242,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
       `vm> ip netns exec {QROUTER's UUID} ssh cirros@{VM's IP}`
           `e.g.) ip netns exec qrouter-a4e4c152-ee23-4e16-b900-4d0c132618d7 ssh cirros@10.1.1.4`
+	  `Login ID/PW: "cirros / cubswin:)"`
 
 #### Sample ScreenShot
 
