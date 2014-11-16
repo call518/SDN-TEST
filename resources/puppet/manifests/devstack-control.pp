@@ -60,15 +60,27 @@ file { "Put devstack-overlay-demo-cmd.txt":
     replace  => true,
 }
 
-resources { "firewall":
-    purge     => true
+############## puppetlabs-firewall Not Works... #####################
+#resources { "firewall":
+#    purge     => true
+#}
+
+exec { "iptables -F && iptables -t nat -F":
+    user    => "root",
+    timeout => "0",
 }
 
-firewall { "100 MASQUERADE to Public":
-    table     => "nat",
-    chain     => "POSTROUTING",
-    outiface  => "eth0",
-    proto     => "all",
-    source    => "172.24.4.0/24",
-    jump      => "MASQUERADE",
+#firewall { "100 MASQUERADE to Public":
+#    table     => "nat",
+#    chain     => "POSTROUTING",
+#    outiface  => "eth0",
+#    proto     => "all",
+#    source    => "172.24.4.0/24",
+#    jump      => "MASQUERADE",
+#}
+
+exec { "iptables -t nat -A POSTROUTING -o eth0 -s 172.24.4.0/24 -j MASQUERADE":
+    user    => "root",
+    timeout => "0",
 }
+#####################################################################
