@@ -10,9 +10,9 @@ package { "iptables":
     ensure   => installed,
 }
 
-package { "virt-manager":
-    ensure   => installed,
-}
+#package { "virt-manager":
+#    ensure   => installed,
+#}
 
 vcsrepo { "/home/vagrant/devstack":
     provider => git,
