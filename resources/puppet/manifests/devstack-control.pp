@@ -6,6 +6,10 @@ include apt
 ### Export Env: Global %PATH for "Exec"
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
 
+package { "iptables":
+    ensure   => installed,
+}
+
 vcsrepo { "/home/vagrant/devstack":
     provider => git,
     ensure => present,
