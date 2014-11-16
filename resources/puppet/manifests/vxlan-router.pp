@@ -7,23 +7,25 @@ include apt
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
 
 resources { "firewall":
-    purge => true
+    purge     => true
 }
 
 firewall { "100 s1 MASQUERADE":
-    chain    => "POSTROUTING",
-    jump     => "MASQUERADE",
-    proto    => "all",
-    outiface => "eth0",
-    source   => "192.168.1.0/24",
-    table    => "nat",
+    table     => "nat",
+    chain     => "POSTROUTING",
+    outiface  => "eth0",
+    proto     => "all",
+    source    => "192.168.1.0/24",
+    jump      => "MASQUERADE",
+    logoutput => true,
 }
 
 firewall { "101 s2 MASQUERADE":
-    chain    => "POSTROUTING",
-    jump     => "MASQUERADE",
-    proto    => "all",
-    outiface => "eth0",
-    source   => "192.168.2.0/24",
-    table    => "nat",
+    table     => "nat",
+    chain     => "POSTROUTING",
+    outiface  => "eth0",
+    proto     => "all",
+    source    => "192.168.2.0/24",
+    jump      => "MASQUERADE",
+    logoutput => true,
 }
