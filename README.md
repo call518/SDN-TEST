@@ -99,11 +99,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Demo System & Topology
 
-#### System
-
 ![Demo System](etc-files/vtn-demo-system.png)
-
-#### Topology
 
 ![Demo Network Topology](etc-files/vtn-demo-network-topology.png)
 
