@@ -14,6 +14,7 @@ $deps = [
           "libxslt",
           "libcurl",
           "unixODBC",
+          "lsof",
 ]
 
 package { $deps:
