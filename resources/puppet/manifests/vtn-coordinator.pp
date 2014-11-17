@@ -73,7 +73,7 @@ exec { "Setup VTN DB":
 }
 
 exec { "Start VTN Coordinator":
-    command => "/usr/local/vtn/bin/vtn_stop && /usr/local/vtn/bin/vtn_start",
+    command => "bash -c 'if [ `jps | grep -c \"Bootstrap\"` -eq 0 ]; then /usr/local/vtn/bin/vtn_start; fi'",
     cwd     => "/usr/local/vtn/sbin",
     user    => "root",
     timeout => "0",
