@@ -22,7 +22,7 @@ SDN Test Suite
 
 * opendaylight-mininet-1
 
-* opendaylight-mininet-2
+* opendaylight-mininet-2 (Additional)
 
 * routeflow
 
