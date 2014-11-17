@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "`hostname`" == "opendaylight-mininet" ]; then
+if [ `hostname | grep -c "opendaylight-mininet"` -ne 0 ]; then
 	echo
 	echo -e " ======================================================================="
 	echo -e "  [Install Feature] feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch"
