@@ -387,7 +387,21 @@ table=1,tun_id=100,arp,nw_dst=10.0.0.2,actions=output:1
 table=1,tun_id=200,arp,nw_dst=10.0.0.2,actions=output:2
 table=1,priority=100,actions=drop
 ```
+# VTN /w DevStack
+
+* To use OpenDaylight Controller (ODL) as Network Service Provider for Openstack. (By using VTN Neutron – OVSDB Integration).
+
+### Start Vagrant
+
+(Note) *Order is important!*
+
+1. `host> vagrant up vtn-coordinator`
+
+2. `host> vagrant up devstack-control`
+
+3. `host> vagrant up devstack-compute-1`
 
 # Refrences
 
-Vagrnat Ref: `https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant`
+Vagrnatfile Ref: `https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant`
+VTN Ref: https://wiki.opendaylight.org/view/Release/Helium/VTN/User_Guide/OpenStack_Support
