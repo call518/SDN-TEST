@@ -16,11 +16,13 @@ SDN Test Suite
 * RouteFlow
 * DevStack /w OpenDaylight
 * VXLAN /w OVS
-* OpenDaylight VTN Coordinator
+* VTN Coordinator
 
 ### Vagrant VMs
 
-* opendaylight-mininet
+* opendaylight-mininet-1
+
+* opendaylight-mininet-2
 
 * routeflow
 
@@ -38,6 +40,8 @@ SDN Test Suite
 
 * vxlan-server2
 
+* vtn-coordinator
+
 # OpenDaylight /w Mininet
 
 SDN Controller, OpenDaylight TESTing with Mininet
@@ -48,7 +52,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ### Start Vagrant
 
-`host> vagrant up opendaylight-mininet`
+`host> vagrant up opendaylight-mininet-1`
 
 ### Components of VM
 
@@ -60,7 +64,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 * Run OpenDaylight
 
-      `host> vagrant ssh opendaylight-mininet`
+      `host> vagrant ssh opendaylight-mininet-1`
 
       `vm> cd /home/vagrant/opendaylight`
 
@@ -77,7 +81,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 * Common Topology
 
-      `host> vagrant ssh opendaylight-mininet`
+      `host> vagrant ssh opendaylight-mininet-1`
 
       `vm> sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
 
