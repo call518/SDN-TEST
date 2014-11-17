@@ -14,8 +14,9 @@ SDN Test Suite
 
 * OpenDaylight /w Mininet
 * RouteFlow
-* VXLAN /w OVS
 * DevStack /w OpenDaylight
+* VXLAN /w OVS
+* OpenDaylight VTN Coordinator
 
 ### Vagrant VMs
 

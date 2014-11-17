@@ -333,37 +333,37 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ## VTN Coordinator
-#  config.vm.define "vtn-coordinator" do |vtn_coordinator|
-#    vtn_coordinator.vm.box = "Fedora20-x86_64"
-#    vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
-#    vtn_coordinator.vm.hostname = "vtn-coordinator"
-#    vtn_coordinator.vm.network "private_network", ip: "192.168.70.10"
-#    #vtn_coordinator.vm.network "forwarded_port", guest: 80, host: 8081
-#    vtn_coordinator.vm.provider :virtualbox do |vb|
-#      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-#      vb.customize ["modifyvm", :id, "--cpus", "2"]
-#      vb.customize ["modifyvm", :id, "--memory", "1024"]
-#      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
-#      vb.customize ["modifyvm", :id, "--nic3", "intnet"]
-#      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-#      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-#    end
-#    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-#    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-#    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-#    vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-#    vtn_coordinator.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "base.pp"
-#    end
-#    vtn_coordinator.vm.provision "puppet" do |puppet|
-#      puppet.working_directory = "/vagrant/resources/puppet"
-#      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
-#      puppet.manifests_path = "resources/puppet/manifests"
-#      puppet.manifest_file  = "vtn-coordinator.pp"
-#    end
-#  end
+  config.vm.define "vtn-coordinator" do |vtn_coordinator|
+    vtn_coordinator.vm.box = "Fedora20-x86_64"
+    vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+    vtn_coordinator.vm.hostname = "vtn-coordinator"
+    vtn_coordinator.vm.network "private_network", ip: "192.168.70.10"
+    #vtn_coordinator.vm.network "forwarded_port", guest: 80, host: 8081
+    vtn_coordinator.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      vb.customize ["modifyvm", :id, "--nic3", "intnet"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+    end
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    vtn_coordinator.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+    end
+    vtn_coordinator.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "vtn-coordinator.pp"
+    end
+  end
 
 end
