@@ -8,30 +8,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #  vb.gui = true
   #end
 
-  #config.vm.box = "puppetlabs-precise64"
-  #config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
   config.ssh.forward_x11 = true
 
-  #config.vm.box = "precise32"
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-i386-vagrant-disk1.box"
   #config.vm.box = "precise64"
   #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+  #config.vm.box_url = "https://plink.ucloud.com/public_link/link/a15d4c1ca008d431"
 
-  #config.vm.box = "trusty32"
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
   #config.vm.box = "trusty64"
   #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  #config.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
 
-  #control.vm.box = "opscode_ubuntu-14.04_chef-provisionerless"
-  #control.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
-
-  #control.vm.box = "CentOS-6.5-x76_64"
+  #control.vm.box = "CentOS-6.5-x86_64"
   #control.vm.box_url = "https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box"
+  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8a93d1a50f2aeaf2"
 
-  config.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-  #config.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-  config.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-  config.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+  #control.vm.box = "Fedora20-x86_64"
+  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+
+  ### Do not use ### 
+  #config.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+  ##config.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+  #config.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+  #config.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
 
   #config.vm.provision "puppet" do |puppet|
   #    puppet.working_directory = "/vagrant/resources/puppet"
@@ -47,7 +45,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight(Helium) & Mininet
   config.vm.define "opendaylight-mininet" do |opendaylight_mininet|
     opendaylight_mininet.vm.box = "trusty64"
-    opendaylight_mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    #opendaylight_mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    opendaylight_mininet.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     opendaylight_mininet.vm.hostname = "opendaylight-mininet"
     opendaylight_mininet.vm.network "private_network", ip: "192.168.40.10"
     opendaylight_mininet.vm.network "forwarded_port", guest: 8080, host: 9090
@@ -59,6 +58,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
+    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     opendaylight_mininet.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
@@ -82,7 +85,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## RouteFlow & OpenDaylight(Source) & Mininet
   config.vm.define "routeflow" do |routeflow|
     routeflow.vm.box = "precise64"
-    routeflow.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    #routeflow.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    routeflow.vm.box_url = "https://plink.ucloud.com/public_link/link/a15d4c1ca008d431"
     routeflow.vm.hostname = "routeflow"
     routeflow.vm.network "private_network", ip: "192.168.40.16"
     routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -95,6 +99,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
+    routeflow.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #routeflow.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    routeflow.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    routeflow.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     routeflow.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
@@ -128,10 +136,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
-    #control.vm.box = "precise64"
-    #control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     control.vm.box = "trusty64"
-    control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    #control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    control.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
@@ -145,6 +152,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
+    control.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #control.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    control.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    control.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
@@ -170,10 +181,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "devstack-compute-#{n+1}" do |compute|
       compute_ip = compute_ips[n]
       compute_index = n+1
-      #compute.vm.box = "precise64"
-      #compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
       compute.vm.box = "trusty64"
-      compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+      #compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+      compute.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
       compute.vm.network "private_network", ip: "#{compute_ip}"
       #compute.vm.network "forwarded_port", guest: 6080, host: 6080
@@ -184,6 +194,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
         #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
       end
+      compute.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+      #.computevm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+      compute.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+      compute.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
       compute.vm.provision "puppet" do |puppet|
         puppet.working_directory = "/vagrant/resources/puppet"
         puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
@@ -206,7 +220,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - Router (Must be deploy first)
   config.vm.define "vxlan-router" do |vxlan_router|
     vxlan_router.vm.box = "trusty64"
-    vxlan_router.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    #vxlan_router.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    vxlan_router.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     vxlan_router.vm.hostname = "vxlan-router"
     vxlan_router.vm.network "private_network", ip: "192.168.1.1"
     vxlan_router.vm.network "private_network", ip: "192.168.2.1"
@@ -224,6 +239,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #  sed -i 's/^#net.ipv4.ip_forward.*/net.ipv4.ip_forward=1/g' /etc/sysctl.conf && sysctl -p
     #  iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     #SCRIPT
+    vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vxlan_router.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
@@ -241,7 +260,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server1
   config.vm.define "vxlan-server1" do |vxlan_server1|
     vxlan_server1.vm.box = "trusty64"
-    vxlan_server1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    #vxlan_server1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    vxlan_server1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     vxlan_server1.vm.hostname = "vxlan-server1"
     vxlan_server1.vm.network "private_network", ip: "192.168.1.10"
     #vxlan_server1.vm.network "forwarded_port", guest: 80, host: 8081
@@ -253,6 +273,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
+    vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vxlan_server1.vm.provision "shell", inline: <<-SCRIPT
       route del default && route add default gw 192.168.1.1
     SCRIPT
@@ -273,7 +297,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server2
   config.vm.define "vxlan-server2" do |vxlan_server2|
     vxlan_server2.vm.box = "trusty64"
-    vxlan_server2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    #vxlan_server2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    vxlan_server2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     vxlan_server2.vm.hostname = "vxlan-server2"
     vxlan_server2.vm.network "private_network", ip: "192.168.2.20"
     #vxlan_server2.vm.network "forwarded_port", guest: 80, host: 8081
@@ -285,6 +310,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
+    vxlan_server2.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #vxlan_server2.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    vxlan_server2.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    vxlan_server2.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vxlan_server2.vm.provision "shell", inline: <<-SCRIPT
       route del default && route add default gw 192.168.2.1
     SCRIPT
@@ -299,6 +328,40 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "vxlan-servers.pp"
+    end
+  end
+
+  ## VTN Coordinator
+  config.vm.define "vtn-coordinator" do |vtn_coordinator|
+    vtn_coordinator.vm.box = "Fedora20-x86_64"
+    vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+    vtn_coordinator.vm.hostname = "vtn-coordinator"
+    vtn_coordinator.vm.network "private_network", ip: "192.168.70.10"
+    #vtn_coordinator.vm.network "forwarded_port", guest: 80, host: 8081
+    vtn_coordinator.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      vb.customize ["modifyvm", :id, "--nic3", "intnet"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+    end
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    vtn_coordinator.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+    end
+    vtn_coordinator.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "vtn-coordinator.pp"
     end
   end
 

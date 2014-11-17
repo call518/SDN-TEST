@@ -1,0 +1,8 @@
+{
+  "hosts": {
+    "vtn-coordinator": {
+      "name": "vtn-coordinator",
+      "ipaddress": "192.168.70.10"
+    }
+  }
+}

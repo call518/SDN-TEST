@@ -3,15 +3,11 @@
 ### Export Env: Global %PATH for "Exec"
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
 
-package {"git":
+package { "git":
     ensure => "installed"
 }
 
-package {"vim":
-    ensure => "installed"
-}
-
-package {"unzip":
+package { "unzip":
     ensure => "installed"
 }
 
@@ -23,16 +19,32 @@ package { "dos2unix":
 #    ensure   => installed,
 #}
 
-exec { "echo 'set bg=dark' >> /etc/vim/vimrc":
-    user    => "root",
-    timeout => "0",
-    require => Package["vim"],
+case $operatingsystem {
+    debian, ubuntu: { $vim_pkg = "vim" }
+    centos, redhat, fedora: { $vim_pkg = "vim-enhanced" }
+    default: { fail("Unrecognized operating system for webserver") }
 }
 
-exec { "echo 'set ts=4' >> /etc/vim/vimrc":
+case $operatingsystem {
+    debian, ubuntu: { $vimrc = "/etc/vim/vimrc" }
+    centos, redhat, fedora: { $vimrc = "/etc/vimrc" }
+    default: { fail("Unrecognized operating system for webserver") }
+}
+
+package { $vim_pkg:
+    ensure => "installed"
+}
+
+exec { "echo 'set bg=dark' >> $vimrc":
     user    => "root",
     timeout => "0",
-    require => Package["vim"],
+    require => Package[ $vim_pkg ],
+}
+
+exec { "echo 'set ts=4' >> $vimrc":
+    user    => "root",
+    timeout => "0",
+    require => Package[ $vim_pkg ],
 }
 
 $hosts = hiera("hosts")

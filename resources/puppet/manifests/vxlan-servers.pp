@@ -46,12 +46,12 @@ Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin"
 
 package { $deps:
     ensure   => installed,
-    before   => Package["mininet"],
 }
 
 ### Mininet
 package { "mininet":
     ensure   => installed,
+    require  => Package[ $deps ],
 }
 
 exec { "service openvswitch-controller stop":
