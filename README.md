@@ -13,7 +13,6 @@ SDN Test Suite
 ### Vagrant-based SDN Test Suite.
 
 * OpenDaylight /w Mininet
-* OpenDaylight's VTN /w Mininet
 * RouteFlow
 * VXLAN /w OVS
 * DevStack /w OpenDaylight
@@ -86,26 +85,6 @@ SDN Controller, OpenDaylight TESTing with Mininet
 * Custom Topologys
 
       `vm> cd /home/vagrant/topo-mininet`
-
-# OpenDaylight's VTN /w Mininet
-
-* Provides REST APIs for creating virtual L2 network
-* Handles `PACKET_IN` messages
-* Sends `PACKET_OUT` messages
-* Stores host information in hosttracker
-* In this demo, all packets are forwarded by the controller based on definition of VTN
-* Capability of installing flow entries is not implemented yet
-* Ref: `https://wiki.opendaylight.org/images/d/da/NEC_VTN_Demo_0722.pdf`
-
-### Demo System & Topology
-
-![Demo System](etc-files/vtn-demo-system.png)
-
-![Demo Network Topology](etc-files/vtn-demo-network-topology.png)
-
-### Start Vagrant
-
-`host> vagrant up opendaylight-mininet`
 
 # RouteFlow
 
