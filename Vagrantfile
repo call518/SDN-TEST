@@ -59,7 +59,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
     opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     opendaylight_mininet.vm.provision "puppet" do |puppet|
@@ -99,7 +99,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
     opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     opendaylight_mininet.vm.provision "puppet" do |puppet|
@@ -140,7 +140,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
     routeflow.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #routeflow.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    routeflow.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     routeflow.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     routeflow.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     routeflow.vm.provision "puppet" do |puppet|
@@ -194,7 +194,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
     control.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #control.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    control.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     control.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     control.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     control.vm.provision "puppet" do |puppet|
@@ -236,7 +236,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
       end
       compute.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-      #.computevm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+      compute.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
       compute.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
       compute.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
       compute.vm.provision "puppet" do |puppet|
@@ -281,7 +281,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #  iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     #SCRIPT
     vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vxlan_router.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vxlan_router.vm.provision "puppet" do |puppet|
@@ -315,7 +315,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
     vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vxlan_server1.vm.provision "shell", inline: <<-SCRIPT
@@ -342,7 +342,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vxlan_server2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     vxlan_server2.vm.hostname = "vxlan-server2"
     vxlan_server2.vm.network "private_network", ip: "192.168.2.20"
-    #vxlan_server2.vm.network "forwarded_port", guest: 80, host: 8081
+    vxlan_server2.vm.network "forwarded_port", guest: 80, host: 8081
     vxlan_server2.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
