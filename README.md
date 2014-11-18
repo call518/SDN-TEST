@@ -475,8 +475,8 @@ h4 -> X X X
       `host> vagrant ssh opendaylight-mininet-1`
 
 ```
-      vm> export VTN_OPT="--user 'admin':'admin' -H 'Accept: application/json' -H 'Content-type: application/json'"
-      vm> export VTN_URL="http://localhost:8080"
+      vm> export VTN_OPT='--user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json"'
+      vm> export VTN_URL='http://localhost:8080'
 
       vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
       vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1 -d '{}'
@@ -491,8 +491,8 @@ h4 -> X X X
       `host> vagrant ssh opendaylight-mininet-1`
 
 ```
-      vm> export VTN_OPT="--user 'admin':'admin' -H 'Accept: application/json' -H 'Content-type: application/json'"
-      vm> export VTN_URL="http://localhost:8080"
+      vm> export VTN_OPT='--user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json"'
+      vm> export VTN_URL='http://localhost:8080'
 
       vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
       vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1 -d '{}'
