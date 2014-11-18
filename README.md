@@ -20,27 +20,22 @@ SDN Test Suite
 
 ### Vagrant VMs
 
-* opendaylight-mininet-1
+```
+# vagrant status
+Current machine states:
 
-* opendaylight-mininet-2 (Additional)
-
-* routeflow
-
-* devstack-control
-
-* devstack-compute-1
-
-* devstack-compute-2
-
-* devstack-compute-3
-
-* vxlan-router
-
-* vxlan-server1
-
-* vxlan-server2
-
-* vtn-coordinator
+opendaylight-mininet-1    not created (virtualbox)
+opendaylight-mininet-2    not created (virtualbox)
+routeflow                 not created (virtualbox)
+devstack-control          not created (virtualbox)
+devstack-compute-1        not created (virtualbox)
+devstack-compute-2        not created (virtualbox)
+devstack-compute-3        not created (virtualbox)
+vxlan-router              not created (virtualbox)
+vxlan-server1             not created (virtualbox)
+vxlan-server2             not created (virtualbox)
+vtn-coordinator           not created (virtualbox)
+```
 
 # OpenDaylight /w Mininet
 
