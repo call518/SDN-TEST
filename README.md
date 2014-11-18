@@ -457,7 +457,7 @@ table=1,priority=100,actions=drop
 
       `host> vagrant ssh opendaylight-mininet-1`
 
-      `vm> mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk,protocols=OpenFlow13 --topo tree,2`
+      `vm> mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk,protocols=OpenFlow13 --mac --topo tree,2`
 
       `vm> mininet> pingall`
 
@@ -472,10 +472,12 @@ h4 -> X X X
 
 ### REST API Operation for VTN1
 
+* Command TXT File: `/home/vagrant/RESTconf-VTN/create-VTN{1,2}.txt`
+
       `host> vagrant ssh opendaylight-mininet-1`
 
 ```
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "Virtual Tenant 1 for Hackfest network"}'
+      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
       vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1 -d '{}'
       vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1 -d '{}'
       vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2 -d '{}'
@@ -488,7 +490,7 @@ h4 -> X X X
       `host> vagrant ssh opendaylight-mininet-1`
 
 ```
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "Virtual Tenant 1 for Hackfest network"}'
+      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
       vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1 -d '{}'
       vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1 -d '{}'
       vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2 -d '{}'
@@ -505,28 +507,8 @@ h1 -> X h3 X
 h2 -> X X h4 
 h3 -> h1 X X 
 h4 -> X h2 X
-```
 
-```
 mininet> dpctl dump-flows
-*** s1 ------------------------------------------------------------------------
-NXST_FLOW reply (xid=0x4):
- cookie=0x0, duration=21.818s, table=0, n_packets=3, n_bytes=182, idle_age=12, priority=10,in_port=2,vlan_tci=0x0000,dl_src=ee:db:96:48:db:2e,dl_dst=c2:f3:6a:d0:4e:cf actions=output:1
- cookie=0x0, duration=21.838s, table=0, n_packets=3, n_bytes=182, idle_age=12, priority=10,in_port=1,vlan_tci=0x0000,dl_src=c2:f3:6a:d0:4e:cf,dl_dst=ee:db:96:48:db:2e actions=output:2
- cookie=0x0, duration=30.866s, table=0, n_packets=3, n_bytes=182, idle_age=16, priority=10,in_port=1,vlan_tci=0x0000,dl_src=b2:cc:00:d4:c9:15,dl_dst=f6:b4:6c:9a:f0:5e actions=output:2
- cookie=0x0, duration=30.849s, table=0, n_packets=3, n_bytes=182, idle_age=16, priority=10,in_port=2,vlan_tci=0x0000,dl_src=f6:b4:6c:9a:f0:5e,dl_dst=b2:cc:00:d4:c9:15 actions=output:1
-*** s2 ------------------------------------------------------------------------
-NXST_FLOW reply (xid=0x4):
- cookie=0x0, duration=21.825s, table=0, n_packets=3, n_bytes=182, idle_age=12, priority=10,in_port=3,vlan_tci=0x0000,dl_src=ee:db:96:48:db:2e,dl_dst=c2:f3:6a:d0:4e:cf actions=output:2
- cookie=0x0, duration=30.861s, table=0, n_packets=3, n_bytes=182, idle_timeout=300, idle_age=16, priority=10,in_port=1,vlan_tci=0x0000,dl_src=b2:cc:00:d4:c9:15,dl_dst=f6:b4:6c:9a:f0:5e actions=output:3
- cookie=0x0, duration=21.832s, table=0, n_packets=3, n_bytes=182, idle_timeout=300, idle_age=12, priority=10,in_port=2,vlan_tci=0x0000,dl_src=c2:f3:6a:d0:4e:cf,dl_dst=ee:db:96:48:db:2e actions=output:3
- cookie=0x0, duration=30.854s, table=0, n_packets=3, n_bytes=182, idle_age=16, priority=10,in_port=3,vlan_tci=0x0000,dl_src=f6:b4:6c:9a:f0:5e,dl_dst=b2:cc:00:d4:c9:15 actions=output:1
-*** s3 ------------------------------------------------------------------------
-NXST_FLOW reply (xid=0x4):
- cookie=0x0, duration=21.822s, table=0, n_packets=3, n_bytes=182, idle_timeout=300, idle_age=12, priority=10,in_port=2,vlan_tci=0x0000,dl_src=ee:db:96:48:db:2e,dl_dst=c2:f3:6a:d0:4e:cf actions=output:3
- cookie=0x0, duration=30.875s, table=0, n_packets=3, n_bytes=182, idle_age=16, priority=10,in_port=3,vlan_tci=0x0000,dl_src=b2:cc:00:d4:c9:15,dl_dst=f6:b4:6c:9a:f0:5e actions=output:1
- cookie=0x0, duration=30.851s, table=0, n_packets=3, n_bytes=182, idle_timeout=300, idle_age=16, priority=10,in_port=1,vlan_tci=0x0000,dl_src=f6:b4:6c:9a:f0:5e,dl_dst=b2:cc:00:d4:c9:15 actions=output:3
- cookie=0x0, duration=21.852s, table=0, n_packets=3, n_bytes=182, idle_age=12, priority=10,in_port=3,vlan_tci=0x0000,dl_src=c2:f3:6a:d0:4e:cf,dl_dst=ee:db:96:48:db:2e actions=output:2
 ```
 
 # Refrences
