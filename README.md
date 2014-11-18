@@ -517,6 +517,12 @@ mininet> dpctl dump-flows
   
 # VTN Tutorial-2 (Single Domain)
 
+### Design
+
+![VTN Demo2 System](etc-files/vtn-demo2-system.png)
+
+![VTN Demo2 Network Topology](etc-files/vtn-demo2-network-topology.png)
+
 ### Start Vagrant
 
 ### Run OpenDaylight (Helium)
@@ -531,6 +537,7 @@ mininet> dpctl dump-flows
 
 ```
 Vagrnatfile Ref: https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
-VTN Ref: https://wiki.opendaylight.org/images/d/da/NEC_VTN_Demo_0722.pdf
 VXLAN Ref: http://www.youtube.com/watch?v=tnSkHhsLqpM
+VTN Tutorial-1 Ref: https://wiki.opendaylight.org/images/d/da/NEC_VTN_Demo_0722.pdf
+VTN Tutorial-2 Ref: https://wiki.opendaylight.org/images/2/21/NEC_VTN_Demo_0910.pdf
 ```
