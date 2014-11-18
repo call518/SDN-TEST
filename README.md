@@ -70,7 +70,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
       `vm> ./run-karaf.sh`
 
-      `opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
+      `e.g. for OVS) opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
 
 * Web-UI
 
