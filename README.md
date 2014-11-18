@@ -91,6 +91,8 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
       `vm> cd /home/vagrant/topo-mininet`
 
+      `vm> cd /home/vagrant/mininet-examples`
+
 # RouteFlow
 
 RouteFlow, is an open source project to provide virtualized IP routing services over OpenFlow enabled hardware.
