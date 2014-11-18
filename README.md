@@ -394,6 +394,29 @@ table=1,tun_id=100,arp,nw_dst=10.0.0.2,actions=output:1
 table=1,tun_id=200,arp,nw_dst=10.0.0.2,actions=output:2
 table=1,priority=100,actions=drop
 ```
+
+### Ping Test
+
+#### On vxlan-server1
+
+      `mininet> red1 ping 10.0.0.1`
+
+      `mininet> red1 ping 10.0.0.2`
+
+      `mininet> blue1 ping 10.0.0.1`
+
+      `mininet> blue1 ping 10.0.0.2`
+
+#### On vxlan-server2
+
+      `mininet> red2 ping 10.0.0.1`
+
+      `mininet> red2 ping 10.0.0.2`
+
+      `mininet> blue2 ping 10.0.0.1`
+
+      `mininet> blue2 ping 10.0.0.2`
+
 # Refrences
 
 Vagrnatfile Ref: `https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant`
