@@ -424,11 +424,83 @@ table=1,priority=100,actions=drop
 * Provides REST APIs for creating virtual L2 network
 * In this demo, all packets are forwarded by the controller based on definition of VTN
 
-### Run Demo
+### Demo Design
 
 ![VTN Demo System](etc-files/vtn-demo-system.png)
 
 ![VTN Demo Network Topology](etc-files/vtn-demo-network-topology.png)
+
+### Start Vagrant
+
+`host> vagrant up opendaylight-mininet-1`
+
+### Run OpenDaylight (Helium)
+
+* Run OpenDaylight
+
+      `host> vagrant ssh opendaylight-mininet-1`
+
+      `vm> cd /home/vagrant/opendaylight`
+
+      `vm> ./run-karaf.sh`
+
+      `opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
+
+* Web-UI
+
+      Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
+      Default ID/PW: `admin / admin`
+
+### Run Mininet
+
+* Create Topology
+
+      `host> vagrant ssh opendaylight-mininet-1`
+
+      `vm> mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk,protocols=OpenFlow13 --topo tree,2`
+
+      `vm> mininet> pingall`
+
+### REST API Operation for VTN1
+
+      `host> vagrant ssh opendaylight-mininet-1`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "Virtual Tenant 1 for Hackfest network"}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1 -d '{}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1 -d '{}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2 -d '{}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth1"}}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth1"}}'`
+
+### REST API Operation for VTN2
+
+      `host> vagrant ssh opendaylight-mininet-1`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "Virtual Tenant 1 for Hackfest network"}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1 -d '{}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1 -d '{}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2 -d '{}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth2"}}'`
+
+      `vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth2"}}'`
+
+### Result Demo
+
+mininet> pingall
+
+h1 -> X h3 X 
+h2 -> X X h4 
+h3 -> h1 X X 
+h4 -> X h2 X
 
 # Refrences
 
