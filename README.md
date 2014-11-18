@@ -18,10 +18,11 @@ SDN Test Suite
 * VXLAN /w OVS
 * VTN Coordinator
 
-### Vagrant VMs
+### Vagrant VM List
 
 ```
-# vagrant status
+$ vagrant status
+
 Current machine states:
 
 opendaylight-mininet-1    not created (virtualbox)
