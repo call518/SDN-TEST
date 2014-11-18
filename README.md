@@ -519,7 +519,7 @@ h4 -> X h2 X
 mininet> dpctl dump-flows
 ```
 
-# Refrences
+# References
 
 ```
 Vagrnatfile Ref: https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
