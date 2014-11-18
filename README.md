@@ -461,6 +461,15 @@ table=1,priority=100,actions=drop
 
       `vm> mininet> pingall`
 
+```
+mininet> pingall
+
+h1 -> X X X 
+h2 -> X X X 
+h3 -> X X X 
+h4 -> X X X
+```
+
 ### REST API Operation for VTN1
 
       `host> vagrant ssh opendaylight-mininet-1`
