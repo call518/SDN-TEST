@@ -498,8 +498,11 @@ table=1,priority=100,actions=drop
 mininet> pingall
 
 h1 -> X h3 X 
+
 h2 -> X X h4 
+
 h3 -> h1 X X 
+
 h4 -> X h2 X
 
 # Refrences

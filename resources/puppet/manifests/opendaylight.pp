@@ -106,3 +106,14 @@ exec { "dos2unix run-karaf.sh":
     timeout => "0",
     require => File["Put ODL-Helium-Run-Script"],
 }
+
+file { "Put RESTconf-VTN":
+    path     => "/home/vagrant/RESTconf-VTN",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/RESTconf-VTN",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+}
