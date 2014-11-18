@@ -14,8 +14,4 @@ sed -i 's/archive\.ubuntu\.com/ftp\.daum\.net/g' /etc/apt/sources.list 2> /dev/n
 sed -i 's/security\.ubuntu\.com/ftp\.daum\.net/g' /etc/apt/sources.list 2> /dev/null
 sed -i 's/extras\.ubuntu\.com/ftp\.daum\.net/g' /etc/apt/sources.list 2> /dev/null
 
-#if sudo apt-get update; then
-#	echo "= Success 'apt-get update' ="
-#else
-#	echo "= Failure 'apt-get update' ="
-#fi
+apt-get update
