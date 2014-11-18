@@ -507,6 +507,25 @@ h3 -> h1 X X
 h4 -> X h2 X
 
 mininet> dpctl dump-flows
+
+*** s1 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=139.215s, table=0, n_packets=7, n_bytes=462, idle_age=28, priority=10,in_port=2,vlan_tci=0x0000,dl_src=00:00:00:00:00:04,dl_dst=00:00:00:00:00:02 actions=output:1
+ cookie=0x0, duration=46.968s, table=0, n_packets=2, n_bytes=140, idle_age=32, priority=10,in_port=1,vlan_tci=0x0000,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:03 actions=output:2
+ cookie=0x0, duration=47.001s, table=0, n_packets=2, n_bytes=140, idle_age=32, priority=10,in_port=2,vlan_tci=0x0000,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:01 actions=output:1
+ cookie=0x0, duration=134.441s, table=0, n_packets=6, n_bytes=420, idle_age=28, priority=10,in_port=1,vlan_tci=0x0000,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:04 actions=output:2
+*** s2 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=134.442s, table=0, n_packets=6, n_bytes=420, idle_timeout=300, idle_age=28, priority=10,in_port=2,vlan_tci=0x0000,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:04 actions=output:3
+ cookie=0x0, duration=46.984s, table=0, n_packets=2, n_bytes=140, idle_age=32, priority=10,in_port=3,vlan_tci=0x0000,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:01 actions=output:1
+ cookie=0x0, duration=139.221s, table=0, n_packets=7, n_bytes=462, idle_age=28, priority=10,in_port=3,vlan_tci=0x0000,dl_src=00:00:00:00:00:04,dl_dst=00:00:00:00:00:02 actions=output:2
+ cookie=0x0, duration=46.967s, table=0, n_packets=2, n_bytes=140, idle_timeout=300, idle_age=32, priority=10,in_port=1,vlan_tci=0x0000,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:03 actions=output:3
+*** s3 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=139.229s, table=0, n_packets=7, n_bytes=462, idle_timeout=300, idle_age=28, priority=10,in_port=2,vlan_tci=0x0000,dl_src=00:00:00:00:00:04,dl_dst=00:00:00:00:00:02 actions=output:3
+ cookie=0x0, duration=134.455s, table=0, n_packets=6, n_bytes=420, idle_age=28, priority=10,in_port=3,vlan_tci=0x0000,dl_src=00:00:00:00:00:02,dl_dst=00:00:00:00:00:04 actions=output:2
+ cookie=0x0, duration=46.98s, table=0, n_packets=2, n_bytes=140, idle_age=32, priority=10,in_port=3,vlan_tci=0x0000,dl_src=00:00:00:00:00:01,dl_dst=00:00:00:00:00:03 actions=output:1
+ cookie=0x0, duration=46.989s, table=0, n_packets=2, n_bytes=140, idle_timeout=300, idle_age=32, priority=10,in_port=1,vlan_tci=0x0000,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:01 actions=output:3
 ```
   
 # VTN Tutorial-2 (Multiple Controller)
