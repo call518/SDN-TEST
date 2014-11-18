@@ -523,6 +523,10 @@ mininet> dpctl dump-flows
 
 ![VTN Demo2 Network Topology](etc-files/vtn-demo2-network-topology.png)
 
+![VTN Demo2 Step-1](etc-files/vtn-demo2-step1.png.png)
+
+![VTN Demo2 Step-2](etc-files/vtn-demo2-step2.png.png)
+
 ## Start Vagrant
 
 TODO
