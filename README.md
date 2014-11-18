@@ -265,7 +265,6 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 * Configuration of VXLAN tunnel ports in OVS
 * Configuration of OpenFlow entries OVS
 * Logical separation of traffic between tenants
-* Ref. http://www.youtube.com/watch?v=tnSkHhsLqpM
 * TODO
   * Flow by OpenDaylight
   * Underlay /w Mininet
@@ -524,3 +523,4 @@ mininet> dpctl dump-flows
 
 Vagrnatfile Ref: `https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant`
 VTN Ref: `https://wiki.opendaylight.org/images/d/da/NEC_VTN_Demo_0722.pdf`
+VXLAN Ref: `http://www.youtube.com/watch?v=tnSkHhsLqpM`
