@@ -477,12 +477,15 @@ h4 -> X X X
       `host> vagrant ssh opendaylight-mininet-1`
 
 ```
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1 -d '{}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1 -d '{}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2 -d '{}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth1"}}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth1"}}'
+      vm> export VTN_OPT="--user 'admin':'admin' -H 'Accept: application/json' -H 'Content-type: application/json'"
+      vm> export VTN_URL="http://localhost:8080"
+
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1 -d '{}'
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1 -d '{}'
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2 -d '{}'
+      vm> curl $VTN_OPT -X PUT $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth1"}}'
+      vm> curl $VTN_OPT -X PUT $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth1"}}'
 ```
 
 ### REST API Operation for VTN2
@@ -490,12 +493,15 @@ h4 -> X X X
       `host> vagrant ssh opendaylight-mininet-1`
 
 ```
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1 -d '{}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1 -d '{}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X POST http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2 -d '{}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth2"}}'
-      vm> curl --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" -X PUT http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth2"}}'
+      vm> export VTN_OPT="--user 'admin':'admin' -H 'Accept: application/json' -H 'Content-type: application/json'"
+      vm> export VTN_URL="http://localhost:8080"
+
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1 -d '{}'
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1 -d '{}'
+      vm> curl $VTN_OPT -X POST $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2 -d '{}'
+      vm> curl $VTN_OPT -X PUT $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth2"}}'
+      vm> curl $VTN_OPT -X PUT $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth2"}}'
 ```
 
 ### Result VTN Demo (Single Domain)
