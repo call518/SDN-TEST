@@ -417,7 +417,7 @@ table=1,priority=100,actions=drop
 
       `mininet> blue2 ping 10.0.0.2`
 
-# VTN Tutorial-1 (Single Domain)
+# VTN Tutorial-1 (Single Controller)
 
 * Provides REST APIs for creating virtual L2 network
 * In this demo, all packets are forwarded by the controller based on definition of VTN
@@ -502,7 +502,7 @@ h4 -> X X X
       vm> curl $VTN_OPT -X PUT $VTN_URL/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth2"}}'
 ```
 
-## Result VTN Tutorial-1 (Single Domain)
+## Result of VTN Tutorial-1
 
 ```
 mininet> pingall
@@ -515,7 +515,7 @@ h4 -> X h2 X
 mininet> dpctl dump-flows
 ```
   
-# VTN Tutorial-2 (Single Domain)
+# VTN Tutorial-2 (Multiple Controller)
 
 ## Design
 
@@ -527,7 +527,11 @@ mininet> dpctl dump-flows
 
 TODO
 
-## Run OpenDaylight (Helium)
+## Run OpenDaylight-1 (Helium)
+
+TODO
+
+## Run OpenDaylight-2 (Helium)
 
 TODO
 
@@ -539,7 +543,15 @@ TODO
 
 TODO
 
-## Result VTN Tutorial-1 (Single Domain)
+## REST API Operation for VTN2
+
+TODO
+
+## REST API Operation for VTN3
+
+TODO
+
+## Result of VTN Tutorial-2
 
 TODO
 
