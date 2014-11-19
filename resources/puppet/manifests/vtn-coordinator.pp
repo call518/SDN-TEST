@@ -6,17 +6,17 @@
 ### Export Env: Global %PATH for "Exec"
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
 
-exec { "Disable Firewall":
-    command => "systemctl stop firewalld.service && systemctl disable firewalld",
-    user    => "root",
-    timeout => "0",
-}
+#exec { "Disable Firewall":
+#    command => "systemctl stop firewalld.service && systemctl disable firewalld",
+#    user    => "root",
+#    timeout => "0",
+#}
 
-exec { "Disable SELINUX":
-    command => "setenforce 0 && sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux",
-    user    => "root",
-    timeout => "0",
-}
+#exec { "Disable SELINUX":
+#    command => "setenforce 0 && sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux",
+#    user    => "root",
+#    timeout => "0",
+#}
 
 ### Install Deps Packages
 $deps = [
