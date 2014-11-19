@@ -101,7 +101,7 @@ file { "/home/vagrant/topo-mininet/m2m-1.py":
     ensure  => present,
     owner   => "vagrant",
     group   => "vagrant",
-    mod     => 0755,
+    mode    => 0755,
     content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb")
 }
 
@@ -109,7 +109,7 @@ file { "/home/vagrant/topo-mininet/m2m-2.py":
     ensure  => present,
     owner   => "vagrant",
     group   => "vagrant",
-    mod     => 0755,
+    mode    => 0755,
     content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb")
 }
 
