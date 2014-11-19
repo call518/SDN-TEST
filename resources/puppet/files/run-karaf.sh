@@ -20,4 +20,4 @@ fi
 #sleep 3
 
 ## for Mininet
-./bin/karaf
+./bin/karaf clean
