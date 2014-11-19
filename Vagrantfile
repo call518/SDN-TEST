@@ -54,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_1.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
-      vb.customize ["modifyvm", :id, "--memory", "3072"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
@@ -89,12 +89,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
     opendaylight_mininet_2.vm.network "private_network", ip: "192.168.40.11"
-    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9091
-    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8181, host: 8182
+    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9090
+    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8181, host: 8181
     opendaylight_mininet_2.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
-      vb.customize ["modifyvm", :id, "--memory", "3072"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
