@@ -1,0 +1,10 @@
+---
+:backends:
+  - yaml
+  - json
+:yaml:
+  :datadir: /vagrant/resources/puppet/hieradata-routeflow
+:json:
+  :datadir: /vagrant/resources/puppet/hieradata-routeflow
+:hierarchy:
+  - hosts

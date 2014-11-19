@@ -8,9 +8,5 @@
       "name": "opendaylight-mininet-2",
       "ipaddress": "192.168.40.11"
     },
-    "routeflow": {
-      "name": "routeflow",
-      "ipaddress": "192.168.40.16"
-    }
   }
 }
