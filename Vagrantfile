@@ -42,13 +42,47 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ############## OpenDaylight / Mininet / RouteFlow ###############################################################
 #################################################################################################################
 
+  ## VTN Coordinator
+  config.vm.define "vtn-coordinator" do |vtn_coordinator|
+    vtn_coordinator.vm.box = "Fedora20-x86_64"
+    vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+    vtn_coordinator.vm.hostname = "vtn-coordinator"
+    vtn_coordinator.vm.network "private_network", ip: "192.168.40.10"
+    #vtn_coordinator.vm.network "forwarded_port", guest: 80, host: 8081
+    vtn_coordinator.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      vb.customize ["modifyvm", :id, "--nic3", "intnet"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+    end
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    vtn_coordinator.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+    end
+    vtn_coordinator.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "vtn-coordinator.pp"
+    end
+  end
+
   ## OpenDaylight(Helium) & Mininet (1)
   config.vm.define "opendaylight-mininet-1" do |opendaylight_mininet_1|
     opendaylight_mininet_1.vm.box = "trusty64"
     #opendaylight_mininet_1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     opendaylight_mininet_1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     opendaylight_mininet_1.vm.hostname = "opendaylight-mininet-1"
-    opendaylight_mininet_1.vm.network "private_network", ip: "192.168.40.10"
+    opendaylight_mininet_1.vm.network "private_network", ip: "192.168.40.11"
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9191
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8181, host: 8181
     opendaylight_mininet_1.vm.provider :virtualbox do |vb|
@@ -88,7 +122,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #opendaylight_mininet_2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     opendaylight_mininet_2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
-    opendaylight_mininet_2.vm.network "private_network", ip: "192.168.40.11"
+    opendaylight_mininet_2.vm.network "private_network", ip: "192.168.40.12"
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9292
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8181, host: 8282
     opendaylight_mininet_2.vm.provider :virtualbox do |vb|
@@ -128,7 +162,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #routeflow.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     routeflow.vm.box_url = "https://plink.ucloud.com/public_link/link/a15d4c1ca008d431"
     routeflow.vm.hostname = "routeflow"
-    routeflow.vm.network "private_network", ip: "192.168.40.16"
+    routeflow.vm.network "private_network", ip: "192.168.30.10"
     routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
     routeflow.vm.network "forwarded_port", guest: 8111, host: 8111
     routeflow.vm.provider :virtualbox do |vb|
@@ -371,39 +405,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifest_file  = "vxlan-servers.pp"
     end
   end
-
-  ## VTN Coordinator
-  config.vm.define "vtn-coordinator" do |vtn_coordinator|
-    vtn_coordinator.vm.box = "Fedora20-x86_64"
-    vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
-    vtn_coordinator.vm.hostname = "vtn-coordinator"
-    vtn_coordinator.vm.network "private_network", ip: "192.168.70.10"
-    #vtn_coordinator.vm.network "forwarded_port", guest: 80, host: 8081
-    vtn_coordinator.vm.provider :virtualbox do |vb|
-      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-      vb.customize ["modifyvm", :id, "--cpus", "2"]
-      vb.customize ["modifyvm", :id, "--memory", "1024"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
-      vb.customize ["modifyvm", :id, "--nic3", "intnet"]
-      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-    end
-    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-    #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-    vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-    vtn_coordinator.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "base.pp"
-    end
-    vtn_coordinator.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-vtn.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "vtn-coordinator.pp"
-    end
-  end
-
 end

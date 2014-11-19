@@ -1,12 +1,16 @@
 {
   "hosts": {
+    "vtn-coordinator": {
+      "name": "vtn-coordinator",
+      "ipaddress": "192.168.40.10"
+    },
     "opendaylight-mininet-1": {
       "name": "opendaylight-mininet-1",
-      "ipaddress": "192.168.40.10"
+      "ipaddress": "192.168.40.11"
     },
     "opendaylight-mininet-2": {
       "name": "opendaylight-mininet-2",
-      "ipaddress": "192.168.40.11"
+      "ipaddress": "192.168.40.12"
     }
   }
 }
