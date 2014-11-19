@@ -38,7 +38,7 @@ vxlan-server2             not created (virtualbox)
 vtn-coordinator           not created (virtualbox)
 ```
 
-# OpenDaylight /w Mininet
+# OpenDaylight /w Mininet (1,2)
 
 SDN Controller, OpenDaylight TESTing with Mininet
 
@@ -70,7 +70,10 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 * Web-UI
 
-      Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
+      (opendaylight-mininet-1) Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
+
+      (opendaylight-mininet-2) Browser: `http://{Vagrant Host IP}:8282/dlux/index.html`
+
       Default ID/PW: `admin / admin`
 
 ## Run Mininet
