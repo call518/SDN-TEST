@@ -45,8 +45,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight(Helium) & Mininet (1)
   config.vm.define "opendaylight-mininet-1" do |opendaylight_mininet_1|
     opendaylight_mininet_1.vm.box = "trusty64"
-    opendaylight_mininet_1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    #opendaylight_mininet_1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    #opendaylight_mininet_1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    opendaylight_mininet_1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     opendaylight_mininet_1.vm.hostname = "opendaylight-mininet-1"
     opendaylight_mininet_1.vm.network "private_network", ip: "192.168.40.10"
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9090
@@ -85,8 +85,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight(Helium) & Mininet (2)
   config.vm.define "opendaylight-mininet-2" do |opendaylight_mininet_2|
     opendaylight_mininet_2.vm.box = "trusty64"
-    opendaylight_mininet_2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    #opendaylight_mininet_2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    #opendaylight_mininet_2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    opendaylight_mininet_2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
     opendaylight_mininet_2.vm.network "private_network", ip: "192.168.40.11"
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9091
