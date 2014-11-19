@@ -38,7 +38,7 @@ vxlan-server2             not created (virtualbox)
 vtn-coordinator           not created (virtualbox)
 ```
 
-# OpenDaylight /w Mininet (1,2)
+# OpenDaylight /w Mininet
 
 SDN Controller, OpenDaylight TESTing with Mininet
 
@@ -48,7 +48,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ## Start Vagrant
 
-`host> vagrant up opendaylight-mininet-1`
+`host> vagrant up opendaylight-mininet-1` (or opendaylight-mininet-2)
 
 ## Components of VM
 

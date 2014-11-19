@@ -124,6 +124,13 @@ file { "Put mininet-examples":
     recurse  => true,
 }
 
+exec { "dos2unix /home/vagrant/topo-mininet/* /home/vagrant/mininet-examples/*":
+    cwd     => "/etc",
+    user    => "root",
+    timeout => "0",
+    require => [ File["/home/vagrant/topo-mininet/m2m-1.py"], File["/home/vagrant/topo-mininet/m2m-2.py"], File["Put mininet-examples"] ],
+}
+
 vcsrepo { "/home/vagrant/loxigen":
     ensure   => present,
     provider => git,
