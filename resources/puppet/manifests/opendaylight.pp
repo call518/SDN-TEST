@@ -90,13 +90,13 @@ exec { "Patch JMX Error":
     require => Exec["Extract ODL-Helium"],
 }
 
-exec { "Disable Auth":
-    command => "sed -i 's/^authEnabled=.*/authEnabled=false/g' org.opendaylight.aaa.authn.cfg",
-    cwd     => "/home/vagrant/opendaylight/etc",
-    user    => "vagrant",
-    timeout => "0",
-    require => Exec["Extract ODL-Helium"],
-}
+#exec { "Disable Auth":
+#    command => "sed -i 's/^authEnabled=.*/authEnabled=false/g' org.opendaylight.aaa.authn.cfg",
+#    cwd     => "/home/vagrant/opendaylight/etc",
+#    user    => "vagrant",
+#    timeout => "0",
+#    require => Exec["Extract ODL-Helium"],
+#}
 
 file { "Put ODL-Helium-Run-Script":
     path     => "/home/vagrant/opendaylight/run-karaf.sh",
