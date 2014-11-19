@@ -88,7 +88,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #opendaylight_mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
     opendaylight_mininet.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     opendaylight_mininet.vm.hostname = "opendaylight-mininet-2"
-    opendaylight_mininet.vm.network "private_network", ip: "192.168.60.10"
+    opendaylight_mininet.vm.network "private_network", ip: "192.168.40.11"
     opendaylight_mininet.vm.network "forwarded_port", guest: 8080, host: 9091
     opendaylight_mininet.vm.network "forwarded_port", guest: 8181, host: 8182
     opendaylight_mininet.vm.provider :virtualbox do |vb|
