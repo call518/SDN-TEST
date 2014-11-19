@@ -95,6 +95,20 @@ file { "Put topo-mininet":
     recurse  => true,
 }
 
+file { "/home/vagrant/topo-mininet/m2m-1.py":
+    ensure => present,
+    owner => "vagrant",
+    group => "vagrant",
+    content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb")
+}
+
+file { "/home/vagrant/topo-mininet/m2m-2.py":
+    ensure => present,
+    owner => "vagrant",
+    group => "vagrant",
+    content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb")
+}
+
 file { "Put mininet-examples":
     path     => "/home/vagrant/mininet-examples",
     owner    => "vagrant",
