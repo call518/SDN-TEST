@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
 
   #control.vm.box = "Fedora19-x86_64"
-  #control.vm.box_url = "https://texthtml.net/public/fedora-19.box"
+  #control.vm.box_url = ""
 
   ### Do not use ### 
   #config.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
@@ -48,7 +48,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VTN Coordinator
   config.vm.define "vtn-coordinator" do |vtn_coordinator|
     vtn_coordinator.vm.box = "Fedora19-x86_64"
-    vtn_coordinator.vm.box_url = "https://texthtml.net/public/fedora-19.box"
+    #vtn_coordinator.vm.box_url = ""
     vtn_coordinator.vm.hostname = "vtn-coordinator"
     vtn_coordinator.vm.network "private_network", ip: "192.168.40.10"
     vtn_coordinator.vm.network "forwarded_port", guest: 8083, host: 8083
