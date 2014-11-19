@@ -43,38 +43,38 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ## OpenDaylight(Helium) & Mininet (1)
-  config.vm.define "opendaylight-mininet-1" do |opendaylight_mininet|
-    opendaylight_mininet.vm.box = "trusty64"
-    #opendaylight_mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    opendaylight_mininet.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
-    opendaylight_mininet.vm.hostname = "opendaylight-mininet-1"
-    opendaylight_mininet.vm.network "private_network", ip: "192.168.40.10"
-    opendaylight_mininet.vm.network "forwarded_port", guest: 8080, host: 9090
-    opendaylight_mininet.vm.network "forwarded_port", guest: 8181, host: 8181
-    opendaylight_mininet.vm.provider :virtualbox do |vb|
+  config.vm.define "opendaylight-mininet-1" do |opendaylight_mininet_1|
+    opendaylight_mininet_1.vm.box = "trusty64"
+    #opendaylight_mininet_1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    opendaylight_mininet_1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    opendaylight_mininet_1.vm.hostname = "opendaylight-mininet-1"
+    opendaylight_mininet_1.vm.network "private_network", ip: "192.168.40.10"
+    opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9090
+    opendaylight_mininet_1.vm.network "forwarded_port", guest: 8181, host: 8181
+    opendaylight_mininet_1.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
+    opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
     end
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
+    opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "opendaylight.pp"
     end
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
+    opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
@@ -83,38 +83,38 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ## OpenDaylight(Helium) & Mininet (2)
-  config.vm.define "opendaylight-mininet-2" do |opendaylight_mininet|
-    opendaylight_mininet.vm.box = "trusty64"
-    #opendaylight_mininet.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    opendaylight_mininet.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
-    opendaylight_mininet.vm.hostname = "opendaylight-mininet-2"
-    opendaylight_mininet.vm.network "private_network", ip: "192.168.40.11"
-    opendaylight_mininet.vm.network "forwarded_port", guest: 8080, host: 9091
-    opendaylight_mininet.vm.network "forwarded_port", guest: 8181, host: 8182
-    opendaylight_mininet.vm.provider :virtualbox do |vb|
+  config.vm.define "opendaylight-mininet-2" do |opendaylight_mininet_2|
+    opendaylight_mininet_2.vm.box = "trusty64"
+    #opendaylight_mininet_2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    opendaylight_mininet_2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
+    opendaylight_mininet_2.vm.network "private_network", ip: "192.168.40.11"
+    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9091
+    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8181, host: 8182
+    opendaylight_mininet_2.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-    opendaylight_mininet.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
+    opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
     end
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
+    opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "opendaylight.pp"
     end
-    opendaylight_mininet.vm.provision "puppet" do |puppet|
+    opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
       puppet.manifests_path = "resources/puppet/manifests"

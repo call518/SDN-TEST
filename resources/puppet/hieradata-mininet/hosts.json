@@ -1,11 +1,11 @@
 {
   "hosts": {
     "opendaylight-mininet-1": {
-      "name": "opendaylight-mininet",
+      "name": "opendaylight-mininet-1",
       "ipaddress": "192.168.40.10"
     },
     "opendaylight-mininet-2": {
-      "name": "opendaylight-mininet",
+      "name": "opendaylight-mininet-2",
       "ipaddress": "192.168.40.11"
     },
     "routeflow": {
