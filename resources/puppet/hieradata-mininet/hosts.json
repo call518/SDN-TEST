@@ -7,6 +7,6 @@
     "opendaylight-mininet-2": {
       "name": "opendaylight-mininet-2",
       "ipaddress": "192.168.40.11"
-    },
+    }
   }
 }
