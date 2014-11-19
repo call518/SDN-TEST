@@ -48,7 +48,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
     vtn_coordinator.vm.hostname = "vtn-coordinator"
     vtn_coordinator.vm.network "private_network", ip: "192.168.40.10"
-    #vtn_coordinator.vm.network "forwarded_port", guest: 80, host: 8081
+    vtn_coordinator.vm.network "forwarded_port", guest: 8083, host: 8083
     vtn_coordinator.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
