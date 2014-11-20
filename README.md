@@ -60,7 +60,7 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 * OpenDaylight
 * Mininet 2.1.x
-* Wireshark /w OF Plugin
+* Wireshark /w OF Plugin (Disabled in Puppet Resource)
 
 ## Run OpenDaylight
 
@@ -127,8 +127,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 * RouteFlow
 * OpenDaylight(Hydrogen Source) & RFProxy(for OpenDaylight)
 * Mininet
-* NOX(Default: Disabled)
-  * `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
+* NOX(Disabled) -> Edit: `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
 * LXC Container (for Simulation Quagga's OSPF, BGP, RIP)
 
 ## Run OpenDaylight (Hydrogen)
