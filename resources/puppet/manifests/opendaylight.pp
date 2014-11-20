@@ -67,7 +67,7 @@ file { "/etc/profile.d/java_home.sh":
 $odl_dist_helium_name = "0.2.0-Helium-SR1"
 exec { "Wget ODL-Helium":
     #command  => "wget http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
-    command  => "wget http://172.21.18.11/files/distribution-karaf-${odl_dist_helium_name}.zip -O distribution-karaf-${odl_dist_helium_name}.zip", ## Helium (Intra)
+    command  => "wget http://172.21.18.11/files/distribution-karaf-${odl_dist_helium_name}.zip -O distribution-karaf-${odl_dist_helium_name}.zip", ## (Intra)
     #command  => "wget https://plink.ucloud.com/public_link/link/b148140a7e1d5c15 -O distribution-karaf-${odl_dist_helium_name}.zip", ## Helium (uCloud)
     #command  => "wget https://plink.ucloud.com/public_link/link/b148140a7e1d5c15 -O distribution-karaf-${odl_dist_helium_name}.zip", ## Helium-SR1 (uCloud)
     creates  => "/home/vagrant/distribution-karaf-${odl_dist_helium_name}.zip",
