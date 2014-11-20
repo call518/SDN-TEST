@@ -27,5 +27,4 @@ fi
 
 #sleep 3
 
-## for Mininet
 ./bin/karaf clean
