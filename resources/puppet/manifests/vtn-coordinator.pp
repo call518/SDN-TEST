@@ -33,22 +33,36 @@ package { $deps:
     ensure   => installed,
 }
 
-#$odl_dist_helium_name = "0.2.0-Helium"
-$odl_dist_helium_name = "0.2.1-Helium-SR1"
+### $odl_dist_name: Read from Puppet Facter in Vagrantfile
+
+if $odl_dist_name == "Hydrogen-Virtualization" {
+    $odl_bin_name = "distributions-virtualization-0.1.1-osgipackage"
+    #$odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-virtualization/0.1.1/${odl_bin_name}.zip"
+    $odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
+} elsif $odl_dist_name == "Hydrogen-SP" {
+    $odl_bin_name = "distributions-serviceprovider-0.1.1-osgipackage"
+    #$odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-serviceprovider/0.1.1/${odl_bin_name}.zip"
+    $odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
+} elsif $odl_dist_name == "Helium" {
+    $odl_bin_name = "distribution-karaf-0.2.0-Helium"
+    #$odl_bin_url = "http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/#{odl_bin_name}.zip"
+    $odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
+} elsif $odl_dist_name == "Helium-SR1" {
+    $odl_bin_name = "distribution-karaf-0.2.1-Helium-SR1"
+    #$odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.1-Helium-SR1/${odl_bin_name}.zip"
+    $odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
+}
+
 exec { "Wget ODL-Helium":
-    #command  => "wget http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
-    command  => "wget http://172.21.18.11/files/distribution-karaf-${odl_dist_helium_name}.zip -O distribution-karaf-${odl_dist_helium_name}.zip", ## (Intra)
-    #command  => "wget https://plink.ucloud.com/public_link/link/b148140a7e1d5c15 -O distribution-karaf-${odl_dist_helium_name}.zip", ## Helium (uCloud)
-    #command  => "wget https://plink.ucloud.com/public_link/link/a6b154dfe9076714 -O distribution-karaf-${odl_dist_helium_name}.zip", ## Helium-SR1 (uCloud)
-    creates  => "/home/vagrant/distribution-karaf-${odl_dist_helium_name}.zip",
+    command  => "wget ${odl_bin_url}",
+    creates  => "/home/vagrant/${odl_bin_name}.zip",
     cwd      => "/home/vagrant",
     user     => "vagrant",
     timeout  => "0",
-    require  => Package[ $deps ],
 }
 
 exec { "Extract ODL-Helium":
-    command => "unzip distribution-karaf-${odl_dist_helium_name}.zip && mv distribution-karaf-${odl_dist_helium_name} opendaylight",
+    command => "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight",
     creates => "/home/vagrant/opendaylight",
     cwd     => "/home/vagrant",
     user    => "vagrant",
@@ -57,7 +71,7 @@ exec { "Extract ODL-Helium":
 }
 
 exec { "Extract VTN-Coordinator":
-    command => "tar -jxvf distribution.vtn-coordinator-6.0.0.0-Helium-bin.tar.bz2 -C /",
+    command => "tar -jxvf `ls -1 | grep \"tar.bz2$\" | head -n 1` -C /",
     creates => "/usr/local/vtn",
     cwd     => "/home/vagrant/opendaylight/externalapps",
     user    => "root",
