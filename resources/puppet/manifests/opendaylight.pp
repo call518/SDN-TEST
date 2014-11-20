@@ -64,7 +64,7 @@ file { "/etc/profile.d/java_home.sh":
 }
 
 #$odl_dist_helium_name = "0.2.0-Helium"
-$odl_dist_helium_name = "0.2.0-Helium-SR1"
+$odl_dist_helium_name = "0.2.1-Helium-SR1"
 exec { "Wget ODL-Helium":
     #command  => "wget http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/${odl_dist_helium_name}/distribution-karaf-${odl_dist_helium_name}.zip",
     command  => "wget http://172.21.18.11/files/distribution-karaf-${odl_dist_helium_name}.zip -O distribution-karaf-${odl_dist_helium_name}.zip", ## (Intra)
@@ -85,37 +85,39 @@ exec { "Extract ODL-Helium":
     require => Exec["Wget ODL-Helium"],
 }
 
-exec { "Patch JMX Error":
-    command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
-    cwd     => "/home/vagrant/opendaylight/etc",
-    user    => "vagrant",
-    timeout => "0",
-    require => Exec["Extract ODL-Helium"],
-}
+if $odl_dist_helium_name == "0.2.0-Helium-SR1" {
+    exec { "Patch JMX Error":
+        command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
+        cwd     => "/home/vagrant/opendaylight/etc",
+        user    => "vagrant",
+        timeout => "0",
+        require => Exec["Extract ODL-Helium"],
+    }
+    
+    #exec { "Disable Auth":
+    #    command => "sed -i 's/^authEnabled=.*/authEnabled=false/g' org.opendaylight.aaa.authn.cfg",
+    #    cwd     => "/home/vagrant/opendaylight/etc",
+    #    user    => "vagrant",
+    #    timeout => "0",
+    #    require => Exec["Extract ODL-Helium"],
+    #}
 
-#exec { "Disable Auth":
-#    command => "sed -i 's/^authEnabled=.*/authEnabled=false/g' org.opendaylight.aaa.authn.cfg",
-#    cwd     => "/home/vagrant/opendaylight/etc",
-#    user    => "vagrant",
-#    timeout => "0",
-#    require => Exec["Extract ODL-Helium"],
-#}
+    file { "Put ODL-Helium-Run-Script":
+        path     => "/home/vagrant/opendaylight/run-karaf.sh",
+        owner    => "vagrant",
+        group    => "vagrant",
+        mode     => 0755,
+        source   => "/vagrant/resources/puppet/files/run-karaf.sh",
+        replace  => true,
+        require  => Exec["Extract ODL-Helium"],
+    }
 
-file { "Put ODL-Helium-Run-Script":
-    path     => "/home/vagrant/opendaylight/run-karaf.sh",
-    owner    => "vagrant",
-    group    => "vagrant",
-    mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/run-karaf.sh",
-    replace  => true,
-    require  => Exec["Extract ODL-Helium"],
-}
-
-exec { "dos2unix run-karaf.sh":
-    cwd     => "/home/vagrant/opendaylight",
-    user    => "root",
-    timeout => "0",
-    require => File["Put ODL-Helium-Run-Script"],
+    exec { "dos2unix run-karaf.sh":
+        cwd     => "/home/vagrant/opendaylight",
+        user    => "root",
+        timeout => "0",
+        require => File["Put ODL-Helium-Run-Script"],
+    }
 }
 
 file { "Put RESTconf-VTN":
