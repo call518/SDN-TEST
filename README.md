@@ -473,9 +473,9 @@ h4 -> X X X
 
 ## REST API Operation for VTN1
 
-* Command TXT File: `/home/vagrant/RESTconf-VTN/create-VTN1.txt`
-
       `host> vagrant ssh opendaylight-mininet-1`
+
+      `(Note) VTN2 API Operaition File: /home/vagrant/RESTconf-VTN/create-VTN1.txt`
 
 ```
 curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
@@ -488,9 +488,9 @@ curl -X PUT --user "admin":"admin" -H "Accept: application/json" -H "Content-typ
 
 ## REST API Operation for VTN2
 
-* Command TXT File: `/home/vagrant/RESTconf-VTN/create-VTN2.txt`
-
       `host> vagrant ssh opendaylight-mininet-1`
+
+      `(Note) VTN1 API Operation File: /home/vagrant/RESTconf-VTN/create-VTN2.txt`
 
 ```
 curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
