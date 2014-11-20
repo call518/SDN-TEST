@@ -38,11 +38,17 @@ vxlan-server2             not created (virtualbox)
 vtn-coordinator           not created (virtualbox)
 ```
 
-# OpenDaylight /w Mininet
+# OpenDaylight /w Mininet (e.g. Helium)
 
 SDN Controller, OpenDaylight TESTing with Mininet
 
-## Sample OpenDaylight Helium Web-UI
+* (Note) Support OpenDaylight
+  * Hydrogen Virtualization
+  * Hydrogen ServiceProvider
+  * Helium
+  * Helium-SR1
+
+## Sample OpenDaylight Web-UI
 
 ![OpenDaylight-Mininet-Web-UI](etc-files/opendaylihg-mininet-1.png)
 
@@ -52,11 +58,11 @@ SDN Controller, OpenDaylight TESTing with Mininet
 
 ## Components of VM
 
-* OpenDaylight(Helium Pre-Built)
+* OpenDaylight
 * Mininet 2.1.x
 * Wireshark /w OF Plugin
 
-## Run OpenDaylight (Helium)
+## Run OpenDaylight
 
 * Run OpenDaylight
 
@@ -190,7 +196,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
   * Controller/Network Node: 1 Host
     * (Note) Minimum RAM Size: 4GB
   * Compute Node: 1 Host (Max: 3)
-* OpenDaylight (Helium Pre-Built)
+* OpenDaylight
 
 ## Start Vagrant
 
@@ -198,7 +204,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 2. `host> vagrant up devstack-compute-1`
   * (Note) After 'devstack-control' completed...
 
-## 1st, Run OpenDaylight (Helium Pre-Built)
+## 1st, Run OpenDaylight
 
 * Run by 'karaf'
 
@@ -435,7 +441,7 @@ table=1,priority=100,actions=drop
 
 `host> vagrant up opendaylight-mininet-1`
 
-## Run OpenDaylight (Helium)
+## Run OpenDaylight (e.g. Helium)
 
 * Run OpenDaylight
 
@@ -549,11 +555,11 @@ NXST_FLOW reply (xid=0x4):
 
 TODO
 
-## Run OpenDaylight-1 (Helium)
+## Run OpenDaylight-1 (e.g. Helium)
 
 TODO
 
-## Run OpenDaylight-2 (Helium)
+## Run OpenDaylight-2 (e.g Helium)
 
 TODO
 
