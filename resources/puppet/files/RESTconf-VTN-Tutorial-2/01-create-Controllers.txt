@@ -1,0 +1,2 @@
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC1", "ipaddr":"192.168.40.11", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC2", "ipaddr":"192.168.40.12", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers
