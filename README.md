@@ -543,13 +543,7 @@ NXST_FLOW reply (xid=0x4):
 
 ## Design
 
-![VTN Demo2 System](etc-files/vtn-demo2-system.png)
-
-![VTN Demo2 Network Topology](etc-files/vtn-demo2-network-topology.png)
-
-![VTN Demo2 Step-1](etc-files/vtn-demo2-step1.png)
-
-![VTN Demo2 Step-2](etc-files/vtn-demo2-step2.png)
+![VTN3 Demo2 System](etc-files/vtn-demo2-vtn3.png)
 
 ## Start Vagrant
 
@@ -585,7 +579,7 @@ TODO
 
 * OpenDaylight-1: "ODC1"
 * OpenDaylight-2: "ODC2"
-* (Note) Mininet-1's "s6" and Mininet-2's "s5" is connected by GRE-Tunnel
+* (Note) Mininet-1's "s1" and Mininet-2's "s4" is connected by GRE-Tunnel
 
 ### Run OpenDaylight-1
 
@@ -613,9 +607,9 @@ TODO
 
 # References
 
-```
-Vagrnatfile Ref: https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
-VXLAN Ref: http://www.youtube.com/watch?v=tnSkHhsLqpM
-VTN Tutorial-1 Ref: https://wiki.opendaylight.org/images/d/da/NEC_VTN_Demo_0722.pdf
-VTN Tutorial-2 Ref: https://wiki.opendaylight.org/images/2/21/NEC_VTN_Demo_0910.pdf
-```
+* Vagrnatfile Ref: https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
+* VXLAN Ref: http://www.youtube.com/watch?v=tnSkHhsLqpM
+* VTN Tutorial-1 Ref: https://wiki.opendaylight.org/images/d/da/NEC_VTN_Demo_0722.pdf
+* VTN Tutorial-2 Ref
+  * https://wiki.opendaylight.org/images/2/21/NEC_VTN_Demo_0910.pdf
+  * https://wiki.opendaylight.org/view/OpenDaylight_Virtual_Tenant_Network_(VTN):VTN_Coordinator:RestApi:L2_Network_Example_Using_VTN_Virtualization
