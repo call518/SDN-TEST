@@ -147,6 +147,17 @@ file { "Put RESTconf-VTN-Tutorial-1":
     recurse  => true,
 }
 
+file { "Put RESTconf-VTN-Tutorial-2":
+    path     => "/home/vagrant/RESTconf-VTN-Tutorial-2",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/RESTconf-VTN-Tutorial-1",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+}
+
 file { "Put m2m-1.py":
     path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/m2m-1.py",
     ensure  => present,
@@ -154,6 +165,7 @@ file { "Put m2m-1.py":
     group   => "vagrant",
     mode    => 0755,
     content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb")
+    require => File["Put RESTconf-VTN-Tutorial-2"],
 }
 
 file { "Put m2m-2.py":
@@ -163,6 +175,7 @@ file { "Put m2m-2.py":
     group   => "vagrant",
     mode    => 0755,
     content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb")
+    require => File["Put RESTconf-VTN-Tutorial-2"],
 }
 
 exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/m2m-*":
