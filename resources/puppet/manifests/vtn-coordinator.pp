@@ -109,3 +109,26 @@ exec { "Start VTN Coordinator":
     timeout => "0",
     require => Exec["Setup VTN DB"],
 }
+
+file { "Put RESTconf-VTN-Tutorial-1":
+    path     => "/home/vagrant/RESTconf-VTN-Tutorial-1",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/RESTconf-VTN-Tutorial-1",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+}
+
+file { "Put RESTconf-VTN-Tutorial-2":
+    path     => "/home/vagrant/RESTconf-VTN-Tutorial-2",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/RESTconf-VTN-Tutorial-2",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+}
+
