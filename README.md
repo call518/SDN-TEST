@@ -553,17 +553,45 @@ NXST_FLOW reply (xid=0x4):
 
 ## Start Vagrant
 
-TODO
+`host> vagrant up vtn-coordinator`
 
-## Run OpenDaylight-1 (e.g. Helium)
+`host> vagrant up opendaylight-mininet-1`
+
+`host> vagrant up opendaylight-mininet-2`
+
+## Run VTN-Coordinator (e.g. Helium)
+
+`host> vagrant ssh vtn-coordinator`
+
+`vm> sudo lsof -ni:8083` (e.g. helium)
+
+## Run OpenDaylight-1 /w mininet (e.g. Helium)
+
+### Run OpenDaylight-1
+
+`host> vagrant ssh opendaylight-mininet-1`
+
+`vm> cd opendaylight`
+
+`vm> ./run-karaf.sh
+
+`opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
+
+### Run Mininet-1
 
 TODO
 
 ## Run OpenDaylight-2 (e.g Helium)
 
+* OpenDaylight-1: "ODC1"
+* OpenDaylight-2: "ODC2"
+* (Note) Mininet-1's "s6" and Mininet-2's "s5" is connected by GRE-Tunnel
+
+### Run OpenDaylight-1
+
 TODO
 
-## Run Mininet
+### Run Mininet-2
 
 TODO
 
