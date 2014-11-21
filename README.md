@@ -483,12 +483,12 @@ h4 -> X X X
       `(Note) VTN2 API Operaition File: /home/vagrant/RESTconf-VTN/create-VTN1.txt`
 
 ```
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1 -d '{}'
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1 -d '{}'
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2 -d '{}'
-curl -X PUT --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth1"}}'
-curl -X PUT --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth1"}}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1 -d '{}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1 -d '{}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2 -d '{}'
+curl -X PUT -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth1"}}'
+curl -X PUT -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth1"}}'
 ```
 
 ## REST API Operation for VTN2
@@ -498,12 +498,12 @@ curl -X PUT --user "admin":"admin" -H "Accept: application/json" -H "Content-typ
       `(Note) VTN1 API Operation File: /home/vagrant/RESTconf-VTN/create-VTN2.txt`
 
 ```
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1 -d '{}'
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1 -d '{}'
-curl -X POST --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2 -d '{}'
-curl -X PUT --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth2"}}'
-curl -X PUT --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth2"}}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1 -d '{}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1 -d '{}'
+curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2 -d '{}'
+curl -X PUT -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if1/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:02"}, "port": {"name": "s2-eth2"}}'
+curl -X PUT -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2/vbridges/vBridge1/interfaces/if2/portmap -d '{"node": {"type": "OF", "id": "00:00:00:00:00:00:00:03"}, "port": {"name": "s3-eth2"}}'
 ```
 
 ## Result of VTN Tutorial-1
