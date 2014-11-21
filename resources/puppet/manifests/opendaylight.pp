@@ -164,7 +164,7 @@ file { "Put m2m-1.py":
     owner   => "vagrant",
     group   => "vagrant",
     mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb")
+    content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb"),
     require => File["Put RESTconf-VTN-Tutorial-2"],
 }
 
@@ -174,7 +174,7 @@ file { "Put m2m-2.py":
     owner   => "vagrant",
     group   => "vagrant",
     mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb")
+    content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb"),
     require => File["Put RESTconf-VTN-Tutorial-2"],
 }
 
