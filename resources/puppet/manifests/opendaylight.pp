@@ -158,6 +158,8 @@ file { "Put RESTconf-VTN-Tutorial-2":
     recurse  => true,
 }
 
+$hosts = hiera("hosts")
+
 file { "Put m2m-1.py":
     path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/m2m-1.py",
     ensure  => present,
