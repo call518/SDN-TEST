@@ -97,22 +97,6 @@ file { "Put topo-mininet":
 
 $hosts = hiera("hosts")
 
-file { "/home/vagrant/topo-mininet/m2m-1.py":
-    ensure  => present,
-    owner   => "vagrant",
-    group   => "vagrant",
-    mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb")
-}
-
-file { "/home/vagrant/topo-mininet/m2m-2.py":
-    ensure  => present,
-    owner   => "vagrant",
-    group   => "vagrant",
-    mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb")
-}
-
 file { "Put mininet-examples":
     path     => "/home/vagrant/mininet-examples",
     owner    => "vagrant",
@@ -124,11 +108,11 @@ file { "Put mininet-examples":
     recurse  => true,
 }
 
-exec { "dos2unix /home/vagrant/topo-mininet/* /home/vagrant/mininet-examples/*":
+exec { "dos2unix /home/vagrant/mininet-examples/*":
     cwd     => "/etc",
     user    => "root",
     timeout => "0",
-    require => [ File["/home/vagrant/topo-mininet/m2m-1.py"], File["/home/vagrant/topo-mininet/m2m-2.py"], File["Put mininet-examples"] ],
+    require => File["Put mininet-examples"],
 }
 
 vcsrepo { "/home/vagrant/loxigen":

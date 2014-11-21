@@ -136,13 +136,39 @@ if $odl_dist_name in "Helium-SR1" {
     }
 }
 
-file { "Put RESTconf-VTN":
-    path     => "/home/vagrant/RESTconf-VTN",
+file { "Put RESTconf-VTN-Tutorial-1":
+    path     => "/home/vagrant/RESTconf-VTN-Tutorial-1",
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/RESTconf-VTN",
+    source   => "/vagrant/resources/puppet/files/RESTconf-VTN-Tutorial-1",
     ensure   => directory,
     replace  => true,
     recurse  => true,
 }
+
+file { "/home/vagrant/RESTconf-VTN-Tutorial-1/m2m-1.py":
+    ensure  => present,
+    owner   => "vagrant",
+    group   => "vagrant",
+    mode    => 0755,
+    content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb")
+    require => File["Put RESTconf-VTN-Tutorial-1"],
+}
+
+file { "/home/vagrant/RESTconf-VTN-Tutorial-1/m2m-2.py":
+    ensure  => present,
+    owner   => "vagrant",
+    group   => "vagrant",
+    mode    => 0755,
+    content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb")
+    require => File["Put RESTconf-VTN-Tutorial-1"],
+}
+
+exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-1/m2m-*":
+    cwd     => "/etc",
+    user    => "root",
+    timeout => "0",
+    require => [ File["/home/vagrant/RESTconf-VTN-Tutorial-1/m2m-1.py"], File["/home/vagrant/RESTconf-VTN-Tutorial-1/m2m-2.py"] ],
+}
+
