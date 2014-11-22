@@ -180,6 +180,16 @@ file { "Put m2m-2.py":
     require => File["mkdir RESTconf-VTN-Tutorial-2"],
 }
 
+file { "Put multi-tree.py":
+    path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/multi-tree.py",
+    ensure  => present,
+    owner   => "vagrant",
+    group   => "vagrant",
+    mode    => 0755,
+    content => template("/vagrant/resources/puppet/templates/multi-tree.erb"),
+    require => File["mkdir RESTconf-VTN-Tutorial-2"],
+}
+
 exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/m2m-*":
     cwd     => "/etc",
     user    => "root",
