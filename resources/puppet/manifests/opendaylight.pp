@@ -88,7 +88,7 @@ if $odl_dist_name == "Hydrogen-Virtualization" {
 }
 
 exec { "Wget ODL-Helium":
-    command  => "wget ${odl_bin_url} -O ${odl_bin_name}",
+    command  => "wget ${odl_bin_url} -O ${odl_bin_name}.zip",
     creates  => "/home/vagrant/${odl_bin_name}.zip",
     cwd      => "/home/vagrant",
     user     => "vagrant",
