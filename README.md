@@ -546,8 +546,9 @@ NXST_FLOW reply (xid=0x4):
  cookie=0x0, duration=46.989s, table=0, n_packets=2, n_bytes=140, idle_timeout=300, idle_age=32, priority=10,in_port=1,vlan_tci=0x0000,dl_src=00:00:00:00:00:03,dl_dst=00:00:00:00:00:01 actions=output:3
 ```
   
-# VTN Tutorial-2 (Multiple Controller)
+# VTN Tutorial-2 (VTN3)
 
+* Requirement: Clear/Reset Tutorial-1
 * Multiple OpenDaylight Controller
   * OpenDaylight-1: "ODC1"
   * OpenDaylight-2: "ODC2"
