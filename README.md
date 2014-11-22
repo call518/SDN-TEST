@@ -516,7 +516,9 @@ h1 -> X h3 X
 h2 -> X X h4 
 h3 -> h1 X X 
 h4 -> X h2 X
+```
 
+```
 mininet> dpctl dump-flows
 
 *** s1 ------------------------------------------------------------------------
@@ -641,9 +643,20 @@ curl -X PUT -v --user admin:adminpass -H 'content-type: application/json' -H 'ip
 
 ## Result of VTN Tutorial-2
 
-On Mininet-Console of 'opendaylight-minint-1'
 ```
-mininet> h2 ping 10.0.0.6
+mininet-1> h2 ping 10.0.0.6
+(TODO)
+
+mininet-2> h6 ping 10.0.0.2
+(TODO)
+```
+
+```
+mininet-1> dpctl dump-flow
+(TODO)
+
+mininet-2> dpctl dump-flow
+(TODO)
 ```
 
 # References
