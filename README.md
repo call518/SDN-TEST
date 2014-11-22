@@ -541,6 +541,13 @@ NXST_FLOW reply (xid=0x4):
   
 # VTN Tutorial-2 (Multiple Controller)
 
+* Multiple OpenDaylight Controller
+  * OpenDaylight-1: "ODC1"
+  * OpenDaylight-2: "ODC2"
+* Multiple Tree Mininet
+  * (Note) Mininet-1's "s1" and Mininet-2's "s4" is connected by GRE-Tunnel
+
+
 ## Design
 
 ![VTN3 Demo2 System](etc-files/vtn-demo2-vtn3.png)
@@ -559,9 +566,9 @@ NXST_FLOW reply (xid=0x4):
 
 `vm> sudo lsof -ni:8083` (e.g. helium)
 
-## Run OpenDaylight-1 /w mininet (e.g. Helium)
+## Run OpenDaylight-1 /w Mininet (e.g. Helium)
 
-### Run OpenDaylight-1
+### Run OpenDaylight-1 Controller
 
 `host> vagrant ssh opendaylight-mininet-1`
 
@@ -573,37 +580,71 @@ NXST_FLOW reply (xid=0x4):
 
 ### Run Mininet-1
 
-TODO
+`host> vagrant ssh opendaylight-mininet-1`
 
-## Run OpenDaylight-2 (e.g Helium)
+`vm> cd RESTconf-VTN-Tutorial-2`
 
-* OpenDaylight-1: "ODC1"
-* OpenDaylight-2: "ODC2"
-* (Note) Mininet-1's "s1" and Mininet-2's "s4" is connected by GRE-Tunnel
+`vm> sudo ./m2m-1.py`
 
-### Run OpenDaylight-1
+## Run OpenDaylight-2 /w Mininet (e.g Helium)
 
-TODO
+### Run OpenDaylight-2 Controller
+
+`host> vagrant ssh opendaylight-mininet-2`
+
+`vm> cd opendaylight`
+
+`vm> ./run-karaf.sh
+
+`opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
 
 ### Run Mininet-2
 
-TODO
+`host> vagrant ssh opendaylight-mininet-2`
 
-## REST API Operation for VTN1
+`vm> cd RESTconf-VTN-Tutorial-2`
 
-TODO
-
-## REST API Operation for VTN2
-
-TODO
+`vm> sudo ./m2m-2.py`
 
 ## REST API Operation for VTN3
 
-TODO
+```
+### Create a VTN
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"vtn" : {"vtn_name":"VTN3"}}' http://127.0.0.1:8083/vtn-webapi/vtns.json
+
+### Create two Controllers
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC1", "ipaddr":"192.168.40.11", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC2", "ipaddr":"192.168.40.12", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers.json
+
+### Create two vBridges in the VTN (vBridge1 in Controller1 / vBridge2 in Controller2)
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"vbridge" : {"vbr_name":"vBR1","controller_id":"ODC1","domain_id":"(DEFAULT)" }}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"vbridge" : {"vbr_name":"vBR2","controller_id":"ODC2","domain_id":"(DEFAULT)" }}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges.json
+
+### Create vBridge Interfaces
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"interface": {"if_name": "if1"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR1/interfaces.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"interface": {"if_name": "if2"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR1/interfaces.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"interface": {"if_name": "if1"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR2/interfaces.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"interface": {"if_name": "if2"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR2/interfaces.json
+
+### Get the list of logical ports configured
+curl -X GET -v --user admin:adminpass -H 'content-type: application/json' http://127.0.0.1:8083/vtn-webapi/controllers/ODC1/domains/\(DEFAULT\)/logical_ports/detail.json
+curl -X GET -v --user admin:adminpass -H 'content-type: application/json' http://127.0.0.1:8083/vtn-webapi/controllers/ODC2/domains/\(DEFAULT\)/logical_ports/detail.json
+
+### Create boundary and vLink
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"boundary": {"boundary_id": "B1", "link": {"controller1_id": "ODC1", "domain1_id": "(DEFAULT)", "logical_port1_id": "PP-OF:00:00:00:00:00:00:00:01-s1-eth3", "controller2_id": "ODC2", "domain2_id": "(DEFAULT)", "logical_port2_id": "PP-OF:00:00:00:00:00:00:00:04-s4-eth3"}}}' http://127.0.0.1:8083/vtn-webapi/boundaries.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"vlink": {"vlk_name": "vLink1" , "vnode1_name": "vBR1", "if1_name":"if2", "vnode2_name": "vBR2", "if2_name": "if2", "boundary_map": {"boundary_id":"B1","vlan_id": "50"}}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vlinks.json
+
+### Configure port-map on the interfaces
+curl -X PUT -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"portmap":{"logical_port_id": "PP-OF:00:00:00:00:00:00:00:02-s2-eth2"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR1/interfaces/if1/portmap.json
+curl -X PUT -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"portmap":{"logical_port_id": "PP-OF:00:00:00:00:00:00:00:05-s5-eth2"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR2/interfaces/if1/portmap.json
+```
 
 ## Result of VTN Tutorial-2
 
-TODO
+On Mininet-Console of 'opendaylight-minint-1'
+```
+mininet> h2 ping 10.0.0.6
+```
 
 # References
 
