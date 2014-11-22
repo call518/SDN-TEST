@@ -186,7 +186,7 @@ file { "Put multi-tree.py":
     owner   => "vagrant",
     group   => "vagrant",
     mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/multi-tree.erb"),
+    content => template("/vagrant/resources/puppet/templates/multi-tree.py.erb"),
     require => File["mkdir RESTconf-VTN-Tutorial-2"],
 }
 
