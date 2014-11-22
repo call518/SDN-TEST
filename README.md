@@ -509,6 +509,9 @@ curl -X PUT -v --user "admin":"admin" -H "Accept: application/json" -H "Content-
 
 ## Result of VTN Tutorial-1
 
+
+### Ping Test
+
 ```
 mininet> pingall
 
@@ -517,6 +520,8 @@ h2 -> X X h4
 h3 -> h1 X X 
 h4 -> X h2 X
 ```
+
+### Flows
 
 ```
 mininet> dpctl dump-flows
@@ -643,6 +648,8 @@ curl -X PUT -v --user admin:adminpass -H 'content-type: application/json' -H 'ip
 
 ## Result of VTN Tutorial-2
 
+### Ping Test
+
 ```
 mininet-1> h2 ping 10.0.0.6
 (TODO)
@@ -650,6 +657,8 @@ mininet-1> h2 ping 10.0.0.6
 mininet-2> h6 ping 10.0.0.2
 (TODO)
 ```
+
+### Flows
 
 ```
 mininet-1> dpctl dump-flow
