@@ -156,6 +156,8 @@ $hosts = hiera("hosts")
 file { "mkdir RESTconf-VTN-Tutorial-2":
     path    => "/home/vagrant/RESTconf-VTN-Tutorial-2",
     ensure  => directory,
+    owner   => "vagrant",
+    group   => "vagrant",
 }
 
 file { "Put m2m-1.py":
