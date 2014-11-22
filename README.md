@@ -548,7 +548,7 @@ NXST_FLOW reply (xid=0x4):
   
 # VTN Tutorial-2 (VTN3)
 
-* Requirement: Clear/Reset Tutorial-1
+* Requirement: Clear/Reset Tutorial-1 Process
 * Multiple OpenDaylight Controller
   * OpenDaylight-1: "ODC1"
   * OpenDaylight-2: "ODC2"
