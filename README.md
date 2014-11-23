@@ -66,38 +66,39 @@ SDN Controller, OpenDaylight TESTing with Mininet
 ## Run OpenDaylight
 
 * Run OpenDaylight
-
-      `host> vagrant ssh opendaylight-mininet-1`
-
-      `vm> cd /home/vagrant/opendaylight`
-
-      `vm> ./run-karaf.sh`
-
-      `e.g. for OVS) opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch`
+```
+host> vagrant ssh opendaylight-mininet-1
+vm> cd /home/vagrant/opendaylight
+vm> ./run-karaf.sh
+e.g. for OVS) opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch
+```
 
 * Web-UI
 
-      (opendaylight-mininet-1) Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
+(opendaylight-mininet-1) Browser: http://{Vagrant Host IP}:8181/dlux/index.html
 
-      (opendaylight-mininet-2) Browser: `http://{Vagrant Host IP}:8282/dlux/index.html`
+(opendaylight-mininet-2) Browser: http://{Vagrant Host IP}:8282/dlux/index.html
 
-      Default ID/PW: `admin / admin`
+Default ID/PW: "admin" / "admin"
+
 
 ## Run Mininet
 
 * Common Topology
 
-      `host> vagrant ssh opendaylight-mininet-1`
-
-      `vm> sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3`
+```
+host> vagrant ssh opendaylight-mininet-1
+vm> sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree,3
+```
 
 ![Mininet Tree Common](etc-files/tree.png)
 
 * Custom Topologys
 
-      `vm> cd /home/vagrant/topo-mininet`
-
-      `vm> cd /home/vagrant/mininet-examples`
+```
+vm> cd /home/vagrant/topo-mininet
+vm> cd /home/vagrant/mininet-examples
+```
 
 # RouteFlow
 
@@ -135,46 +136,47 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 * Run OpenDaylight
 
-      `host> vagrant ssh routeflow`
-
-      `vm> cd /home/vagrant/opendaylight`
-
-      `vm> ./run.sh`
+```
+host> vagrant ssh routeflow
+vm> cd /home/vagrant/opendaylight
+vm> ./run.sh
+```
 
 * Web-UI (OpenDaylight)
 
-      Browser: `http://{Vagratn Host IP}:8080`
-      Default ID/PW: `admin / admin`
+Browser: http://{Vagratn Host IP}:8080
+
+Default ID/PW: "admin" / "admin"
 
 ## Run RouteFlow Tutorial-2
 
 * Run RouteFlow
 
-      `host> vagrant ssh routeflow`
-
-      `vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/`
-
-      `vm> sudo ./rftest2`
+```
+host> vagrant ssh routeflow
+vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/
+vm> sudo ./rftest2
+```
 
 * RouteFlow Web-UI
 
-      `host> vagrant ssh routeflow`
+```
+host> vagrant ssh routeflow
+vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rfweb
+vm> gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application
+```
 
-      `vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rfweb`
-
-      `vm> gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application`
-
-      Browser: `http://Vagrant Host IP}:8111/index.html`
+Browser: `http://Vagrant Host IP}:8111/index.html
 
 ## Run Mininet
 
 * Run Mininet (Virtual Infra)
 
-      `host> vagrant ssh routeflow`
-
-      `vm> cd /home/vagrant/rf-topo-mininet/`
-
-      `vm> sudo ./run-routeflow-infra.sh`
+```
+host> vagrant ssh routeflow
+vm> cd /home/vagrant/rf-topo-mininet/
+vm> sudo ./run-routeflow-infra.sh
+```
 
 ## RouteFlow Mapping Virtual-Router & Physical-Router
 
@@ -200,49 +202,51 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ## Start Vagrant
 
-1. `host> vagrant up devstack-control`
-2. `host> vagrant up devstack-compute-1`
-  * (Note) After 'devstack-control' completed...
+(Note) *Order is important!*
+
+```
+1. host> vagrant up devstack-control
+2. host> vagrant up devstack-compute-1
+```
 
 ## 1st, Run OpenDaylight
 
 * Run by 'karaf'
 
-      `host> vagrant ssh devstack-control`
-
-      `vm> cd /home/vagrant/opendaylight`
-
-      `vm> ./run-karaf.sh`
-
-      `opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core`
+```
+host> vagrant ssh devstack-control
+vm> cd /home/vagrant/opendaylight
+vm> ./run-karaf.sh
+opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core
+```
 
 * Web-UI
 
-      Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
+Browser: http://{Vagrant Host IP}:8181/dlux/index.html
 
-      Default ID/PW: `admin / admin`
+Default ID/PW: "admin" / "admin"
 
 ## 2nd, Run Control/Network Node
 
 ### Run stack.sh
 
-      `host> vagrant ssh devstack-control`
+```
+host> vagrant ssh devstack-control
+vm> cd /home/vagrant/devstack
+vm> ./stack.sh
+```
 
-      `vm> cd /home/vagrant/devstack`
-
-      `vm> ./stack.sh
-
-      Browser: `http://{Vagratn Host IP}`
+Browser: `http://{Vagratn Host IP}`
 
 ## 3rd, Run Compute-1 Node (also Compute-2, Compute-3)
 
 ### Run stack.sh
 
-      `host> vagrant ssh devstack-compute-1`
-
-      `vm> cd /home/vagrant/devstack`
-
-      `vm> ./stack.sh`
+```
+host> vagrant ssh devstack-compute-1
+vm> cd /home/vagrant/devstack
+vm> ./stack.sh
+```
 
 ## Demo Scenario (Creating Overlay Networks)
 
@@ -252,11 +256,12 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ### SSH to VM (cirros)
 
-      `host> vagrant ssh devstack-control`
-
-      `vm> ip netns exec {QROUTER's UUID} ssh cirros@{VM's IP}`
-          `e.g.) ip netns exec qrouter-a4e4c152-ee23-4e16-b900-4d0c132618d7 ssh cirros@10.1.1.4`
-	  `Login ID/PW: "cirros / cubswin:)"`
+```
+host> vagrant ssh devstack-control
+vm> ip netns exec {QROUTER's UUID} ssh cirros@{VM's IP}
+e.g.) ip netns exec qrouter-a4e4c152-ee23-4e16-b900-4d0c132618d7 ssh cirros@10.1.1.4
+      -> Login ID/PW: "cirros" / "cubswin:)"
+```
 
 ### Sample ScreenShot
 
@@ -278,11 +283,13 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 (Note) *Order is important!*
 
-1. `host> vagrant up vxlan-router`
+```
+1. host> vagrant up vxlan-router
 
-2. `host> vagrant up vxlan-server1`
+2. host> vagrant up vxlan-server1
 
-3. `host> vagrant up vxlan-server2`
+3. host> vagrant up vxlan-server2
+```
 
 ## Underlay View
 
@@ -313,27 +320,19 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 * Command TXT File: /home/vagrant/topo-vxlan/vxlan-server1/cmd-server1.txt
 
-      `cd /home/vagrant/topo-vxlan/vxlan-server1`
-
-      `sudo mn --custom vxlan-server1.py --topo vxlan-server1`
-
-      `mininet> sh ovs-vsctl add-port s1 vtep -- set interface vtep type=vxlan option:remote_ip=192.168.2.20 option:key=flow ofport_request=10`
-
-      `mininet> sh ovs-vsctl show`
-
-      `mininet> sh ovs-ofctl show s1`
-
-      `mininet> sh ovs-ofctl add-flows s1 flows1.txt`
-
-      `mininet> sh ovs-ofctl dump-flows s1`
-
-      `mininet> red1 ping 10.0.0.1`
-
-      `mininet> red1 ping 10.0.0.2`
-
-      `mininet> blue1 ping 10.0.0.1`
-
-      `mininet> blue1 ping 10.0.0.2`
+```
+cd /home/vagrant/topo-vxlan/vxlan-server1
+sudo mn --custom vxlan-server1.py --topo vxlan-server1
+mininet> sh ovs-vsctl add-port s1 vtep -- set interface vtep type=vxlan option:remote_ip=192.168.2.20 option:key=flow ofport_request=10
+mininet> sh ovs-vsctl show
+mininet> sh ovs-ofctl show s1
+mininet> sh ovs-ofctl add-flows s1 flows1.txt
+mininet> sh ovs-ofctl dump-flows s1
+mininet> red1 ping 10.0.0.1
+mininet> red1 ping 10.0.0.2
+mininet> blue1 ping 10.0.0.1
+mininet> blue1 ping 10.0.0.2
+```
 
 ### Appendix: flows1.txt
 
@@ -364,27 +363,19 @@ table=1,priority=100,actions=drop
 
 * Command TXT File: /home/vagrant/topo-vxlan/vxlan-server2/cmd-server2.txt
 
-      `cd /home/vagrant/topo-vxlan/vxlan-server2`
-
-      `sudo mn --custom vxlan-server2.py --topo vxlan-server2`
-
-      `mininet> sh ovs-vsctl add-port s2 vtep -- set interface vtep type=vxlan option:remote_ip=192.168.1.10 option:key=flow ofport_request=10`
-
-      `mininet> sh ovs-vsctl show`
-
-      `mininet> sh ovs-ofctl show s2`
-
-      `mininet> sh ovs-ofctl add-flows s2 flows2.txt`
-
-      `mininet> sh ovs-ofctl dump-flows s2`
-
-      `mininet> red2 ping 10.0.0.1`
-
-      `mininet> red2 ping 10.0.0.2`
-
-      `mininet> blue2 ping 10.0.0.1`
-
-      `mininet> blue2 ping 10.0.0.2`
+```
+cd /home/vagrant/topo-vxlan/vxlan-server2
+sudo mn --custom vxlan-server2.py --topo vxlan-server2
+mininet> sh ovs-vsctl add-port s2 vtep -- set interface vtep type=vxlan option:remote_ip=192.168.1.10 option:key=flow ofport_request=10
+mininet> sh ovs-vsctl show
+mininet> sh ovs-ofctl show s2
+mininet> sh ovs-ofctl add-flows s2 flows2.txt
+mininet> sh ovs-ofctl dump-flows s2
+mininet> red2 ping 10.0.0.1
+mininet> red2 ping 10.0.0.2
+mininet> blue2 ping 10.0.0.1
+mininet> blue2 ping 10.0.0.2
+```
 
 ### Appendix: flows2.txt
 
@@ -408,23 +399,21 @@ table=1,priority=100,actions=drop
 
 ### On vxlan-server1
 
-      `mininet> red1 ping 10.0.0.1`
-
-      `mininet> red1 ping 10.0.0.2`
-
-      `mininet> blue1 ping 10.0.0.1`
-
-      `mininet> blue1 ping 10.0.0.2`
+```
+mininet> red1 ping 10.0.0.1
+mininet> red1 ping 10.0.0.2
+mininet> blue1 ping 10.0.0.1
+mininet> blue1 ping 10.0.0.2
+```
 
 ### On vxlan-server2
 
-      `mininet> red2 ping 10.0.0.1`
-
-      `mininet> red2 ping 10.0.0.2`
-
-      `mininet> blue2 ping 10.0.0.1`
-
-      `mininet> blue2 ping 10.0.0.2`
+```
+mininet> red2 ping 10.0.0.1
+mininet> red2 ping 10.0.0.2
+mininet> blue2 ping 10.0.0.1
+mininet> blue2 ping 10.0.0.2
+```
 
 # VTN Tutorial-1 (Single Controller)
 
@@ -439,34 +428,36 @@ table=1,priority=100,actions=drop
 
 ## Start Vagrant
 
-`host> vagrant up opendaylight-mininet-1`
+```
+host> vagrant up opendaylight-mininet-1
+```
 
 ## Run OpenDaylight (e.g. Helium)
 
 * Run OpenDaylight
 
-      `host> vagrant ssh opendaylight-mininet-1`
-
-      `vm> cd /home/vagrant/opendaylight`
-
-      `vm> ./run-karaf.sh`
-
-      `opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
+```
+host> vagrant ssh opendaylight-mininet-1
+vm> cd /home/vagrant/opendaylight
+vm> ./run-karaf.sh
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
+```
 
 * Web-UI
 
-      Browser: `http://{Vagrant Host IP}:8181/dlux/index.html`
-      Default ID/PW: `admin / admin`
+Browser: http://{Vagrant Host IP}:8181/dlux/index.html
+
+Default ID/PW: "admin" / "admin"
 
 ## Run Mininet
 
 * Create Topology
 
-      `host> vagrant ssh opendaylight-mininet-1`
-
-      `vm> mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk,protocols=OpenFlow13 --mac --topo tree,2`
-
-      `vm> mininet> pingall`
+```
+host> vagrant ssh opendaylight-mininet-1
+vm> mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk,protocols=OpenFlow13 --mac --topo tree,2
+vm> mininet> pingall
+```
 
 ```
 mininet> pingall
@@ -479,9 +470,10 @@ h4 -> X X X
 
 ## REST API Operation for VTN1
 
-      `host> vagrant ssh opendaylight-mininet-1`
-
-      `(Note) VTN2 API Operaition File: /home/vagrant/RESTconf-VTN/create-VTN1.txt`
+```
+host> vagrant ssh opendaylight-mininet-1
+(Note) VTN2 API Operaition File: /home/vagrant/RESTconf-VTN/create-VTN1.txt
+```
 
 ```
 curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant1 -d '{"description": "VTN1"}'
@@ -494,9 +486,10 @@ curl -X PUT -v --user "admin":"admin" -H "Accept: application/json" -H "Content-
 
 ## REST API Operation for VTN2
 
-      `host> vagrant ssh opendaylight-mininet-1`
-
-      `(Note) VTN1 API Operation File: /home/vagrant/RESTconf-VTN/create-VTN2.txt`
+```
+host> vagrant ssh opendaylight-mininet-1
+(Note) VTN1 API Operation File: /home/vagrant/RESTconf-VTN/create-VTN2.txt
+```
 
 ```
 curl -X POST -v --user "admin":"admin" -H "Accept: application/json" -H "Content-type: application/json" http://localhost:8080/controller/nb/v2/vtn/default/vtns/Tenant2 -d '{"description": "VTN2"}'
@@ -562,57 +555,56 @@ NXST_FLOW reply (xid=0x4):
 
 ## Start Vagrant
 
-`host> vagrant up vtn-coordinator`
-
-`host> vagrant up opendaylight-mininet-1`
-
-`host> vagrant up opendaylight-mininet-2`
+```
+host> vagrant up vtn-coordinator
+host> vagrant up opendaylight-mininet-1
+host> vagrant up opendaylight-mininet-2
+```
 
 ## Run VTN-Coordinator (e.g. Helium)
 
-`host> vagrant ssh vtn-coordinator`
-
-`vm> sudo lsof -ni:8083` (e.g. helium)
+```
+host> vagrant ssh vtn-coordinator
+vm> sudo lsof -ni:8083 (e.g. helium)
+```
 
 ## Run OpenDaylight-1 /w Mininet (e.g. Helium)
 
 ### Run OpenDaylight-1 Controller
 
-`host> vagrant ssh opendaylight-mininet-1`
-
-`vm> cd opendaylight`
-
-`vm> ./run-karaf.sh
-
-`opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
+```
+host> vagrant ssh opendaylight-mininet-1
+vm> cd opendaylight
+vm> ./run-karaf.sh
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
+```
 
 ### Run Mininet-1
 
-`host> vagrant ssh opendaylight-mininet-1`
-
-`vm> cd RESTconf-VTN-Tutorial-2`
-
-`vm> sudo ./m2m-1.py`
+```
+host> vagrant ssh opendaylight-mininet-1
+vm> cd RESTconf-VTN-Tutorial-2
+vm> sudo ./m2m-1.py
+```
 
 ## Run OpenDaylight-2 /w Mininet (e.g Helium)
 
 ### Run OpenDaylight-2 Controller
 
-`host> vagrant ssh opendaylight-mininet-2`
-
-`vm> cd opendaylight`
-
-`vm> ./run-karaf.sh
-
-`opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
+```
+host> vagrant ssh opendaylight-mininet-2
+vm> cd opendaylight
+vm> ./run-karaf.sh
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
+```
 
 ### Run Mininet-2
 
-`host> vagrant ssh opendaylight-mininet-2`
-
-`vm> cd RESTconf-VTN-Tutorial-2`
-
-`vm> sudo ./m2m-2.py`
+```
+host> vagrant ssh opendaylight-mininet-2
+vm> cd RESTconf-VTN-Tutorial-2
+vm> sudo ./m2m-2.py
+```
 
 ## REST API Operation for VTN3
 
