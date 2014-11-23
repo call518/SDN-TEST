@@ -21,9 +21,9 @@ def emptyNet():
 
     h2 = net.addHost( 'h2', ip='10.0.0.2/24', mac='aa:aa:aa:aa:aa:02' )
 
-    s1 = net.addSwitch( 's1', mac='00:00:00:00:00:01' )
-    s2 = net.addSwitch( 's2', mac='00:00:00:00:00:02' )
-    s3 = net.addSwitch( 's3', mac='00:00:00:00:00:03' )
+    s1 = net.addSwitch( 's1', mac='00:00:00:00:00:01', dpid=int2dpid(1) )
+    s2 = net.addSwitch( 's2', mac='00:00:00:00:00:02', dpid=int2dpid(2) )
+    s3 = net.addSwitch( 's3', mac='00:00:00:00:00:03', dpid=int2dpid(3) )
 
     h2 = net.addHost( 'h2', ip='10.0.0.2' )
 
