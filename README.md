@@ -667,7 +667,7 @@ PING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.
 ..........
 mininet-1> h2 arp -n
 Address                  HWtype  HWaddress           Flags Mask            Iface
-10.0.0.6                 ether   2b:2b:2b:2b:2b:06   C                     h2-eth0
+10.0.0.6                 ether   06:06:06:06:06:06   C                     h2-eth0
 
 mininet-2> h6 ping 10.0.0.2
 PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
@@ -676,7 +676,7 @@ PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
 ..........
 mininet-2> h6 arp -n
 Address                  HWtype  HWaddress           Flags Mask            Iface
-10.0.0.2                 ether   1a:1a:1a:1a:1a:02   C                     h6-eth0
+10.0.0.2                 ether   02:02:02:02:02:02   C                     h6-eth0
 ```
 
 ### Flows
