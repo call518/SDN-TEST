@@ -21,9 +21,9 @@ def emptyNet():
 
     h2 = net.addHost( 'h2', ip='10.0.0.2/24', mac='02:02:02:02:02:02' )
 
-    s1 = net.addSwitch( 's1', mac='00:00:00:00:00:01', dpid=int2dpid(1) )
-    s2 = net.addSwitch( 's2', mac='00:00:00:00:00:02', dpid=int2dpid(2) )
-    s3 = net.addSwitch( 's3', mac='00:00:00:00:00:03', dpid=int2dpid(3) )
+    s1 = net.addSwitch( 's1', mac='00:00:00:00:00:01', dpid=int2dpid(1), protocols='OpenFlow13' )
+    s2 = net.addSwitch( 's2', mac='00:00:00:00:00:02', dpid=int2dpid(2), protocols='OpenFlow13' )
+    s3 = net.addSwitch( 's3', mac='00:00:00:00:00:03', dpid=int2dpid(3), protocols='OpenFlow13' )
 
     h2 = net.addHost( 'h2', ip='10.0.0.2' )
 
@@ -42,9 +42,9 @@ def emptyNet():
     s1.cmd('ovs-vsctl add-port s1 s1-eth3 -- set interface s1-eth3 type=gre options:remote_ip='+NODE2_IP)
     s1.cmdPrint('ovs-vsctl show')
 
-    ofp_version(s1, ['OpenFlow13'])
-    ofp_version(s2, ['OpenFlow13'])
-    ofp_version(s3, ['OpenFlow13'])
+    #ofp_version(s1, ['OpenFlow13'])
+    #ofp_version(s2, ['OpenFlow13'])
+    #ofp_version(s3, ['OpenFlow13'])
 
     CLI( net )
     net.stop()

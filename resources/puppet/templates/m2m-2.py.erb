@@ -20,9 +20,9 @@ def emptyNet():
 
     h6 = net.addHost( 'h6', ip='10.0.0.6/24', mac='06:06:06:06:06:06' )
 
-    s4 = net.addSwitch( 's4', mac='00:00:00:00:00:04', dpid=int2dpid(4) )
-    s5 = net.addSwitch( 's5', mac='00:00:00:00:00:05', dpid=int2dpid(5) )
-    s6 = net.addSwitch( 's6', mac='00:00:00:00:00:06', dpid=int2dpid(6) )
+    s4 = net.addSwitch( 's4', mac='00:00:00:00:00:04', dpid=int2dpid(4), protocols='OpenFlow13' )
+    s5 = net.addSwitch( 's5', mac='00:00:00:00:00:05', dpid=int2dpid(5), protocols='OpenFlow13' )
+    s6 = net.addSwitch( 's6', mac='00:00:00:00:00:06', dpid=int2dpid(6), protocols='OpenFlow13' )
 
     net.addLink( s4, s6 )
     net.addLink( s4, s5 )
@@ -35,9 +35,9 @@ def emptyNet():
     s4.cmd('ovs-vsctl add-port s4 s4-eth3 -- set interface s4-eth3 type=gre options:remote_ip='+NODE1_IP)
     s4.cmdPrint('ovs-vsctl show')
 
-    ofp_version(s4, ['OpenFlow13'])
-    ofp_version(s5, ['OpenFlow13'])
-    ofp_version(s6, ['OpenFlow13'])
+    #ofp_version(s4, ['OpenFlow13'])
+    #ofp_version(s5, ['OpenFlow13'])
+    #ofp_version(s6, ['OpenFlow13'])
 
     CLI( net )
     net.stop()
