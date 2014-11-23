@@ -26,17 +26,17 @@ $ vagrant status
 
 Current machine states:
 
-opendaylight-mininet-1    not created (virtualbox)
-opendaylight-mininet-2    not created (virtualbox)
-routeflow                 not created (virtualbox)
-devstack-control          not created (virtualbox)
-devstack-compute-1        not created (virtualbox)
-devstack-compute-2        not created (virtualbox)
-devstack-compute-3        not created (virtualbox)
-vxlan-router              not created (virtualbox)
-vxlan-server1             not created (virtualbox)
-vxlan-server2             not created (virtualbox)
-vtn-coordinator           not created (virtualbox)
+vtn-coordinator           (192.168.40.10)
+opendaylight-mininet-1    (192.168.41.10)
+opendaylight-mininet-2    (192.168.42.10)
+routeflow                 (192.168.30.10)
+devstack-control          (192.168.50.10)
+devstack-compute-1        (192.168.50.21)
+devstack-compute-2        (192.168.50.22)
+devstack-compute-3        (192.168.50.23)
+vxlan-router              (192.168.1.1, 192.168.2.1)
+vxlan-server1             (192.168.1.10)
+vxlan-server2             (192.168.2.20)
 ```
 
 # OpenDaylight /w Mininet (e.g. Helium)
@@ -541,12 +541,13 @@ NXST_FLOW reply (xid=0x4):
   
 # VTN Tutorial-2 (VTN3)
 
-* Requirement: Clear/Reset Tutorial-1 Process
+* (Requirement) Clear/Reset Tutorial-1
+* Create L2 over L3
+* VTN-Coordinator  (192.168.40.10)
 * Multiple OpenDaylight Controller
-  * OpenDaylight-1: "ODC1"
-  * OpenDaylight-2: "ODC2"
-* Multiple Tree Mininet
-  * (Note) Mininet-1's "s1" and Mininet-2's "s4" is connected by GRE-Tunnel
+  * OpenDaylight-1(ODC1) and Mininet-1 (192.168.41.10)
+  * OpenDaylight-2(ODC2) and Mininet-2 (192.168.42.10)
+  * (Note) Mininet-1's "s1-eth3" and Mininet-2's "s4-eth3" is connected by GRE-Tunnel
 
 
 ## Design
