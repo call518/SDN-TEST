@@ -660,6 +660,7 @@ mininet-1> h2 ping 10.0.0.6
 PING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.
 64 bytes from 10.0.0.6: icmp_seq=1 ttl=64 time=3.33 ms
 64 bytes from 10.0.0.6: icmp_seq=2 ttl=64 time=0.429 ms
+..........
 mininet-1> h2 arp -n
 Address                  HWtype  HWaddress           Flags Mask            Iface
 10.0.0.6                 ether   bb:bb:bb:bb:bb:06   C                     h2-eth0
@@ -668,6 +669,7 @@ mininet-2> h6 ping 10.0.0.2
 PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
 64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=3.33 ms
 64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=0.659 ms
+..........
 mininet-2> h6 arp -n
 Address                  HWtype  HWaddress           Flags Mask            Iface
 10.0.0.2                 ether   aa:aa:aa:aa:aa:02   C                     h6-eth0
