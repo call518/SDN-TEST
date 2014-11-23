@@ -18,7 +18,7 @@ def emptyNet():
                       ip=CONTROLLER_IP,
                       port=6633)
 
-    h6 = net.addHost( 'h6', ip='10.0.0.6/24', mac='00:00:10:00:00:06' )
+    h6 = net.addHost( 'h6', ip='10.0.0.6/24', mac='bb:bb:bb:bb:bb:06' )
 
     s4 = net.addSwitch( 's4', mac='00:00:00:00:00:04' )
     s5 = net.addSwitch( 's5', mac='00:00:00:00:00:05' )
