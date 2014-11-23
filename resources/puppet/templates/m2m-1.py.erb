@@ -19,17 +19,11 @@ def emptyNet():
                       port=6633)
 
 
-    h2 = net.addHost( 'h2', ip='10.0.0.2/24' )
+    h2 = net.addHost( 'h2', ip='10.0.0.2/24', mac='02:02:02:02:02:02' )
 
-    s1 = net.addSwitch( 's1' )
-    s2 = net.addSwitch( 's2' )
-    s3 = net.addSwitch( 's3' )
-
-    h2 = net.addHost( 'h2', ip='10.0.0.2' )
-
-    s1 = net.addSwitch( 's1' )
-    s2 = net.addSwitch( 's2' )
-    s3 = net.addSwitch( 's3' )
+    s1 = net.addSwitch( 's1', mac='00:00:00:00:00:01', dpid="0000000000000001", protocols='OpenFlow13' )
+    s2 = net.addSwitch( 's2', mac='00:00:00:00:00:02', dpid="0000000000000002", protocols='OpenFlow13' )
+    s3 = net.addSwitch( 's3', mac='00:00:00:00:00:03', dpid="0000000000000003", protocols='OpenFlow13' )
 
     net.addLink( s1, s2 )
     net.addLink( s1, s3 )

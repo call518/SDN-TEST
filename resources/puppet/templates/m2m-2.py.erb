@@ -18,11 +18,11 @@ def emptyNet():
                       ip=CONTROLLER_IP,
                       port=6633)
 
-    h6 = net.addHost( 'h6', ip='10.0.0.6/24' )
+    h6 = net.addHost( 'h6', ip='10.0.0.6/24', mac='06:06:06:06:06:06' )
 
-    s4 = net.addSwitch( 's4' )
-    s5 = net.addSwitch( 's5' )
-    s6 = net.addSwitch( 's6' )
+    s4 = net.addSwitch( 's4', mac='00:00:00:00:00:04', dpid="0000000000000004", protocols='OpenFlow13' )
+    s5 = net.addSwitch( 's5', mac='00:00:00:00:00:05', dpid="0000000000000005", protocols='OpenFlow13' )
+    s6 = net.addSwitch( 's6', mac='00:00:00:00:00:06', dpid="0000000000000006", protocols='OpenFlow13' )
 
     net.addLink( s4, s6 )
     net.addLink( s4, s5 )
