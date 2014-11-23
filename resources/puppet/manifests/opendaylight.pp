@@ -190,7 +190,7 @@ file { "Put multi-tree.py":
     require => File["mkdir RESTconf-VTN-Tutorial-2"],
 }
 
-exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/m2m-*":
+exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/*":
     cwd     => "/etc",
     user    => "root",
     timeout => "0",

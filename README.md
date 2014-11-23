@@ -568,9 +568,7 @@ host> vagrant ssh vtn-coordinator
 vm> sudo lsof -ni:8083 (e.g. helium)
 ```
 
-## Run OpenDaylight-1 /w Mininet (e.g. Helium)
-
-### Run OpenDaylight-1 Controller
+## Run OpenDaylight-1 (e.g. Helium)
 
 ```
 host> vagrant ssh opendaylight-mininet-1
@@ -578,6 +576,17 @@ vm> cd opendaylight
 vm> ./run-karaf.sh
 opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
 ```
+
+## Run OpenDaylight-2 (e.g Helium)
+
+```
+host> vagrant ssh opendaylight-mininet-2
+vm> cd opendaylight
+vm> ./run-karaf.sh
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
+```
+
+## Run Mininet
 
 ### Run Mininet-1
 
@@ -585,17 +594,6 @@ opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflow
 host> vagrant ssh opendaylight-mininet-1
 vm> cd RESTconf-VTN-Tutorial-2
 vm> sudo ./m2m-1.py
-```
-
-## Run OpenDaylight-2 /w Mininet (e.g Helium)
-
-### Run OpenDaylight-2 Controller
-
-```
-host> vagrant ssh opendaylight-mininet-2
-vm> cd opendaylight
-vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
 ```
 
 ### Run Mininet-2
@@ -606,7 +604,12 @@ vm> cd RESTconf-VTN-Tutorial-2
 vm> sudo ./m2m-2.py
 ```
 
+## Result of VTN Tutorial-2
+
 ## REST API Operation for VTN3
+
+* Reference: VTN-Coordinator REST API
+  * https://wiki.opendaylight.org/view/OpenDaylight_Virtual_Tenant_Network_(VTN):VTN_Coordinator:RestApi
 
 ```
 ### Create a VTN
@@ -639,21 +642,59 @@ curl -X PUT -v --user admin:adminpass -H 'content-type: application/json' -H 'ip
 curl -X PUT -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"portmap":{"logical_port_id": "PP-OF:00:00:00:00:00:00:00:05-s5-eth2"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR2/interfaces/if1/portmap.json
 ```
 
-## Result of VTN Tutorial-2
-
 ### Ping Test
 
 ```
+(Before)
 mininet-1> h2 ping 10.0.0.6
-(TODO)
+*** Unknown command: ping 10.0.0.6
 
 mininet-2> h6 ping 10.0.0.2
-(TODO)
+*** Unknown command: ping 10.0.0.6
+```
+
+```
+(After)
+mininet-1> h2 ping 10.0.0.6
+PING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.
+64 bytes from 10.0.0.6: icmp_seq=1 ttl=64 time=3.33 ms
+64 bytes from 10.0.0.6: icmp_seq=2 ttl=64 time=0.429 ms
+mininet-1> h2 arp -n
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.0.0.6                 ether   00:00:10:00:00:06   C                     h2-eth0
+
+mininet-2> h6 ping 10.0.0.2
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=3.33 ms
+64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=0.659 ms
+mininet-2> h6 arp -n
+Address                  HWtype  HWaddress           Flags Mask            Iface
+10.0.0.2                 ether   00:00:10:00:00:02   C                     h6-eth0
 ```
 
 ### Flows
 
 ```
+(Before)
+mininet-1> dpctl dump-flow
+*** s1 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+*** s2 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+*** s3 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+
+mininet-2> dpctl dump-flow
+*** s4 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+*** s5 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+*** s6 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+```
+
+```
+(After)
 mininet-1> dpctl dump-flow
 (TODO)
 
