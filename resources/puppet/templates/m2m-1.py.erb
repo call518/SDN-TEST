@@ -19,7 +19,7 @@ def emptyNet():
                       port=6633)
 
 
-    h2 = net.addHost( 'h2', ip='10.0.0.2/24', mac='aa:aa:aa:aa:aa:02' )
+    h2 = net.addHost( 'h2', ip='10.0.0.2/24', mac='1a:1a:1a:1a:1a:02' )
 
     s1 = net.addSwitch( 's1', mac='00:00:00:00:00:01', dpid=int2dpid(1) )
     s2 = net.addSwitch( 's2', mac='00:00:00:00:00:02', dpid=int2dpid(2) )
