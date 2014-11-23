@@ -42,6 +42,10 @@ def emptyNet():
     s1.cmd('ovs-vsctl add-port s1 s1-eth3 -- set interface s1-eth3 type=gre options:remote_ip='+NODE2_IP)
     s1.cmdPrint('ovs-vsctl show')
 
+    ofp_version(s1, ['OpenFlow13'])
+    ofp_version(s2, ['OpenFlow13'])
+    ofp_version(s3, ['OpenFlow13'])
+
     CLI( net )
     net.stop()
 
