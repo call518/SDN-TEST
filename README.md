@@ -93,11 +93,11 @@ vm> sudo mn --controller remote,ip=127.0.0.1,port=6633 --switch ovsk --topo tree
 
 ![Mininet Tree Common](etc-files/tree.png)
 
-* Custom Topologys
+* Examples (Custom Topologys)
 
 ```
-vm> cd /home/vagrant/topo-mininet
-vm> cd /home/vagrant/mininet-examples
+vm> ls -al /home/vagrant/topo-mininet
+vm> ls -al /home/vagrant/mininet-examples
 ```
 
 # RouteFlow
