@@ -617,8 +617,8 @@ vm> sudo ./m2m-2.py
 curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"vtn" : {"vtn_name":"VTN3"}}' http://127.0.0.1:8083/vtn-webapi/vtns.json
 
 ### Create two Controllers
-curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC1", "ipaddr":"192.168.40.11", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers.json
-curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC2", "ipaddr":"192.168.40.12", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC1", "ipaddr":"192.168.41.10", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers.json
+curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"controller": {"controller_id": "ODC2", "ipaddr":"192.168.42.10", "type": "odc", "version": "1.0", "auditstatus":"enable"}}' http://127.0.0.1:8083/vtn-webapi/controllers.json
 
 ### Create two vBridges in the VTN (vBridge1 in Controller1 / vBridge2 in Controller2)
 curl -X POST -v --user admin:adminpass -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"vbridge" : {"vbr_name":"vBR1","controller_id":"ODC1","domain_id":"(DEFAULT)" }}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges.json
