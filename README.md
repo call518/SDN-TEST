@@ -648,10 +648,14 @@ curl -X PUT -v --user admin:adminpass -H 'content-type: application/json' -H 'ip
 ```
 (Before)
 mininet-1> h2 ping 10.0.0.6
-*** Unknown command: ping 10.0.0.6
+PING 10.0.0.6 (10.0.0.6) 56(84) bytes of data.
+From 10.0.0.2 icmp_seq=1 Destination Host Unreachable
+From 10.0.0.2 icmp_seq=2 Destination Host Unreachable
 
 mininet-2> h6 ping 10.0.0.2
-*** Unknown command: ping 10.0.0.6
+PING 10.0.0.2 (10.0.0.2) 56(84) bytes of data.
+From 10.0.0.6 icmp_seq=1 Destination Host Unreachable
+From 10.0.0.6 icmp_seq=2 Destination Host Unreachable
 ```
 
 ```
