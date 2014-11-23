@@ -60,11 +60,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "1024"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    vtn_coordinator.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.41.0/24 eth1
+      route add -net 192.168.42.0/24 eth1
+    SCRIPT
     vtn_coordinator.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
@@ -102,11 +107,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    opendaylight_mininet_1.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.40.0/24 eth1
+      route add -net 192.168.42.0/24 eth1
+    SCRIPT
     opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
@@ -151,11 +161,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    opendaylight_mininet_2.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.40.0/24 eth1
+      route add -net 192.168.41.0/24 eth1
+    SCRIPT
     opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
