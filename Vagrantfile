@@ -66,10 +66,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-#    vtn_coordinator.vm.provision "shell", inline: <<-SCRIPT
-#      route add -net 192.168.41.0/24 eth1
-#      route add -net 192.168.42.0/24 eth1
-#    SCRIPT
+    vtn_coordinator.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.41.0/24 p7p1
+      route add -net 192.168.42.0/24 p7p1
+    SCRIPT
     vtn_coordinator.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-mininet.yaml"
