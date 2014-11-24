@@ -683,7 +683,7 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 
 ```
 (Before)
-mininet-1> dpctl dump-flow
+mininet-1> dpctl dump-flows
 *** s1 ------------------------------------------------------------------------
 NXST_FLOW reply (xid=0x4):
 *** s2 ------------------------------------------------------------------------
@@ -691,7 +691,7 @@ NXST_FLOW reply (xid=0x4):
 *** s3 ------------------------------------------------------------------------
 NXST_FLOW reply (xid=0x4):
 
-mininet-2> dpctl dump-flow
+mininet-2> dpctl dump-flows
 *** s4 ------------------------------------------------------------------------
 NXST_FLOW reply (xid=0x4):
 *** s5 ------------------------------------------------------------------------
@@ -702,11 +702,37 @@ NXST_FLOW reply (xid=0x4):
 
 ```
 (After)
-mininet-1> dpctl dump-flow
-(TODO)
+mininet-1> dpctl dump-flows
+*** s1 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=17.833s, table=0, n_packets=0, n_bytes=0, hard_timeout=300, idle_age=17, priority=10,in_port=3,dl_vlan=50,dl_src=08:00:27:96:af:07,dl_dst=02:02:02:02:02:02 actions=output:1
+ cookie=0x0, duration=109.957s, table=0, n_packets=47, n_bytes=4682, hard_timeout=300, idle_age=71, priority=10,in_port=3,dl_vlan=50,dl_src=06:06:06:06:06:06,dl_dst=02:02:02:02:02:02 actions=output:1
+ cookie=0x0, duration=17.825s, table=0, n_packets=0, n_bytes=0, idle_age=17, priority=10,in_port=1,vlan_tci=0x0000,dl_src=02:02:02:02:02:02,dl_dst=08:00:27:96:af:07 actions=mod_vlan_vid:50,output:3
+ cookie=0x0, duration=109.945s, table=0, n_packets=45, n_bytes=4298, idle_age=71, priority=10,in_port=1,vlan_tci=0x0000,dl_src=02:02:02:02:02:02,dl_dst=06:06:06:06:06:06 actions=mod_vlan_vid:50,output:3
+*** s2 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=17.849s, table=0, n_packets=0, n_bytes=0, idle_age=17, priority=10,in_port=1,dl_vlan=50,dl_src=08:00:27:96:af:07,dl_dst=02:02:02:02:02:02 actions=strip_vlan,output:2
+ cookie=0x0, duration=109.963s, table=0, n_packets=45, n_bytes=4314, idle_age=71, priority=10,in_port=1,dl_vlan=50,dl_src=06:06:06:06:06:06,dl_dst=02:02:02:02:02:02 actions=strip_vlan,output:2
+ cookie=0x0, duration=109.955s, table=0, n_packets=45, n_bytes=4298, hard_timeout=300, idle_age=71, priority=10,in_port=2,vlan_tci=0x0000,dl_src=02:02:02:02:02:02,dl_dst=06:06:06:06:06:06 actions=output:1
+ cookie=0x0, duration=17.826s, table=0, n_packets=0, n_bytes=0, hard_timeout=300, idle_age=17, priority=10,in_port=2,vlan_tci=0x0000,dl_src=02:02:02:02:02:02,dl_dst=08:00:27:96:af:07 actions=output:1
+*** s3 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
 
-mininet-2> dpctl dump-flow
-(TODO)
+mininet-2> dpctl dump-flows
+*** s4 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=138.002s, table=0, n_packets=45, n_bytes=4478, hard_timeout=300, idle_age=99, priority=10,in_port=3,dl_vlan=50,dl_src=02:02:02:02:02:02,dl_dst=06:06:06:06:06:06 actions=output:2
+ cookie=0x0, duration=43.922s, table=0, n_packets=0, n_bytes=0, hard_timeout=300, idle_age=43, priority=10,in_port=3,dl_vlan=50,dl_src=08:00:27:50:2a:94,dl_dst=06:06:06:06:06:06 actions=output:2
+ cookie=0x0, duration=138.002s, table=0, n_packets=45, n_bytes=4298, idle_age=99, priority=10,in_port=2,vlan_tci=0x0000,dl_src=06:06:06:06:06:06,dl_dst=02:02:02:02:02:02 actions=mod_vlan_vid:50,output:3
+ cookie=0x0, duration=43.912s, table=0, n_packets=0, n_bytes=0, idle_age=43, priority=10,in_port=2,vlan_tci=0x0000,dl_src=06:06:06:06:06:06,dl_dst=08:00:27:50:2a:94 actions=mod_vlan_vid:50,output:3
+*** s5 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
+ cookie=0x0, duration=43.94s, table=0, n_packets=0, n_bytes=0, idle_age=43, priority=10,in_port=1,dl_vlan=50,dl_src=08:00:27:50:2a:94,dl_dst=06:06:06:06:06:06 actions=strip_vlan,output:2
+ cookie=0x0, duration=138.011s, table=0, n_packets=45, n_bytes=4314, idle_age=99, priority=10,in_port=1,dl_vlan=50,dl_src=02:02:02:02:02:02,dl_dst=06:06:06:06:06:06 actions=strip_vlan,output:2
+ cookie=0x0, duration=138.011s, table=0, n_packets=47, n_bytes=4494, hard_timeout=300, idle_age=99, priority=10,in_port=2,vlan_tci=0x0000,dl_src=06:06:06:06:06:06,dl_dst=02:02:02:02:02:02 actions=output:1
+ cookie=0x0, duration=43.907s, table=0, n_packets=0, n_bytes=0, hard_timeout=300, idle_age=43, priority=10,in_port=2,vlan_tci=0x0000,dl_src=06:06:06:06:06:06,dl_dst=08:00:27:50:2a:94 actions=output:1
+*** s6 ------------------------------------------------------------------------
+NXST_FLOW reply (xid=0x4):
 ```
 
 # References
