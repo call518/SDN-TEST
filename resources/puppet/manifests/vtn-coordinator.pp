@@ -97,17 +97,33 @@ package { $deps_postgresql:
     require => Exec["Extract VTN-Coordinator"],
 }
 
+#exec { "Setup VTN DB":
+#    command => "/usr/local/vtn/sbin/db_setup && touch /root/.created-vtn-db.mark",
+#    creates => "/root/.created-vtn-db.mark",
+#    cwd     => "/usr/local/vtn/sbin",
+#    user    => "root",
+#    timeout => "0",
+#    require => Package[ $deps_postgresql ],
+#}
+
 exec { "Setup VTN DB":
-    command => "/usr/local/vtn/sbin/db_setup && touch /root/.created-vtn-db.mark",
-    creates => "/root/.created-vtn-db.mark",
+    command => "/usr/local/vtn/sbin/db_setup",
     cwd     => "/usr/local/vtn/sbin",
     user    => "root",
     timeout => "0",
     require => Package[ $deps_postgresql ],
 }
 
+#exec { "Start VTN Coordinator":
+#    command => "bash -c 'if [ `jps | grep -c \"Bootstrap\"` -eq 0 ]; then /usr/local/vtn/bin/vtn_start; fi'",
+#    cwd     => "/usr/local/vtn/sbin",
+#    user    => "root",
+#    timeout => "0",
+#    require => Exec["Setup VTN DB"],
+#}
+
 exec { "Start VTN Coordinator":
-    command => "bash -c 'if [ `jps | grep -c \"Bootstrap\"` -eq 0 ]; then /usr/local/vtn/bin/vtn_start; fi'",
+    command => "/usr/local/vtn/bin/vtn_start",
     cwd     => "/usr/local/vtn/sbin",
     user    => "root",
     timeout => "0",
