@@ -108,7 +108,6 @@ package { $deps_postgresql:
 
 exec { "Setup VTN DB":
     command => "/usr/local/vtn/sbin/db_setup",
-    cwd     => "/usr/local/vtn/sbin",
     user    => "root",
     timeout => "0",
     require => Package[ $deps_postgresql ],
@@ -124,7 +123,6 @@ exec { "Setup VTN DB":
 
 exec { "Start VTN Coordinator":
     command => "/usr/local/vtn/bin/vtn_start",
-    cwd     => "/usr/local/vtn/sbin",
     user    => "root",
     timeout => "0",
     require => Exec["Setup VTN DB"],
