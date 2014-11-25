@@ -215,11 +215,13 @@ exec { "Start VTN Coordinator":
 #    require  => [ Package["tomcat"], Exec["Start VTN Coordinator"] ],
 #}
 
-exec { "Start VTN Tomcat":
-    command => "/usr/local/tomcat/bin/catalina.sh start",
-    user    => "root",
-    timeout => "0",
-    require => Exec["Start VTN Coordinator"],
+if "Hydrogen" in "$odl_dist_name" {
+    exec { "Start VTN Tomcat":
+        command => "/usr/local/tomcat/bin/catalina.sh start",
+        user    => "root",
+        timeout => "0",
+        require => Exec["Start VTN Coordinator"],
+    }
 }
 
 file { "Put RESTconf-VTN-Tutorial-2":
