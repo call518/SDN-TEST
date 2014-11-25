@@ -604,8 +604,6 @@ vm> cd RESTconf-VTN-Tutorial-2
 vm> sudo ./m2m-2.py
 ```
 
-## Result of VTN Tutorial-2
-
 ## REST API Operation for VTN3
 
 * Reference: VTN-Coordinator REST API
@@ -641,6 +639,8 @@ curl -X POST -v -H 'username: admin' -H 'password: adminpass' -H 'content-type: 
 curl -X PUT -v -H 'username: admin' -H 'password: adminpass' -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"portmap":{"logical_port_id": "PP-OF:00:00:00:00:00:00:00:02-s2-eth2"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR1/interfaces/if1/portmap.json
 curl -X PUT -v -H 'username: admin' -H 'password: adminpass' -H 'content-type: application/json' -H 'ipaddr:127.0.0.1' -d '{"portmap":{"logical_port_id": "PP-OF:00:00:00:00:00:00:00:05-s5-eth2"}}' http://127.0.0.1:8083/vtn-webapi/vtns/VTN3/vbridges/vBR2/interfaces/if1/portmap.json
 ```
+
+## Result of VTN Tutorial-2
 
 ### Ping Test
 
