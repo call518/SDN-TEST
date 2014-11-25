@@ -1,0 +1,10 @@
+---
+:backends:
+  - yaml
+  - json
+:yaml:
+  :datadir: /vagrant/resources/puppet/hieradata-opendaylight
+:json:
+  :datadir: /vagrant/resources/puppet/hieradata-opendaylight
+:hierarchy:
+  - hosts

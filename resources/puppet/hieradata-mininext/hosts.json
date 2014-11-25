@@ -1,0 +1,16 @@
+{
+  "hosts": {
+    "mininext-1": {
+      "name": "mininext-1",
+      "ipaddress": "192.168.80.11"
+    },
+    "mininext-2": {
+      "name": "mininext-2",
+      "ipaddress": "192.168.80.12"
+    },
+    "mininext-3": {
+      "name": "mininext-3",
+      "ipaddress": "192.168.80.13"
+    }
+  }
+}
