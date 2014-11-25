@@ -95,8 +95,15 @@ exec { "Wget ODL-Helium":
     timeout  => "0",
 }
 
+if $odl_dist_name in "Helium-SR1" {
+    $unzip_cmd = "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight"
+} else {
+    $unzip_cmd = "unzip ${odl_bin_name}.zip"
+}
+
 exec { "Extract ODL-Helium":
-    command => "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight",
+    #command => "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight",
+    command => "${unzip_cmd}",
     creates => "/home/vagrant/opendaylight",
     cwd     => "/home/vagrant",
     user    => "vagrant",

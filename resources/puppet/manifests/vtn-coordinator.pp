@@ -27,6 +27,9 @@ $deps = [
           "libcurl",
           "unixODBC",
           "lsof",
+          "gtest-devel",
+          "json-c",
+          "json-c-devel",
 ]
 
 package { $deps:
@@ -65,8 +68,15 @@ exec { "Wget ODL-Helium":
     timeout  => "0",
 }
 
+if $odl_dist_name in "Helium-SR1" {
+    $unzip_cmd = "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight"
+} else {
+    $unzip_cmd = "unzip ${odl_bin_name}.zip"
+}
+
 exec { "Extract ODL-Helium":
-    command => "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight",
+    #command => "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight",
+    command => "${unzip_cmd}",
     creates => "/home/vagrant/opendaylight",
     cwd     => "/home/vagrant",
     user    => "vagrant",
@@ -89,12 +99,82 @@ $deps_postgresql = [
 	"postgresql-server",
 	"postgresql-contrib",
 	"postgresql-odbc",
-	"java-1.7.0-openjdk"
+	"java-1.7.0-openjdk",
+        #"tomcat",
 ]
 
 package { $deps_postgresql:
     ensure   => installed,
     require => Exec["Extract VTN-Coordinator"],
+}
+
+if "Hydrogen" in "$odl_dist_name" {
+
+    $tomcat_path = "/usr/local/tomcat"
+
+    exec { "Wget Tomcat":
+        command => "wget http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.39/bin/apache-tomcat-7.0.39.tar.gz",
+        cwd     => "/usr/local",
+        creates => "/usr/local/apache-tomcat-7.0.39.tar.gz",
+        user    => "root",
+        timeout => "0",
+        require => Package["postgresql"],
+    }
+
+    exec { "Extract Tomcat":
+        command => "tar zxf apache-tomcat-7.0.39.tar.gz",
+        cwd     => "/usr/local",
+        creates => "/usr/local/apache-tomcat-7.0.39",
+        user    => "root",
+        timeout => "0",
+        require => Exec["Wget Tomcat"],
+    }
+
+    file { "/usr/local/tomcat":
+        ensure   => link,
+        target   => "/usr/local/apache-tomcat-7.0.39",
+        owner    => "root",
+        group    => "root",
+        replace  => true,
+        require => Exec["Extract Tomcat"],
+    }
+
+    exec { "Clear Default webapps":
+        command => "rm -rf /usr/local/tomcat/webapps/*",
+        cwd     => "/usr/local/tomcat/webapps",
+        user    => "root",
+        timeout => "0",
+        require => File["/usr/local/tomcat"],
+    }
+
+    file { "${tomcat_path}/webapps/vtn-webapi":
+        ensure   => link,
+        target   => "/usr/local/vtn/tomcat/webapps/vtn-webapi",
+        owner    => "root",
+        group    => "root",
+        replace  => true,
+        require => File["/usr/local/tomcat"],
+    }
+
+    file { "config ${tomcat_path}/conf/catalina.properties":
+        path    => "${tomcat_path}/conf/catalina.properties",
+        ensure  => present,
+        owner   => "root",
+        group   => "root",
+        mode    => 0755,
+        content => template("/vagrant/resources/puppet/templates/catalina.properties.erb"),
+        require => File["/usr/local/tomcat"],
+    }
+
+    file { "config ${tomcat_path}/conf/server.xml":
+        path    => "${tomcat_path}/conf/server.xml",
+        ensure  => present,
+        owner   => "root",
+        group   => "root",
+        mode    => 0755,
+        content => template("/vagrant/resources/puppet/templates/server.xml.erb"),
+        require => File["/usr/local/tomcat"],
+    }
 }
 
 #exec { "Setup VTN DB":
@@ -125,7 +205,21 @@ exec { "Start VTN Coordinator":
     command => "/usr/local/vtn/bin/vtn_start",
     user    => "root",
     timeout => "0",
+    returns => [0, 1],
     require => Exec["Setup VTN DB"],
+}
+
+#service { "tomcat":
+#    ensure   => "running",
+#    enable   => "true",
+#    require  => [ Package["tomcat"], Exec["Start VTN Coordinator"] ],
+#}
+
+exec { "Start VTN Tomcat":
+    command => "/usr/local/tomcat/bin/catalina.sh start",
+    user    => "root",
+    timeout => "0",
+    require => Exec["Start VTN Coordinator"],
 }
 
 file { "Put RESTconf-VTN-Tutorial-2":
@@ -138,4 +232,3 @@ file { "Put RESTconf-VTN-Tutorial-2":
     replace  => true,
     recurse  => true,
 }
-
