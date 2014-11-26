@@ -57,3 +57,14 @@ exec  { "Install miniNExT":
 #    timeout  => "0",
 #    require  => Exec["Install miniNExT"],
 #}
+
+file { "Put start.py":
+    path    => "/home/vagrant/miniNExT/examples/quagga-ixp/start.py",
+    ensure  => present,
+    owner   => "vagrant",
+    group   => "vagrant",
+    mode    => 0755,
+    content => template("/vagrant/resources/puppet/templates/start.py.erb"),
+    require => Exec["Install miniNExT"],
+}
+
