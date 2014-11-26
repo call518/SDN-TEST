@@ -38,7 +38,7 @@ exec  { "Install Deps of miniNExT":
     user     => "vagrant",
     cwd      => "/hoem/vagrant/miniNExT",
     timeout  => "0",
-    require  => Vcsrepo["/usr/local/src/miniNExT"],
+    require  => Vcsrepo["/home/vagrant/miniNExT"],
 }
 
 exec  { "Install miniNExT":
