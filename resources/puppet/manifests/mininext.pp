@@ -1,52 +1,50 @@
 ####################################################
-#import "base.pp"
+
+
+## (!!!!!!!) Pre-Requirement: 'mininet' Must be installed.
 
 include apt
 
 ### Export Env: Global %PATH for "Exec"
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
 
-package { "iptables":
+$deps = [
+          "iptables",
+]
+
+package { $deps:
     ensure   => installed,
 }
 
-############## puppetlabs-firewall Not Works... #####################
-#resources { "firewall":
-#    purge     => true
-#}
+vcsrepo { "/hoem/vagrant/miniNExT":
+    ensure   => present,
+    provider => git,
+    user     => "vagrant",
+    source   => "https://github.com/USC-NSL/miniNExT.git",
+    #revision => "75c2781c0f22c5701257fa28f849d27086b5b13e",
+}
 
-#exec { "iptables -F && iptables -t nat -F":
-#    user    => "root",
-#    timeout => "0",
-#}
+exec  { "Install Deps of miniNExT":
+    command  => "sudo apt-get -y install `make deps`",
+    user     => "vagrant",
+    cwd      => "/hoem/vagrant/miniNExT",
+    timeout  => "0",
+    require  => Vcsrepo["/usr/local/src/miniNExT"],
+}
 
-#firewall { "100 s1 MASQUERADE":
-#    table     => "nat",
-#    chain     => "POSTROUTING",
-#    outiface  => "eth0",
-#    proto     => "all",
-#    source    => "192.168.1.0/24",
-#    jump      => "MASQUERADE",
-#}
+exec  { "Install miniNExT":
+    command  => "sudo make install",
+    user     => "vagrant",
+    cwd      => "/hoem/vagrant/miniNExT",
+    timeout  => "0",
+    require  => Exec["Install Deps of miniNExT"],
+}
 
-#exec { "iptables -t nat -A POSTROUTING -o eth0 -s 192.168.1.0/24 -j MASQUERADE":
-#    user    => "root",
-#    timeout => "0",
-#    require => Exec["iptables -F && iptables -t nat -F"],
+### Add-On: Developer Installation
+#exec  { "Install miniNExT for Developer":
+#    command  => "sudo make develop",
+#    user     => "vagrant",
+#    cwd      => "/hoem/vagrant/miniNExT",
+#    timeout  => "0",
+#    require  => Exec["Install miniNExT"],
 #}
-
-#firewall { "101 s2 MASQUERADE":
-#    table     => "nat",
-#    chain     => "POSTROUTING",
-#    outiface  => "eth0",
-#    proto     => "all",
-#    source    => "192.168.2.0/24",
-#    jump      => "MASQUERADE",
-#}
-
-#exec { "iptables -t nat -A POSTROUTING -o eth0 -s 192.168.2.0/24 -j MASQUERADE":
-#    user    => "root",
-#    timeout => "0",
-#    require => Exec["iptables -F && iptables -t nat -F"],
-#}
-#####################################################################

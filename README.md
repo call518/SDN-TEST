@@ -40,13 +40,14 @@ vxlan-server2             (192.168.2.20)
 
 # OpenDaylight /w Mininet (e.g. Helium)
 
-SDN Controller, OpenDaylight TESTing with Mininet
+SDN Controller, OpenDaylight TESTing with Mininet/MiniNExT
 
 * (Note) Support OpenDaylight
   * Hydrogen Virtualization
   * Hydrogen ServiceProvider
   * Helium
   * Helium-SR1
+* Mininet /w MiniNExT
 
 ## Sample OpenDaylight Web-UI
 

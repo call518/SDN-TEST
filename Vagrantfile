@@ -144,6 +144,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifest_file  = "mininet.pp"
       puppet.options = "--verbose"
     end
+    opendaylight_mininet_1.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "mininext.pp"
+      puppet.options = "--verbose"
+    end
   end
 
   ## OpenDaylight & Mininet (2)
@@ -196,6 +203,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininet.pp"
+      puppet.options = "--verbose"
+    end
+    opendaylight_mininet_2.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "mininext.pp"
       puppet.options = "--verbose"
     end
   end
@@ -464,53 +478,53 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  ## mininext
-  num_mininext_nodes = 3 # (Max: 3)
-  mininext_ip_base = "192.168.80."
-  mininext_ips = num_mininext_nodes.times.collect { |n| compute_ip_base + "#{n+11}" }
-
-  num_mininext_nodes.times do |n|
-    config.vm.define "mininext-#{n+1}" do |mininext|
-      mininext_ip = mininext_ips[n]
-      mininext_index = n+1
-      mininext.vm.box = "trusty64"
-      #mininext.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-      mininext.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
-      mininext.vm.hostname = "mininext-#{mininext_index}"
-      mininext.vm.network "private_network", ip: "#{mininext_ip}"
-      #mininext.vm.network "forwarded_port", guest: 8080, host: 9292
-      #mininext.vm.network "forwarded_port", guest: 8181, host: 8282
-      mininext.vm.provider :virtualbox do |vb|
-        #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-        vb.customize ["modifyvm", :id, "--cpus", "2"]
-        vb.customize ["modifyvm", :id, "--memory", "2048"]
-        #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-        #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-        #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
-      end
-      mininext.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-      mininext.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-      mininext.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-      mininext.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-      #mininext.vm.provision "shell", inline: <<-SCRIPT
-      #  route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
-      #  route add -net 192.168.41.0/24 eth1 2> /dev/null; echo "route add -net 192.168.41.0/24 eth1"
-      #SCRIPT
-      mininext.vm.provision "puppet" do |puppet|
-        puppet.working_directory = "/vagrant/resources/puppet"
-        puppet.hiera_config_path = "resources/puppet/hiera-mininext.yaml"
-        puppet.manifests_path = "resources/puppet/manifests"
-        puppet.manifest_file  = "base.pp"
-        puppet.options = "--verbose"
-      end
-      mininext.vm.provision "puppet" do |puppet|
-        puppet.working_directory = "/vagrant/resources/puppet"
-        puppet.hiera_config_path = "resources/puppet/hiera-mininext.yaml"
-        puppet.manifests_path = "resources/puppet/manifests"
-        puppet.manifest_file  = "mininext.pp"
-        puppet.options = "--verbose"
-      end
-    end
-  end
+#  ## mininext
+#  num_mininext_nodes = 3 # (Max: 3)
+#  mininext_ip_base = "192.168.80."
+#  mininext_ips = num_mininext_nodes.times.collect { |n| compute_ip_base + "#{n+11}" }
+#
+#  num_mininext_nodes.times do |n|
+#    config.vm.define "mininext-#{n+1}" do |mininext|
+#      mininext_ip = mininext_ips[n]
+#      mininext_index = n+1
+#      mininext.vm.box = "trusty64"
+#      #mininext.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+#      mininext.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+#      mininext.vm.hostname = "mininext-#{mininext_index}"
+#      mininext.vm.network "private_network", ip: "#{mininext_ip}"
+#      #mininext.vm.network "forwarded_port", guest: 8080, host: 9292
+#      #mininext.vm.network "forwarded_port", guest: 8181, host: 8282
+#      mininext.vm.provider :virtualbox do |vb|
+#        #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+#        vb.customize ["modifyvm", :id, "--cpus", "2"]
+#        vb.customize ["modifyvm", :id, "--memory", "2048"]
+#        #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+#        #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+#        #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+#      end
+#      mininext.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+#      mininext.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+#      mininext.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+#      mininext.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+#      #mininext.vm.provision "shell", inline: <<-SCRIPT
+#      #  route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+#      #  route add -net 192.168.41.0/24 eth1 2> /dev/null; echo "route add -net 192.168.41.0/24 eth1"
+#      #SCRIPT
+#      mininext.vm.provision "puppet" do |puppet|
+#        puppet.working_directory = "/vagrant/resources/puppet"
+#        puppet.hiera_config_path = "resources/puppet/hiera-mininext.yaml"
+#        puppet.manifests_path = "resources/puppet/manifests"
+#        puppet.manifest_file  = "base.pp"
+#        puppet.options = "--verbose"
+#      end
+#      mininext.vm.provision "puppet" do |puppet|
+#        puppet.working_directory = "/vagrant/resources/puppet"
+#        puppet.hiera_config_path = "resources/puppet/hiera-mininext.yaml"
+#        puppet.manifests_path = "resources/puppet/manifests"
+#        puppet.manifest_file  = "mininext.pp"
+#        puppet.options = "--verbose"
+#      end
+#    end
+#  end
 
 end
