@@ -25,7 +25,7 @@ package { $deps:
     ensure   => installed,
 }
 
-vcsrepo { "/hoem/vagrant/miniNExT":
+vcsrepo { "/home/vagrant/miniNExT":
     ensure   => present,
     provider => git,
     user     => "vagrant",
@@ -36,7 +36,7 @@ vcsrepo { "/hoem/vagrant/miniNExT":
 exec  { "Install Deps of miniNExT":
     command  => "sudo apt-get -y install `make deps`",
     user     => "vagrant",
-    cwd      => "/hoem/vagrant/miniNExT",
+    cwd      => "/home/vagrant/miniNExT",
     timeout  => "0",
     require  => Vcsrepo["/home/vagrant/miniNExT"],
 }
@@ -44,7 +44,7 @@ exec  { "Install Deps of miniNExT":
 exec  { "Install miniNExT":
     command  => "sudo make install",
     user     => "vagrant",
-    cwd      => "/hoem/vagrant/miniNExT",
+    cwd      => "/home/vagrant/miniNExT",
     timeout  => "0",
     require  => Exec["Install Deps of miniNExT"],
 }
@@ -53,7 +53,7 @@ exec  { "Install miniNExT":
 #exec  { "Install miniNExT for Developer":
 #    command  => "sudo make develop",
 #    user     => "vagrant",
-#    cwd      => "/hoem/vagrant/miniNExT",
+#    cwd      => "/home/vagrant/miniNExT",
 #    timeout  => "0",
 #    require  => Exec["Install miniNExT"],
 #}
