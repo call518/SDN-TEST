@@ -67,24 +67,24 @@ file { "/etc/profile.d/java_home.sh":
 
 if $odl_dist_name == "Hydrogen-Virtualization" {
     $odl_bin_name = "distributions-virtualization-0.1.1-osgipackage"
-    #$odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-virtualization/0.1.1/${odl_bin_name}.zip"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-virtualization/0.1.1/${odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/9003f74de0089344"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/9003f74de0089344"
 } elsif $odl_dist_name == "Hydrogen-SP" {
     $odl_bin_name = "distributions-serviceprovider-0.1.1-osgipackage"
-    #$odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-serviceprovider/0.1.1/${odl_bin_name}.zip"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-serviceprovider/0.1.1/${odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/b741fbb3be9bea42"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/b741fbb3be9bea42"
 } elsif $odl_dist_name == "Helium" {
     $odl_bin_name = "distribution-karaf-0.2.0-Helium"
-    #$odl_bin_url = "http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/#{odl_bin_name}.zip"
+    $odl_bin_url = "http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/#{odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/b148140a7e1d5c15"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/b148140a7e1d5c15"
 } elsif $odl_dist_name == "Helium-SR1" {
     $odl_bin_name = "distribution-karaf-0.2.1-Helium-SR1"
-    #$odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.1-Helium-SR1/${odl_bin_name}.zip"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.1-Helium-SR1/${odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/a6b154dfe9076714"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/a6b154dfe9076714"
 }
 
 exec { "Wget ODL-Helium":
