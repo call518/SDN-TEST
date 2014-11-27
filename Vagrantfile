@@ -318,7 +318,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "devstack-control.pp"
       puppet.facter = {
-        "MY_BRANCH" => "stable/juno"
+        #"MY_BRANCH" => "stable/juno"
+        "MY_BRANCH" => "stable/icehouse"
       }
       puppet.options = "--verbose"
     end
@@ -359,7 +360,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puppet.manifests_path = "resources/puppet/manifests"
         puppet.manifest_file  = "devstack-compute.pp"
         puppet.facter = {
-          "MY_BRANCH" => "stable/juno"
+          #"MY_BRANCH" => "stable/juno"
+          "MY_BRANCH" => "stable/icehouse"
         }
         puppet.options = "--verbose"
       end
