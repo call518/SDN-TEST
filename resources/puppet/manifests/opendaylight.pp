@@ -67,24 +67,24 @@ file { "/etc/profile.d/java_home.sh":
 
 if $odl_dist_name == "Hydrogen-Virtualization" {
     $odl_bin_name = "distributions-virtualization-0.1.1-osgipackage"
-    #$odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-virtualization/0.1.1/${odl_bin_name}.zip"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-virtualization/0.1.1/${odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/9003f74de0089344"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/9003f74de0089344"
 } elsif $odl_dist_name == "Hydrogen-SP" {
     $odl_bin_name = "distributions-serviceprovider-0.1.1-osgipackage"
-    #$odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-serviceprovider/0.1.1/${odl_bin_name}.zip"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-serviceprovider/0.1.1/${odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/b741fbb3be9bea42"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/b741fbb3be9bea42"
 } elsif $odl_dist_name == "Helium" {
     $odl_bin_name = "distribution-karaf-0.2.0-Helium"
-    #$odl_bin_url = "http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/#{odl_bin_name}.zip"
+    $odl_bin_url = "http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/#{odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/b148140a7e1d5c15"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/b148140a7e1d5c15"
 } elsif $odl_dist_name == "Helium-SR1" {
     $odl_bin_name = "distribution-karaf-0.2.1-Helium-SR1"
-    #$odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.1-Helium-SR1/${odl_bin_name}.zip"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.1-Helium-SR1/${odl_bin_name}.zip"
     #$odl_bin_url = "http://172.21.18.11/files/${odl_bin_name}.zip"
-    $odl_bin_url = "https://plink.ucloud.com/public_link/link/a6b154dfe9076714"
+    #$odl_bin_url = "https://plink.ucloud.com/public_link/link/a6b154dfe9076714"
 }
 
 exec { "Wget ODL-Helium":
@@ -95,7 +95,8 @@ exec { "Wget ODL-Helium":
     timeout  => "0",
 }
 
-if $odl_dist_name in "Helium-SR1" {
+#if $odl_dist_name == "Helium-SR1" {
+if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
     $unzip_cmd = "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight"
 } else {
     $unzip_cmd = "unzip ${odl_bin_name}.zip"
@@ -111,8 +112,8 @@ exec { "Extract ODL-Helium":
     require => Exec["Wget ODL-Helium"],
 }
 
-#if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
-if $odl_dist_name in "Helium-SR1" {
+#if $odl_dist_name in "Helium-SR1"
+if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
     exec { "Patch JMX Error":
         command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
         cwd     => "/home/vagrant/opendaylight/etc",
@@ -146,60 +147,61 @@ if $odl_dist_name in "Helium-SR1" {
         require => File["Put ODL-Helium-Run-Script"],
     }
 }
-
-file { "Put RESTconf-VTN-Tutorial-1":
-    path     => "/home/vagrant/RESTconf-VTN-Tutorial-1",
-    owner    => "vagrant",
-    group    => "vagrant",
-    mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/RESTconf-VTN-Tutorial-1",
-    ensure   => directory,
-    replace  => true,
-    recurse  => true,
-}
-
-$hosts = hiera("hosts")
-
-file { "mkdir RESTconf-VTN-Tutorial-2":
-    path    => "/home/vagrant/RESTconf-VTN-Tutorial-2",
-    ensure  => directory,
-    owner   => "vagrant",
-    group   => "vagrant",
-}
-
-file { "Put m2m-1.py":
-    path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/m2m-1.py",
-    ensure  => present,
-    owner   => "vagrant",
-    group   => "vagrant",
-    mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb"),
-    require => File["mkdir RESTconf-VTN-Tutorial-2"],
-}
-
-file { "Put m2m-2.py":
-    path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/m2m-2.py",
-    ensure  => present,
-    owner   => "vagrant",
-    group   => "vagrant",
-    mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb"),
-    require => File["mkdir RESTconf-VTN-Tutorial-2"],
-}
-
-file { "Put multi-tree.py":
-    path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/multi-tree.py",
-    ensure  => present,
-    owner   => "vagrant",
-    group   => "vagrant",
-    mode    => 0755,
-    content => template("/vagrant/resources/puppet/templates/multi-tree.py.erb"),
-    require => File["mkdir RESTconf-VTN-Tutorial-2"],
-}
-
-exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/*":
-    cwd     => "/etc",
-    user    => "root",
-    timeout => "0",
-    require => [ File["Put m2m-1.py"], File["Put m2m-2.py"] ],
+if $hostname != "devstack-control" {
+    file { "Put RESTconf-VTN-Tutorial-1":
+        path     => "/home/vagrant/RESTconf-VTN-Tutorial-1",
+        owner    => "vagrant",
+        group    => "vagrant",
+        mode     => 0755,
+        source   => "/vagrant/resources/puppet/files/RESTconf-VTN-Tutorial-1",
+        ensure   => directory,
+        replace  => true,
+        recurse  => true,
+    }
+    
+    $hosts = hiera("hosts")
+    
+    file { "mkdir RESTconf-VTN-Tutorial-2":
+        path    => "/home/vagrant/RESTconf-VTN-Tutorial-2",
+        ensure  => directory,
+        owner   => "vagrant",
+        group   => "vagrant",
+    }
+    
+    file { "Put m2m-1.py":
+        path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/m2m-1.py",
+        ensure  => present,
+        owner   => "vagrant",
+        group   => "vagrant",
+        mode    => 0755,
+        content => template("/vagrant/resources/puppet/templates/m2m-1.py.erb"),
+        require => File["mkdir RESTconf-VTN-Tutorial-2"],
+    }
+    
+    file { "Put m2m-2.py":
+        path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/m2m-2.py",
+        ensure  => present,
+        owner   => "vagrant",
+        group   => "vagrant",
+        mode    => 0755,
+        content => template("/vagrant/resources/puppet/templates/m2m-2.py.erb"),
+        require => File["mkdir RESTconf-VTN-Tutorial-2"],
+    }
+    
+    file { "Put multi-tree.py":
+        path    => "/home/vagrant/RESTconf-VTN-Tutorial-2/multi-tree.py",
+        ensure  => present,
+        owner   => "vagrant",
+        group   => "vagrant",
+        mode    => 0755,
+        content => template("/vagrant/resources/puppet/templates/multi-tree.py.erb"),
+        require => File["mkdir RESTconf-VTN-Tutorial-2"],
+    }
+    
+    exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/*":
+        cwd     => "/etc",
+        user    => "root",
+        timeout => "0",
+        require => [ File["Put m2m-1.py"], File["Put m2m-2.py"] ],
+    }
 }
