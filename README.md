@@ -194,11 +194,11 @@ vm> sudo ./run-routeflow-infra.sh
 # DevStack /w OpenDaylight
 
 * (Note) *Order is important!*
+* OpenDaylight
 * DevStack
   * Controller/Network Node: 1 Host
     * (Note) Minimum RAM Size: 4GB
   * Compute Node: 1 Host (Max: 3)
-* OpenDaylight
 
 ## Start Vagrant
 
@@ -276,7 +276,7 @@ e.g.) ip netns exec qrouter-a4e4c152-ee23-4e16-b900-4d0c132618d7 ssh cirros@10.1
 * Configuration of OpenFlow entries OVS
 * Logical separation of traffic between tenants
 * TODO
-  * Flow by OpenDaylight
+  * Flows by OpenDaylight
   * Underlay /w Mininet
 
 ## Start Vagrant
