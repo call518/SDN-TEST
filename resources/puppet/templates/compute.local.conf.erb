@@ -17,10 +17,14 @@ HEAT_BRANCH=$MY_BRANCH
 TROVE_BRANCH=$MY_BRANCH
 HORIZON_BRANCH=$MY_BRANCH
 
+#VIRT_DRIVER=docker
+
 HOST_IP=<%= @hosts[@hostname]['ipaddress'] %>
+#HOST_IP_IFACE=eth1
 HOST_NAME=<%= @hosts[@hostname]['name'] %>
 SERVICE_HOST=<%= @hosts['devstack-control']['name'] %>
 SERVICE_HOST_NAME=<%= @hosts['devstack-control']['name'] %>
+FLAT_INTERFACE=eth2
 
 Q_HOST=$SERVICE_HOST
 MYSQL_HOST=$SERVICE_HOST

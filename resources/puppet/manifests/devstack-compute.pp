@@ -58,3 +58,13 @@ exec { "dos2unix /home/vagrant/devstack/local.conf":
     timeout => "0",
     require => File["/home/vagrant/devstack/local.conf"],
 }
+
+file { "Put local.sh":
+    path     => "/home/vagrant/devstack/local.sh",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/devstack-local.sh",
+    replace  => true,
+    require  => Vcsrepo["/home/vagrant/devstack"],
+}

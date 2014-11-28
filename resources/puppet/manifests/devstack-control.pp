@@ -87,9 +87,24 @@ file { "Put devstack-overlay-demo-cmd.txt":
 #    jump      => "MASQUERADE",
 #}
 
-exec { "iptables -t nat -A POSTROUTING -o eth0 -s 172.24.4.0/24 -j MASQUERADE":
+#exec { "iptables -t nat -A POSTROUTING -o eth0 -s 172.24.4.0/24 -j MASQUERADE":
+#    user    => "root",
+#    timeout => "0",
+##    require => Exec["iptables -F && iptables -t nat -F"],
+#}
+#####################################################################
+
+exec { "echo \"auto eth3\niface eth3 inet manual\nup ifconfig $IFACE 0.0.0.0 up\nup ip link set $IFACE promisc on\ndown ip link set $IFACE promisc off\ndown ifconfig $IFACE down\" >> /etc/network/interfaces && ifdown eth3 && ifup eth3":
     user    => "root",
     timeout => "0",
-#    require => Exec["iptables -F && iptables -t nat -F"],
 }
-#####################################################################
+
+file { "Put local.sh":
+    path     => "/home/vagrant/devstack/local.sh",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/devstack-local.sh",
+    replace  => true,
+    require  => Vcsrepo["/home/vagrant/devstack"],
+}
