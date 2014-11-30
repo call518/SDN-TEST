@@ -306,8 +306,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.facter = {
         #"odl_dist_name" => "Hydrogen-Virtualization"
         #"odl_dist_name" => "Hydrogen-SP"
-        #"odl_dist_name" => "Helium"
-        "odl_dist_name" => "Helium-SR1",
+        "odl_dist_name" => "Helium"
+        #"odl_dist_name" => "Helium-SR1",
       }
       puppet.options = "--verbose"
     end

@@ -19,8 +19,8 @@ HORIZON_BRANCH=$MY_BRANCH
 
 #VIRT_DRIVER=docker
 
+HOST_IP_IFACE=eth1
 HOST_IP=<%= @hosts['devstack-control']['ipaddress'] %>
-#HOST_IP_IFACE=eth1
 HOST_NAME=<%= @hosts['devstack-control']['name'] %>
 SERVICE_HOST=$HOST_IP
 SERVICE_HOST_NAME=$HOST_NAME
