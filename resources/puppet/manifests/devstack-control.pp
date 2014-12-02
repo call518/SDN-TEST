@@ -94,9 +94,16 @@ file { "Put devstack-overlay-demo-cmd.txt":
 #}
 #####################################################################
 
-exec { "echo \"auto eth3\niface eth3 inet manual\nup ifconfig $IFACE 0.0.0.0 up\nup ip link set $IFACE promisc on\ndown ip link set $IFACE promisc off\ndown ifconfig $IFACE down\" >> /etc/network/interfaces && ifdown eth3 && ifup eth3":
+exec { "echo -e \"\nauto eth3\niface eth3 inet manual\nup ifconfig $IFACE 0.0.0.0 up\nup ip link set $IFACE promisc on\ndown ip link set $IFACE promisc off\ndown ifconfig $IFACE down\" >> /etc/network/interfaces && ifdown eth3 && ifup eth3":
     user    => "root",
     timeout => "0",
+    unless  => "grep '^auto eth3' /etc/network/interfaces",
+}
+
+exec { "ifconfig eth0:1 172.20.20.1/24 up && sed -i '/^exit 0/i ifconfig eth0:1 172.20.20.1/24 up' /etc/rc.local":
+    user    => "root",
+    timeout => "0",
+    unless  => "grep '^ifconfig eth0:1' /etc/rc.local",
 }
 
 file { "Put local.sh":
