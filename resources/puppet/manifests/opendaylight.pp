@@ -114,13 +114,13 @@ exec { "Extract ODL-Helium":
 
 #if $odl_dist_name in "Helium-SR1"
 if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
-    exec { "Patch JMX Error":
-        command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
-        cwd     => "/home/vagrant/opendaylight/etc",
-        user    => "vagrant",
-        timeout => "0",
-        require => Exec["Extract ODL-Helium"],
-    }
+    #exec { "Patch JMX Error":
+    #    command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
+    #    cwd     => "/home/vagrant/opendaylight/etc",
+    #    user    => "vagrant",
+    #    timeout => "0",
+    #    require => Exec["Extract ODL-Helium"],
+    #}
     
     #exec { "Disable Auth":
     #    command => "sed -i 's/^authEnabled=.*/authEnabled=false/g' org.opendaylight.aaa.authn.cfg",
