@@ -264,7 +264,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## ip pre-configuration
   control_ip = "192.168.50.10"
-  control_ip_gre = "172.16.0.10"
+  control_ip_data = "172.16.0.10"
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
@@ -273,7 +273,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
-    control.vm.network "private_network", ip: "#{control_ip_gre}"
+    control.vm.network "private_network", ip: "#{control_ip_data}"
     control.vm.network "public_network", auto_config: false
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
@@ -328,21 +328,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   num_compute_nodes = 3 # (Max: 3)
   compute_ip_base = "192.168.50."
   compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
-  compute_ip_gre_base = "172.16.0."
-  compute_ips_gre = num_compute_nodes.times.collect { |n| compute_ip_gre_base + "#{n+21}" }
+  compute_ip_data_base = "172.16.0."
+  compute_ips_gre = num_compute_nodes.times.collect { |n| compute_ip_data_base + "#{n+21}" }
 
   ## Devstack Compute Nodes
   num_compute_nodes.times do |n|
     config.vm.define "devstack-compute-#{n+1}" do |compute|
       compute_ip = compute_ips[n]
-      compute_ip_gre = compute_ips_gre[n]
+      compute_ip_data = compute_ips_gre[n]
       compute_index = n+1
       compute.vm.box = "trusty64"
       #compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
       compute.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
       compute.vm.network "private_network", ip: "#{compute_ip}"
-      compute.vm.network "private_network", ip: "#{compute_ip_gre}"
+      compute.vm.network "private_network", ip: "#{compute_ip_data}"
       #compute.vm.network "forwarded_port", guest: 6080, host: 6080
       compute.vm.provider :virtualbox do |vb|
         #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
