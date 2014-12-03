@@ -11,6 +11,10 @@
     "opendaylight-mininet-2": {
       "name": "opendaylight-mininet-2",
       "ipaddress": "192.168.42.10"
+    },
+    "cbench": {
+      "name": "cbench",
+      "ipaddress": "192.168.77.10"
     }
   }
 }

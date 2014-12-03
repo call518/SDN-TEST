@@ -551,4 +551,48 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #    end
 #  end
 
+  ## CBench
+  config.vm.define "cbench" do |cbench|
+    cbench.vm.box = "trusty64"
+    #cbench.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+    cbench.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    #cbench.vm.box = "Fedora20-x86_64"
+    #cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
+    #cbench.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    cbench.vm.hostname = "cbench"
+    cbench.vm.network "private_network", ip: "192.168.77.10"
+    #cbench.vm.network "forwarded_port", guest: 8080, host: 9191
+    #cbench.vm.network "forwarded_port", guest: 8181, host: 8181
+    cbench.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "4"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+    end
+    #cbench.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #cbench.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    #cbench.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    #cbench.vm.provision "shell", inline: <<-SCRIPT
+    #  route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+    #  route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
+    #SCRIPT
+    cbench.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+      puppet.options = "--verbose"
+    end
+    cbench.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "cbench.pp"
+      puppet.options = "--verbose"
+    end
+  end
+
 end
