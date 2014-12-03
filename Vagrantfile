@@ -49,8 +49,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "vtn-coordinator" do |vtn_coordinator|
     #vtn_coordinator.vm.box = "Fedora19-x86_64"
     #vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/85d911a7137d3429"
+    vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
     vtn_coordinator.vm.box = "Fedora20-x86_64"
-    vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+    #vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+    vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     vtn_coordinator.vm.hostname = "vtn-coordinator"
     vtn_coordinator.vm.network "private_network", ip: "192.168.40.10"
     vtn_coordinator.vm.network "forwarded_port", guest: 8083, host: 8083
