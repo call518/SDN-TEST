@@ -97,8 +97,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight & Mininet (1)
   config.vm.define "opendaylight-mininet-1" do |opendaylight_mininet_1|
     opendaylight_mininet_1.vm.box = "trusty64"
-    #opendaylight_mininet_1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    opendaylight_mininet_1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    opendaylight_mininet_1.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     opendaylight_mininet_1.vm.hostname = "opendaylight-mininet-1"
     opendaylight_mininet_1.vm.network "private_network", ip: "192.168.41.10"
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9191
@@ -158,8 +157,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight & Mininet (2)
   config.vm.define "opendaylight-mininet-2" do |opendaylight_mininet_2|
     opendaylight_mininet_2.vm.box = "trusty64"
-    #opendaylight_mininet_2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    opendaylight_mininet_2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    opendaylight_mininet_2.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
     opendaylight_mininet_2.vm.network "private_network", ip: "192.168.42.10"
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9292
@@ -219,8 +217,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## RouteFlow & OpenDaylight(Source) & Mininet
   config.vm.define "routeflow" do |routeflow|
     routeflow.vm.box = "precise64"
-    #routeflow.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    routeflow.vm.box_url = "https://plink.ucloud.com/public_link/link/a15d4c1ca008d431"
+    routeflow.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/precise64/versions/0.1.0/providers/virtualbox.box"
     routeflow.vm.hostname = "routeflow"
     routeflow.vm.network "private_network", ip: "192.168.30.10"
     routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -271,8 +268,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
     control.vm.box = "trusty64"
-    #control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    control.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "private_network", ip: "#{control_ip_data}"
@@ -340,8 +336,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       compute_ip_data = compute_ips_gre[n]
       compute_index = n+1
       compute.vm.box = "trusty64"
-      #compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-      compute.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+      compute.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
       compute.vm.network "private_network", ip: "#{compute_ip}"
       compute.vm.network "private_network", ip: "#{compute_ip_data}"
@@ -385,8 +380,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - Router (Must be deploy first)
   config.vm.define "vxlan-router" do |vxlan_router|
     vxlan_router.vm.box = "trusty64"
-    #vxlan_router.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    vxlan_router.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    vxlan_router.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     vxlan_router.vm.hostname = "vxlan-router"
     vxlan_router.vm.network "private_network", ip: "192.168.1.1"
     vxlan_router.vm.network "private_network", ip: "192.168.2.1"
@@ -427,8 +421,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server1
   config.vm.define "vxlan-server1" do |vxlan_server1|
     vxlan_server1.vm.box = "trusty64"
-    #vxlan_server1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    vxlan_server1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    vxlan_server1.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     vxlan_server1.vm.hostname = "vxlan-server1"
     vxlan_server1.vm.network "private_network", ip: "192.168.1.10"
     #vxlan_server1.vm.network "forwarded_port", guest: 80, host: 8081
@@ -466,8 +459,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server2
   config.vm.define "vxlan-server2" do |vxlan_server2|
     vxlan_server2.vm.box = "trusty64"
-    #vxlan_server2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    vxlan_server2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    vxlan_server2.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     vxlan_server2.vm.hostname = "vxlan-server2"
     vxlan_server2.vm.network "private_network", ip: "192.168.2.20"
     vxlan_server2.vm.network "forwarded_port", guest: 80, host: 8081
@@ -512,8 +504,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #      mininext_ip = mininext_ips[n]
 #      mininext_index = n+1
 #      mininext.vm.box = "trusty64"
-#      #mininext.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-#      mininext.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+#      mininext.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
 #      mininext.vm.hostname = "mininext-#{mininext_index}"
 #      mininext.vm.network "private_network", ip: "#{mininext_ip}"
 #      #mininext.vm.network "forwarded_port", guest: 8080, host: 9292
