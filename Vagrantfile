@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   #control.vm.box = "CentOS-6.5-x86_64"
   #control.vm.box_url = "https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box"
-  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8a93d1a50f2aeaf2"
+  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/CentOS-6.5-x86_64/versions/0.1.0/providers/virtualbox.box"
 
   #control.vm.box = "Fedora20-x86_64"
   #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
@@ -48,10 +48,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VTN Coordinator
   config.vm.define "vtn-coordinator" do |vtn_coordinator|
     #vtn_coordinator.vm.box = "Fedora19-x86_64"
-    #vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/85d911a7137d3429"
     vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
     vtn_coordinator.vm.box = "Fedora20-x86_64"
-    #vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
     vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     vtn_coordinator.vm.hostname = "vtn-coordinator"
     vtn_coordinator.vm.network "private_network", ip: "192.168.40.10"
@@ -549,7 +547,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cbench.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     #cbench.vm.box = "Fedora20-x86_64"
     #cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
-    #cbench.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
     cbench.vm.hostname = "cbench"
     cbench.vm.network "private_network", ip: "192.168.77.10"
     #cbench.vm.network "forwarded_port", guest: 8080, host: 9191
