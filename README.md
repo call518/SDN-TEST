@@ -36,6 +36,7 @@ devstack-compute-3        (192.168.50.23)
 vxlan-router              (192.168.1.1, 192.168.2.1)
 vxlan-server1             (192.168.1.10)
 vxlan-server2             (192.168.2.20)
+cbench                    (192.168.77.10)
 ```
 
 # OpenDaylight /w Mininet (e.g. Helium)
@@ -741,6 +742,21 @@ NXST_FLOW reply (xid=0x4):
  cookie=0x0, duration=43.907s, table=0, n_packets=0, n_bytes=0, hard_timeout=300, idle_age=43, priority=10,in_port=2,vlan_tci=0x0000,dl_src=06:06:06:06:06:06,dl_dst=08:00:27:50:2a:94 actions=output:1
 *** s6 ------------------------------------------------------------------------
 NXST_FLOW reply (xid=0x4):
+```
+
+# Cbench
+
+## Start Vagrant
+
+```
+host> vagrant up cbench
+host> vagrant ssh cbench
+```
+
+### Benchmark Examples
+
+```
+vm>
 ```
 
 # References
