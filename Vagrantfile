@@ -12,21 +12,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   #config.vm.box = "precise64"
   #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-  #config.vm.box_url = "https://plink.ucloud.com/public_link/link/a15d4c1ca008d431"
+  #config.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/precise64/versions/0.1.0/providers/virtualbox.box"
 
   #config.vm.box = "trusty64"
   #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  #config.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+  #config.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
 
   #control.vm.box = "CentOS-6.5-x86_64"
   #control.vm.box_url = "https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box"
   #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8a93d1a50f2aeaf2"
 
   #control.vm.box = "Fedora20-x86_64"
-  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
 
   #control.vm.box = "Fedora19-x86_64"
-  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/85d911a7137d3429"
+  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
 
   ### Do not use ### 
   #config.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
