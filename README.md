@@ -49,6 +49,14 @@ SDN Controller, OpenDaylight TESTing with Mininet/MiniNExT
   * Helium-SR1
 * Mininet /w MiniNExT
 
+## OpenDaylight Architecture
+
+![OpenDaylight-Mininet-Web-UI](etc-files/opendaylight-architecture.png)
+
+## OpenDaylight SAL
+
+![OpenDaylight-Mininet-Web-UI](etc-files/opendaylight-SAL.png)
+
 ## Sample OpenDaylight Web-UI
 
 ![OpenDaylight-Mininet-Web-UI](etc-files/opendaylihg-mininet-1.png)
