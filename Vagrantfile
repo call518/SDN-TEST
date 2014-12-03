@@ -571,9 +571,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
       vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
-    #cbench.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-    #cbench.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-    #cbench.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     cbench.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     #cbench.vm.provision "shell", inline: <<-SCRIPT
     #  route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
