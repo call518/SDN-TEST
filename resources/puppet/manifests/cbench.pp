@@ -124,6 +124,7 @@ vcsrepo { "${eCBench_DIR}":
     ensure => present,
     user => "vagrant",
     source => "https://gist.github.com/9837240.git",
+    #require => Vcsrepo["${OFLOPS_DIR}"],
 }
 
 file { "$eCBench_DIR/oflops":
