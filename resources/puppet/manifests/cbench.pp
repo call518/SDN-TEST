@@ -132,7 +132,15 @@ file { "$eCBench_DIR/oflops":
     owner    => "vagrant",
     group    => "vagrant",
     replace  => true,
-    require => Vcsrepo["${eCBench_DIR}"],
+    require  => Vcsrepo["${eCBench_DIR}"],
+}
+
+file { "$eCBench_DIR/logs":
+    ensure   => directory,
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0750,
+    require  => Vcsrepo["${eCBench_DIR}"],
 }
 
 exec { "chmod 755 *.sh":
@@ -141,4 +149,5 @@ exec { "chmod 755 *.sh":
     user    => "vagrant",
     timeout => "0",
     logoutput => true,
+    require => Vcsrepo["${eCBench_DIR}"],
 }
