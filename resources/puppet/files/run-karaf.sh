@@ -6,6 +6,7 @@ if [ `hostname | egrep -c "opendaylight-mininet-1|opendaylight-mininet-1"` -ne 0
 	echo -e "  [e.g.) for OVS] > feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch"
 	echo -e "  [e.g.) for VTN] > feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core"
 	echo -e "  [e.g.) for CBench] > feature:install odl-openflowplugin-flow-services odl-openflowplugin-drop-test"
+	echo -e "                     > (dropAllPacketsRpc on / dropAllPackets on)"
 	echo -e "  [Web GUI URL] http://{Vagrant Host IP}:8181/dlux/index.html"
 	echo -e " ======================================================================="
 	echo -e "  Waiting.............."
