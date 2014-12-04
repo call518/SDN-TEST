@@ -35,6 +35,7 @@ $deps = [
 	"sshpass",
 	"python-numpy",
 	"python-matplotlib",
+	"gnuplot",
 ]
 
 package { $deps:
@@ -47,34 +48,20 @@ $OFLOPS_DIR = "/home/vagrant/oflops"
 vcsrepo { "${OFLOPS_DIR}":
     provider => git,
     ensure => present,
-    user => "root",
+    user => "vagrant",
     source => "https://github.com/andi-bigswitch/oflops.git",
 }
 
 vcsrepo { "${OF_DIR}":
     provider => git,
     ensure => present,
-    user => "root",
+    user => "vagrant",
     source => "git://gitosis.stanford.edu/openflow.git",
 }
 
-#exec { "Git Clone OFLOPS":
-#    command => "git clone https://github.com/andi-bigswitch/oflops.git ${OFLOPS_DIR}",
-#    user    => "root",
-#    cwd     => "/home/vagrant",
-#    timeout => "0",
-#}
-
-#exec { "Git Clone OpenFlow":
-#    command => "git clone git://gitosis.stanford.edu/openflow.git ${OF_DIR}",
-#    user    => "root",
-#    cwd     => "/home/vagrant",
-#    timeout => "0",
-#}
-
 exec { "Build Configuration (1)":
     command => "bash boot.sh",
-    user    => "root",
+    user    => "vagrant",
     cwd     => "${OFLOPS_DIR}",
     timeout => "0",
     logoutput => true,
@@ -85,7 +72,7 @@ exec { "Build Configuration (1)":
 
 exec { "Build Configuration (2)":
     command => "bash -c './configure --with-openflow-src-dir=${OF_DIR}'",
-    user    => "root",
+    user    => "vagrant",
     cwd     => "${OFLOPS_DIR}",
     timeout => "0",
     logoutput => true,
@@ -94,8 +81,8 @@ exec { "Build Configuration (2)":
 }
 
 exec { "Make & Install":
-    command => "make && make install",
-    user    => "root",
+    command => "make && sudo make install",
+    user    => "vagrant",
     cwd     => "${OFLOPS_DIR}",
     timeout => "0",
     logoutput => true,
@@ -116,7 +103,7 @@ exec { "Make & Install":
 
 #exec { "edit wcbench-scripts":
 #    command => "sed -i 's/^#!\/usr\/bin\/env sh$/#!\/usr\/bin\/env bash/g' /home/vagrant/wcbench-scripts/*",
-#    user    => "root",
+#    user    => "vagrant",
 #    cwd     => "/home/vagrant/wcbench-scripts",
 #    timeout => "0",
 #    logoutput => true,
@@ -135,15 +122,15 @@ $eCBench_DIR = "/home/vagrant/eCBench"
 vcsrepo { "${eCBench_DIR}":
     provider => git,
     ensure => present,
-    user => "root",
+    user => "vagrant",
     source => "https://gist.github.com/9837240.git",
 }
 
 file { "$eCBench_DIR/oflops":
     ensure   => link,
     target   => "${OFLOPS_DIR}",
-    owner    => "root",
-    group    => "root",
+    owner    => "vagrant",
+    group    => "vagrant",
     replace  => true,
     require => Vcsrepo["${eCBench_DIR}"],
 }
