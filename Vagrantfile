@@ -545,10 +545,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   ## CBench
   config.vm.define "cbench" do |cbench|
-    #cbench.ssh.forward_x11 = true
+    cbench.ssh.forward_x11 = true
     cbench.vm.box = "trusty64"
-    #cbench.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    cbench.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     #cbench.vm.box = "Fedora20-x86_64"
     #cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     cbench.vm.hostname = "cbench"
