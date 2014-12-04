@@ -77,6 +77,7 @@ exec { "Build Configuration (1)":
     logoutput => true,
     require => [ Vcsrepo["${OFLOPS_DIR}"], Vcsrepo["${OF_DIR}"] ],
     #require => [ Exec["Git Clone OFLOPS"], Exec["Git Clone OpenFlow"] ],
+    unless  => "bash -c 'command -v cbench &>/dev/null'",
 }
 
 exec { "Build Configuration (2)":
@@ -86,6 +87,7 @@ exec { "Build Configuration (2)":
     timeout => "0",
     logoutput => true,
     require => Exec["Build Configuration (1)"],
+    unless  => "bash -c 'command -v cbench &>/dev/null'",
 }
 
 exec { "Make & Install":
@@ -95,6 +97,7 @@ exec { "Make & Install":
     timeout => "0",
     logoutput => true,
     require => Exec["Build Configuration (2)"],
+    unless  => "bash -c 'command -v cbench &>/dev/null'",
 }
 
 file { "Put wcbench-files":
