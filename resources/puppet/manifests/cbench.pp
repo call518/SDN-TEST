@@ -58,13 +58,6 @@ vcsrepo { "${OF_DIR}":
     source => "git://gitosis.stanford.edu/openflow.git",
 }
 
-vcsrepo { "/home/vagrant/eCBench":
-    provider => git,
-    ensure => present,
-    user => "root",
-    source => "https://gist.github.com/9837240.git",
-}
-
 #exec { "Git Clone OFLOPS":
 #    command => "git clone https://github.com/andi-bigswitch/oflops.git ${OFLOPS_DIR}",
 #    user    => "root",
@@ -137,3 +130,28 @@ exec { "config ssh_config":
     logoutput => true,
 }
 
+$eCBench_DIR = "/home/vagrant/eCBench"
+
+vcsrepo { "${eCBench_DIR}":
+    provider => git,
+    ensure => present,
+    user => "root",
+    source => "https://gist.github.com/9837240.git",
+}
+
+file { "$eCBench_DIR/oflops":
+    ensure   => link,
+    target   => "${OFLOPS_DIR}",
+    owner    => "root",
+    group    => "root",
+    replace  => true,
+    require => Vcsrepo["${eCBench_DIR}"],
+}
+
+#exec { "":
+#    #command => "",
+#    cwd     => "${OFLOPS_DIR}",
+#    user    => "root",
+#    timeout => "0",
+#    logoutput => true,
+#}
