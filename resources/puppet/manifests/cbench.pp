@@ -143,7 +143,7 @@ file { "$eCBench_DIR/logs":
     require  => Vcsrepo["${eCBench_DIR}"],
 }
 
-exec { "chmod 755 *.sh":
+exec { "chmod 755 *.sh *.py":
     #command => "",
     cwd     => "${eCBench_DIR}",
     user    => "vagrant",
