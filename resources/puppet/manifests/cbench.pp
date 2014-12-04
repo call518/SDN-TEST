@@ -135,10 +135,10 @@ file { "$eCBench_DIR/oflops":
     require => Vcsrepo["${eCBench_DIR}"],
 }
 
-#exec { "":
-#    #command => "",
-#    cwd     => "${OFLOPS_DIR}",
-#    user    => "root",
-#    timeout => "0",
-#    logoutput => true,
-#}
+exec { "chmod 755 *.sh":
+    #command => "",
+    cwd     => "${eCBench_DIR}",
+    user    => "vagrant",
+    timeout => "0",
+    logoutput => true,
+}
