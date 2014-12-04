@@ -81,8 +81,8 @@ exec { "Build Configuration (2)":
 }
 
 exec { "Make & Install":
-    command => "make && sudo make install",
-    user    => "vagrant",
+    command => "make && make install",
+    user    => "root",
     cwd     => "${OFLOPS_DIR}",
     timeout => "0",
     logoutput => true,
