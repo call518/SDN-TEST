@@ -58,6 +58,13 @@ vcsrepo { "${OF_DIR}":
     source => "git://gitosis.stanford.edu/openflow.git",
 }
 
+vcsrepo { "/home/vagrant/eCBench":
+    provider => git,
+    ensure => present,
+    user => "root",
+    source => "https://gist.github.com/9837240.git",
+}
+
 #exec { "Git Clone OFLOPS":
 #    command => "git clone https://github.com/andi-bigswitch/oflops.git ${OFLOPS_DIR}",
 #    user    => "root",
