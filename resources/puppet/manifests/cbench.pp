@@ -32,6 +32,7 @@ $deps = [
 	"libtool",
 	"libconfig-dev",
 	"git",
+	"sshpass",
 	"python-numpy",
 	"python-matplotlib",
 ]
@@ -120,5 +121,12 @@ exec { "edit wcbench-scripts":
     timeout => "0",
     logoutput => true,
     require => File["Put wcbench-files"],
+}
+
+exec { "config ssh_config":
+    command => "cat /vagrant/resources/puppet/files/ssh_config_options >> /etc/ssh/ssh_config",
+    user    => "root",
+    timeout => "0",
+    logoutput => true,
 }
 
