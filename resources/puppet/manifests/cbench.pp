@@ -97,4 +97,13 @@ exec { "Make & Install":
     require => Exec["Build Configuration (2)"],
 }
 
-#####################################################################
+file { "Put wcbench-files":
+    path     => "/home/vagrant/wcbench-scripts",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/wcbench-scripts",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+}
