@@ -32,6 +32,8 @@ $deps = [
 	"libtool",
 	"libconfig-dev",
 	"git",
+	"python-numpy",
+	"python-matplotlib",
 ]
 
 package { $deps:
