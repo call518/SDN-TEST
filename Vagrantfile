@@ -67,8 +67,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vtn_coordinator.vm.provision "shell", inline: <<-SCRIPT
-      route add -net 192.168.41.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.41.0/24 p7p1"
-      route add -net 192.168.42.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.42.0/24 p7p1"
+      #route add -net 192.168.41.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.41.0/24 p7p1"
+      #route add -net 192.168.42.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.42.0/24 p7p1"
+      route add -net 192.168.0.0/16 p7p1 2> /dev/null; echo "route add -net 192.168.0.0/16 p7p1"
     SCRIPT
     vtn_coordinator.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -113,8 +114,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     opendaylight_mininet_1.vm.provision "shell", inline: <<-SCRIPT
-      route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
-      route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
+      #route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+      #route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
     SCRIPT
     opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -173,8 +175,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     opendaylight_mininet_2.vm.provision "shell", inline: <<-SCRIPT
-      route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
-      route add -net 192.168.41.0/24 eth1 2> /dev/null; echo "route add -net 192.168.41.0/24 eth1"
+      #route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+      #route add -net 192.168.41.0/24 eth1 2> /dev/null; echo "route add -net 192.168.41.0/24 eth1"
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
     SCRIPT
     opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -563,10 +566,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cbench.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     cbench.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     cbench.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-    #cbench.vm.provision "shell", inline: <<-SCRIPT
-    #  route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
-    #  route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
-    #SCRIPT
+    cbench.vm.provision "shell", inline: <<-SCRIPT
+      #route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+      #route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
+    SCRIPT
     cbench.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
