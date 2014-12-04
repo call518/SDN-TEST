@@ -110,3 +110,13 @@ file { "Put wcbench-files":
     replace  => true,
     recurse  => true,
 }
+
+exec { "edit wcbench-scripts":
+    command => "sed -i 's/^#!\/usr\/bin\/env sh$/#!\/usr\/bin\/env bash/g' /home/vagrant/wcbench-scripts/*",
+    user    => "root",
+    cwd     => "/home/vagrant/wcbench-scripts",
+    timeout => "0",
+    logoutput => true,
+    require => File["Put wcbench-files"],
+}
+
