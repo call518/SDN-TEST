@@ -152,3 +152,12 @@ exec { "chmod 755 *.sh *.py":
     logoutput => true,
     require => Vcsrepo["${eCBench_DIR}"],
 }
+
+exec { "sed -i 's/10.0.42.5/192.168.41.10/g' ${eCBench_DIR}/.runCbench.config":
+    #command => "",
+    cwd     => "${eCBench_DIR}",
+    user    => "vagrant",
+    timeout => "0",
+    logoutput => true,
+    require => Vcsrepo["${eCBench_DIR}"],
+}
