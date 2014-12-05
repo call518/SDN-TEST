@@ -94,25 +94,27 @@ file { "Put devstack-overlay-demo-cmd.txt":
 #}
 #####################################################################
 
-exec { "echo \"\nauto eth3\niface eth3 inet manual\nup ifconfig $IFACE 0.0.0.0 up\nup ip link set $IFACE promisc on\ndown ip link set $IFACE promisc off\ndown ifconfig $IFACE down\" >> /etc/network/interfaces && ifdown eth3 && ifup eth3":
+exec { "Create eth3 (PUBLIC_INTERFACE)":
+    command => "echo \"\nauto eth3\niface eth3 inet manual\nup ifconfig $IFACE 0.0.0.0 up\nup ip link set $IFACE promisc on\ndown ip link set $IFACE promisc off\ndown ifconfig $IFACE down\" >> /etc/network/interfaces && ifdown eth3 && ifup eth3",
     user    => "root",
     timeout => "0",
     unless  => "grep '^auto eth3' /etc/network/interfaces",
 }
 
-exec { "Create EXT_GW_IP (eth0:1)":
-    command => "ifconfig eth0:1 172.20.20.1/24 up && sed -i '/^exit 0/i ifconfig eth0:1 172.20.20.1/24 up' /etc/rc.local",
-    user    => "root",
-    timeout => "0",
-    unless  => "grep '^ifconfig eth0:1' /etc/rc.local",
-}
+#exec { "Create EXT_GW_IP (eth0:1)":
+#    command => "ifconfig eth0:1 172.20.20.1/24 up && sed -i '/^exit 0/i ifconfig eth0:1 172.20.20.1/24 up' /etc/rc.local",
+#    user    => "root",
+#    timeout => "0",
+#    unless  => "grep '^ifconfig eth0:1' /etc/rc.local",
+#}
 
-exec { "Create NAT (EXT_GW_IP to eth0)":
+exec { "Create NAT to External":
     #command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE",
     command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.1/24 -j MASQUERADE",
     user    => "root",
     timeout => "0",
-    require => Exec["Create EXT_GW_IP (eth0:1)"],
+    #require => Exec["Create EXT_GW_IP (eth0:1)"],
+    require => Exec["Create eth3 (PUBLIC_INTERFACE)"],
 }
 
 file { "Put local.sh":
