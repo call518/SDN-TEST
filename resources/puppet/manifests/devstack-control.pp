@@ -100,17 +100,19 @@ exec { "echo \"\nauto eth3\niface eth3 inet manual\nup ifconfig $IFACE 0.0.0.0 u
     unless  => "grep '^auto eth3' /etc/network/interfaces",
 }
 
-exec { "Create eth0:1 (172.20.20.1/24)":
+exec { "Create EXT_GW_IP (eth0:1)":
     command => "ifconfig eth0:1 172.20.20.1/24 up && sed -i '/^exit 0/i ifconfig eth0:1 172.20.20.1/24 up' /etc/rc.local",
     user    => "root",
     timeout => "0",
     unless  => "grep '^ifconfig eth0:1' /etc/rc.local",
 }
 
-exec { "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE":
+exec { "Create NAT (EXT_GW_IP to eth0)":
+    #command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE",
+    command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.1/24 -j MASQUERADE",
     user    => "root",
     timeout => "0",
-    require => Exec["Create eth0:1 (172.20.20.1/24)"],
+    require => Exec["Create EXT_GW_IP (eth0:1)"],
 }
 
 file { "Put local.sh":
