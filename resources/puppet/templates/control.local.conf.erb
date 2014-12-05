@@ -27,15 +27,16 @@ SERVICE_HOST_NAME=$HOST_NAME
 FLAT_INTERFACE=eth2
 PUBLIC_INTERFACE=eth3
 FIXED_RANGE=10.0.0.0/24
+NETWORK_GATEWAY=10.0.0.1
 FLOATING_RANGE=172.20.20.0/24
-Q_FLOATING_ALLOCATION_POOL="start=172.20.20.101,end=172.20.20.200"
-PUBLIC_NETWORK_GATEWAY=172.20.20.2
+Q_FLOATING_ALLOCATION_POOL="start=172.20.20.100,end=172.20.20.200"
+PUBLIC_NETWORK_GATEWAY=172.20.20.100
 EXT_GW_IP=172.20.20.1
-PHYSICAL_NETWORK=default
-OVS_PHYSICAL_BRIDGE=br-ex
-ENABLE_TENANT_TUNNELS=True
-OVS_ENABLE_TUNNELING=True
-TUNNEL_ENDPOINT_IP=<%= @hosts[@hostname]['ipaddress_tun'] %>
+#PHYSICAL_NETWORK=default
+#OVS_PHYSICAL_BRIDGE=br-ex
+#ENABLE_TENANT_TUNNELS=True
+#OVS_ENABLE_TUNNELING=True
+#TUNNEL_ENDPOINT_IP=<%= @hosts[@hostname]['ipaddress_tun'] %>
 
 Q_HOST=$SERVICE_HOST
 MYSQL_HOST=$SERVICE_HOST
@@ -86,6 +87,8 @@ ENABLE_TENANT_TUNNELS=True
 [[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
 [agent]
 minimize_polling=True
+[ovs]
+local_ip=<%= @hosts[@hostname]['ipaddress_tun'] %>
 
 [ml2_odl]
 url=http://<%= @hosts['opendaylight-devstack']['ipaddress'] %>:8080/controller/nb/v2/neutron
