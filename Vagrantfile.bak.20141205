@@ -12,21 +12,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   #config.vm.box = "precise64"
   #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-  #config.vm.box_url = "https://plink.ucloud.com/public_link/link/a15d4c1ca008d431"
+  #config.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/precise64/versions/0.1.0/providers/virtualbox.box"
 
   #config.vm.box = "trusty64"
   #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  #config.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+  #config.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
 
   #control.vm.box = "CentOS-6.5-x86_64"
   #control.vm.box_url = "https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box"
-  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8a93d1a50f2aeaf2"
+  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/CentOS-6.5-x86_64/versions/0.1.0/providers/virtualbox.box"
 
   #control.vm.box = "Fedora20-x86_64"
-  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
 
   #control.vm.box = "Fedora19-x86_64"
-  #control.vm.box_url = "https://plink.ucloud.com/public_link/link/85d911a7137d3429"
+  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
 
   ### Do not use ### 
   #config.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
@@ -48,9 +48,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VTN Coordinator
   config.vm.define "vtn-coordinator" do |vtn_coordinator|
     #vtn_coordinator.vm.box = "Fedora19-x86_64"
-    #vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/85d911a7137d3429"
+    vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
     vtn_coordinator.vm.box = "Fedora20-x86_64"
-    vtn_coordinator.vm.box_url = "https://plink.ucloud.com/public_link/link/8690378de1d34f24"
+    vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     vtn_coordinator.vm.hostname = "vtn-coordinator"
     vtn_coordinator.vm.network "private_network", ip: "192.168.40.10"
     vtn_coordinator.vm.network "forwarded_port", guest: 8083, host: 8083
@@ -67,8 +67,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vtn_coordinator.vm.provision "shell", inline: <<-SCRIPT
-      route add -net 192.168.41.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.41.0/24 p7p1"
-      route add -net 192.168.42.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.42.0/24 p7p1"
+      #route add -net 192.168.41.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.41.0/24 p7p1"
+      #route add -net 192.168.42.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.42.0/24 p7p1"
+      route add -net 192.168.0.0/16 p7p1 2> /dev/null; echo "route add -net 192.168.0.0/16 p7p1"
     SCRIPT
     vtn_coordinator.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -95,8 +96,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight & Mininet (1)
   config.vm.define "opendaylight-mininet-1" do |opendaylight_mininet_1|
     opendaylight_mininet_1.vm.box = "trusty64"
-    #opendaylight_mininet_1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    opendaylight_mininet_1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    opendaylight_mininet_1.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     opendaylight_mininet_1.vm.hostname = "opendaylight-mininet-1"
     opendaylight_mininet_1.vm.network "private_network", ip: "192.168.41.10"
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9191
@@ -114,8 +114,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     opendaylight_mininet_1.vm.provision "shell", inline: <<-SCRIPT
-      route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
-      route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
+      #route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+      #route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
     SCRIPT
     opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -156,8 +157,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight & Mininet (2)
   config.vm.define "opendaylight-mininet-2" do |opendaylight_mininet_2|
     opendaylight_mininet_2.vm.box = "trusty64"
-    #opendaylight_mininet_2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    opendaylight_mininet_2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    opendaylight_mininet_2.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
     opendaylight_mininet_2.vm.network "private_network", ip: "192.168.42.10"
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9292
@@ -175,8 +175,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     opendaylight_mininet_2.vm.provision "shell", inline: <<-SCRIPT
-      route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
-      route add -net 192.168.41.0/24 eth1 2> /dev/null; echo "route add -net 192.168.41.0/24 eth1"
+      #route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+      #route add -net 192.168.41.0/24 eth1 2> /dev/null; echo "route add -net 192.168.41.0/24 eth1"
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
     SCRIPT
     opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -217,8 +218,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## RouteFlow & OpenDaylight(Source) & Mininet
   config.vm.define "routeflow" do |routeflow|
     routeflow.vm.box = "precise64"
-    #routeflow.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-    routeflow.vm.box_url = "https://plink.ucloud.com/public_link/link/a15d4c1ca008d431"
+    routeflow.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/precise64/versions/0.1.0/providers/virtualbox.box"
     routeflow.vm.hostname = "routeflow"
     routeflow.vm.network "private_network", ip: "192.168.30.10"
     routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -263,19 +263,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ## ip pre-configuration
-  control_ip = "192.168.50.10" ## DevStack Controller Node
-  #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
-  num_compute_nodes = 3 # (Max: 3)
-  compute_ip_base = "192.168.50." ## DevStac Compute Nodes
-  compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
+  control_ip = "192.168.50.10"
+  control_ip_data = "172.16.0.10"
 
   ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
     control.vm.box = "trusty64"
-    #control.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    control.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
+    control.vm.network "private_network", ip: "#{control_ip_data}"
+    control.vm.network "public_network", auto_config: false
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
     control.vm.network "forwarded_port", guest: 80, host: 80 # DevStack CTL (http://localhost)
@@ -325,16 +323,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
+  num_compute_nodes = 3 # (Max: 3)
+  compute_ip_base = "192.168.50."
+  compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
+  compute_ip_data_base = "172.16.0."
+  compute_ips_gre = num_compute_nodes.times.collect { |n| compute_ip_data_base + "#{n+21}" }
+
   ## Devstack Compute Nodes
   num_compute_nodes.times do |n|
     config.vm.define "devstack-compute-#{n+1}" do |compute|
       compute_ip = compute_ips[n]
+      compute_ip_data = compute_ips_gre[n]
       compute_index = n+1
       compute.vm.box = "trusty64"
-      #compute.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-      compute.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+      compute.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
       compute.vm.network "private_network", ip: "#{compute_ip}"
+      compute.vm.network "private_network", ip: "#{compute_ip_data}"
       #compute.vm.network "forwarded_port", guest: 6080, host: 6080
       compute.vm.provider :virtualbox do |vb|
         #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -375,8 +381,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - Router (Must be deploy first)
   config.vm.define "vxlan-router" do |vxlan_router|
     vxlan_router.vm.box = "trusty64"
-    #vxlan_router.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    vxlan_router.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    vxlan_router.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     vxlan_router.vm.hostname = "vxlan-router"
     vxlan_router.vm.network "private_network", ip: "192.168.1.1"
     vxlan_router.vm.network "private_network", ip: "192.168.2.1"
@@ -417,8 +422,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server1
   config.vm.define "vxlan-server1" do |vxlan_server1|
     vxlan_server1.vm.box = "trusty64"
-    #vxlan_server1.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    vxlan_server1.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    vxlan_server1.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     vxlan_server1.vm.hostname = "vxlan-server1"
     vxlan_server1.vm.network "private_network", ip: "192.168.1.10"
     #vxlan_server1.vm.network "forwarded_port", guest: 80, host: 8081
@@ -456,8 +460,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server2
   config.vm.define "vxlan-server2" do |vxlan_server2|
     vxlan_server2.vm.box = "trusty64"
-    #vxlan_server2.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-    vxlan_server2.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+    vxlan_server2.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     vxlan_server2.vm.hostname = "vxlan-server2"
     vxlan_server2.vm.network "private_network", ip: "192.168.2.20"
     vxlan_server2.vm.network "forwarded_port", guest: 80, host: 8081
@@ -502,8 +505,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #      mininext_ip = mininext_ips[n]
 #      mininext_index = n+1
 #      mininext.vm.box = "trusty64"
-#      #mininext.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-#      mininext.vm.box_url = "https://plink.ucloud.com/public_link/link/a7941f067ddd8aa3"
+#      mininext.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
 #      mininext.vm.hostname = "mininext-#{mininext_index}"
 #      mininext.vm.network "private_network", ip: "#{mininext_ip}"
 #      #mininext.vm.network "forwarded_port", guest: 8080, host: 9292
@@ -540,5 +542,49 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #      end
 #    end
 #  end
+
+  ## CBench
+  config.vm.define "cbench" do |cbench|
+    cbench.ssh.forward_x11 = true
+    cbench.vm.box = "trusty64"
+    cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    #cbench.vm.box = "Fedora20-x86_64"
+    #cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
+    cbench.vm.hostname = "cbench"
+    cbench.vm.network "private_network", ip: "192.168.77.10"
+    #cbench.vm.network "forwarded_port", guest: 8080, host: 9191
+    #cbench.vm.network "forwarded_port", guest: 8181, host: 8181
+    cbench.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "4"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+    end
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    cbench.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    cbench.vm.provision "shell", inline: <<-SCRIPT
+      #route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
+      #route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
+    SCRIPT
+    cbench.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+      puppet.options = "--verbose"
+    end
+    cbench.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "cbench.pp"
+      puppet.options = "--verbose"
+    end
+  end
 
 end
