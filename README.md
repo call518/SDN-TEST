@@ -52,11 +52,11 @@ SDN Controller, OpenDaylight TESTing with Mininet/MiniNExT
 
 ## OpenDaylight Architecture
 
-![OpenDaylight-Mininet-Web-UI](etc-files/opendaylight-architecture.png)
+![ODL-Arch](etc-files/opendaylight-architecture.png)
 
 ## OpenDaylight SAL
 
-![OpenDaylight-Mininet-Web-UI](etc-files/opendaylight-SAL.png)
+![ODL-SAL](etc-files/opendaylight-SAL.png)
 
 ## Sample OpenDaylight Web-UI
 
@@ -208,6 +208,10 @@ vm> sudo ./run-routeflow-infra.sh
   * Controller/Network Node: 1 Host
     * (Note) Minimum RAM Size: 4GB
   * Compute Node: 1 Host (Max: 3)
+
+## Networking Examples
+
+![OpenStack Networking Architecture](etc-files/Neutron-PhysNet-Diagram.png)
 
 ## Start Vagrant
 
