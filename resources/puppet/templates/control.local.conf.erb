@@ -68,18 +68,9 @@ enable_service odl-compute
 Q_PLUGIN=ml2
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=opendaylight,logger
 ODL_MGR_IP=<%= @hosts['opendaylight-devstack']['ipaddress'] %>
-#Q_LOCAL_IP=<%= @hosts[@hostname]['ipaddress_tun'] %>
 Q_ML2_TENANT_NETWORK_TYPE=vxlan
 
 ENABLE_TENANT_TUNNELS=True
-# ENABLE_TENANT_VLANS=True
-# TENANT_VLAN_RANGE=500:510
-
-# Q_ML2_TENANT_NETWORK_TYPE=vxlan
-# Q_AGENT_EXTRA_AGENT_OPTS=(tunnel_types=vxlan)
-
-#FLOATING_RANGE=192.168.254.64/26
-#PUBLIC_NETWORK_GATEWAY=192.168.75.254
 
 [[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
 [agent]
