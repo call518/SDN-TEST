@@ -215,6 +215,7 @@ vm> sudo ./run-routeflow-infra.sh
     * 172.16.0.0/24
   * External Network
     * 172.20.20.0/24
+* (Note) Auto-Remove 'Demo' Project/Tenant
 
 ## Networking Examples
 
