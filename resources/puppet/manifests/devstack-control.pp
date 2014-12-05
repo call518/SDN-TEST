@@ -18,23 +18,23 @@ package { "iptables":
 #    ensure   => installed,
 #}
 
+$MY_BRANCH = $my_branch
+
 vcsrepo { "/home/vagrant/devstack":
     provider => git,
     ensure => present,
     user => "vagrant",
     source => "https://github.com/openstack-dev/devstack.git",
-    #revision => "2d311df771bf5745d20ba7eeeb44adc7db0df54a",	## Juno
-    #revision => "0b052589132fdfe9c6d3a9f70ddd3c9712ee435a",	## Icehouse
-    before => File["/home/vagrant/devstack/local.conf"]
+    revision => "${MY_BRANCH}",
+    before => File["/home/vagrant/devstack/local.conf"],
 }
 
-$MY_BRANCH = $my_branch
-exec { "git checkout ${MY_BRANCH} && git pull":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "vagrant",
-    timeout => "0",
-    require => Vcsrepo["/home/vagrant/devstack"],
-}
+#exec { "git checkout ${MY_BRANCH} && git pull":
+#    cwd     => "/home/vagrant/devstack/",
+#    user    => "vagrant",
+#    timeout => "0",
+#    require => Vcsrepo["/home/vagrant/devstack"],
+#}
 
 #exec { "sudo pip install --upgrade requests setuptools oslo.middleware":
 #    cwd     => "/home/vagrant/devstack/",

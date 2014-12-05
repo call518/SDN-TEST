@@ -262,6 +262,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ############## DevStack / OpenDaylight ##########################################################################
 #################################################################################################################
 
+  ## DevStack Branch
+  devstack_branch = "stable/juno"
+  #devstack_branch = "stable/icehouse"
+
   ## ip pre-configuration
   control_ip = "192.168.50.10"
   control_ip_data = "172.16.0.10"
@@ -316,8 +320,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "devstack-control.pp"
       puppet.facter = {
-        #"my_branch" => "stable/juno"
-        "my_branch" => "stable/icehouse"
+        "my_branch" => "#{devstack_branch}"
       }
       puppet.options = "--verbose"
     end
@@ -366,8 +369,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         puppet.manifests_path = "resources/puppet/manifests"
         puppet.manifest_file  = "devstack-compute.pp"
         puppet.facter = {
-          #"my_branch" => "stable/juno"
-          "my_branch" => "stable/icehouse"
+          "my_branch" => "#{devstack_branch}"
         }
         puppet.options = "--verbose"
       end
