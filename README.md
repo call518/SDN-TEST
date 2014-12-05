@@ -29,10 +29,10 @@ vtn-coordinator           (192.168.40.10)
 opendaylight-mininet-1    (192.168.41.10)
 opendaylight-mininet-2    (192.168.42.10)
 routeflow                 (192.168.30.10)
-devstack-control          (192.168.50.10)
-devstack-compute-1        (192.168.50.21)
-devstack-compute-2        (192.168.50.22)
-devstack-compute-3        (192.168.50.23)
+devstack-control          (192.168.50.10/172.16.0.10/Manual)
+devstack-compute-1        (192.168.50.21/172.16.0.21)
+devstack-compute-2        (192.168.50.22/172.16.0.22)
+devstack-compute-3        (192.168.50.23/172.16.0.23)
 vxlan-router              (192.168.1.1, 192.168.2.1)
 vxlan-server1             (192.168.1.10)
 vxlan-server2             (192.168.2.20)
@@ -208,6 +208,13 @@ vm> sudo ./run-routeflow-infra.sh
   * Controller/Network Node: 1 Host
     * (Note) Minimum RAM Size: 4GB
   * Compute Node: 1 Host (Max: 3)
+* Networking
+  * Management Network
+    * 192.168.50.0/24
+  * Data Network
+    * 172.16.0.0/24
+  * External Network
+    * 172.20.20.0/24
 
 ## Networking Examples
 
