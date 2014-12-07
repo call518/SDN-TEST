@@ -18,6 +18,6 @@ if sudo virsh net-list | grep default; then
     sudo virsh net-undefine default
 fi
 
-#sudo ovs-vsctl set-manager ptcp:6640
+sudo ovs-vsctl set-manager ptcp:6640
 sudo ovs-vsctl set Open_vSwitch `sudo ovs-vsctl get Open_vSwitch . _uuid` other_config={"local_ip"="<%= @hosts[@hostname]['ipaddress_tun'] %>"}
 sudo ovs-vsctl list Open_vSwitch .
