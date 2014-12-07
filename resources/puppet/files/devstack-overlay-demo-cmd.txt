@@ -14,8 +14,6 @@ controller> neutron subnet-create vxlan2 10.0.0.0/24 --name vxlan2-net1
 controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan2 | awk '{print $2}') vxlan2-net1-host1 --availability_zone=nova:devstack-control
 controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan2 | awk '{print $2}') vxlan2-net1-host2 --availability_zone=nova:devstack-compute-1
 
-## (TODO) 'vxlan2 => net2 => host1, host2' [Note] Not allow overlapp (/w Another Subnet)
-
 ### APPENDIX
 ## 'gre1 => net1 => host1, host2'
 controller> neutron net-create gre1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 300
