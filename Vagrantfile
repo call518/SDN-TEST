@@ -288,8 +288,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
-      #vb.customize ["modifyvm", :id, "--memory", "4096"]
-      vb.customize ["modifyvm", :id, "--memory", "3072"]
+      #vb.customize ["modifyvm", :id, "--memory", "3072"]
+      vb.customize ["modifyvm", :id, "--memory", "4096"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
     end
