@@ -146,7 +146,15 @@ if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
         timeout => "0",
         require => File["Put ODL-Helium-Run-Script"],
     }
+} else {
+    exec { "sed -i 's/^# ovsdb.of.version=1.3/ovsdb.of.version=1.3/g' configuration/config.ini":
+        cwd     => "/home/vagrant/opendaylight",
+        user    => "root",
+        timeout => "0",
+        require => Exec["Extract ODL-Helium"],
+    }
 }
+
 if $hostname != "devstack-control" {
     file { "Put RESTconf-VTN-Tutorial-1":
         path     => "/home/vagrant/RESTconf-VTN-Tutorial-1",
