@@ -1,19 +1,21 @@
 #!/bin/bash
 
-sudo ovs-vsctl add-port br-ex eth3
-sudo virsh net-destroy default
-sudo virsh net-undefine default
-
 <% if @hostname == "devstack-control" %>
+sudo ovs-vsctl add-port br-ex eth3
 neutron router-interface-delete router1 `neutron net-show private | awk '{if (NR == 13) {print $4}}'`
 neutron net-delete private
 neutron router-delete router1
 sudo ip netns del `sudo ip netns | grep "^qrouter"`
 keystone tenant-delete demo
+<% else %>
+echo
 <% end %>
+
+
+## Common
+sudo virsh net-destroy default
+sudo virsh net-undefine default
 
 #sudo ovs-vsctl set-manager ptcp:6640
 sudo ovs-vsctl set Open_vSwitch `sudo ovs-vsctl get Open_vSwitch . _uuid` other_config={"local_ip"="<%= @hosts[@hostname]['ipaddress_tun'] %>"}
 #sudo ovs-vsctl list Open_vSwitch .
-
-exit 0
