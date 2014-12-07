@@ -49,7 +49,9 @@ file { "/home/vagrant/devstack/local.conf":
     ensure => present,
     owner => "vagrant",
     group => "vagrant",
-    content => template("/vagrant/resources/puppet/templates/control.local.conf.erb")
+    content => template("/vagrant/resources/puppet/templates/control.local.conf.erb"),
+    replace  => true,
+    require  => Vcsrepo["/home/vagrant/devstack"],
 }
 
 exec { "dos2unix /home/vagrant/devstack/local.conf":
@@ -122,7 +124,7 @@ file { "Put local.sh":
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/devstack-local.sh",
+    content => template("/vagrant/resources/puppet/templates/devstack-local.sh.erb"),
     replace  => true,
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
