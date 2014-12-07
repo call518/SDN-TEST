@@ -128,3 +128,11 @@ file { "Put local.sh":
     replace  => true,
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
+
+exec { "dos2unix /home/vagrant/devstack/local.sh":
+    cwd     => "/home/vagrant/devstack/",
+    user    => "root",
+    timeout => "0",
+    require => File["Put local.sh"],
+}
+
