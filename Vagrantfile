@@ -101,6 +101,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_1.vm.network "private_network", ip: "192.168.41.10"
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9191
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8181, host: 8181
+    opendaylight_mininet_1.vm.network "forwarded_port", guest: 8101, host: 8101
     opendaylight_mininet_1.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
@@ -162,6 +163,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_2.vm.network "private_network", ip: "192.168.42.10"
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9292
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8181, host: 8282
+    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8101, host: 8101
     opendaylight_mininet_2.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
@@ -280,6 +282,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.network "public_network", auto_config: false
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
+    control.vm.network "forwarded_port", guest: 8101, host: 8101 # ODL Karaf SSH Console (ID/PW: karaf/karaf)
     control.vm.network "forwarded_port", guest: 80, host: 80 # DevStack CTL (http://localhost)
     #control.vm.network "forwarded_port", guest: 6080, host: 6080
     control.vm.provider :virtualbox do |vb|
