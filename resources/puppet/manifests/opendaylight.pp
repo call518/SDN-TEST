@@ -147,16 +147,25 @@ if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
         require => File["Put ODL-Helium-Run-Script"],
     }
 } else {
-    exec { "sed -i 's/^# ovsdb.of.version=1.3/ovsdb.of.version=1.3/g' configuration/config.ini":
+    #exec { "sed -i 's/^# ovsdb.of.version=1.3/ovsdb.of.version=1.3/g' configuration/config.ini":
+    #    cwd     => "/home/vagrant/opendaylight",
+    #    user    => "root",
+    #    timeout => "0",
+    #    require => Exec["Extract ODL-Helium"],
+    #}
+    exec { "sed -i '/^\$RUN_BASE_SH/ s/$/\ -Xmx1024m -XX:MaxPermSize=256m/' run.sh":
         cwd     => "/home/vagrant/opendaylight",
         user    => "root",
         timeout => "0",
         require => Exec["Extract ODL-Helium"],
     }
-    exec { "sed -i '/^\$RUN_BASE_SH/ s/$/\ -Xmx1024m/' run.sh":
-        cwd     => "/home/vagrant/opendaylight",
-        user    => "root",
-        timeout => "0",
+    file { "Put RUN-ODL-OVSDB.cmd":
+        path     => "/home/vagrant/opendaylight/RUN-ODL-OVSDB.cmd",
+        owner    => "vagrant",
+        group    => "vagrant",
+        mode     => 0755,
+        source   => "/vagrant/resources/puppet/files/RUN-ODL-OVSDB.cmd",
+        replace  => true,
         require => Exec["Extract ODL-Helium"],
     }
 }
