@@ -2,7 +2,7 @@
 
 <% if @hostname == "devstack-control" %>
 ########### DevStack-Control ##################################
-sudo ovs-vsctl add-port br-ex eth3
+#sudo ovs-vsctl add-port br-ex eth3
 neutron router-interface-delete router1 `neutron net-show private | awk '{if (NR == 13) {print $4}}'`
 neutron net-delete private
 neutron router-delete router1
