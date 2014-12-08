@@ -112,7 +112,7 @@ exec { "Create eth3 (PUBLIC_INTERFACE)":
 
 exec { "Create NAT to External":
     #command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE",
-    command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.1/24 -j MASQUERADE",
+    command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.1 -j MASQUERADE",
     user    => "root",
     timeout => "0",
     #require => Exec["Create EXT_GW_IP (eth0:1)"],
