@@ -153,6 +153,12 @@ if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
         timeout => "0",
         require => Exec["Extract ODL-Helium"],
     }
+    exec { "sed -i '/^\$RUN_BASE_SH/ s/$/\ -Xmx=1024m/' run.sh":
+        cwd     => "/home/vagrant/opendaylight",
+        user    => "root",
+        timeout => "0",
+        require => Exec["Extract ODL-Helium"],
+    }
 }
 
 if $hostname != "devstack-control" {
