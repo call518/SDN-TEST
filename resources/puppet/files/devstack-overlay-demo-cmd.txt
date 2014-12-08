@@ -1,6 +1,7 @@
 controller> cd /home/vagrant/devstack
 controller> . ./openrc admin admin
 controller> export IMAGE=cirros-0.3.2-x86_64-uec
+(e.g. Ubuntu14.04: controller> export IMAGE=trusty-server-cloudimg-armhf-disk1)
 
 ## 'vxlan1 => net1 => host1, host2'
 controller> neutron net-create vxlan1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1600
