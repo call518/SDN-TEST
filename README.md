@@ -74,19 +74,27 @@ SDN Controller, OpenDaylight TESTing with Mininet/MiniNExT
 
 ## Run OpenDaylight
 
-* Run OpenDaylight
+* Run OpenDaylight (e.g Helium)
 ```
 host> vagrant ssh opendaylight-mininet-1
 vm> cd /home/vagrant/opendaylight
 vm> ./run-karaf.sh
-e.g. for OVS) opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch
+e.g. for OVS) opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch odl-l2switch-hosttracker odl-l2switch-addresstracker
+```
+* Run OpenDaylight (e.g Hydrogen)
+```
+host> vagrant ssh opendaylight-mininet-1
+vm> cd /home/vagrant/opendaylight
+vm> ./run.sh -virt ovsdb
 ```
 
 * Web-UI
-
-(opendaylight-mininet-1) Browser: http://{Vagrant Host IP}:8181/dlux/index.html
-
-(opendaylight-mininet-2) Browser: http://{Vagrant Host IP}:8282/dlux/index.html
+  * OpenDaylight (Helium)
+    * (opendaylight-mininet-1) Browser: http://{Vagrant Host IP}:8181/dlux/index.html
+    * (opendaylight-mininet-2) Browser: http://{Vagrant Host IP}:8282/dlux/index.html
+  * OpenDaylight (Hydrogen)
+    * (opendaylight-mininet-1) Browser: http://{Vagrant Host IP}:9191
+    * (opendaylight-mininet-2) Browser: http://{Vagrant Host IP}:9292
 
 Default ID/PW: "admin" / "admin"
 
@@ -238,14 +246,22 @@ vm> sudo ./run-routeflow-infra.sh
 host> vagrant ssh devstack-control
 vm> cd /home/vagrant/opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core
+opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker
+```
+* Run OpenDaylight Hydrogen
+```
+host> vagrant ssh devstack-control
+vm> cd /home/vagrant/opendaylight
+vm> ./run.sh -virt ovsdb
 ```
 
 * Web-UI
+  * OpenDaylight (Helium)
+    * Browser: http://{Vagrant Host IP}:8181/dlux/index.html
+  * OpenDaylight (Hydrogen)
+    * Browser: http://{Vagrant Host IP}:8080
 
-Browser: http://{Vagrant Host IP}:8181/dlux/index.html
-
-Default ID/PW: "admin" / "admin"
+* Default ID/PW: "admin" / "admin"
 
 ## 2nd, Run Control/Network Node
 
@@ -461,14 +477,12 @@ host> vagrant up opendaylight-mininet-1
 host> vagrant ssh opendaylight-mininet-1
 vm> cd /home/vagrant/opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker`
 ```
 
 * Web-UI
-
-Browser: http://{Vagrant Host IP}:8181/dlux/index.html
-
-Default ID/PW: "admin" / "admin"
+  * Browser: http://{Vagrant Host IP}:8181/dlux/index.html
+* Default ID/PW: "admin" / "admin"
 
 ## Run Mininet
 
@@ -596,7 +610,7 @@ vm> sudo lsof -ni:8083 (e.g. helium)
 host> vagrant ssh opendaylight-mininet-1
 vm> cd opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker
 ```
 
 ## Run OpenDaylight-2 (e.g Helium)
@@ -605,7 +619,7 @@ opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflow
 host> vagrant ssh opendaylight-mininet-2
 vm> cd opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker
 ```
 
 ## Run Mininet
