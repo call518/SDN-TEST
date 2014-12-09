@@ -19,6 +19,10 @@ package { "dos2unix":
 #    ensure   => installed,
 #}
 
+package { "sshpass":
+    ensure   => installed,
+}
+
 case $operatingsystem {
     debian, ubuntu: { $vim_pkg = "vim" }
     centos, redhat, fedora: { $vim_pkg = "vim-enhanced" }
