@@ -70,6 +70,13 @@ file { "Put devstack-overlay-demo-cmd.txt":
     replace  => true,
 }
 
+exec { "cat devstack-overlay-demo-cmd.txt | sed -e 's/controller> //g' | sed -e '/^(e.g.)/d' | sed -e '/^#/d' | sed -e '/^$/d' | sed -e 's/$/ \&\& read -n1 -r -p \"Press any key to continue...\" key/g' | sed -e '/^cd/i #/bin/bash' > devstack-overlay-demo-cmd.sh":
+    cwd     => "/home/vagrant/devstack/",
+    user    => "root",
+    timeout => "0",
+    require => File["Put devstack-overlay-demo-cmd.txt"],
+}
+
 ############## puppetlabs-firewall Not Works... #####################
 #resources { "firewall":
 #    purge     => true
