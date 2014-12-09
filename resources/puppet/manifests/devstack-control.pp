@@ -70,7 +70,7 @@ file { "Put devstack-overlay-demo-cmd.txt":
     replace  => true,
 }
 
-exec { "cat devstack-overlay-demo-cmd.txt | sed -e 's/controller> //g' | sed -e '/^(e.g.)/d' | sed -e '/^#/d' | sed -e '/^$/d' | sed -e 's/$/ \&\& read -n1 -r -p \"Press any key to continue...\" key/g' | sed -e '/^cd/i #/bin/bash' > devstack-overlay-demo-cmd.sh && chmod 755 devstack-overlay-demo-cmd.sh":
+exec { "cat devstack-overlay-demo-cmd.txt | sed -e 's/controller> //g' | sed -e '/^(e.g.)/d' | sed -e '/^#/d' | sed -e '/^$/d' | sed -e 's/$/ \&\& read -rsp $\"Press enter to continue...\n\"/g' | sed -e '/^cd/i #/bin/bash' > devstack-overlay-demo-cmd.sh && chmod 755 devstack-overlay-demo-cmd.sh":
     cwd     => "/home/vagrant/devstack/",
     user    => "root",
     timeout => "0",
