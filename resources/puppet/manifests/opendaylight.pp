@@ -158,7 +158,7 @@ if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
         user    => "root",
         timeout => "0",
         require => Exec["Extract ODL-Helium"],
-        unless  => "grep -q '\-Xmx1024m \-XX:MaxPermSize=256m' run.sh",
+        unless  => "grep -q 'MaxPermSize=256m' run.sh",
     }
     #file { "Put RUN-ODL-OVSDB.cmd":
     #    path     => "/home/vagrant/opendaylight/RUN-ODL-OVSDB.cmd",
