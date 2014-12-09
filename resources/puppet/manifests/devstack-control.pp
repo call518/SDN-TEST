@@ -70,7 +70,8 @@ file { "Put devstack-overlay-demo-cmd.txt":
     replace  => true,
 }
 
-exec { "cat devstack-overlay-demo-cmd.txt | sed -e 's/controller> //g' | sed -e '/^(e.g.)/d' | sed -e '/^#/d' | sed -e '/^$/d' | sed -e 's/$/ \&\& read -p \"Press [Enter] to continue...\"/g' | sed -e '/^cd/i #/bin/bash' | sed -e '/^cd/i set -x' > devstack-overlay-demo-cmd.sh && chmod 755 devstack-overlay-demo-cmd.sh":
+#exec { "cat devstack-overlay-demo-cmd.txt | sed -e 's/controller> //g' | sed -e '/^(e.g.)/d' | sed -e '/^#/d' | sed -e '/^$/d' | sed -e 's/$/ \&\& read -p \"Press [Enter] to continue...\"/g' | sed -e '/^cd/i #/bin/bash' > devstack-overlay-demo-cmd.sh && chmod 755 devstack-overlay-demo-cmd.sh":
+exec { "cat devstack-overlay-demo-cmd.txt | sed -e 's/controller> //g' | sed -e '/^(e.g.)/d' | sed -e '/^#/d' | sed -e '/^$/d' | while read line; do echo \"echo -e \\\"\\n$line\\\"\"; echo \$line; done | sed -e '/^echo \"cd/i #/bin/bash' | sed -e '/^echo/ s/$/ \&\& read -p \"Press [Enter] to continue...\"/g' > devstack-overlay-demo-cmd.sh && chmod 755 devstack-overlay-demo-cmd.sh":
     cwd     => "/home/vagrant/devstack/",
     user    => "root",
     timeout => "0",
