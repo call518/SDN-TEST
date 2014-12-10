@@ -111,20 +111,20 @@ exec { "Create eth3 (PUBLIC_INTERFACE)":
     unless  => "grep '^auto eth3' /etc/network/interfaces",
 }
 
-exec { "Create EXT_GW_IP (eth0:1)":
-    command => "ifconfig eth0:1 172.20.20.1/24 up && sed -i '/^exit 0/i ifconfig eth0:1 172.20.20.1/24 up' /etc/rc.local",
-    user    => "root",
-    timeout => "0",
-    unless  => "grep '^ifconfig eth0:1' /etc/rc.local",
-}
+#exec { "Create EXT_GW_IP (eth0:1)":
+#    command => "ifconfig eth0:1 172.20.20.1/24 up && sed -i '/^exit 0/i ifconfig eth0:1 172.20.20.1/24 up' /etc/rc.local",
+#    user    => "root",
+#    timeout => "0",
+#    unless  => "grep '^ifconfig eth0:1' /etc/rc.local",
+#}
 
-exec { "Create NAT to External":
-    command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE",
-    user    => "root",
-    timeout => "0",
-    #require => Exec["Create EXT_GW_IP (eth0:1)"],
-    require => Exec["Create eth3 (PUBLIC_INTERFACE)"],
-}
+#exec { "Create NAT to External":
+#    command => "iptables -t nat -A POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE",
+#    user    => "root",
+#    timeout => "0",
+#    #require => Exec["Create EXT_GW_IP (eth0:1)"],
+#    require => Exec["Create eth3 (PUBLIC_INTERFACE)"],
+#}
 
 file { "Put local.sh":
     path     => "/home/vagrant/devstack/local.sh",
