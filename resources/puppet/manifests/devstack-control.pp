@@ -143,3 +143,9 @@ exec { "dos2unix /home/vagrant/devstack/local.sh":
     require => File["Put local.sh"],
 }
 
+exec { "echo -e 'UserKnownHostsFile /dev/null\nStrictHostKeyChecking no' > /root/.ssh/config":
+    cwd     => "/home/vagrant/devstack/",
+    user    => "root",
+    timeout => "0",
+}
+
