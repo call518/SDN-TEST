@@ -1,5 +1,5 @@
 controller> cd /home/vagrant/devstack
-controller> . ./openrc admin admin (. ./openrc demo demo)
+controller> . ./openrc admin admin
 controller> export IMAGE=cirros-0.3.2-x86_64-uec
 (e.g.) Ubuntu14.04: controller> export IMAGE=trusty-server-cloudimg-armhf-disk1 (Flavors: m1.nano -> m1.micro or m1.heat)
 
