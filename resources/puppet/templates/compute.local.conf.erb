@@ -51,8 +51,7 @@ VNCSERVER_PROXYCLIENT_ADDRESS=$HOST_IP
 VNCSERVER_LISTEN=0.0.0.0
 
 disable_all_services
-#enable_service neutron quantum nova n-cpu n-novnc rabbit odl-compute
-enable_service neutron quantum nova n-cpu n-novnc odl-compute
+enable_service neutron quantum nova n-cpu n-novnc rabbit odl-compute
 
 # ODL WITH ML2
 Q_PLUGIN=ml2
