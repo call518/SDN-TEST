@@ -331,9 +331,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
   num_compute_nodes = 3 # (Max: 3)
-  compute_ip_base = "192.168.51."
+  compute_ip_base = "192.168.50."
   compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
-  compute_ip_data_base = "172.16.1."
+  compute_ip_data_base = "172.16.0."
   compute_ips_gre = num_compute_nodes.times.collect { |n| compute_ip_data_base + "#{n+21}" }
 
   ## Devstack Compute Nodes
