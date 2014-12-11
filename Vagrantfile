@@ -265,8 +265,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ## DevStack Branch
-  devstack_branch = "stable/juno"
-  #devstack_branch = "stable/icehouse"
+  #devstack_branch = "stable/havana"
+  devstack_branch = "stable/icehouse"
+  #devstack_branch = "stable/juno"
 
   ## ip pre-configuration
   control_ip = "192.168.50.10"
