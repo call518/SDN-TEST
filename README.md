@@ -225,6 +225,10 @@ vm> sudo ./run-routeflow-infra.sh
     * 172.20.20.0/24
 * (Note) Auto-Remove 'Demo' Project/Tenant
 
+## Architecture
+
+![ODL-OVSDB-Architecture](etc-files/ODL-OVSDB-Architecture.png)
+
 ## Networking Examples
 
 ![OpenStack Networking Architecture](etc-files/Neutron-PhysNet-Diagram.png)
