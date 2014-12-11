@@ -2,6 +2,8 @@
 
 SDN Test Suite
 
+(Note) When Oracle-Java fail, retry provision (# vagrant provision `{VM_NAME}`)
+
 # Intro
 
 ## Tested Physical Env.
