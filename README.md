@@ -789,7 +789,7 @@ host> vagrant ssh cbench
 ### Benchmark Examples
 
 ```
-vm>
+vm> (TODO)
 ```
 
 # References
