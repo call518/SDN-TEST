@@ -315,7 +315,7 @@ e.g.) ip netns exec qrouter-a4e4c152-ee23-4e16-b900-4d0c132618d7 ssh cirros@10.1
 
 # VXLAN /w OVS
 
-* L2 over L3 Networking
+* L2 over L3 Tunneling Networking
 * Configuration of VXLAN tunnel ports in OVS
 * Configuration of OpenFlow entries OVS
 * Logical separation of traffic between tenants
@@ -795,6 +795,7 @@ vm>
 # References
 
 * Vagrnatfile Ref: https://github.com/opendaylight/ovsdb/blob/master/README.Vagrant
+* DevStack /w OpenDaylight: http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
 * VXLAN Ref: http://www.youtube.com/watch?v=tnSkHhsLqpM
 * VTN Tutorial-1 Ref: https://wiki.opendaylight.org/images/d/da/NEC_VTN_Demo_0722.pdf
 * VTN Tutorial-2 Ref
