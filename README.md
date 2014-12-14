@@ -18,7 +18,8 @@ SDN Test Suite
 * RouteFlow
 * DevStack /w OpenDaylight
 * VXLAN /w OVS
-* VTN Coordinator
+* VTN /w Coordinator
+* WCBench (CBench)
 
 ## Vagrant VM List
 
