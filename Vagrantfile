@@ -292,7 +292,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "3072"]
       #vb.customize ["modifyvm", :id, "--memory", "4096"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-      vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      vb.customize ["modifyvm", :id, "--nic3", "intnet"]
+      vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
     end
     control.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     control.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -354,7 +356,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.customize ["modifyvm", :id, "--cpus", "4"]
         vb.customize ["modifyvm", :id, "--memory", "1024"]
         #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-        #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+        vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+        vb.customize ["modifyvm", :id, "--nic3", "intnet"]
       end
       compute.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
       compute.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
