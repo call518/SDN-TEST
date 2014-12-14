@@ -82,7 +82,7 @@ SDN Controller, OpenDaylight TESTing with Mininet/MiniNExT
 host> vagrant ssh opendaylight-mininet-1
 vm> cd /home/vagrant/opendaylight
 vm> ./run-karaf.sh
-e.g. for OVS) opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch odl-l2switch-hosttracker odl-l2switch-addresstracker
+e.g. for OVS) opendaylight-user@root> feature:install odl-dlux-core odl-restconf odl-nsf-all odl-adsal-northbound odl-mdsal-apidocs odl-l2switch-switch
 ```
 * Run OpenDaylight (e.g Hydrogen)
 ```
@@ -253,7 +253,7 @@ vm> sudo ./run-routeflow-infra.sh
 host> vagrant ssh devstack-control
 vm> cd /home/vagrant/opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker
+opendaylight-user@root> feature:install odl-ovsdb-openstack odl-ovsdb-northbound odl-restconf odl-mdsal-apidocs odl-adsal-all odl-adsal-northbound odl-dlux-core
 ```
 * Run OpenDaylight Hydrogen
 ```
@@ -484,7 +484,7 @@ host> vagrant up opendaylight-mininet-1
 host> vagrant ssh opendaylight-mininet-1
 vm> cd /home/vagrant/opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker`
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core`
 ```
 
 * Web-UI
@@ -617,7 +617,7 @@ vm> sudo lsof -ni:8083 (e.g. helium)
 host> vagrant ssh opendaylight-mininet-1
 vm> cd opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
 ```
 
 ## Run OpenDaylight-2 (e.g Helium)
@@ -626,7 +626,7 @@ opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflow
 host> vagrant ssh opendaylight-mininet-2
 vm> cd opendaylight
 vm> ./run-karaf.sh
-opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core odl-l2switch-hosttracker odl-l2switch-addresstracker
+opendaylight-user@root> feature:install odl-adsal-compatibility-all odl-openflowplugin-all odl-vtn-manager-all odl-dlux-core
 ```
 
 ## Run Mininet
