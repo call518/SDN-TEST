@@ -214,10 +214,13 @@ vm> sudo ./run-routeflow-infra.sh
 * (Note) *Order is important!*
 * OpenStack Nodes over L3
 * OpenDaylight
-* DevStack
-  * Controller/Network Node: 1 Host
-    * (Note) Minimum RAM Size: 4GB
-  * Compute Node: 1 Host (Max: 3)
+* Roles
+  * devstack-control
+    * Controller Node
+    * Network Node
+    * Compute Node
+  * devstack-compute-1
+    * Compute Node
 * Networking
   * Management Network
     * LAN1: 192.168.50.0/24
