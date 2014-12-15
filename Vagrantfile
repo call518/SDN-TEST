@@ -264,16 +264,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ############## DevStack / OpenDaylight ##########################################################################
 #################################################################################################################
 
-  ## DevStack Branch
+  ### DevStack Branch
   #devstack_branch = "stable/havana"
   devstack_branch = "stable/icehouse"
   #devstack_branch = "stable/juno"
 
+  ### Devstack Control Node
   ## ip pre-configuration
   control_ip = "192.168.50.10"
   control_ip_data = "172.16.0.10"
 
-  ## Devstack Control Node
   config.vm.define "devstack-control" do |control|
     control.vm.box = "trusty64"
     control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
@@ -332,14 +332,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  #num_compute_nodes = (ENV['DEVSTACK_NUM_COMPUTE_NODES'] || 1).to_i
+  ### Devstack Compute Nodes
   num_compute_nodes = 3 # (Max: 3)
+  ## ip pre-configuration
   compute_ip_base = "192.168.50."
   compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
   compute_ip_data_base = "172.16.0."
   compute_ips_gre = num_compute_nodes.times.collect { |n| compute_ip_data_base + "#{n+21}" }
 
-  ## Devstack Compute Nodes
   num_compute_nodes.times do |n|
     config.vm.define "devstack-compute-#{n+1}" do |compute|
       compute_ip = compute_ips[n]
