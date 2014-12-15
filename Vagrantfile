@@ -317,10 +317,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "opendaylight.pp"
       puppet.facter = {
-        #"odl_dist_name" => "Hydrogen-Virtualization"
+        "odl_dist_name" => "Hydrogen-Virtualization"
         #"odl_dist_name" => "Hydrogen-SP"
         #"odl_dist_name" => "Helium"
-        "odl_dist_name" => "Helium-SR1",
+        #"odl_dist_name" => "Helium-SR1",
       }
       puppet.options = "--verbose"
     end
