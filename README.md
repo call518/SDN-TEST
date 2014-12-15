@@ -33,9 +33,7 @@ opendaylight-mininet-1    (192.168.41.10)
 opendaylight-mininet-2    (192.168.42.10)
 routeflow                 (192.168.30.10)
 devstack-control          (Mgm:192.168.50.10/Data:172.16.0.10/Ext:Manual)
-devstack-compute-1        (Mgm:192.168.50.21/Data:172.16.0.21)
-devstack-compute-2        (192.168.50.22/172.16.0.22)
-devstack-compute-3        (192.168.50.23/172.16.0.23)
+devstack-compute-1        (Mgm:192.168.51.21/Data:172.16.1.21)
 vxlan-router              (192.168.1.1, 192.168.2.1)
 vxlan-server1             (192.168.1.10)
 vxlan-server2             (192.168.2.20)
@@ -214,6 +212,7 @@ vm> sudo ./run-routeflow-infra.sh
 # DevStack /w OpenDaylight
 
 * (Note) *Order is important!*
+* OpenStack Nodes over L3
 * OpenDaylight
 * DevStack
   * Controller/Network Node: 1 Host
@@ -221,9 +220,11 @@ vm> sudo ./run-routeflow-infra.sh
   * Compute Node: 1 Host (Max: 3)
 * Networking
   * Management Network
-    * 192.168.50.0/24
+    * LAN1: 192.168.50.0/24
+    * LAN2: 192.168.51.0/24
   * Data Network
-    * 172.16.0.0/24
+    * LAN1: 172.16.0.0/24
+    * LAN2: 172.16.1.0/24
   * External Network
     * 172.20.20.0/24
 * (Note) Auto-Remove 'Demo' Project/Tenant

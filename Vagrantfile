@@ -337,57 +337,49 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   ### Devstack Compute Nodes
-  num_compute_nodes = 3 # (Max: 3)
   ## ip pre-configuration
-  compute_ip_base = "192.168.51."
-  compute_ips = num_compute_nodes.times.collect { |n| compute_ip_base + "#{n+21}" }
-  compute_ip_data_base = "172.16.1."
-  compute_ips_gre = num_compute_nodes.times.collect { |n| compute_ip_data_base + "#{n+21}" }
+  compute_ip = "192.168.51.21"
+  compute_ip_data = "172.16.1.21"
 
-  num_compute_nodes.times do |n|
-    config.vm.define "devstack-compute-#{n+1}" do |compute|
-      compute_ip = compute_ips[n]
-      compute_ip_data = compute_ips_gre[n]
-      compute_index = n+1
-      compute.vm.box = "trusty64"
-      compute.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
-      compute.vm.hostname = "devstack-compute-#{compute_index}"
-      compute.vm.network "private_network", ip: "#{compute_ip_data}"
-      compute.vm.network "private_network", ip: "#{compute_ip}"
-      #compute.vm.network "forwarded_port", guest: 6080, host: 6080
-      compute.vm.provider :virtualbox do |vb|
-        #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
-        vb.customize ["modifyvm", :id, "--cpus", "4"]
-        vb.customize ["modifyvm", :id, "--memory", "1024"]
-        #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-        #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
-        #vb.customize ["modifyvm", :id, "--nic3", "intnet"]
-      end
-      compute.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-      compute.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-      compute.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-      compute.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-      compute.vm.provision "shell", inline: <<-SCRIPT
-        route add -net 192.168.50.0/24 gateway 192.168.51.1 dev eth2
-        route add -net 172.16.0.0/24 gateway 172.16.1.1 dev eth1
-      SCRIPT
-      compute.vm.provision "puppet" do |puppet|
-        puppet.working_directory = "/vagrant/resources/puppet"
-        puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-        puppet.manifests_path = "resources/puppet/manifests"
-        puppet.manifest_file  = "base.pp"
-        puppet.options = "--verbose"
-      end
-      compute.vm.provision "puppet" do |puppet|
-        puppet.working_directory = "/vagrant/resources/puppet"
-        puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-        puppet.manifests_path = "resources/puppet/manifests"
-        puppet.manifest_file  = "devstack-compute.pp"
-        puppet.facter = {
-          "my_branch" => "#{devstack_branch}"
-        }
-        puppet.options = "--verbose"
-      end
+  config.vm.define "devstack-compute-1" do |compute|
+    compute.vm.box = "trusty64"
+    compute.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    compute.vm.hostname = "devstack-compute-1"
+    compute.vm.network "private_network", ip: "#{compute_ip_data}"
+    compute.vm.network "private_network", ip: "#{compute_ip}"
+    #compute.vm.network "forwarded_port", guest: 6080, host: 6080
+    compute.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "4"]
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic3", "intnet"]
+    end
+    compute.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    compute.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    compute.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    compute.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    compute.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.50.0/24 gateway 192.168.51.1 dev eth2
+      route add -net 172.16.0.0/24 gateway 172.16.1.1 dev eth1
+    SCRIPT
+    compute.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+      puppet.options = "--verbose"
+    end
+    compute.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "devstack-compute.pp"
+      puppet.facter = {
+        "my_branch" => "#{devstack_branch}"
+      }
+      puppet.options = "--verbose"
     end
   end
 
