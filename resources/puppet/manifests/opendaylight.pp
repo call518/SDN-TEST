@@ -56,11 +56,13 @@ package { "oracle-java7-installer":
 exec{ "update-java-alternatives -s java-7-oracle":
     require => Package["oracle-java7-installer"],
     timeout => "0",
+    require => Package["oracle-java7-installer"],
 }
 $java_home = "/usr/lib/jvm/java-7-oracle"
 file { "/etc/profile.d/java_home.sh":
     ensure  => present,
     content => "export JAVA_HOME=\"${java_home}\"";
+    require => Exec["update-java-alternatives -s java-7-oracle"],
 }
 
 ### $odl_dist_name: Read from Puppet Facter in Vagrantfile

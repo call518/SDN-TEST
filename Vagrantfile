@@ -278,8 +278,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.box = "trusty64"
     control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     control.vm.hostname = "devstack-control"
-    control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "private_network", ip: "#{control_ip_data}"
+    control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "public_network", auto_config: false
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
@@ -300,6 +300,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
     control.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     control.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    control.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.51.0/24 gateway 192.168.50.1 dev eth2
+    SCRIPT
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
@@ -348,8 +351,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       compute.vm.box = "trusty64"
       compute.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
       compute.vm.hostname = "devstack-compute-#{compute_index}"
-      compute.vm.network "private_network", ip: "#{compute_ip}"
       compute.vm.network "private_network", ip: "#{compute_ip_data}"
+      compute.vm.network "private_network", ip: "#{compute_ip}"
       #compute.vm.network "forwarded_port", guest: 6080, host: 6080
       compute.vm.provider :virtualbox do |vb|
         #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -363,6 +366,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       compute.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
       compute.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
       compute.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+      compute.vm.provision "shell", inline: <<-SCRIPT
+        route add -net 192.168.50.0/24 gateway 192.168.51.1 dev eth2
+      SCRIPT
       compute.vm.provision "puppet" do |puppet|
         puppet.working_directory = "/vagrant/resources/puppet"
         puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
