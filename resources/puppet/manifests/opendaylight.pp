@@ -54,7 +54,6 @@ package { "oracle-java7-installer":
     require => Apt::Ppa["ppa:webupd8team/java"],
 }
 exec{ "update-java-alternatives -s java-7-oracle":
-    require => Package["oracle-java7-installer"],
     timeout => "0",
     require => Package["oracle-java7-installer"],
 }
