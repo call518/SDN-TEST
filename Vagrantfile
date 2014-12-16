@@ -454,7 +454,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vxlan_server1.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vxlan_server1.vm.provision "shell", inline: <<-SCRIPT
-      route del default && route add default gw 192.168.1.1
+      if test ! -f /root/.created-routing; then
+        route del default && route add default gw 192.168.1.1
+        touch /root/.created-routing
+      fi
     SCRIPT
     vxlan_server1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -492,7 +495,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vxlan_server2.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
     vxlan_server2.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     vxlan_server2.vm.provision "shell", inline: <<-SCRIPT
-      route del default && route add default gw 192.168.2.1
+      if test ! -f /root/.created-routing; then
+        route del default && route add default gw 192.168.2.1
+        touch /root/.created-routing
+      fi
     SCRIPT
     vxlan_server2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
