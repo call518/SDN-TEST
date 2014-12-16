@@ -278,8 +278,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.box = "trusty64"
     control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     control.vm.hostname = "devstack-control"
-    control.vm.network "private_network", ip: "#{control_ip_data}"
     control.vm.network "private_network", ip: "#{control_ip}"
+    control.vm.network "private_network", ip: "#{control_ip_data}"
     control.vm.network "public_network", auto_config: false
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
@@ -348,8 +348,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     compute.vm.box = "trusty64"
     compute.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     compute.vm.hostname = "devstack-compute-1"
-    compute.vm.network "private_network", ip: "#{compute_ip_data}"
     compute.vm.network "private_network", ip: "#{compute_ip}"
+    compute.vm.network "private_network", ip: "#{compute_ip_data}"
     #compute.vm.network "forwarded_port", guest: 6080, host: 6080
     compute.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
