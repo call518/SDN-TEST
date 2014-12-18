@@ -90,25 +90,25 @@ exec { "Make & Install":
     unless  => "bash -c 'command -v cbench &>/dev/null'",
 }
 
-#file { "Put wcbench-files":
-#    path     => "/home/vagrant/wcbench-scripts",
-#    owner    => "vagrant",
-#    group    => "vagrant",
-#    mode     => 0755,
-#    source   => "/vagrant/resources/puppet/files/wcbench-scripts",
-#    ensure   => directory,
-#    replace  => true,
-#    recurse  => true,
-#}
+file { "Put wcbench-files":
+    path     => "/home/vagrant/wcbench-scripts",
+    owner    => "vagrant",
+    group    => "vagrant",
+    mode     => 0755,
+    source   => "/vagrant/resources/puppet/files/wcbench-scripts",
+    ensure   => directory,
+    replace  => true,
+    recurse  => true,
+}
 
-#exec { "edit wcbench-scripts":
-#    command => "sed -i 's/^#!\/usr\/bin\/env sh$/#!\/usr\/bin\/env bash/g' /home/vagrant/wcbench-scripts/*",
-#    user    => "vagrant",
-#    cwd     => "/home/vagrant/wcbench-scripts",
-#    timeout => "0",
-#    logoutput => true,
-#    require => File["Put wcbench-files"],
-#}
+exec { "edit wcbench-scripts":
+    command => "sed -i 's/env sh$/env bash/g' /home/vagrant/wcbench-scripts/*",
+    user    => "vagrant",
+    cwd     => "/home/vagrant/wcbench-scripts",
+    timeout => "0",
+    logoutput => true,
+    require => File["Put wcbench-files"],
+}
 
 exec { "config ssh_config":
     command => "cat /vagrant/resources/puppet/files/ssh_config_options >> /etc/ssh/ssh_config",
