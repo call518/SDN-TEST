@@ -117,23 +117,6 @@ exec { "config ssh_config":
     logoutput => true,
 }
 
-$POX_DIR = "/home/vagrant/pox"
-vcsrepo { "${$POX_DIR}":
-    provider => git,
-    ensure => present,
-    user => "vagrant",
-    source => "http://github.com/noxrepo/pox",
-}
-
-exec { "Put POX Example Run Command":
-    command => "echo './pox.py log.level --=INFO topology forwarding.l2_learning' > run-pox.cmd",
-    cwd     => "${$POX_DIR}",
-    user    => "vagrant",
-    timeout => "0",
-    logoutput => true,
-    require => Vcsrepo["${$POX_DIR}"],
-}
-
 $eCBench_DIR = "/home/vagrant/eCBench"
 
 vcsrepo { "${eCBench_DIR}":

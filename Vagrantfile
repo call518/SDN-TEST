@@ -606,6 +606,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifest_file  = "cbench.pp"
       puppet.options = "--verbose"
     end
+    cbench.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "pox.pp"
+      puppet.options = "--verbose"
+    end
   end
 
 end
