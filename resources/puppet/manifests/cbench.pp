@@ -169,10 +169,9 @@ exec { "sed -i 's/10.0.42.5/192.168.41.10/g' ${eCBench_DIR}/.runCbench.config":
     require => Vcsrepo["${eCBench_DIR}"],
 }
 
-ssh_keygen { "root":
+ssh_keygen { "vagrant":
     type     => "rsa",
     home     => "/home/vagrant",
-    bit      => "4096",
     filename => "/home/vagrant/.ssh/id_rsa_nopass",
 }
 
