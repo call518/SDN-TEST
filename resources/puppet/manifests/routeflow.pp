@@ -58,18 +58,6 @@ package { $deps:
     ensure   => installed,
 }
 
-### Oracle Java/JDK 7
-apt::ppa { "ppa:webupd8team/java": }
-package { "oracle-java7-installer":
-    ensure  => installed,
-    responsefile => "/vagrant/resources/puppet/files/oracle-java.preseed",
-    require => Apt::Ppa["ppa:webupd8team/java"],
-}
-exec{ "update-java-alternatives -s java-7-oracle":
-    require => Package["oracle-java7-installer"],
-    timeout  => "0",
-}
-
 ### RouteFlow & OpenDaylight-rfproxy
 vcsrepo { "/home/vagrant/RouteFlow-Test/RouteFlow":
     ensure   => present,

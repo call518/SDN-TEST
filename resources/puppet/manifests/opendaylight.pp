@@ -46,24 +46,6 @@ Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin"
 #    ensure   => installed,
 #}
 
-### Oracle Java/JDK 7
-apt::ppa { "ppa:webupd8team/java": }
-package { "oracle-java7-installer":
-    ensure  => installed,
-    responsefile => "/vagrant/resources/puppet/files/oracle-java.preseed",
-    require => Apt::Ppa["ppa:webupd8team/java"],
-}
-exec{ "update-java-alternatives -s java-7-oracle":
-    timeout => "0",
-    require => Package["oracle-java7-installer"],
-}
-$java_home = "/usr/lib/jvm/java-7-oracle"
-file { "/etc/profile.d/java_home.sh":
-    ensure  => present,
-    content => "export JAVA_HOME=\"${java_home}\"",
-    require => Exec["update-java-alternatives -s java-7-oracle"],
-}
-
 ### $odl_dist_name: Read from Puppet Facter in Vagrantfile
 
 if $odl_dist_name == "Hydrogen-Virtualization" {

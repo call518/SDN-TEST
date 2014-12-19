@@ -45,10 +45,43 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ############## VTN Coordinator / OpenDaylight / Mininet / RouteFlow #############################################
 #################################################################################################################
 
+  ## Ubuntu (General)
+  config.vm.define "trusty64" do |trusty64|
+    trusty64.vm.box = "trusty64"
+    trusty64.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    trusty64.vm.hostname = "ubuntu-trusty"
+    trusty64.vm.network "private_network", ip: "192.168.10.10"
+    #trusty64.vm.network "forwarded_port", guest: 8083, host: 8083
+    trusty64.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+    end
+    #trusty64.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #trusty64.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    #trusty64.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    trusty64.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    trusty64.vm.provision "shell", inline: <<-SCRIPT
+      #route add -net 192.168.41.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.41.0/24 p7p1"
+      #route add -net 192.168.42.0/24 p7p1 2> /dev/null; echo "route add -net 192.168.42.0/24 p7p1"
+      #route add -net 192.168.0.0/16 p7p1 2> /dev/null; echo "route add -net 192.168.0.0/16 p7p1"
+    SCRIPT
+    #trusty64.vm.provision "puppet" do |puppet|
+    #  puppet.working_directory = "/vagrant/resources/puppet"
+    #  puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+    #  puppet.manifests_path = "resources/puppet/manifests"
+    #  puppet.manifest_file  = "base.pp"
+    #  puppet.options = "--verbose"
+    #end
+  end
+
   ## VTN Coordinator
   config.vm.define "vtn-coordinator" do |vtn_coordinator|
     #vtn_coordinator.vm.box = "Fedora19-x86_64"
-    vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
+    #vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
     vtn_coordinator.vm.box = "Fedora20-x86_64"
     vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     vtn_coordinator.vm.hostname = "vtn-coordinator"
@@ -130,6 +163,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "java.pp"
+      puppet.options = "--verbose"
+    end
+    opendaylight_mininet_1.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "opendaylight.pp"
       puppet.facter = {
         #"odl_dist_name" => "Hydrogen-Virtualization"
@@ -192,6 +232,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "java.pp"
+      puppet.options = "--verbose"
+    end
+    opendaylight_mininet_2.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "opendaylight.pp"
       puppet.facter = {
         #"odl_dist_name" => "Hydrogen-Virtualization"
@@ -242,6 +289,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-routeflow.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
+      puppet.options = "--verbose"
+    end
+    routeflow.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "java.pp"
       puppet.options = "--verbose"
     end
     routeflow.vm.provision "puppet" do |puppet|
