@@ -179,6 +179,6 @@ file { "/home/vagrant/.ssh/config":
     ensure  => present,
     owner   => "vagrant",
     group   => "vagrant",
-    content => "Host cbench\n    Hostname 192.168.30.10\n    User vagrant\n    IdentityFile /home/vagrant/.ssh/id_rsa\n    StrictHostKeyChecking no",
+    content => "Host cbench\n    Hostname 192.168.30.10\n    User vagrant\n    IdentityFile /home/vagrant/.ssh/id_rsa_nopass\n    StrictHostKeyChecking no",
     mode    => "0600",
 }
