@@ -90,24 +90,31 @@ exec { "Make & Install":
     unless  => "bash -c 'command -v cbench &>/dev/null'",
 }
 
-file { "Put wcbench-files":
-    path     => "/home/vagrant/wcbench-scripts",
+vcsrepo { "/home/vagrant/wcbench":
+    provider => git,
+    ensure => present,
+    user => "vagrant",
+    source => "https://github.com/dfarrell07/wcbench.git",
+}
+
+exec { "edit wcbench":
+    command => "sed -i 's/env sh$/env bash/g' *",
+    user    => "vagrant",
+    cwd     => "/home/vagrant/wcbench",
+    timeout => "0",
+    logoutput => true,
+    require => Vcsrepo["/home/vagrant/wcbench"],
+}
+
+file { "Put wcbench-custom":
+    path     => "/home/vagrant/wcbench-custom",
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/wcbench-scripts",
+    source   => "/vagrant/resources/puppet/files/wcbench-custom",
     ensure   => directory,
     replace  => true,
     recurse  => true,
-}
-
-exec { "edit wcbench-scripts":
-    command => "sed -i 's/env sh$/env bash/g' /home/vagrant/wcbench-scripts/*",
-    user    => "vagrant",
-    cwd     => "/home/vagrant/wcbench-scripts",
-    timeout => "0",
-    logoutput => true,
-    require => File["Put wcbench-files"],
 }
 
 exec { "config ssh_config":
@@ -160,4 +167,19 @@ exec { "sed -i 's/10.0.42.5/192.168.41.10/g' ${eCBench_DIR}/.runCbench.config":
     timeout => "0",
     logoutput => true,
     require => Vcsrepo["${eCBench_DIR}"],
+}
+
+ssh_keygen { "root":
+    type     => "rsa",
+    home     => "/home/vagrant",
+    bit      => "4096",
+    filename => "/home/vagrant/.ssh/id_rsa_nopass",
+}
+
+file { "/home/vagrant/.ssh/config":
+    ensure  => present,
+    owner   => "vagrant",
+    group   => "vagrant",
+    content => "Host cbench\n    Hostname 192.168.30.10\n    User vagrant\n    IdentityFile /home/vagrant/.ssh/id_rsa\n    StrictHostKeyChecking no",
+    mode    => "0600",
 }

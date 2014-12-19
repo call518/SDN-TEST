@@ -60,7 +60,7 @@ exec{ "update-java-alternatives -s java-7-oracle":
 $java_home = "/usr/lib/jvm/java-7-oracle"
 file { "/etc/profile.d/java_home.sh":
     ensure  => present,
-    content => "export JAVA_HOME=\"${java_home}\"";
+    content => "export JAVA_HOME=\"${java_home}\"",
 }
 
 $odl_dist_helium_name = "0.2.0-Helium"

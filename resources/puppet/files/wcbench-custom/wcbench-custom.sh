@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # Main WCBench script. WCBench wraps CBench in stuff to make it useful.
 # This script supports installing ODL, installing CBench, starting and
 # configuring ODL, running CBench against ODL, pinning ODL to a given
@@ -21,13 +21,13 @@ VERBOSE=false
 NUM_SWITCHES=32 # Default number of switches for CBench to simulate
 NUM_MACS=100000  # Default number of MACs for CBench to use
 TESTS_PER_SWITCH=10  # Default number of CBench tests to do per CBench run
-MS_PER_TEST=10000  # Default milliseconds to run each CBench test
+MS_PER_TEST=1000  # Default milliseconds to run each CBench test
 CBENCH_WARMUP=1  # Default number of warmup cycles to run CBench
 KARAF_SHELL_PORT=8101  # Port that the Karaf shell listens on
-CONTROLLER="OpenDaylight"  # Currently only support ODL
-CONTROLLER_IP="localhost"  # Change this to remote IP if running on two systems
+CONTROLLER="POX"  # Currently only support ODL
+CONTROLLER_IP="192.168.30.10"  # Change this to remote IP if running on two systems
 CONTROLLER_PORT=6633  # Default port for OpenDaylight
-SSH_HOSTNAME="cbenchc"  # You'll need to update this to reflect ~/.ssh/config
+SSH_HOSTNAME="cbench"  # You'll need to update this to reflect ~/.ssh/config
 
 # Paths used in this script
 BASE_DIR=$HOME  # Directory that code and such is dropped into
@@ -849,16 +849,16 @@ while getopts ":hvrcip:ot:kd" opt; do
             ;;
         r)
             # Run CBench against OpenDaylight
-            if [ $CONTROLLER_IP = "localhost" ]; then
-                if ! odl_installed; then
-                    echo "OpenDaylight isn't installed, can't run test"
-                    exit $EX_ERR
-                fi
-                if ! odl_started; then
-                    echo "OpenDaylight isn't started, can't run test"
-                    exit $EX_ERR
-                fi
-            fi
+#            if [ $CONTROLLER_IP = "localhost" ]; then
+#                if ! odl_installed; then
+#                    echo "OpenDaylight isn't installed, can't run test"
+#                    exit $EX_ERR
+#                fi
+#                if ! odl_started; then
+#                    echo "OpenDaylight isn't started, can't run test"
+#                    exit $EX_ERR
+#                fi
+#            fi
             run_cbench
             action_taken=true
             ;;
@@ -896,10 +896,10 @@ while getopts ":hvrcip:ot:kd" opt; do
             ;;
         t)
             # Set CBench run time in minutes
-            if ! odl_installed; then
-                echo "OpenDaylight isn't installed, can't start it"
-                exit $EX_ERR
-            fi
+#            if ! odl_installed; then
+#                echo "OpenDaylight isn't installed, can't start it"
+#                exit $EX_ERR
+#            fi
             # Convert minutes to milliseconds
             MS_PER_TEST=$((${OPTARG} * 60 * 1000))
             TESTS_PER_SWITCH=1

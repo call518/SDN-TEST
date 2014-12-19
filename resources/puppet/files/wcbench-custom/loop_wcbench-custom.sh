@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # Helper script to run WCBench tests in a loop, used for testing
 # Script assumes it lives in the same dir as wcbench.sh
 
@@ -118,7 +118,7 @@ loop_no_restart()
 {
     echo "Looping WCBench against ODL without restarting ODL"
     while :; do
-        start_odl
+        #start_odl
         run_wcbench
     done
 }
