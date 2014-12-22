@@ -644,7 +644,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cbench.vm.provision "shell", inline: <<-SCRIPT
       #route add -net 192.168.40.0/24 eth1 2> /dev/null; echo "route add -net 192.168.40.0/24 eth1"
       #route add -net 192.168.42.0/24 eth1 2> /dev/null; echo "route add -net 192.168.42.0/24 eth1"
-      #route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
     SCRIPT
     cbench.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
