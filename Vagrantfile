@@ -635,7 +635,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     cbench.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     cbench.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
