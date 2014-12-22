@@ -28,6 +28,7 @@ $deps = [
 	"libpcap-dev",
 	"autoconf",
 	"make",
+	"pkg-config",
 	"automake",
 	"libtool",
 	"libconfig-dev",
@@ -81,12 +82,12 @@ exec { "Build Configuration (2)":
 }
 
 exec { "Make & Install":
-    command => "make && make install",
-    user    => "root",
+    command => "make && sudo make install",
+    user    => "vagrant",
     cwd     => "${OFLOPS_DIR}",
     timeout => "0",
     logoutput => true,
-    require => Exec["Build Configuration (2)"],
+    require => [Package["make"], Package["pkg-config"], Package["libconfig-dev"], Exec["Build Configuration (2)"]],
     unless  => "bash -c 'command -v cbench &>/dev/null'",
 }
 
