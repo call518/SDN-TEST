@@ -203,7 +203,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_2.vm.network "private_network", ip: "192.168.42.10"
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9292
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8181, host: 8282
-    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8101, host: 8101
+    opendaylight_mininet_2.vm.network "forwarded_port", guest: 8101, host: 8202
     opendaylight_mininet_2.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "4"]
