@@ -60,6 +60,8 @@ vm> cd /home/vagrant/net-virt-platform
 vm> source ./workspace/ve/bin/activate 
 vm> (ve) make stop-sdncon reset-cassandra start-sdncon 
 vm> (ve) make start-sdnplatform
+vm> (ve) cd cli/
+vm> (ve) ./cli.py
 ```
 * Web-Dashboard (GUI)
 
