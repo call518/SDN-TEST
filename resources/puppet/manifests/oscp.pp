@@ -30,11 +30,11 @@ $deps = [
 Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
 
 ### Apt Update
-#exec { "apt-update":
-#    command => "/usr/bin/apt-get update",
-#    user    => "root",
-#    timeout => "0",
-#}
+exec { "apt-update":
+    command => "/usr/bin/apt-get update",
+    user    => "root",
+    timeout => "0",
+}
 
 package { "openjdk-6-jre-lib":
     ensure   => purged,
