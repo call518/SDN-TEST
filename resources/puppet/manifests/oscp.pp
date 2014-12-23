@@ -56,7 +56,7 @@ vcsrepo { "${oscp_dir}":
     provider => git,
     ensure => present,
     user => "vagrant",
-    source => "https://call518@git.opendaylight.org/gerrit/p/net-virt-platform.git",
+    source => "https://git.opendaylight.org/gerrit/p/net-virt-platform.git",
     #revision => "master",
 }
 
