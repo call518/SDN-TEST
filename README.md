@@ -14,6 +14,7 @@ SDN Test Suite
 
 ## Vagrant-based SDN Test Suite.
 
+* OSCP (OpenDaylight SDN Controller Platform)
 * OpenDaylight /w Mininet
 * RouteFlow
 * DevStack /w OpenDaylight
@@ -28,6 +29,7 @@ $ vagrant status
 
 Current machine states:
 
+oscp                      (192.168.12.10)
 vtn-coordinator           (192.168.40.10)
 opendaylight-mininet-1    (192.168.41.10)
 opendaylight-mininet-2    (192.168.42.10)
@@ -39,6 +41,28 @@ vxlan-server1             (192.168.1.10)
 vxlan-server2             (192.168.2.20)
 cbench                    (192.168.77.10)
 ```
+
+# OSCP (OpenDaylight SDN Controller Platform)
+
+![OSCP ScreenShot](etc-files/oscp-screenshot.png)
+
+## Start Vagrant
+
+`host> vagrant up oscp`
+
+## Run OSCP
+
+```
+host> vagrant ssh oscp
+vm> cd /home/vagrant/net-virt-platform
+vm> source ./workspace/ve/bin/activate 
+vm> (ve) make stop-sdncon reset-cassandra start-sdncon 
+vm> (ve) make start-sdnplatform
+vm> (ve) ./cli.py 
+```
+* Web-Dashboard (GUI)
+
+Browser: http://{Vagratn Host IP}:8000
 
 # OpenDaylight /w Mininet (e.g. Helium)
 

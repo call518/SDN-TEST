@@ -78,6 +78,44 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #end
   end
 
+  ## OSCP (OpenDaylight SDN Controller Platform)
+  config.vm.define "oscp" do |oscp|
+    oscp.vm.box = "trusty64"
+    oscp.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    oscp.vm.hostname = "oscp"
+    oscp.vm.network "private_network", ip: "192.168.12.10"
+    oscp.vm.network "forwarded_port", guest: 8000, host: 8000
+    oscp.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+    end
+    #oscp.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #oscp.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    #oscp.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    oscp.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    oscp.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
+    SCRIPT
+    oscp.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+      puppet.options = "--verbose"
+    end
+    oscp.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "oscp.pp"
+      puppet.options = "--verbose"
+    end
+  end
+
   ## VTN Coordinator
   config.vm.define "vtn-coordinator" do |vtn_coordinator|
     #vtn_coordinator.vm.box = "Fedora19-x86_64"
