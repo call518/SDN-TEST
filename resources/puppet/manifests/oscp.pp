@@ -75,3 +75,11 @@ exec { "Buinding OSCP: make":
     timeout  => "0",
     require  => Exec["Building OSCP: setup.sh"],
 }
+
+exec { "Config Cassandra JVM Stack Size":
+    command  => "sed -i 's/Xss160k/Xss256k/g' /home/vagrant/net-virt-platform/workspace/tools/cassandra/conf/cassandra-env.sh",
+    cwd      => "${oscp_dir}",
+    user     => "vagrant",
+    timeout  => "0",
+    require  => Exec["Buinding OSCP: make"],
+}
