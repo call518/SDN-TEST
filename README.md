@@ -46,6 +46,8 @@ cbench                    (192.168.77.10)
 
 ![OSCP ScreenShot](etc-files/oscp-screenshot.png)
 
+* Ref: https://wiki.opendaylight.org/view/OpenDaylight_SDN_Controller_Platform_(OSCP):Installation
+
 ## Start Vagrant
 
 `host> vagrant up oscp`
@@ -235,6 +237,7 @@ vm> sudo ./run-routeflow-infra.sh
 
 # DevStack /w OpenDaylight
 
+* Ref: http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
 * (Note) *Order is important!*
 * OpenStack Nodes over L3
 * OpenDaylight
