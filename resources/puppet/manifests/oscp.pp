@@ -47,6 +47,7 @@ package { "openjdk-6-jre-headless":
 package { $deps:
     ensure   => installed,
     require  => [Package["openjdk-6-jre-lib"], Package["openjdk-6-jre-headless"]],
+    before   => [Exec["Building OSCP: setup.sh"], Exec["Buinding OSCP: make"]],
 }
 
 $oscp_dir = "/home/vagrant/net-virt-platform"
