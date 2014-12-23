@@ -44,6 +44,8 @@ cbench                    (192.168.77.10)
 
 # OSCP (OpenDaylight SDN Controller Platform)
 
+* Ref: https://wiki.opendaylight.org/view/OpenDaylight_SDN_Controller_Platform_(OSCP):Installation
+
 ![OSCP ScreenShot](etc-files/oscp-screenshot.png)
 
 * Ref: https://wiki.opendaylight.org/view/OpenDaylight_SDN_Controller_Platform_(OSCP):Installation
@@ -56,7 +58,7 @@ cbench                    (192.168.77.10)
 
 ```
 host> vagrant ssh oscp
-vm> sudo mn --controller=remote --mac --topo=linear
+vm> sudo mn --controller=remote,ip=127.0.0.1,port=6633 --mac --topo=linear
 ```
 ```
 host> vagrant ssh oscp
