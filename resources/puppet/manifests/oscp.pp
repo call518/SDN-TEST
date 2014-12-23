@@ -59,7 +59,7 @@ vcsrepo { "${oscp_dir}":
     #revision => "master",
 }
 
-exec { "Setup OSCP (setup.sh)":
+exec { "Building OSCP: setup.sh":
     command  => "bash setup.sh",
     cwd      => "${oscp_dir}",
     user     => "vagrant",
@@ -67,10 +67,10 @@ exec { "Setup OSCP (setup.sh)":
     require  => Vcsrepo["${oscp_dir}"],
 }
 
-exec { "make OSCP":
+exec { "Buinding OSCP: make":
     command  => "make",
     cwd      => "${oscp_dir}",
     user     => "vagrant",
     timeout  => "0",
-    require  => Exec["Setup OSCP (setup.sh)"],
+    require  => Exec["Building OSCP: setup.sh"],
 }
