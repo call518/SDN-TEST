@@ -81,12 +81,6 @@ vm> (ve) oscp> show host
 -|-----------------|-------------|----|----------|-------------------------------------|---|---------
 1 00:00:00:00:00:01 default            10.0.0.1   00:00:00:00:00:00:00:01/1 (s1-eth1)       2 minutes
 2 00:00:00:00:00:02 default            10.0.0.2   00:00:00:00:00:00:00:02/1 (s2-eth1)       2 minutes
-3 12:28:b1:56:fa:de default            Unknown    Inactive                                  2 minutes
-4 12:45:c0:ec:78:ff default            Unknown    Inactive                                  4 minutes
-5 3e:12:0b:7f:d1:46 default            Unknown    00:00:00:00:00:00:00:02/65534 (local)     2 minutes
-6 5a:f9:2c:d6:fc:48 default            Unknown    Inactive                                  2 minutes
-7 6e:a6:ed:30:bf:4b default            Unknown    00:00:00:00:00:00:00:01/65534 (local)     2 minutes
-8 8a:e3:12:dd:10:49 default            Unknown    Inactive                                  4 minutes
 
 vm> (ve) oscp> show link
 # Src Switch DPID         Src Port    Src Port State         Dst Switch DPID         Dst Port    Dst Port State         Type
