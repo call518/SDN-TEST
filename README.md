@@ -210,7 +210,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ```
 host> vagrant ssh routeflow
 vm> cd /home/vagrant/opendaylight
-vm> ./run.sh -Xmx1024m -XX:MaxPermSize=256m
+vm> ./RUN.sh
 ```
 
 * Web-UI (OpenDaylight)
