@@ -54,12 +54,12 @@ file { "/home/vagrant/devstack/local.conf":
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
 
-exec { "dos2unix /home/vagrant/devstack/local.conf":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "root",
-    timeout => "0",
-    require => File["/home/vagrant/devstack/local.conf"],
-}
+#exec { "dos2unix /home/vagrant/devstack/local.conf":
+#    cwd     => "/home/vagrant/devstack/",
+#    user    => "root",
+#    timeout => "0",
+#    require => File["/home/vagrant/devstack/local.conf"],
+#}
 
 file { "Put local.sh":
     path     => "/home/vagrant/devstack/local.sh",
@@ -71,9 +71,9 @@ file { "Put local.sh":
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
 
-exec { "dos2unix /home/vagrant/devstack/local.sh":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "root",
-    timeout => "0",
-    require => File["Put local.sh"],
-}
+#exec { "dos2unix /home/vagrant/devstack/local.sh":
+#    cwd     => "/home/vagrant/devstack/",
+#    user    => "root",
+#    timeout => "0",
+#    require => File["Put local.sh"],
+#}

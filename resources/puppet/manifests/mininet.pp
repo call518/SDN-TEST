@@ -108,12 +108,12 @@ file { "Put mininet-examples":
     recurse  => true,
 }
 
-exec { "dos2unix /home/vagrant/mininet-examples/*":
-    cwd     => "/etc",
-    user    => "root",
-    timeout => "0",
-    require => File["Put mininet-examples"],
-}
+#exec { "dos2unix /home/vagrant/mininet-examples/*":
+#    cwd     => "/etc",
+#    user    => "root",
+#    timeout => "0",
+#    require => File["Put mininet-examples"],
+#}
 
 vcsrepo { "/home/vagrant/loxigen":
     ensure   => present,

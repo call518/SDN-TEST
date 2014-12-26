@@ -11,9 +11,9 @@ package { "unzip":
     ensure => "installed"
 }
 
-package { "dos2unix":
-    ensure   => installed,
-}
+#package { "dos2unix":
+#    ensure   => installed,
+#}
 
 #package { "expect":
 #    ensure   => installed,
@@ -60,9 +60,9 @@ file { "/etc/hosts":
     content => template("/vagrant/resources/puppet/templates/hosts.erb")
 }
 
-exec { "dos2unix /etc/hosts":
-    cwd     => "/etc",
-    user    => "root",
-    timeout => "0",
-    require => Package["dos2unix"],
-}
+#exec { "dos2unix /etc/hosts":
+#    cwd     => "/etc",
+#    user    => "root",
+#    timeout => "0",
+#    require => Package["dos2unix"],
+#}

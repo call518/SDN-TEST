@@ -54,12 +54,12 @@ file { "/home/vagrant/devstack/local.conf":
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
 
-exec { "dos2unix /home/vagrant/devstack/local.conf":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "root",
-    timeout => "0",
-    require => File["/home/vagrant/devstack/local.conf"],
-}
+#exec { "dos2unix /home/vagrant/devstack/local.conf":
+#    cwd     => "/home/vagrant/devstack/",
+#    user    => "root",
+#    timeout => "0",
+#    require => File["/home/vagrant/devstack/local.conf"],
+#}
 
 file { "Put devstack-overlay-demo-cmd.txt":
     path     => "/home/vagrant/devstack/devstack-overlay-demo-cmd.txt",
@@ -136,12 +136,12 @@ file { "Put local.sh":
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
 
-exec { "dos2unix /home/vagrant/devstack/local.sh":
-    cwd     => "/home/vagrant/devstack/",
-    user    => "root",
-    timeout => "0",
-    require => File["Put local.sh"],
-}
+#exec { "dos2unix /home/vagrant/devstack/local.sh":
+#    cwd     => "/home/vagrant/devstack/",
+#    user    => "root",
+#    timeout => "0",
+#    require => File["Put local.sh"],
+#}
 
 exec { "echo 'UserKnownHostsFile /dev/null' >> /root/.ssh/config && echo 'StrictHostKeyChecking no' >> /root/.ssh/config":
     cwd     => "/home/vagrant/devstack/",

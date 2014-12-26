@@ -123,12 +123,12 @@ if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
         require  => Exec["Extract ODL-Helium"],
     }
 
-    exec { "dos2unix run-karaf.sh":
-        cwd     => "/home/vagrant/opendaylight",
-        user    => "root",
-        timeout => "0",
-        require => File["Put ODL-Helium-Run-Script"],
-    }
+    #exec { "dos2unix run-karaf.sh":
+    #    cwd     => "/home/vagrant/opendaylight",
+    #    user    => "root",
+    #    timeout => "0",
+    #    require => File["Put ODL-Helium-Run-Script"],
+    #}
 } else {
     #exec { "sed -i 's/^# ovsdb.of.version=1.3/ovsdb.of.version=1.3/g' configuration/config.ini":
     #    cwd     => "/home/vagrant/opendaylight",
@@ -205,10 +205,10 @@ if $hostname != "devstack-control" {
         require => File["mkdir RESTconf-VTN-Tutorial-2"],
     }
     
-    exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/*":
-        cwd     => "/etc",
-        user    => "root",
-        timeout => "0",
-        require => [ File["Put m2m-1.py"], File["Put m2m-2.py"] ],
-    }
+    #exec { "dos2unix /home/vagrant/RESTconf-VTN-Tutorial-2/*":
+    #    cwd     => "/etc",
+    #    user    => "root",
+    #    timeout => "0",
+    #    require => [ File["Put m2m-1.py"], File["Put m2m-2.py"] ],
+    #}
 }
