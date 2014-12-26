@@ -232,7 +232,11 @@ vm> cd /home/vagrant/rf-topo-mininet/
 vm> sudo ./run-routeflow-infra.sh
 ```
 
-* Result of RouteFlow Tutorial-2
+## RouteFlow Mapping Virtual-Router & Physical-Router
+
+![RouteFlow Mapping](etc-files/routeflow-mapping.png)
+
+## Result of RouteFlow Tutorial-2
 
 ```
 vm> mininet> pingall
@@ -364,11 +368,6 @@ in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), pa
             Interface "s5-eth4"
     ovs_version: "1.4.6"
 ```
-
-
-## RouteFlow Mapping Virtual-Router & Physical-Router
-
-![RouteFlow Mapping](etc-files/routeflow-mapping.png)
 
 ## RouteFlow APPENDIX
 
