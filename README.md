@@ -16,7 +16,7 @@ SDN Test Suite
 
 * OSCP (OpenDaylight SDN Controller Platform)
 * OpenDaylight /w Mininet
-* RouteFlow
+* RouteFlow /w Mininet
 * DevStack /w OpenDaylight
 * VXLAN /w OVS
 * VTN /w Coordinator
