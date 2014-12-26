@@ -152,7 +152,7 @@ exec  { "Make RouteFlow-TestSuite":
     logoutput => true,
     timeout  => "0",
     #require  => File["Put RUN.sh"],
-    require  => Vcsrepo["/home/vagrant/RouteFlow-Test/RouteFlow"],
+    require  => [Vcsrepo["/home/vagrant/RouteFlow-Test/RouteFlow"], Package["build-essential"]],
 }
 
 exec  { "Build LXC-Env.":
