@@ -8,10 +8,19 @@ Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin"
 
 ### Oracle Java/JDK 7
 apt::ppa { "ppa:webupd8team/java": }
+
+exec { "apt-update":
+    command => "/usr/bin/apt-get update",
+    user    => "root",
+    timeout => "0",
+    require => Apt::Ppa["ppa:webupd8team/java"],
+}
+
 package { "oracle-java7-installer":
     ensure  => installed,
     responsefile => "/vagrant/resources/puppet/files/oracle-java.preseed",
-    require => Apt::Ppa["ppa:webupd8team/java"],
+    #require => Apt::Ppa["ppa:webupd8team/java"],
+    require => Exec["apt-update"],
 }
 exec{ "update-java-alternatives -s java-7-oracle":
     timeout => "0",
