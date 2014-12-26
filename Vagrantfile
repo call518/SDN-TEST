@@ -309,13 +309,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  ## RouteFlow & OpenDaylight(Source) & Mininet
+  ## RouteFlow & Mininet
   config.vm.define "routeflow" do |routeflow|
     routeflow.vm.box = "precise64"
     routeflow.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/precise64/versions/0.1.0/providers/virtualbox.box"
     routeflow.vm.hostname = "routeflow"
     routeflow.vm.network "private_network", ip: "192.168.30.10"
-    routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
+    #routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
     routeflow.vm.network "forwarded_port", guest: 8111, host: 8111
     routeflow.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -338,7 +338,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     routeflow.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.hiera_config_path = "resources/puppet/hiera-routeflow.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "java.pp"
       puppet.options = "--verbose"
