@@ -232,6 +232,140 @@ vm> cd /home/vagrant/rf-topo-mininet/
 vm> sudo ./run-routeflow-infra.sh
 ```
 
+* Result of RouteFlow Tutorial-2
+
+```
+vm> mininet> pingall
+*** Ping: testing ping reachability
+h1 -> h2 h3 h4
+h2 -> h1 h3 h4
+h3 -> h1 h2 h4
+h4 -> h1 h2 h3
+*** Results: 0% dropped (0/12 lost)
+
+vm> mininet> dpctl dump-flows
+*** s5 ------------------------------------------------------------------------
+in_port(4),eth(src=3e:20:cb:b5:e1:a0,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:1, bytes:41, used:3.320s, actions:drop
+in_port(3),eth(src=da:ca:d7:6c:1a:cb,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:1, bytes:41, used:1.504s, actions:drop
+in_port(4),eth(src=02:d4:d4:d4:d4:d4,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=50.0.0.4,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:180, bytes:15128, used:0.900s, actions:userspace(pid=4294962914,controller,length=4294901764)
+in_port(2),eth(src=02:b2:b2:b2:b2:b2,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=10.0.0.2,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:179, bytes:15022, used:0.924s, actions:userspace(pid=4294962916,controller,length=4294901762)
+in_port(2),eth(src=aa:54:10:74:b4:86,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:0, bytes:0, used:never, actions:drop
+in_port(3),eth(src=02:c3:c3:c3:c3:c3,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=30.0.0.3,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:184, bytes:15516, used:0.376s, actions:userspace(pid=4294962915,controller,length=4294901763)
+*** s6 ------------------------------------------------------------------------
+in_port(3),eth(src=d6:ac:e5:d6:fb:6b,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:0, bytes:0, used:never, actions:drop
+in_port(2),eth(src=6e:51:01:12:11:2a,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:0, bytes:0, used:never, actions:drop
+in_port(3),eth(src=02:d2:d2:d2:d2:d2,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=40.0.0.4,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:185, bytes:15758, used:0.900s, actions:userspace(pid=4294962898,controller,length=4294901763)
+in_port(2),eth(src=02:a2:a2:a2:a2:a2,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=10.0.0.1,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:183, bytes:15650, used:0.924s, actions:userspace(pid=4294962899,controller,length=4294901762)
+*** s7 ------------------------------------------------------------------------
+in_port(2),eth(src=02:d3:d3:d3:d3:d3,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=20.0.0.4,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:182, bytes:15404, used:0.904s, actions:userspace(pid=4294962882,controller,length=4294901762)
+in_port(3),eth(src=7e:49:79:ea:ed:13,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:0, bytes:0, used:never, actions:drop
+in_port(3),eth(src=02:a3:a3:a3:a3:a3,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=30.0.0.1,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:186, bytes:15976, used:0.928s, actions:userspace(pid=4294962881,controller,length=4294901763)
+*** s8 ------------------------------------------------------------------------
+in_port(2),eth(src=02:b3:b3:b3:b3:b3,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=40.0.0.2,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:180, bytes:15220, used:0.932s, actions:userspace(pid=4294962865,controller,length=4294901762)
+in_port(3),eth(src=02:c2:c2:c2:c2:c2,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=20.0.0.3,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:183, bytes:15470, used:0.384s, actions:userspace(pid=4294962864,controller,length=4294901763)
+in_port(4),eth(src=fe:8c:b1:d0:c2:b5,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:1, bytes:41, used:0.312s, actions:drop
+in_port(4),eth(src=02:a4:a4:a4:a4:a4,dst=01:00:5e:00:00:05),eth_type(0x0800),ipv4(src=50.0.0.1,dst=224.0.0.5,proto=89,tos=0xc0,ttl=1,frag=no), packets:180, bytes:15208, used:0.932s, actions:userspace(pid=4294962863,controller,length=4294901764)
+in_port(2),eth(src=8e:e0:0e:72:fa:13,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:0, bytes:0, used:never, actions:drop
+in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), packets:0, bytes:0, used:never, actions:drop
+
+9cc7a49a-6c7e-49d1-a518-e0642b53c8c1
+    Bridge "dp0"
+        Controller "tcp:127.0.0.1:6633"
+            is_connected: true
+        Port "rfvmB.3"
+            Interface "rfvmB.3"
+        Port "rfvmA.4"
+            Interface "rfvmA.4"
+        Port "rfvmA.3"
+            Interface "rfvmA.3"
+        Port "rfvmD.1"
+            Interface "rfvmD.1"
+        Port "rfvmC.1"
+            Interface "rfvmC.1"
+        Port "rfvmC.3"
+            Interface "rfvmC.3"
+        Port "dp0"
+            Interface "dp0"
+                type: internal
+        Port "rfvmB.1"
+            Interface "rfvmB.1"
+        Port "rfvmA.2"
+            Interface "rfvmA.2"
+        Port "rfvmB.2"
+            Interface "rfvmB.2"
+        Port "rfvmD.3"
+            Interface "rfvmD.3"
+        Port "rfvmA.1"
+            Interface "rfvmA.1"
+        Port "rfvmC.2"
+            Interface "rfvmC.2"
+        Port "rfvmD.2"
+            Interface "rfvmD.2"
+        Port "rfvmD.4"
+    Bridge "s8"
+        Controller "tcp:127.0.0.1:6633"
+            is_connected: true
+        Controller "ptcp:6637"
+        fail_mode: secure
+        Port "s8-eth3"
+            Interface "s8-eth3"
+        Port "s8-eth1"
+            Interface "s8-eth1"
+        Port "s8-eth2"
+            Interface "s8-eth2"
+        Port "s8-eth4"
+            Interface "s8-eth4"
+        Port "s8"
+            Interface "s8"
+                type: internal
+    Bridge "s6"
+        Controller "ptcp:6635"
+        Controller "tcp:127.0.0.1:6633"
+            is_connected: true
+        fail_mode: secure
+        Port "s6-eth3"
+            Interface "s6-eth3"
+        Port "s6"
+            Interface "s6"
+                type: internal
+        Port "s6-eth1"
+            Interface "s6-eth1"
+        Port "s6-eth2"
+            Interface "s6-eth2"
+    Bridge "s7"
+        Controller "tcp:127.0.0.1:6633"
+            is_connected: true
+        Controller "ptcp:6636"
+        fail_mode: secure
+        Port "s7-eth1"
+            Interface "s7-eth1"
+        Port "s7"
+            Interface "s7"
+                type: internal
+        Port "s7-eth2"
+            Interface "s7-eth2"
+        Port "s7-eth3"
+            Interface "s7-eth3"
+    Bridge "s5"
+        Controller "tcp:127.0.0.1:6633"
+            is_connected: true
+        Controller "ptcp:6634"
+        fail_mode: secure
+        Port "s5"
+            Interface "s5"
+                type: internal
+        Port "s5-eth1"
+            Interface "s5-eth1"
+        Port "s5-eth3"
+            Interface "s5-eth3"
+        Port "s5-eth2"
+            Interface "s5-eth2"
+        Port "s5-eth4"
+            Interface "s5-eth4"
+    ovs_version: "1.4.6"
+```
+
+
 ## RouteFlow Mapping Virtual-Router & Physical-Router
 
 ![RouteFlow Mapping](etc-files/routeflow-mapping.png)
