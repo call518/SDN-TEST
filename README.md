@@ -237,7 +237,7 @@ vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rfweb
 vm> gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application
 ```
 
-Browser: `http://Vagrant Host IP}:8111/index.html
+Browser: `http://Vagrant Host IP:8111/index.html`
 
 ## Run Mininet
 
