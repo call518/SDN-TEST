@@ -165,6 +165,13 @@ file { "Put rftest2 Script":
     require  => Exec["Build LXC-Env."],
 }
 
+exec { "dos2unix rftest2":
+    cwd     => "/home/vagrant/RouteFlow-Test/RouteFlow/rftest/",
+    user    => "root",
+    timeout => "0",
+    require => File["Put rftest2 Script"],
+}
+
 file { "Put rf_web Command Sample":
     path     => "/home/vagrant/RouteFlow-Test/RouteFlow/rfweb/rf_web.cmd",
     owner    => "vagrant",
