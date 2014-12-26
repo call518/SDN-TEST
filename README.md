@@ -198,26 +198,9 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 ## Components of VM
 
 * RouteFlow
-* OpenDaylight(Hydrogen Source) & RFProxy(for OpenDaylight)
-* Mininet
-* NOX(Disabled) -> Edit: `/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2`
+* NOX
 * LXC Container (for Simulation Quagga's OSPF, BGP, RIP)
-
-## Run OpenDaylight (Hydrogen)
-
-* Run OpenDaylight
-
-```
-host> vagrant ssh routeflow
-vm> cd /home/vagrant/opendaylight
-vm> ./RUN.sh
-```
-
-* Web-UI (OpenDaylight)
-
-Browser: `http://{Vagratn Host IP}:8080`
-
-Default ID/PW: "admin" / "admin"
+* Mininet
 
 ## Run RouteFlow Tutorial-2
 
