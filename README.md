@@ -215,7 +215,7 @@ vm> ./RUN.sh
 
 * Web-UI (OpenDaylight)
 
-Browser: http://{Vagratn Host IP}:8080
+Browser: `http://{Vagratn Host IP}:8080`
 
 Default ID/PW: "admin" / "admin"
 
