@@ -98,7 +98,7 @@ file { "Put RF-Proxy`s pom.xml":
     group    => "vagrant",
     source   => "/vagrant/resources/puppet/files/pom-odl.xml",
     replace  => true,
-    require  => Vcsrepo["/home/vagrant/opendaylight-with-rfproxy"],
+    require  => vcsrepo["/home/vagrant/opendaylight-with-rfproxy"],
 }
 
 exec  { "Build ODL with RFProxy":
@@ -122,8 +122,9 @@ exec  { "Build ODL":
 }
 
 file { "/home/vagrant/opendaylight":
-  ensure => link,
-  target => "/home/vagrant/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/target/distribution.opendaylight-osgipackage/opendaylight",
+    ensure  => link,
+    target  => "/home/vagrant/opendaylight-with-rfproxy/opendaylight/distribution/opendaylight/target/distribution.opendaylight-osgipackage/opendaylight",
+    require => Exec["Build ODL"],
 }
 
 exec  { "Set ODL OF10":
@@ -132,7 +133,16 @@ exec  { "Set ODL OF10":
     cwd      => "/home/vagrant/opendaylight/configuration",
     logoutput => true,
     timeout  => "0",
-    require  => Exec["Build ODL"],
+    require  => File["/home/vagrant/opendaylight"],
+}
+
+file { "Put RUN.sh":
+    path     => "/home/vagrant/opendaylight/RUN.sh",
+    owner    => "vagrant",
+    group    => "vagrant",
+    source   => "/vagrant/resources/puppet/files/RF-ODL-RUN.sh",
+    replace  => true,
+    require  => Exec["Set ODL OF10"],
 }
 
 exec  { "Make RouteFlow-TestSuite":
@@ -141,7 +151,7 @@ exec  { "Make RouteFlow-TestSuite":
     cwd      => "/home/vagrant/RouteFlow-Test/RouteFlow",
     logoutput => true,
     timeout  => "0",
-    require  => Exec["Build ODL"],
+    require  => File["Put RUN.sh"],
 }
 
 exec  { "Build LXC-Env.":
