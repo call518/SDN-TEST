@@ -208,7 +208,7 @@ RouteFlow Document: https://sites.google.com/site/routeflow/documents/tutorial2-
 
 ```
 host> vagrant ssh routeflow
-vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rftest/
+vm> cd /home/vagrant/RouteFlow/rftest/
 vm> sudo ./rftest2
 ```
 
@@ -216,7 +216,7 @@ vm> sudo ./rftest2
 
 ```
 host> vagrant ssh routeflow
-vm> cd /home/vagrant/RouteFlow-Test/RouteFlow/rfweb
+vm> cd /home/vagrant/RouteFlow/rfweb
 vm> gunicorn -w 4 -b 0.0.0.0:8111 rfweb:application
 ```
 

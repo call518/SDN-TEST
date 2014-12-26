@@ -15,6 +15,9 @@ include apt
 #  fancy_progress       => undef
 #}
 
+### Export Env: Global %PATH for "Exec"
+Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
+
 ### Install Deps Packages
 $deps = [
           "build-essential",
@@ -44,8 +47,13 @@ $deps = [
           "lxc",
 ]
 
-### Export Env: Global %PATH for "Exec"
-Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin" ] }
+#$rf_dir = "/home/vagrant/RouteFlow-Test/RouteFlow"
+$rf_dir = "/home/vagrant/RouteFlow"
+
+package { $deps:
+    ensure   => installed,
+    require  => Vcsrepo["${rf_dir}"],
+}
 
 ### Apt Update
 #exec { "apt-update":
@@ -54,17 +62,21 @@ Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin"
 #    timeout  => "0",
 #}
 
-package { $deps:
-    ensure   => installed,
-}
+#exec { "Install Dep Package":
+#    command  => "sudo apt-get -y install build-essential debhelper python-software-properties dkms fakeroot graphviz linux-headers-generic python-all python-qt4 python-zopeinterface python-twisted-conch python-twisted-web xauth maven git libboost-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev iproute-dev openvswitch-switch mongodb python-pymongo gunicorn lxc",
+#    user     => "root",
+#    logoutput => true,
+#    timeout  => "0",
+#    require  => Exec["apt-update"],
+#}
 
-### RouteFlow & OpenDaylight-rfproxy
-vcsrepo { "/home/vagrant/RouteFlow-Test/RouteFlow":
+vcsrepo { "${rf_dir}":
     ensure   => present,
     provider => git,
     user     => "vagrant",
     source   => "https://github.com/CPqD/RouteFlow.git",
-    revision => "3f406b9c1a0796f40a86eb1194990cdd2c955f4d",
+    #revision => "3f406b9c1a0796f40a86eb1194990cdd2c955f4d",
+    #require  => Exec["Install Dep Package"],
 }
 
 #vcsrepo { "/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin":
@@ -83,7 +95,7 @@ vcsrepo { "/home/vagrant/RouteFlow-Test/RouteFlow":
 #    revision => "5ed4ad773ce1bdd1a1511fe8ce66e0db00ae0a3b",
 #}
 
-#exec  { "Copy RF-Proxy-Source":
+#exec { "Copy RF-Proxy-Source":
 #    command  => "cp -af pom.xml ../../opendaylight-with-rfproxy/opendaylight/ && cp -af src ../../opendaylight-with-rfproxy/opendaylight/",
 #    user     => "vagrant",
 #    cwd      => "/home/vagrant/RouteFlow-Test/rfproxy-odl-plugin",
@@ -101,7 +113,7 @@ vcsrepo { "/home/vagrant/RouteFlow-Test/RouteFlow":
 #    require  => vcsrepo["/home/vagrant/opendaylight-with-rfproxy"],
 #}
 
-#exec  { "Build ODL with RFProxy":
+#exec { "Build ODL with RFProxy":
 #    #command  => "echo 'Starting Build RFProxy...' && mvn clean -q install -DskipTests -e",
 #    command  => "mvn clean install -DskipTests -e",
 #    user     => "vagrant",
@@ -111,7 +123,7 @@ vcsrepo { "/home/vagrant/RouteFlow-Test/RouteFlow":
 #    require  => [File["Put RF-Proxy`s pom.xml"], Exec["Copy RF-Proxy-Source"]],
 #}
 
-#exec  { "Build ODL":
+#exec { "Build ODL":
 #    #command  => "echo 'Starting Build ODL...' && mvn clean -q install -DskipTests  -Dmaven.compile.fork=true",
 #    command  => "mvn clean install -DskipTests  -Dmaven.compile.fork=true",
 #    user     => "vagrant",
@@ -127,7 +139,7 @@ vcsrepo { "/home/vagrant/RouteFlow-Test/RouteFlow":
 #    require => Exec["Build ODL"],
 #}
 
-#exec  { "Set ODL OF10":
+#exec { "Set ODL OF10":
 #    command  => "sed -i 's/^ovsdb.of.version=1.3/# ovsdb.of.version=1.3/g' config.ini ",
 #    user     => "vagrant",
 #    cwd      => "/home/vagrant/opendaylight/configuration",
@@ -145,20 +157,20 @@ vcsrepo { "/home/vagrant/RouteFlow-Test/RouteFlow":
 #    require  => Exec["Set ODL OF10"],
 #}
 
-exec  { "Make RouteFlow-TestSuite":
+exec { "Make RouteFlow-TestSuite":
     command  => "make rfclient",
     user     => "vagrant",
-    cwd      => "/home/vagrant/RouteFlow-Test/RouteFlow",
+    cwd      => "${rf_dir}",
     logoutput => true,
     timeout  => "0",
     #require  => File["Put RUN.sh"],
-    require  => [Vcsrepo["/home/vagrant/RouteFlow-Test/RouteFlow"], Package["build-essential"]],
+    require  => Vcsrepo["${rf_dir}"],
 }
 
-exec  { "Build LXC-Env.":
+exec { "Build LXC-Env.":
     command  => "bash create",
     user     => "root",
-    cwd      => "/home/vagrant/RouteFlow-Test/RouteFlow/rftest",
+    cwd      => "${rf_dir}/rftest",
     logoutput => true,
     timeout  => "0",
     require  => Exec["Make RouteFlow-TestSuite"],
@@ -166,7 +178,7 @@ exec  { "Build LXC-Env.":
 
 ## Disabled POX Controller Script (for ODL)
 #file { "Put rftest2 Script":
-#    path     => "/home/vagrant/RouteFlow-Test/RouteFlow/rftest/rftest2",
+#    path     => "${rf_dir}/rftest/rftest2",
 #    owner    => "vagrant",
 #    group    => "vagrant",
 #    mode     => 0755,
@@ -178,14 +190,14 @@ exec  { "Build LXC-Env.":
 #}
 
 #exec { "dos2unix rftest2":
-#    cwd     => "/home/vagrant/RouteFlow-Test/RouteFlow/rftest/",
+#    cwd     => "${rf_dir}/rftest/",
 #    user    => "root",
 #    timeout => "0",
 #    require => File["Put rftest2 Script"],
 #}
 
 file { "Put rf_web Command Sample":
-    path     => "/home/vagrant/RouteFlow-Test/RouteFlow/rfweb/rf_web.cmd",
+    path     => "${rf_dir}/rfweb/rf_web.cmd",
     owner    => "vagrant",
     group    => "vagrant",
     mode     => 0755,
