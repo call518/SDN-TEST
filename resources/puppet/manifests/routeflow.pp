@@ -52,7 +52,7 @@ $rf_dir = "/home/vagrant/RouteFlow"
 
 package { $deps:
     ensure   => installed,
-    require  => Vcsrepo["${rf_dir}"],
+    before   => Vcsrepo["${rf_dir}"],
 }
 
 ### Apt Update
@@ -63,7 +63,7 @@ package { $deps:
 #}
 
 #exec { "Install Dep Package":
-#    command  => "sudo apt-get -y install build-essential debhelper python-software-properties dkms fakeroot graphviz linux-headers-generic python-all python-qt4 python-zopeinterface python-twisted-conch python-twisted-web xauth maven git libboost-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev iproute-dev openvswitch-switch mongodb python-pymongo gunicorn lxc",
+#    command  => "sudo apt-get -y install build-essential debhelper python-software-properties dkms fakeroot graphviz linux-headers-generic python-all python-qt4 python-zopeinterface python-twisted-conch python-twisted-web xauth git libboost-dev libboost-program-options-dev libboost-thread-dev libboost-filesystem-dev iproute-dev openvswitch-switch mongodb python-pymongo gunicorn lxc",
 #    user     => "root",
 #    logoutput => true,
 #    timeout  => "0",
