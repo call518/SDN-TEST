@@ -33,7 +33,7 @@ $deps = [
           "python-twisted-conch",
           "python-twisted-web",
           "xauth",
-          "maven",
+#          "maven",
           "git",
           "libboost-dev",
           "libboost-program-options-dev",
