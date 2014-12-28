@@ -117,23 +117,23 @@ if $hostname != "routeflow" {
 #    require => File["Put mininet-examples"],
 #}
 
-vcsrepo { "/home/vagrant/loxigen":
-    ensure   => present,
-    provider => git,
-    user     => "vagrant",
-    source   => "https://github.com/floodlight/loxigen.git",
-    require  => Package["wireshark"],
-}
+#vcsrepo { "/home/vagrant/loxigen":
+#    ensure   => present,
+#    provider => git,
+#    user     => "vagrant",
+#    source   => "https://github.com/floodlight/loxigen.git",
+#    require  => Package["wireshark"],
+#}
 
-exec { "Install Wireshark OF Plugin":
-    #command  => "make wireshark && cp loxi_output/wireshark/openflow.lua /usr/lib/x86_64-linux-gnu/wireshark/libwireshark3/plugins/",
-    #command  => "make wireshark && cp loxi_output/wireshark/openflow.lua /usr/lib/wireshark/libwireshark1/plugins",
-    command  => "make wireshark && cp loxi_output/wireshark/openflow.lua `find /usr/lib/ -type d | grep wireshark | grep libwireshark | grep plugins | head -n 1`",
-    user     => "root",
-    cwd      => "/home/vagrant/loxigen/",
-    timeout  => "0",
-    require  => Vcsrepo["/home/vagrant/loxigen"],
-}
+#exec { "Install Wireshark OF Plugin":
+#    #command  => "make wireshark && cp loxi_output/wireshark/openflow.lua /usr/lib/x86_64-linux-gnu/wireshark/libwireshark3/plugins/",
+#    #command  => "make wireshark && cp loxi_output/wireshark/openflow.lua /usr/lib/wireshark/libwireshark1/plugins",
+#    command  => "make wireshark && cp loxi_output/wireshark/openflow.lua `find /usr/lib/ -type d | grep wireshark | grep libwireshark | grep plugins | head -n 1`",
+#    user     => "root",
+#    cwd      => "/home/vagrant/loxigen/",
+#    timeout  => "0",
+#    require  => Vcsrepo["/home/vagrant/loxigen"],
+#}
 
 #exec { "Disable Lua-Script":
 #    command  => "sed -i 's/^disable_lua.*/disable_lua = true/g' init.lua",
