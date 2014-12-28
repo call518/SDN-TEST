@@ -97,15 +97,17 @@ file { "Put topo-mininet":
 
 $hosts = hiera("hosts")
 
-file { "Put mininet-examples":
-    path     => "/home/vagrant/mininet-examples",
-    owner    => "vagrant",
-    group    => "vagrant",
-    mode     => 0755,
-    source   => "/vagrant/resources/puppet/files/mininet-examples",
-    ensure   => directory,
-    replace  => true,
-    recurse  => true,
+if $hostname != "routeflow" {
+    file { "Put mininet-examples":
+        path     => "/home/vagrant/mininet-examples",
+        owner    => "vagrant",
+        group    => "vagrant",
+        mode     => 0755,
+        source   => "/vagrant/resources/puppet/files/mininet-examples",
+        ensure   => directory,
+        replace  => true,
+        recurse  => true,
+    }
 }
 
 #exec { "dos2unix /home/vagrant/mininet-examples/*":
