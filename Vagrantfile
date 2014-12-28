@@ -75,6 +75,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #  puppet.manifests_path = "resources/puppet/manifests"
     #  puppet.manifest_file  = "base.pp"
     #  puppet.options = ["--verbose", "--debug"]
+    #  puppet.options = "--verbose"
     #end
   end
 
@@ -105,21 +106,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     oscp.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "oscp.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     oscp.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininet.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -154,7 +158,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     vtn_coordinator.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -167,7 +172,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #"odl_dist_name" => "Helium"
         "odl_dist_name" => "Helium-SR1"
       }
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -202,14 +208,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "java.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -222,21 +230,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #"odl_dist_name" => "Helium"
         "odl_dist_name" => "Helium-SR1"
       }
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininet.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     opendaylight_mininet_1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininext.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -272,40 +283,45 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
       puppet.options = ["--verbose", "--debug"]
+      #puppet.options = "--verbose"
     end
     opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "java.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "opendaylight.pp"
+      #puppet.manifest_file  = "opendaylight.pp"
       puppet.facter = {
         #"odl_dist_name" => "Hydrogen-Virtualization"
         #"odl_dist_name" => "Hydrogen-SP"
         #"odl_dist_name" => "Helium"
         "odl_dist_name" => "Helium-SR1"
       }
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininet.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     opendaylight_mininet_2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininext.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -334,28 +350,32 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-routeflow.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     #routeflow.vm.provision "puppet" do |puppet|
     #  puppet.working_directory = "/vagrant/resources/puppet"
     #  puppet.hiera_config_path = "resources/puppet/hiera-routeflow.yaml"
     #  puppet.manifests_path = "resources/puppet/manifests"
     #  puppet.manifest_file  = "java.pp"
-    #  puppet.options = ["--verbose", "--debug"]
+    #  #puppet.options = ["--verbose", "--debug"]
+    #  puppet.options = "--verbose"
     #end
     routeflow.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-routeflow.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "routeflow.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     routeflow.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-routeflow.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "mininet.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -412,6 +432,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
       puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -424,7 +445,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         #"odl_dist_name" => "Helium"
         #"odl_dist_name" => "Helium-SR1",
       }
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -434,7 +456,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.facter = {
         "my_branch" => "#{devstack_branch}"
       }
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -474,7 +497,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     compute.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
@@ -484,7 +508,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.facter = {
         "my_branch" => "#{devstack_branch}"
       }
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -522,14 +547,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     vxlan_router.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "vxlan-router.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -563,14 +590,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     vxlan_server1.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "vxlan-servers.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -604,14 +633,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     vxlan_server2.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-vxlan.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "vxlan-servers.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
@@ -651,14 +682,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #        puppet.hiera_config_path = "resources/puppet/hiera-mininext.yaml"
 #        puppet.manifests_path = "resources/puppet/manifests"
 #        puppet.manifest_file  = "base.pp"
-#        puppet.options = ["--verbose", "--debug"]
+#        #puppet.options = ["--verbose", "--debug"]
+#        puppet.options = "--verbose"
 #      end
 #      mininext.vm.provision "puppet" do |puppet|
 #        puppet.working_directory = "/vagrant/resources/puppet"
 #        puppet.hiera_config_path = "resources/puppet/hiera-mininext.yaml"
 #        puppet.manifests_path = "resources/puppet/manifests"
 #        puppet.manifest_file  = "mininext.pp"
-#        puppet.options = ["--verbose", "--debug"]
+#        #puppet.options = ["--verbose", "--debug"]
+#        puppet.options = "--verbose"
 #      end
 #    end
 #  end
@@ -696,21 +729,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "base.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     cbench.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "cbench.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
     cbench.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "pox.pp"
-      puppet.options = ["--verbose", "--debug"]
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
     end
   end
 
