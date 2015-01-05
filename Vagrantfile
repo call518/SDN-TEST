@@ -79,6 +79,62 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #end
   end
 
+  ## ONOS /w Mininet
+  config.vm.define "onos" do |onos|
+    onos.vm.box = "trusty64"
+    onos.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    onos.vm.hostname = "onos"
+    onos.vm.network "private_network", ip: "192.168.13.10"
+    #onos.vm.network "forwarded_port", guest: 8000, host: 8000
+    onos.vm.provider :virtualbox do |vb|
+      #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      vb.customize ["modifyvm", :id, "--memory", "2048"]
+      #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+      #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+    end
+    #onos.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
+    #onos.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
+    #onos.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
+    onos.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
+    onos.vm.provision "shell", inline: <<-SCRIPT
+      route add -net 192.168.0.0/16 eth1 2> /dev/null; echo "route add -net 192.168.0.0/16 eth1"
+    SCRIPT
+    onos.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "base.pp"
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
+    end
+    onos.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "java8.pp"
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
+    end
+    onos.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "onos.pp"
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
+    end
+    onos.vm.provision "puppet" do |puppet|
+      puppet.working_directory = "/vagrant/resources/puppet"
+      puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
+      puppet.manifests_path = "resources/puppet/manifests"
+      puppet.manifest_file  = "mininet.pp"
+      #puppet.options = ["--verbose", "--debug"]
+      puppet.options = "--verbose"
+    end
+  end
+
   ## OSCP (OpenDaylight SDN Controller Platform)
   config.vm.define "oscp" do |oscp|
     oscp.vm.box = "trusty64"
@@ -215,7 +271,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "java.pp"
+      puppet.manifest_file  = "java7.pp"
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
     end
@@ -289,7 +345,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "java.pp"
+      puppet.manifest_file  = "java7.pp"
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
     end
@@ -357,7 +413,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #  puppet.working_directory = "/vagrant/resources/puppet"
     #  puppet.hiera_config_path = "resources/puppet/hiera-routeflow.yaml"
     #  puppet.manifests_path = "resources/puppet/manifests"
-    #  puppet.manifest_file  = "java.pp"
+    #  puppet.manifest_file  = "java7.pp"
     #  #puppet.options = ["--verbose", "--debug"]
     #  puppet.options = "--verbose"
     #end
