@@ -57,6 +57,10 @@ host> vagrant ssh onos
 vm> karaf clean
 vm> onos> feature:install onos-api onos-core-trivial onos-cli onos-openflow onos-app-fwd onos-app-mobility onos-gui
 ```
+```
+host> vagrant ssh onos
+host> sudo mn --controller=remote --topo=tree,3
+```
 ## Web-UI
 
 * Browser: `http://Vagrant Host IP:8181/onos/ui`
