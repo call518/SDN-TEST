@@ -14,6 +14,7 @@ SDN Test Suite
 
 ## Vagrant-based SDN Test Suite.
 
+* ONOS (Open Network Operating System) /w Mininet
 * OSCP (OpenDaylight SDN Controller Platform)
 * OpenDaylight /w Mininet
 * RouteFlow /w Mininet
@@ -29,6 +30,7 @@ $ vagrant status
 
 Current machine states:
 
+onos                      (192.168.13.10)
 oscp                      (192.168.12.10)
 vtn-coordinator           (192.168.40.10)
 opendaylight-mininet-1    (192.168.41.10)
@@ -42,9 +44,28 @@ vxlan-server2             (192.168.2.20)
 cbench                    (192.168.77.10)
 ```
 
-# OSCP (OpenDaylight SDN Controller Platform)
+# ONOS (Open Network Operating System) /w Mininet
 
-* Ref: https://wiki.opendaylight.org/view/OpenDaylight_SDN_Controller_Platform_(OSCP):Installation
+## Start Vagrant
+
+`host> vagrant up onos`
+
+## Run ONOS
+
+```
+host> vagrant ssh onos
+vm> karaf clean
+vm> onos> feature:install onos-api onos-core-trivial onos-cli onos-openflow onos-app-fwd onos-app-mobility onos-gui
+```
+## Web-UI
+
+* Browser: `http://Vagrant Host IP:8181/onos/ui`
+
+![ONOS ScreenShot](etc-files/onos-screenshot.png)
+
+* Ref: https://wiki.onosproject.org/display/ONOS/Installing+and+Running+ONOS
+
+# OSCP (OpenDaylight SDN Controller Platform)
 
 ![OSCP ScreenShot](etc-files/oscp-screenshot.png)
 

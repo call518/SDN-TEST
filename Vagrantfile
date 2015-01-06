@@ -85,7 +85,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     onos.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
     onos.vm.hostname = "onos"
     onos.vm.network "private_network", ip: "192.168.13.10"
-    #onos.vm.network "forwarded_port", guest: 8000, host: 8000
+    onos.vm.network "forwarded_port", guest: 8181, host: 8181
     onos.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
