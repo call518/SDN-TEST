@@ -10,37 +10,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.forward_x11 = true
 
-  #config.vm.box = "precise64"
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-  #config.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/precise64/versions/0.1.0/providers/virtualbox.box"
-
-  #config.vm.box = "trusty64"
-  #config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  #config.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
-
-  #control.vm.box = "CentOS-6.5-x86_64"
-  #control.vm.box_url = "https://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140504.box"
-  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/CentOS-6.5-x86_64/versions/0.1.0/providers/virtualbox.box"
-
-  #control.vm.box = "Fedora20-x86_64"
-  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
-
-  #control.vm.box = "Fedora19-x86_64"
-  #control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora19-x86_64/versions/0.2.0/providers/virtualbox.box"
-
-  ### Do not use ### 
-  #config.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
-  ##config.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
-  #config.vm.provision "shell", path: "resources/puppet/scripts/upgrade-puppet.sh"
-  #config.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
-
-  #config.vm.provision "puppet" do |puppet|
-  #    puppet.working_directory = "/vagrant/resources/puppet"
-  #    puppet.hiera_config_path = "resources/puppet/hiera.yaml"
-  #    puppet.manifests_path = "resources/puppet/manifests"
-  #    puppet.manifest_file  = "base.pp"
-  #end
-
 #################################################################################################################
 ############## VTN Coordinator / OpenDaylight / Mininet / RouteFlow #############################################
 #################################################################################################################
@@ -48,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## Ubuntu (General)
   config.vm.define "trusty64" do |trusty64|
     trusty64.vm.box = "trusty64"
-    trusty64.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    trusty64.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     trusty64.vm.hostname = "ubuntu-trusty"
     trusty64.vm.network "private_network", ip: "192.168.10.10"
     #trusty64.vm.network "forwarded_port", guest: 8083, host: 8083
@@ -82,7 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## ONOS /w Mininet
   config.vm.define "onos" do |onos|
     onos.vm.box = "trusty64"
-    onos.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    onos.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     onos.vm.hostname = "onos"
     onos.vm.network "private_network", ip: "192.168.13.10"
     onos.vm.network "forwarded_port", guest: 8181, host: 8181
@@ -138,7 +107,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OSCP (OpenDaylight SDN Controller Platform)
   config.vm.define "oscp" do |oscp|
     oscp.vm.box = "trusty64"
-    oscp.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    oscp.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     oscp.vm.hostname = "oscp"
     oscp.vm.network "private_network", ip: "192.168.12.10"
     oscp.vm.network "forwarded_port", guest: 8000, host: 8000
@@ -236,7 +205,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight & Mininet (1)
   config.vm.define "opendaylight-mininet-1" do |opendaylight_mininet_1|
     opendaylight_mininet_1.vm.box = "trusty64"
-    opendaylight_mininet_1.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    opendaylight_mininet_1.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     opendaylight_mininet_1.vm.hostname = "opendaylight-mininet-1"
     opendaylight_mininet_1.vm.network "private_network", ip: "192.168.41.10"
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9191
@@ -310,7 +279,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## OpenDaylight & Mininet (2)
   config.vm.define "opendaylight-mininet-2" do |opendaylight_mininet_2|
     opendaylight_mininet_2.vm.box = "trusty64"
-    opendaylight_mininet_2.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    opendaylight_mininet_2.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
     opendaylight_mininet_2.vm.network "private_network", ip: "192.168.42.10"
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9292
@@ -384,7 +353,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## RouteFlow & Mininet
   config.vm.define "routeflow" do |routeflow|
     routeflow.vm.box = "precise64"
-    routeflow.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/precise64/versions/0.1.0/providers/virtualbox.box"
+    routeflow.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!244&authkey=!ABlsBcuzsaL0dAw&ithint=file%2cbox"
     routeflow.vm.hostname = "routeflow"
     routeflow.vm.network "private_network", ip: "192.168.30.10"
     #routeflow.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -451,7 +420,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "devstack-control" do |control|
     control.vm.box = "trusty64"
-    control.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    control.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "private_network", ip: "#{control_ip_data}"
@@ -524,7 +493,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "devstack-compute-1" do |compute|
     compute.vm.box = "trusty64"
-    compute.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    compute.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     compute.vm.hostname = "devstack-compute-1"
     compute.vm.network "private_network", ip: "#{compute_ip}"
     compute.vm.network "private_network", ip: "#{compute_ip_data}"
@@ -576,7 +545,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - Router (Must be deploy first)
   config.vm.define "vxlan-router" do |vxlan_router|
     vxlan_router.vm.box = "trusty64"
-    vxlan_router.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    vxlan_router.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     vxlan_router.vm.hostname = "vxlan-router"
     vxlan_router.vm.network "private_network", ip: "192.168.1.1"
     vxlan_router.vm.network "private_network", ip: "192.168.2.1"
@@ -619,7 +588,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server1
   config.vm.define "vxlan-server1" do |vxlan_server1|
     vxlan_server1.vm.box = "trusty64"
-    vxlan_server1.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    vxlan_server1.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     vxlan_server1.vm.hostname = "vxlan-server1"
     vxlan_server1.vm.network "private_network", ip: "192.168.1.10"
     #vxlan_server1.vm.network "forwarded_port", guest: 80, host: 8081
@@ -662,7 +631,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## VXLAN - server2
   config.vm.define "vxlan-server2" do |vxlan_server2|
     vxlan_server2.vm.box = "trusty64"
-    vxlan_server2.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    vxlan_server2.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     vxlan_server2.vm.hostname = "vxlan-server2"
     vxlan_server2.vm.network "private_network", ip: "192.168.2.20"
     vxlan_server2.vm.network "forwarded_port", guest: 80, host: 8081
@@ -712,7 +681,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #      mininext_ip = mininext_ips[n]
 #      mininext_index = n+1
 #      mininext.vm.box = "trusty64"
-#      mininext.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+#      mininext.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
 #      mininext.vm.hostname = "mininext-#{mininext_index}"
 #      mininext.vm.network "private_network", ip: "#{mininext_ip}"
 #      #mininext.vm.network "forwarded_port", guest: 8080, host: 9292
@@ -756,7 +725,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "cbench" do |cbench|
     cbench.ssh.forward_x11 = true
     cbench.vm.box = "trusty64"
-    cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/trusty64/versions/0.1.0/providers/virtualbox.box"
+    cbench.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     #cbench.vm.box = "Fedora20-x86_64"
     #cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     cbench.vm.hostname = "cbench"
