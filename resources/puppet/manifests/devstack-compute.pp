@@ -58,7 +58,7 @@ file { "/home/vagrant/devstack/local-no-odl.conf":
     ensure => present,
     owner => "vagrant",
     group => "vagrant",
-    content => template("/vagrant/resources/puppet/templates/compute.local.conf-no-odl.erb"),
+    content => template("/vagrant/resources/puppet/templates/compute.local-no-odl.conf.erb"),
     replace  => true,
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
