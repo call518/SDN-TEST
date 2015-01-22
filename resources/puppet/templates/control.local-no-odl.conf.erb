@@ -34,7 +34,7 @@ Q_FLOATING_ALLOCATION_POOL="start=172.20.20.101,end=172.20.20.200"
 PUBLIC_NETWORK_GATEWAY=172.20.20.100
 EXT_GW_IP=172.20.20.1
 
-MY_PASS=passw0rd
+MY_PASS=admin
 
 MYSQL_PASSWORD=$MY_PASS
 RABBIT_PASSWORD=$MY_PASS
@@ -50,7 +50,7 @@ GLANCE_HOSTPORT=$SERVICE_HOST:9292
 KEYSTONE_AUTH_HOST=$SERVICE_HOST
 KEYSTONE_SERVICE_HOST=$SERVICE_HOST
 VNCSERVER_PROXYCLIENT_ADDRESS=$SERVICE_HOST
-VNXSERVER_LISTEN=0.0.0.0
+VNCSERVER_LISTEN=0.0.0.0
 
 Q_PLUGIN=ml2
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch,logger
@@ -58,6 +58,10 @@ Q_ML2_TENANT_NETWORK_TYPE=vxlan
 
 disable_service n-net
 disable_service qpid
+disable_service heat h-api
+disable_service h-api-cfn
+disable_service h-api-cw
+disable_service h-eng
 
 enable_service rabbit
 enable_service n-cond

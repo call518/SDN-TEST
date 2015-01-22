@@ -39,20 +39,30 @@ RABBIT_HOST=$SERVICE_HOST
 GLANCE_HOSTPORT=$SERVICE_HOST:9292
 KEYSTONE_AUTH_HOST=$SERVICE_HOST
 KEYSTONE_SERVICE_HOST=$SERVICE_HOST
-#VNCSERVER_PROXYCLIENT_ADDRESS=$SERVICE_HOST
-#VNXSERVER_LISTEN=0.0.0.0
+VNCSERVER_PROXYCLIENT_ADDRESS=$SERVICE_HOST
+VNCSERVER_LISTEN=0.0.0.0
 
-MYSQL_PASSWORD=mysql
-RABBIT_PASSWORD=rabbit
-QPID_PASSWORD=rabbit
-SERVICE_TOKEN=service
-SERVICE_PASSWORD=admin
-ADMIN_PASSWORD=admin
+MY_PASS=admin
+
+MYSQL_PASSWORD=$MY_PASS
+RABBIT_PASSWORD=$MY_PASS
+QPID_PASSWORD=$MY_PASS
+SERVICE_TOKEN=$MY_PASS
+SERVICE_PASSWORD=$MY_PASS
+ADMIN_PASSWORD=$MY_PASS
 
 enable_service rabbit
 disable_service qpid
-#disable_service rabbit
-#enable_service qpid
+
+disable_service heat h-api
+disable_service h-api-cfn
+disable_service h-api-cw
+disable_service h-eng
+
+disable_service s-proxy
+disable_service s-object
+disable_service s-container
+disable_service s-account
 
 enable_service n-cond
 enable_service n-cpu
