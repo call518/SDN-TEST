@@ -51,7 +51,7 @@ SERVICE_TOKEN=$MY_PASS
 SERVICE_PASSWORD=$MY_PASS
 ADMIN_PASSWORD=$MY_PASS
 
-enable_service rabbit
+disable_service n-net
 disable_service qpid
 
 disable_service heat h-api
@@ -64,6 +64,7 @@ disable_service s-object
 disable_service s-container
 disable_service s-account
 
+enable_service rabbit
 enable_service n-cond
 enable_service n-cpu
 enable_service n-novnc

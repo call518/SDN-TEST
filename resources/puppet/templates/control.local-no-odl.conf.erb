@@ -58,10 +58,16 @@ Q_ML2_TENANT_NETWORK_TYPE=vxlan
 
 disable_service n-net
 disable_service qpid
+
 disable_service heat h-api
 disable_service h-api-cfn
 disable_service h-api-cw
 disable_service h-eng
+
+disable_service s-proxy
+disable_service s-object
+disable_service s-container
+disable_service s-account
 
 enable_service rabbit
 enable_service n-cond
