@@ -54,6 +54,15 @@ file { "/home/vagrant/devstack/local.conf":
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
 
+file { "/home/vagrant/devstack/local-no-odl.conf":
+    ensure => present,
+    owner => "vagrant",
+    group => "vagrant",
+    content => template("/vagrant/resources/puppet/templates/compute.local.conf-no-odl.erb"),
+    replace  => true,
+    require  => Vcsrepo["/home/vagrant/devstack"],
+}
+
 #exec { "dos2unix /home/vagrant/devstack/local.conf":
 #    cwd     => "/home/vagrant/devstack/",
 #    user    => "root",
