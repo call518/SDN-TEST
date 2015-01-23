@@ -55,11 +55,12 @@ ADMIN_PASSWORD=$MY_PASS
 disable_all_services
 
 enable_service
-enable_service neutron
-enable_service quantum
-enable_service nova
+#enable_service neutron
+##enable_service quantum
+#enable_service nova
 enable_service n-cpu
 enable_service n-novnc
+enable_service q-agt
 enable_service rabbit
 
 Q_PLUGIN=ml2
