@@ -82,3 +82,9 @@ enable_service quantum
 
 IMAGE_URLS+=",http://cdn.download.cirros-cloud.net/0.3.3/cirros-0.3.3-x86_64-disk.img"
 
+[[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
+[agent]
+minimize_polling=True
+[ovs]
+local_ip=<%= @hosts[@hostname]['ipaddress_tun'] %>
+

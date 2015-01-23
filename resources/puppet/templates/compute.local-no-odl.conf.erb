@@ -68,3 +68,9 @@ Q_ML2_TENANT_NETWORK_TYPE=vxlan
 ENABLE_TENANT_TUNNELS=True
 EXTRA_OPTS=(scheduler_default_filters=AllHostsFilter)
 
+[[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
+[agent]
+minimize_polling=True
+[ovs]
+local_ip=<%= @hosts[@hostname]['ipaddress_tun'] %>
+
