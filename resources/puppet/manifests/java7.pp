@@ -28,7 +28,7 @@ package { "oracle-java7-installer":
 #    require => Package["oracle-java7-installer"],
 #}
 
-package { "oracle-java8-set-default":
+package { "oracle-java7-set-default":
     ensure  => installed,
     #require => Apt::Ppa["ppa:webupd8team/java"],
     #require => Exec["apt-update"],
