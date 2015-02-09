@@ -429,6 +429,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
     control.vm.network "forwarded_port", guest: 8101, host: 8101 # ODL Karaf SSH Console (ID/PW: karaf/karaf)
     control.vm.network "forwarded_port", guest: 80, host: 80 # DevStack CTL (http://localhost)
+    control.vm.network "forwarded_port", guest: 8773, host: 8773 # OpenStack API
+    control.vm.network "forwarded_port", guest: 8774, host: 8774 # OpenStack API
+    control.vm.network "forwarded_port", guest: 8775, host: 8775 # OpenStack API
+    control.vm.network "forwarded_port", guest: 8776, host: 8776 # OpenStack API
+    control.vm.network "forwarded_port", guest: 9191, host: 9191 # OpenStack API
+    control.vm.network "forwarded_port", guest: 9292, host: 9292 # OpenStack API
+    control.vm.network "forwarded_port", guest: 5000, host: 5000 # OpenStack API
     #control.vm.network "forwarded_port", guest: 6080, host: 6080
     control.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
