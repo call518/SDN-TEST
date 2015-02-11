@@ -59,7 +59,7 @@ vm> onos> feature:install onos-api onos-core-trivial onos-cli onos-openflow onos
 ```
 ```
 host> vagrant ssh onos
-host> sudo mn --controller=remote --topo=tree,3
+vm> sudo mn --controller=remote --topo=tree,3
 ```
 ## Web-UI
 
