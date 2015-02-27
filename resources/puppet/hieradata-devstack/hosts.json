@@ -9,8 +9,8 @@
       "ipaddress": "192.168.50.10",
       "ipaddress_tun": "172.16.0.10"
     },
-    "devstack-compute-1": {
-      "name": "devstack-compute-1",
+    "devstack-compute": {
+      "name": "devstack-compute",
       "ipaddress": "192.168.51.21",
       "ipaddress_tun": "172.16.1.21"
     }

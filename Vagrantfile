@@ -506,10 +506,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   compute_ip = "192.168.51.21"
   compute_ip_data = "172.16.1.21"
 
-  config.vm.define "devstack-compute-1" do |compute|
+  config.vm.define "devstack-compute" do |compute|
     compute.vm.box = "trusty64"
     compute.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
-    compute.vm.hostname = "devstack-compute-1"
+    compute.vm.hostname = "devstack-compute"
     compute.vm.network "private_network", ip: "#{compute_ip}"
     compute.vm.network "private_network", ip: "#{compute_ip_data}"
     #compute.vm.network "forwarded_port", guest: 6080, host: 6080

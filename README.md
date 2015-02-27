@@ -37,7 +37,7 @@ opendaylight-mininet-1    (192.168.41.10)
 opendaylight-mininet-2    (192.168.42.10)
 routeflow                 (192.168.30.10)
 devstack-control          (Mgm:192.168.50.10/Data:172.16.0.10/Ext:Manual)
-devstack-compute-1        (Mgm:192.168.51.21/Data:172.16.1.21)
+devstack-compute        (Mgm:192.168.51.21/Data:172.16.1.21)
 vxlan-router              (192.168.1.1, 192.168.2.1)
 vxlan-server1             (192.168.1.10)
 vxlan-server2             (192.168.2.20)
@@ -414,7 +414,7 @@ in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), pa
     * Controller Node
     * Network Node
     * Compute Node
-  * devstack-compute-1
+  * devstack-compute
     * Compute Node
 * Networking
   * Management Network
@@ -441,7 +441,7 @@ in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), pa
 
 ```
 1. host> vagrant up devstack-control
-2. host> vagrant up devstack-compute-1
+2. host> vagrant up devstack-compute
 ```
 
 ## 1st, Run OpenDaylight
@@ -486,7 +486,7 @@ Browser: `http://{Vagratn Host IP}`
 ### Run stack.sh
 
 ```
-host> vagrant ssh devstack-compute-1
+host> vagrant ssh devstack-compute
 vm> cd /home/vagrant/devstack
 vm> ./stack.sh
 ```
