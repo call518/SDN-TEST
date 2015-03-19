@@ -56,6 +56,7 @@ VNCSERVER_LISTEN=0.0.0.0
 Q_PLUGIN=ml2
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=openvswitch,logger
 Q_ML2_TENANT_NETWORK_TYPE=vxlan
+Q_AGENT_EXTRA_SRV_OPTS=(local_ip=<%= @hosts[@hostname]['ipaddress_tun'] %>)
 
 disable_service n-net
 disable_service qpid

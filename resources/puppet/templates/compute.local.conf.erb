@@ -73,6 +73,7 @@ Q_PLUGIN=ml2
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=opendaylight,logger
 ODL_MGR_IP=<%= @hosts['opendaylight-devstack']['ipaddress'] %>
 Q_ML2_TENANT_NETWORK_TYPE=vxlan
+Q_AGENT_EXTRA_SRV_OPTS=(local_ip=<%= @hosts[@hostname]['ipaddress_tun'] %>)
 
 ENABLE_TENANT_TUNNELS=True
 
