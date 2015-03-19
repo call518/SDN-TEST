@@ -455,6 +455,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       if test ! -f /root/.created-routing; then
         route add -net 192.168.51.0/24 gateway 192.168.50.1 dev eth2
         route add -net 172.16.1.0/24 gateway 172.16.0.1 dev eth1
+        sudo iptables -t nat -I POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE
         touch /root/.created-routing
       fi
     SCRIPT
