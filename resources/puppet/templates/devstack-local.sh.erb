@@ -22,3 +22,17 @@ fi
 #sudo ovs-vsctl set-manager ptcp:6640
 sudo ovs-vsctl set Open_vSwitch `sudo ovs-vsctl get Open_vSwitch . _uuid` other_config={"local_ip"="<%= @hosts[@hostname]['ipaddress_tun'] %>"}
 sudo ovs-vsctl list Open_vSwitch .
+
+########### Install Splunk ####################################
+#!/bin/bash
+cd /usr/local/src
+sudo wget -O splunk-6.2.2-255606-Linux-x86_64.tgz "http://www.splunk.com/page/download_track?file=6.2.2/splunk/linux/splunk-6.2.2-255606-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.2.2&product=splunk&typed=release"
+sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
+#sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
+sudo echo "
+[monitor:///opt/stack/log]
+disabled = false
+followTail = 0
+" >> /opt/splunk/etc/apps/launcher/default/inputs.conf
+sudo /opt/splunk/bin/splunk enable boot-start
+sudo /opt/splunk/bin/splunk start --accept-license

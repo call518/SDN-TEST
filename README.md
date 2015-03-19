@@ -506,7 +506,13 @@ e.g.) ip netns exec qrouter-a4e4c152-ee23-4e16-b900-4d0c132618d7 ssh cirros@10.1
       -> Login ID/PW: "cirros" / "cubswin:)"
 ```
 
-### Sample ScreenShot
+### APPENDIX
+
+#### Splunk for OpenStack SCREEN Logs
+
+* http://{Vagrant Host IP}:8000 (Default ID/PW: admin / changeme)
+
+#### Sample ScreenShot
 
 ![DevStack & ODL Demo ScreenShot](etc-files/odl-devstack-overlay-demo.png)
 
