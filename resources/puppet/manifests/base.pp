@@ -60,9 +60,8 @@ file { "/etc/hosts":
     content => template("/vagrant/resources/puppet/templates/hosts.erb")
 }
 
-#exec { "dos2unix /etc/hosts":
-#    cwd     => "/etc",
-#    user    => "root",
-#    timeout => "0",
-#    require => Package["dos2unix"],
-#}
+exec { "cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime":
+    user    => "root",
+    timeout => "0",
+}
+
