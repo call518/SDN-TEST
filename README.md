@@ -514,9 +514,15 @@ e.g.) ip netns exec qrouter-a4e4c152-ee23-4e16-b900-4d0c132618d7 ssh cirros@10.1
 
 #### Sample ScreenShot
 
+##### OpenStack Overlay Topology
+
 ![DevStack & ODL Demo ScreenShot](etc-files/odl-devstack-overlay-demo.png)
 
 (Ref) http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
+
+##### Splunk for OpenStack's Logs
+
+![Splunk for OpenStack's Logs](etc-files/openstack-splunk.png)
 
 # VXLAN /w OVS
 
