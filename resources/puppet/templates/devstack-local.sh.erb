@@ -37,7 +37,7 @@ fi
 sudo ovs-vsctl set Open_vSwitch `sudo ovs-vsctl get Open_vSwitch . _uuid` other_config={"local_ip"="<%= @hosts[@hostname]['ipaddress_tun'] %>"}
 sudo ovs-vsctl list Open_vSwitch .
 
-echo -i "*.* @@<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | tee /etc/rsyslog.d/90-stack-s.conf
+echo "*.* @@<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | tee /etc/rsyslog.d/90-stack-s.conf
 sudo rm /etc/rsyslog.d/90-stack-m.conf
 sudo service rsyslog restart
 
