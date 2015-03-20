@@ -417,6 +417,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## ip pre-configuration
   control_ip = "192.168.50.10"
   control_ip_data = "172.16.0.10"
+  rsyslog_port = "10514"
 
   config.vm.define "devstack-control" do |control|
     control.vm.box = "trusty64"
@@ -497,7 +498,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifest_file  = "devstack-control.pp"
       puppet.facter = {
         "my_branch" => "#{devstack_branch}",
-        "rsyslog_port" => "10514"
+        "rsyslog_port" => "#{rsyslog_port}"
       }
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
@@ -549,7 +550,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "devstack-compute.pp"
       puppet.facter = {
-        "my_branch" => "#{devstack_branch}"
+        "my_branch" => "#{devstack_branch}",
+        "rsyslog_port" => "#{rsyslog_port}"
       }
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
