@@ -88,7 +88,7 @@ IMAGE_URLS=",http://cdn.download.cirros-cloud.net/0.3.3/cirros-0.3.3-x86_64-disk
 
 SYSLOG=True
 SYSLOG_HOST=$SERVICE_HOST
-SYSLOG_PORT=10514
+SYSLOG_PORT=<%= @rsyslog_port %>
 
 [[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
 [agent]
