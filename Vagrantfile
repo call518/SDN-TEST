@@ -496,7 +496,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "devstack-control.pp"
       puppet.facter = {
-        "my_branch" => "#{devstack_branch}"
+        "my_branch" => "#{devstack_branch}",
+        "rsyslog_port" => "10514"
       }
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
