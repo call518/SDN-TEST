@@ -15,7 +15,7 @@ cd /usr/local/src
 sudo wget -O splunk-6.2.2-255606-Linux-x86_64.tgz "http://www.splunk.com/page/download_track?file=6.2.2/splunk/linux/splunk-6.2.2-255606-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.2.2&product=splunk&typed=release"
 sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
 #sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
-for file in `ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n" ; done > /opt/splunk/etc/apps/launcher/default/inputs.conf
+for file in `sudo ls /opt/stack/log/*[a-z].log`; do sudo echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done > /opt/splunk/etc/apps/launcher/default/inputs.conf
 sudo /opt/splunk/bin/splunk start --accept-license
 sudo /opt/splunk/bin/splunk enable boot-start
 <% end %>
