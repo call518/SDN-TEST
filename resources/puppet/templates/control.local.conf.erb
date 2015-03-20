@@ -92,6 +92,10 @@ Q_ML2_TENANT_NETWORK_TYPE=vxlan
 
 ENABLE_TENANT_TUNNELS=True
 
+SYSLOG=True
+SYSLOG_HOST=$SERVICE_HOST
+SYSLOG_PORT=10514
+
 [[post-config|/etc/neutron/plugins/ml2/ml2_conf.ini]]
 [agent]
 minimize_polling=True

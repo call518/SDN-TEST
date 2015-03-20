@@ -60,15 +60,8 @@ file { "/etc/hosts":
     content => template("/vagrant/resources/puppet/templates/hosts.erb")
 }
 
-exec { "service rsyslog restart":
-    user    => "root",
-    timeout => "0",
-    require => File["/etc/hosts"],
-}
-
 exec { "cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime":
     user    => "root",
     timeout => "0",
-    require => Exec["service rsyslog restart"],
 }
 

@@ -18,9 +18,17 @@ sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
 for file in `sudo ls /opt/stack/log/*[a-z].log`; do sudo echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done > /opt/splunk/etc/apps/launcher/default/inputs.conf
 sudo /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 sudo /opt/splunk/bin/splunk enable boot-start
+
+########### Config rsyslog ####################################
+sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
+sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun 10514/g' /etc/rsyslog.conf 
+sudo sed -i '/\$InputTCPServerRun 10514/a *.* \/var\/log\/remote.log' /etc/rsyslog.conf
 <% end %>
 
 ########### Common ############################################
+sudo echo -e "*.* @@<%= @hosts['devstack-control']['name'] %>:10514" /etc/rsyslog.d/90-stack-s.conf
+sudo service rsyslog restart
+
 if sudo virsh net-list | grep default; then
     sudo virsh net-destroy default
     sudo virsh net-undefine default
