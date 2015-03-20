@@ -437,7 +437,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.network "forwarded_port", guest: 9191, host: 9191 # OpenStack API
     control.vm.network "forwarded_port", guest: 9292, host: 9292 # OpenStack API
     control.vm.network "forwarded_port", guest: 5000, host: 5000 # OpenStack API
-    #control.vm.network "forwarded_port", guest: 8000, host: 8000 # Splunk (for OpenStack Logs)
+    control.vm.network "forwarded_port", guest: 8000, host: 8000 # Splunk (for OpenStack Logs)
     #control.vm.network "forwarded_port", guest: 6080, host: 6080
     control.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
