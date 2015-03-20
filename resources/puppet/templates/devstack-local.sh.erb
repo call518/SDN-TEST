@@ -10,9 +10,9 @@ sudo ip netns del `sudo ip netns | grep "^qrouter"`
 #keystone tenant-delete demo
 
 ########### Config rsyslog ####################################
-sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
-sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
-sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.* \/var\/log\/remote.log' /etc/rsyslog.conf
+#sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
+#sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
+#sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.* \/var\/log\/remote.log' /etc/rsyslog.conf
 
 ########### Install Splunk ####################################
 #!/bin/bash
@@ -22,7 +22,7 @@ sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
 sudo chown -R root:root /opt/splunk
 #sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
 for file in `sudo ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
-echo -e "[monitor:///var/log/remote.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
+#echo -e "[monitor:///var/log/remote.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
 sudo /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 sudo /opt/splunk/bin/splunk enable boot-start
 <% end %>
@@ -39,6 +39,6 @@ fi
 sudo ovs-vsctl set Open_vSwitch `sudo ovs-vsctl get Open_vSwitch . _uuid` other_config={"local_ip"="<%= @hosts[@hostname]['ipaddress_tun'] %>"}
 sudo ovs-vsctl list Open_vSwitch .
 
-echo "*.* @@<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | tee /etc/rsyslog.d/90-stack-s.conf
-sudo rm /etc/rsyslog.d/90-stack-m.conf
-sudo service rsyslog restart
+#echo "*.* @@<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | tee /etc/rsyslog.d/90-stack-s.conf
+#sudo rm /etc/rsyslog.d/90-stack-m.conf
+#sudo service rsyslog restart
