@@ -55,7 +55,7 @@ file { "/home/vagrant/devstack/local.conf":
     ensure => present,
     owner => "vagrant",
     group => "vagrant",
-    content => template("/vagrant/resources/puppet/templates/compute.local.conf.erb"),
+    content => template("$local_conf_src"),
     replace  => true,
     require  => Vcsrepo["/home/vagrant/devstack"],
 }

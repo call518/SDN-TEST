@@ -67,6 +67,7 @@ echo "
 \$InputRunFileMonitor
 \$InputFilePollInterval 10" | sudo tee -a /etc/rsyslog.d/99-devstack-screen.conf
 done
-echo "*.* @<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | tee -a /etc/rsyslog.d/99-devstack-screen.conf
+echo -e "\n*.* @<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | sudo tee -a /etc/rsyslog.d/99-devstack-screen.conf
 #sudo rm /etc/rsyslog.d/90-stack-m.conf
+#while sudo netcat -z <%= @hosts['devstack-control']['name'] %> <%= @rsyslog_port %>; do echo "==== Waiting Syslog Server: <%= @hosts['devstack-control']['name'] %> <%= @rsyslog_port %>" sleep 5; done
 sudo service rsyslog restart
