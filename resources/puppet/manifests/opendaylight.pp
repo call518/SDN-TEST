@@ -51,19 +51,21 @@ Exec { path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/", "/usr/local/bin"
 if $odl_dist_name == "Hydrogen-Virtualization" {
     $odl_bin_name = "distributions-virtualization-0.1.1-osgipackage"
     $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-virtualization/0.1.1/${odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!241&authkey=!AP9s-ryTgshEp9w&ithint=file%2czip"
 } elsif $odl_dist_name == "Hydrogen-SP" {
     $odl_bin_name = "distributions-serviceprovider-0.1.1-osgipackage"
     $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-serviceprovider/0.1.1/${odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?download=28F8F701DC29E4B9!240&authkey=!ABFcfDnmOvCMaWU&ithint=file%2czip"
 } elsif $odl_dist_name == "Helium" {
     $odl_bin_name = "distribution-karaf-0.2.0-Helium"
     $odl_bin_url = "http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/${odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!242&authkey=!AA2peKBz6XGZ2I4&ithint=file%2czip "
 } elsif $odl_dist_name == "Helium-SR1" {
     $odl_bin_name = "distribution-karaf-0.2.1-Helium-SR1"
     $odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.1-Helium-SR1/${odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!243&authkey=!APHJWRUwlPoA-eE&ithint=file%2czip"
+} elsif $odl_dist_name == "Helium-SR2" {
+    $odl_bin_name = "distribution-karaf-0.2.2-Helium-SR2"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.2-Helium-SR2/${odl_bin_name}.zip"
+} elsif $odl_dist_name == "Helium-SR3" {
+    $odl_bin_name = "distribution-karaf-0.2.3-Helium-SR3"
+    $odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.3-Helium-SR3/${odl_bin_name}.zip"
 }
 
 exec { "Wget ODL-Helium":
@@ -75,7 +77,8 @@ exec { "Wget ODL-Helium":
 }
 
 #if $odl_dist_name == "Helium-SR1" {
-if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
+#if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
+if $odl_dist_name.include? "Helium" {
     $unzip_cmd = "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight"
 } else {
     $unzip_cmd = "unzip ${odl_bin_name}.zip"
@@ -92,7 +95,8 @@ exec { "Extract ODL-Helium":
 }
 
 #if $odl_dist_name in "Helium-SR1"
-if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
+#if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
+if $odl_dist_name.include? "Helium" {
     #exec { "Patch JMX Error":
     #    command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
     #    cwd     => "/home/vagrant/opendaylight/etc",
