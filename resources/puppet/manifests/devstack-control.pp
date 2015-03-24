@@ -45,7 +45,7 @@ vcsrepo { "/home/vagrant/devstack":
 
 $hosts = hiera("hosts")
 
-if is_enable_odl == true {
+if $is_enable_odl == "true" {
 	$local_conf_src = "/vagrant/resources/puppet/templates/control.local.conf.erb"
 } else {
 	$local_conf_src = "/vagrant/resources/puppet/templates/control.local-no-odl.conf.erb"
