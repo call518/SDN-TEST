@@ -45,23 +45,29 @@ vcsrepo { "/home/vagrant/devstack":
 
 $hosts = hiera("hosts")
 
+if is_enable_odl:
+	$local_conf_src = "/vagrant/resources/puppet/templates/control.local.conf.erb"
+else
+	$local_conf_src = "/vagrant/resources/puppet/templates/control.local-no-odl.conf.erb"
+end
+
 file { "/home/vagrant/devstack/local.conf":
     ensure => present,
     owner => "vagrant",
     group => "vagrant",
-    content => template("/vagrant/resources/puppet/templates/control.local.conf.erb"),
+   	content => template("$local_conf_src"),
     replace  => true,
     require  => Vcsrepo["/home/vagrant/devstack"],
 }
 
-file { "/home/vagrant/devstack/local-no-odl.conf":
-    ensure => present,
-    owner => "vagrant",
-    group => "vagrant",
-    content => template("/vagrant/resources/puppet/templates/control.local-no-odl.conf.erb"),
-    replace  => true,
-    require  => Vcsrepo["/home/vagrant/devstack"],
-}
+#file { "/home/vagrant/devstack/local-no-odl.conf":
+#    ensure => present,
+#    owner => "vagrant",
+#    group => "vagrant",
+##    content => template("/vagrant/resources/puppet/templates/control.local-no-odl.conf.erb"),
+#    replace  => true,
+#    require  => Vcsrepo["/home/vagrant/devstack"],
+#}
 
 #exec { "dos2unix /home/vagrant/devstack/local.conf":
 #    cwd     => "/home/vagrant/devstack/",

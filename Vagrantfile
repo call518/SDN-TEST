@@ -408,6 +408,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 ############## DevStack / OpenDaylight ##########################################################################
 #################################################################################################################
 
+  ### Toggle /w OpenDaylight(Selective SDN)
+  is_enable_odl = true # true/false
+
   ### DevStack Branch
   #devstack_branch = "havana-eol" ## by tag
   #devstack_branch = "stable/icehouse"
@@ -469,28 +472,30 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
     end
-    control.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "java7.pp"
-      #puppet.options = ["--verbose", "--debug"]
-      puppet.options = "--verbose"
-    end
-    control.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "opendaylight.pp"
-      puppet.facter = {
-        #"odl_dist_name" => "Hydrogen-Virtualization"
-        #"odl_dist_name" => "Hydrogen-SP"
-        #"odl_dist_name" => "Helium"
-        "odl_dist_name" => "Helium-SR1",
-      }
-      #puppet.options = ["--verbose", "--debug"]
-      puppet.options = "--verbose"
-    end
+    if is_enable_odl:
+        control.vm.provision "puppet" do |puppet|
+          puppet.working_directory = "/vagrant/resources/puppet"
+          puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
+          puppet.manifests_path = "resources/puppet/manifests"
+          puppet.manifest_file  = "java7.pp"
+          #puppet.options = ["--verbose", "--debug"]
+          puppet.options = "--verbose"
+        end
+        control.vm.provision "puppet" do |puppet|
+          puppet.working_directory = "/vagrant/resources/puppet"
+          puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
+          puppet.manifests_path = "resources/puppet/manifests"
+          puppet.manifest_file  = "opendaylight.pp"
+          puppet.facter = {
+            #"odl_dist_name" => "Hydrogen-Virtualization"
+            #"odl_dist_name" => "Hydrogen-SP"
+            #"odl_dist_name" => "Helium"
+            "odl_dist_name" => "Helium-SR1",
+          }
+          #puppet.options = ["--verbose", "--debug"]
+          puppet.options = "--verbose"
+        end
+	end
     control.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
