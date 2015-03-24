@@ -409,7 +409,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ### Toggle /w OpenDaylight(Selective SDN)
-  is_enable_odl = true # true/false
+  #is_enable_odl = true # true/false
+  is_enable_odl = false # true/false
 
   ### DevStack Branch
   #devstack_branch = "havana-eol" ## by tag
@@ -472,7 +473,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
     end
-    if is_enable_odl:
+    if is_enable_odl == true
         control.vm.provision "puppet" do |puppet|
           puppet.working_directory = "/vagrant/resources/puppet"
           puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
