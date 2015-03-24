@@ -10,19 +10,25 @@ sudo ip netns del `sudo ip netns | grep "^qrouter"`
 #keystone tenant-delete demo
 
 ########### Config rsyslog ####################################
-#sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
-#sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
-#sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.* \/var\/log\/remote.log' /etc/rsyslog.conf
+sudo sed -i 's/^#\$ModLoad imudp/\$ModLoad imudp/g' /etc/rsyslog.conf
+sudo sed -i 's/^#\$UDPServerRun.*/\$UDPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
+sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
+sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
+sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.*;authpriv.none;cron.none -\/var\/log\/remote.log' /etc/rsyslog.conf
 
 ########### Install Splunk ####################################
-#!/bin/bash
+if test -d /opt/splunk; then
+	sudo service splunk stop
+    sudo /opt/splunk/bin/splunk disable boot-start
+    rm -rf /opt/splunk
+fi
 cd /usr/local/src
 sudo wget -O splunk-6.2.2-255606-Linux-x86_64.tgz "http://www.splunk.com/page/download_track?file=6.2.2/splunk/linux/splunk-6.2.2-255606-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.2.2&product=splunk&typed=release"
 sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
 sudo chown -R root:root /opt/splunk
 #sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
-for file in `sudo ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
-#echo -e "[monitor:///var/log/remote.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
+#for file in `sudo ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
+echo -e "[monitor:///var/log/remote.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
 sudo /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 sudo /opt/splunk/bin/splunk enable boot-start
 <% end %>
@@ -39,6 +45,28 @@ fi
 sudo ovs-vsctl set Open_vSwitch `sudo ovs-vsctl get Open_vSwitch . _uuid` other_config={"local_ip"="<%= @hosts[@hostname]['ipaddress_tun'] %>"}
 sudo ovs-vsctl list Open_vSwitch .
 
-#echo "*.* @@<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | tee /etc/rsyslog.d/90-stack-s.conf
+echo "\$ModLoad imfile" | sudo tee /etc/rsyslog.d/99-devstack-screen.conf
+for file in `sudo ls /opt/stack/log/*[a-z].log`;
+do
+TAG=`echo ${file} | awk -F'/' '{print $NF}' | awk -F'.' '{print $1}'`
+#echo "\$WorkDirectory ${file} # where to place spool files
+#\$ActionQueueFileName `echo ${file} | awk -F'/' '{print $NF}' | awk -F'.' '{print $1}'` # unique name prefix for spool files
+##\$ActionQueueMaxDiskSpace 1g   # 1gb space limit (use as much as possible)
+#\$ActionQueueSaveOnShutdown on # save messages to disk on shutdown
+#\$ActionQueueType LinkedList   # run asynchronously
+#\$ActionResumeRetryCount -1    # infinite retries if host is down
+## remote host is: name/ip:port, e.g. 192.168.0.1:514, port optional
+#*.* @<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>
+## ### end of the forwarding rule ###
+#" | sudo tee -a /etc/rsyslog.d/90-stack-s.conf
+echo "
+\$InputFileName ${file}
+\$InputFileTag ${TAG}:
+\$InputFileStateFile state_file_${TAG}
+\$InputFileFacility local6
+\$InputRunFileMonitor
+\$InputFilePollInterval 10" | sudo tee -a /etc/rsyslog.d/99-devstack-screen.conf
+done
+echo "*.* @<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | tee -a /etc/rsyslog.d/99-devstack-screen.conf
 #sudo rm /etc/rsyslog.d/90-stack-m.conf
-#sudo service rsyslog restart
+sudo service rsyslog restart

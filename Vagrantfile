@@ -544,14 +544,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
     end
-    compute.vm.provision "puppet" do |puppet|
-      puppet.working_directory = "/vagrant/resources/puppet"
-      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
-      puppet.manifests_path = "resources/puppet/manifests"
-      puppet.manifest_file  = "java7.pp"
-      #puppet.options = ["--verbose", "--debug"]
-      puppet.options = "--verbose"
-    end
+#    compute.vm.provision "puppet" do |puppet|
+#      puppet.working_directory = "/vagrant/resources/puppet"
+#      puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
+#      puppet.manifests_path = "resources/puppet/manifests"
+#      puppet.manifest_file  = "java7.pp"
+#      #puppet.options = ["--verbose", "--debug"]
+#      puppet.options = "--verbose"
+#    end
     compute.vm.provision "puppet" do |puppet|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
