@@ -78,7 +78,8 @@ exec { "Wget ODL-Helium":
 
 #if $odl_dist_name == "Helium-SR1" {
 #if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
-if $odl_dist_name.include? "Helium" {
+#if $odl_dist_name.include? "Helium-SR" {
+if $odl_dist_name =~ /^Helium-SR[0-9]+/ {
     $unzip_cmd = "unzip ${odl_bin_name}.zip && mv ${odl_bin_name} opendaylight"
 } else {
     $unzip_cmd = "unzip ${odl_bin_name}.zip"
@@ -96,7 +97,8 @@ exec { "Extract ODL-Helium":
 
 #if $odl_dist_name in "Helium-SR1"
 #if $odl_dist_name == "Helium" or $odl_dist_name == "Helium-SR1" {
-if $odl_dist_name.include? "Helium" {
+#if $odl_dist_name.include? "Helium-SR" {
+if $odl_dist_name =~ /^Helium-SR[0-9]+/ {
     #exec { "Patch JMX Error":
     #    command => "sed -i 's/0.0.0.0/127.0.0.1/g' org.apache.karaf.management.cfg",
     #    cwd     => "/home/vagrant/opendaylight/etc",
