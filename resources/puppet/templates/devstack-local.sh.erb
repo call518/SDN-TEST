@@ -28,7 +28,11 @@ sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
 sudo chown -R root:root /opt/splunk
 #sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
 #for file in `sudo ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
-echo -e "[monitor:///var/log/syslog]\ndisabled = false\nfollowTail = 0\n" | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
+rm -f /opt/splunk/etc/apps/launcher/default/inputs.conf
+echo -e "[monitor:///var/log/syslog]\ndisabled = false\nfollowTail = 0\n" | sudo tee -a /opt/splunk/etc/apps/launcher/default/inputs.conf
+<% if @is_enable_odl == "true" %>
+echo -e "[monitor:///home/vagrant/opendaylight/data/log/karaf.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee -a /opt/splunk/etc/apps/launcher/default/inputs.conf
+<% end %>
 sudo /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 sudo /opt/splunk/bin/splunk enable boot-start
 <% end %>
