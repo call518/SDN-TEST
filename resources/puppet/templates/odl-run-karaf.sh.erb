@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export JAVA_MAX_MEM="<%= @odl_max_mem %>"
+
 if [ `hostname | egrep -c "opendaylight-mininet-1|opendaylight-mininet-1"` -ne 0 ]; then
 	echo
 	echo -e " ======================================================================="

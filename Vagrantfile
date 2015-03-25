@@ -10,6 +10,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.forward_x11 = true
 
+  odl_max_mem = "1024m"
+
+  #odl_dist_name = "Hydrogen-Virtualization"
+  #odl_dist_name = "Hydrogen-SP"
+  #odl_dist_name = "Helium"
+  #odl_dist_name = "Helium-SR1"
+  #odl_dist_name = "Helium-SR2"
+  odl_dist_name = "Helium-SR3"
+
 #################################################################################################################
 ############## VTN Coordinator / OpenDaylight / Mininet / RouteFlow #############################################
 #################################################################################################################
@@ -192,12 +201,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "vtn-coordinator.pp"
       puppet.facter = {
-        #"odl_dist_name" => "Hydrogen-Virtualization",
-        #"odl_dist_name" => "Hydrogen-SP",
-        #"odl_dist_name" => "Helium",
-        #"odl_dist_name" => "Helium-SR1",
-        #"odl_dist_name" => "Helium-SR2",
-        "odl_dist_name" => "Helium-SR3",
+        "odl_max_mem" => "#{odl_max_mem}",
+        "odl_dist_name" => "#{odl_dist_name}",
       }
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
@@ -252,12 +257,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.manifests_path = "resources/puppet/manifests"
       puppet.manifest_file  = "opendaylight.pp"
       puppet.facter = {
-        #"odl_dist_name" => "Hydrogen-Virtualization",
-        #"odl_dist_name" => "Hydrogen-SP",
-        #"odl_dist_name" => "Helium",
-        #"odl_dist_name" => "Helium-SR1",
-        #"odl_dist_name" => "Helium-SR2",
-        "odl_dist_name" => "Helium-SR3",
+        "odl_max_mem" => "#{odl_max_mem}",
+        "odl_dist_name" => "#{odl_dist_name}",
       }
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
@@ -326,14 +327,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.working_directory = "/vagrant/resources/puppet"
       puppet.hiera_config_path = "resources/puppet/hiera-opendaylight.yaml"
       puppet.manifests_path = "resources/puppet/manifests"
-      #puppet.manifest_file  = "opendaylight.pp"
+      puppet.manifest_file  = "opendaylight.pp"
       puppet.facter = {
-        #"odl_dist_name" => "Hydrogen-Virtualization",
-        #"odl_dist_name" => "Hydrogen-SP",
-        #"odl_dist_name" => "Helium",
-        #"odl_dist_name" => "Helium-SR1",
-        #"odl_dist_name" => "Helium-SR2",
-        "odl_dist_name" => "Helium-SR3",
+        "odl_max_mem" => "#{odl_max_mem}",
+        "odl_dist_name" => "#{odl_dist_name}",
       }
       #puppet.options = ["--verbose", "--debug"]
       puppet.options = "--verbose"
@@ -494,12 +491,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           puppet.manifests_path = "resources/puppet/manifests"
           puppet.manifest_file  = "opendaylight.pp"
           puppet.facter = {
-            #"odl_dist_name" => "Hydrogen-Virtualization",
-            #"odl_dist_name" => "Hydrogen-SP",
-            #"odl_dist_name" => "Helium",
-            #"odl_dist_name" => "Helium-SR1",
-            #"odl_dist_name" => "Helium-SR2",
-            "odl_dist_name" => "Helium-SR3",
+            "odl_max_mem" => "#{odl_max_mem}",
+            "odl_dist_name" => "#{odl_dist_name}",
           }
           #puppet.options = ["--verbose", "--debug"]
           puppet.options = "--verbose"

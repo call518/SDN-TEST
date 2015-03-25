@@ -14,7 +14,7 @@ sudo sed -i 's/^#\$ModLoad imudp/\$ModLoad imudp/g' /etc/rsyslog.conf
 sudo sed -i 's/^#\$UDPServerRun.*/\$UDPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
 sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
 sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
-sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.*;authpriv.none;cron.none -\/var\/log\/remote.log' /etc/rsyslog.conf
+#sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.*;authpriv.none;cron.none -\/var\/log\/remote.log' /etc/rsyslog.conf
 
 ########### Install Splunk ####################################
 if test -d /opt/splunk; then
@@ -28,7 +28,7 @@ sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
 sudo chown -R root:root /opt/splunk
 #sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
 #for file in `sudo ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
-echo -e "[monitor:///var/log/remote.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
+echo -e "[monitor:///var/log/syslog]\ndisabled = false\nfollowTail = 0\n" | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
 sudo /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
 sudo /opt/splunk/bin/splunk enable boot-start
 <% end %>
@@ -67,7 +67,9 @@ echo "
 \$InputRunFileMonitor
 \$InputFilePollInterval 10" | sudo tee -a /etc/rsyslog.d/99-devstack-screen.conf
 done
+<% if @hostname != "devstack-control" %>
 echo -e "\n*.* @<%= @hosts['devstack-control']['name'] %>:<%= @rsyslog_port %>" | sudo tee -a /etc/rsyslog.d/99-devstack-screen.conf
+<% end %>
 #sudo rm /etc/rsyslog.d/90-stack-m.conf
 #while sudo netcat -z <%= @hosts['devstack-control']['name'] %> <%= @rsyslog_port %>; do echo "==== Waiting Syslog Server: <%= @hosts['devstack-control']['name'] %> <%= @rsyslog_port %>" sleep 5; done
 sudo service rsyslog restart

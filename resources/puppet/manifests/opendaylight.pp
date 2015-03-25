@@ -120,7 +120,7 @@ if $odl_dist_name =~ /^Helium-SR[0-9]+/ {
         owner    => "vagrant",
         group    => "vagrant",
         mode     => 0755,
-        source   => "/vagrant/resources/puppet/files/run-karaf.sh",
+        content => template("/vagrant/resources/puppet/templates/odl-run-karaf.sh.erb"),
         replace  => true,
         require  => Exec["Extract ODL-Helium"],
     }
