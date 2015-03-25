@@ -462,8 +462,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     control.vm.provision "shell", inline: <<-SCRIPT
       if test ! -f /root/.created-routing; then
-        route add -net 192.168.51.0/24 gateway 192.168.50.1 dev eth2
-        route add -net 172.16.1.0/24 gateway 172.16.0.1 dev eth1
+        route add -net 192.168.51.0/24 gateway 192.168.50.1 dev eth1
+        route add -net 172.16.1.0/24 gateway 172.16.0.1 dev eth2
         sudo iptables -t nat -I POSTROUTING -o eth0 -s 172.20.20.0/24 -j MASQUERADE
         touch /root/.created-routing
       fi
@@ -539,8 +539,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     compute.vm.provision "shell", path: "resources/puppet/scripts/bootstrap.sh"
     compute.vm.provision "shell", inline: <<-SCRIPT
       if test ! -f /root/.created-routing; then
-        route add -net 192.168.50.0/24 gateway 192.168.51.1 dev eth2
-        route add -net 172.16.0.0/24 gateway 172.16.1.1 dev eth1
+        route add -net 192.168.50.0/24 gateway 192.168.51.1 dev eth1
+        route add -net 172.16.0.0/24 gateway 172.16.1.1 dev eth2
         touch /root/.created-routing
       fi
     SCRIPT
