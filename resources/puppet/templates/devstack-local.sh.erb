@@ -2,39 +2,44 @@
 
 <% if @hostname == "devstack-control" %>
 ########### DevStack-Control ##################################
-#sudo ovs-vsctl add-port br-ex eth3
-neutron router-interface-delete router1 `neutron net-show private | awk '{if (NR == 13) {print $4}}'`
-neutron net-delete private
-neutron router-delete router1
-sudo ip netns del `sudo ip netns | grep "^qrouter"`
-#keystone tenant-delete demo
-
-########### Config rsyslog ####################################
-sudo sed -i 's/^#\$ModLoad imudp/\$ModLoad imudp/g' /etc/rsyslog.conf
-sudo sed -i 's/^#\$UDPServerRun.*/\$UDPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
-sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
-sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
-#sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.*;authpriv.none;cron.none -\/var\/log\/remote.log' /etc/rsyslog.conf
-
-########### Install Splunk ####################################
-if test -d /opt/splunk; then
-	sudo service splunk stop
-    sudo /opt/splunk/bin/splunk disable boot-start
-    rm -rf /opt/splunk
-fi
-cd /usr/local/src
-sudo wget -O splunk-6.2.2-255606-Linux-x86_64.tgz "http://www.splunk.com/page/download_track?file=6.2.2/splunk/linux/splunk-6.2.2-255606-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.2.2&product=splunk&typed=release"
-sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
-sudo chown -R root:root /opt/splunk
-#sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
-#for file in `sudo ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
-rm -f /opt/splunk/etc/apps/launcher/default/inputs.conf
-echo -e "[monitor:///var/log/syslog]\ndisabled = false\nfollowTail = 0\n" | sudo tee -a /opt/splunk/etc/apps/launcher/default/inputs.conf
-<% if @is_enable_odl == "true" %>
-echo -e "[monitor:///home/vagrant/opendaylight/data/log/karaf.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee -a /opt/splunk/etc/apps/launcher/default/inputs.conf
-<% end %>
-sudo /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
-sudo /opt/splunk/bin/splunk enable boot-start
+    <% if @is_enable_odl == "true" %>
+        #sudo ovs-vsctl add-port br-ex eth3
+        neutron router-interface-delete router1 `neutron net-show private | awk '{if (NR == 13) {print $4}}'`
+        neutron net-delete private
+        neutron router-delete router1
+        sudo ip netns del `sudo ip netns | grep "^qrouter"`
+        #keystone tenant-delete demo
+    <% end %>
+    nova secgroup-add-rule default tcp 1 65535 0.0.0.0/0
+    nova secgroup-add-rule default udp 1 65535 0.0.0.0/0
+    nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+    
+    ########### Config rsyslog ####################################
+    sudo sed -i 's/^#\$ModLoad imudp/\$ModLoad imudp/g' /etc/rsyslog.conf
+    sudo sed -i 's/^#\$UDPServerRun.*/\$UDPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
+    sudo sed -i 's/^#\$ModLoad imtcp/\$ModLoad imtcp/g' /etc/rsyslog.conf
+    sudo sed -i 's/^#\$InputTCPServerRun.*/\$InputTCPServerRun <%= @rsyslog_port %>/g' /etc/rsyslog.conf 
+    #sudo sed -i '/\$InputTCPServerRun <%= @rsyslog_port %>/a *.*;authpriv.none;cron.none -\/var\/log\/remote.log' /etc/rsyslog.conf
+    
+    ########### Install Splunk ####################################
+    if test -d /opt/splunk; then
+    	sudo service splunk stop
+        sudo /opt/splunk/bin/splunk disable boot-start
+        rm -rf /opt/splunk
+    fi
+    cd /usr/local/src
+    sudo wget -O splunk-6.2.2-255606-Linux-x86_64.tgz "http://www.splunk.com/page/download_track?file=6.2.2/splunk/linux/splunk-6.2.2-255606-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.2.2&product=splunk&typed=release"
+    sudo tar zxf splunk-6.2.2-255606-Linux-x86_64.tgz -C /opt/
+    sudo chown -R root:root /opt/splunk
+    #sudo rm splunk-6.2.2-255606-Linux-x86_64.tgz
+    #for file in `sudo ls /opt/stack/log/*[a-z].log`; do echo -e "[monitor://$file]\ndisabled = false\nfollowTail = 0\n"; done | sudo tee /opt/splunk/etc/apps/launcher/default/inputs.conf
+    rm -f /opt/splunk/etc/apps/launcher/default/inputs.conf
+    echo -e "[monitor:///var/log/syslog]\ndisabled = false\nfollowTail = 0\n" | sudo tee -a /opt/splunk/etc/apps/launcher/default/inputs.conf
+    <% if @is_enable_odl == "true" %>
+        echo -e "[monitor:///home/vagrant/opendaylight/data/log/karaf.log]\ndisabled = false\nfollowTail = 0\n" | sudo tee -a /opt/splunk/etc/apps/launcher/default/inputs.conf
+    <% end %>
+    sudo /opt/splunk/bin/splunk start --accept-license --answer-yes --no-prompt
+    sudo /opt/splunk/bin/splunk enable boot-start
 <% end %>
 
 ########### Common ############################################
