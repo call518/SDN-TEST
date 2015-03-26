@@ -1,6 +1,6 @@
 controller> cd /home/vagrant/devstack
 controller> . ./openrc admin admin
-controller> export IMAGE=cirros-0.3.2-x86_64-uec
+controller> export IMAGE=cirros-0.3.3-x86_64-uec
 
 ## 'gre1 => net1 => host1, host2'
 controller> neutron net-create gre1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 300
