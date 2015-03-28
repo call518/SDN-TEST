@@ -36,7 +36,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "1024"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     #trusty64.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     #trusty64.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -62,7 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     onos.vm.box = "trusty64"
     onos.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     onos.vm.hostname = "onos"
-    onos.vm.network "private_network", ip: "192.168.13.10"
+    onos.vm.network "private_network", ip: "192.168.13.10", virtualbox__intnet: true
     onos.vm.network "forwarded_port", guest: 8181, host: 8181
     onos.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -70,7 +69,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     #onos.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     #onos.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -118,7 +117,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     oscp.vm.box = "trusty64"
     oscp.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     oscp.vm.hostname = "oscp"
-    oscp.vm.network "private_network", ip: "192.168.12.10"
+    oscp.vm.network "private_network", ip: "192.168.12.10", virtualbox__intnet: true
     oscp.vm.network "forwarded_port", guest: 8000, host: 8000
     oscp.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -126,7 +125,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     #oscp.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     #oscp.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -168,7 +167,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vtn_coordinator.vm.box = "Fedora20-x86_64"
     vtn_coordinator.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     vtn_coordinator.vm.hostname = "vtn-coordinator"
-    vtn_coordinator.vm.network "private_network", ip: "192.168.40.10"
+    vtn_coordinator.vm.network "private_network", ip: "192.168.40.10", virtualbox__intnet: true
     vtn_coordinator.vm.network "forwarded_port", guest: 8083, host: 8083
     vtn_coordinator.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
@@ -176,7 +175,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "1024"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     #vtn_coordinator.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -214,7 +213,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_1.vm.box = "trusty64"
     opendaylight_mininet_1.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     opendaylight_mininet_1.vm.hostname = "opendaylight-mininet-1"
-    opendaylight_mininet_1.vm.network "private_network", ip: "192.168.41.10"
+    opendaylight_mininet_1.vm.network "private_network", ip: "192.168.41.10", virtualbox__intnet: true
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8080, host: 9191
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8181, host: 8181
     opendaylight_mininet_1.vm.network "forwarded_port", guest: 8101, host: 8101
@@ -224,7 +223,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     opendaylight_mininet_1.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -286,7 +285,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     opendaylight_mininet_2.vm.box = "trusty64"
     opendaylight_mininet_2.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     opendaylight_mininet_2.vm.hostname = "opendaylight-mininet-2"
-    opendaylight_mininet_2.vm.network "private_network", ip: "192.168.42.10"
+    opendaylight_mininet_2.vm.network "private_network", ip: "192.168.42.10", virtualbox__intnet: true
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8080, host: 9292
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8181, host: 8282
     opendaylight_mininet_2.vm.network "forwarded_port", guest: 8101, host: 8202
@@ -296,7 +295,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     opendaylight_mininet_2.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -435,7 +434,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "private_network", ip: "#{control_ip_data}"
-    control.vm.network "private_network", ip: "172.20.20.1"
+    control.vm.network "private_network", ip: "172.20.20.1", virtualbox__intnet: true
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
     control.vm.network "forwarded_port", guest: 8101, host: 8101 # ODL Karaf SSH Console (ID/PW: karaf/karaf)
@@ -455,9 +454,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "3072"]
       #vb.customize ["modifyvm", :id, "--memory", "4096"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
-      #vb.customize ["modifyvm", :id, "--nic3", "intnet"]
-      vb.customize ["modifyvm", :id, "--nic4", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic4", "intnet"]
       vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
     end
     control.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
@@ -535,8 +532,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--cpus", "4"]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
-      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
-      #vb.customize ["modifyvm", :id, "--nic3", "intnet"]
     end
     compute.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     compute.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
@@ -590,15 +585,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vxlan_router.vm.box = "trusty64"
     vxlan_router.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     vxlan_router.vm.hostname = "vxlan-router"
-    vxlan_router.vm.network "private_network", ip: "192.168.1.1"
-    vxlan_router.vm.network "private_network", ip: "192.168.2.1"
+    vxlan_router.vm.network "private_network", ip: "192.168.1.1", virtualbox__intnet: true
+    vxlan_router.vm.network "private_network", ip: "192.168.2.1", virtualbox__intnet: true
     #vxlan_router.vm.network "forwarded_port", guest: 80, host: 8081
     vxlan_router.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
-      vb.customize ["modifyvm", :id, "--nic3", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic3", "intnet"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
@@ -633,13 +628,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vxlan_server1.vm.box = "trusty64"
     vxlan_server1.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     vxlan_server1.vm.hostname = "vxlan-server1"
-    vxlan_server1.vm.network "private_network", ip: "192.168.1.10"
+    vxlan_server1.vm.network "private_network", ip: "192.168.1.10", virtualbox__intnet: true
     #vxlan_server1.vm.network "forwarded_port", guest: 80, host: 8081
     vxlan_server1.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
@@ -676,13 +671,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vxlan_server2.vm.box = "trusty64"
     vxlan_server2.vm.box_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!247&authkey=!AC-zzAlAl6UhvGo&ithint=file%2cbox"
     vxlan_server2.vm.hostname = "vxlan-server2"
-    vxlan_server2.vm.network "private_network", ip: "192.168.2.20"
+    vxlan_server2.vm.network "private_network", ip: "192.168.2.20", virtualbox__intnet: true
     vxlan_server2.vm.network "forwarded_port", guest: 80, host: 8081
     vxlan_server2.vm.provider :virtualbox do |vb|
       #vb.customize ["modifyvm", :id, "--cpus", "1", "--hwvirtex", "off"] ## without VT-x
       vb.customize ["modifyvm", :id, "--cpus", "2"]
       vb.customize ["modifyvm", :id, "--memory", "1024"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
     end
@@ -772,7 +767,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #cbench.vm.box = "Fedora20-x86_64"
     #cbench.vm.box_url = "https://vagrantcloud.com/JungJungIn/boxes/Fedora20-x86_64/versions/0.1.0/providers/virtualbox.box"
     cbench.vm.hostname = "cbench"
-    cbench.vm.network "private_network", ip: "192.168.77.10"
+    cbench.vm.network "private_network", ip: "192.168.77.10", virtualbox__intnet: true
     #cbench.vm.network "forwarded_port", guest: 8080, host: 9191
     #cbench.vm.network "forwarded_port", guest: 8181, host: 8181
     cbench.vm.provider :virtualbox do |vb|
@@ -781,7 +776,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--memory", "2048"]
       #vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
       #vb.customize ["modifyvm", :id, "--nicpromisc1", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nic2", "intnet"]
+      #vb.customize ["modifyvm", :id, "--nic2", "intnet"]
     end
     cbench.vm.provision "shell", path: "resources/puppet/scripts/create-swap.sh"
     cbench.vm.provision "shell", path: "resources/puppet/scripts/edit-apt-repo.sh"
