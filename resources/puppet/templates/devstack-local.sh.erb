@@ -2,9 +2,9 @@
 
 <% if @hostname == "devstack-control" %>
 ########### DevStack-Control ##################################
-    #sudo ip addr flush dev eth3
-    #sudo ovs-vsctl add-port br-ex eth3
-    #sudo ip addr add 172.20.20.1/24 dev br-ex
+    sudo ip addr flush dev eth3
+    sudo ovs-vsctl add-port br-ex eth3
+    sudo ip addr add 172.20.20.1/24 dev br-ex
     <% if @is_enable_odl == "true" %>
         #sudo ovs-vsctl add-port br-ex eth3
         neutron router-interface-delete router1 `neutron net-show private | awk '{if (NR == 13) {print $4}}'`
