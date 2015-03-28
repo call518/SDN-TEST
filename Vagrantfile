@@ -435,7 +435,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "private_network", ip: "#{control_ip_data}"
-    control.vm.network "private_network", ip: "172.20.20.2"
+    control.vm.network "private_network", ip: "172.20.20.1"
     control.vm.network "forwarded_port", guest: 8080, host: 8080 # ODL API URL (http://loclahost:8080)
     control.vm.network "forwarded_port", guest: 8181, host: 8181 # ODL GUI URL (http://localhost:8181/dlux/index.html)
     control.vm.network "forwarded_port", guest: 8101, host: 8101 # ODL Karaf SSH Console (ID/PW: karaf/karaf)
