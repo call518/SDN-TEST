@@ -10,7 +10,10 @@
         neutron router-interface-delete router1 `neutron net-show private | awk '{if (NR == 13) {print $4}}'`
         neutron net-delete private
         neutron router-delete router1
-        sudo ip netns del `sudo ip netns | grep "^qrouter"`
+        while sudo ip netns | grep -q "^qrouter"
+        do
+            sudo ip netns del `sudo ip netns | grep "^qrouter"`; sleep 5
+        done
         #keystone tenant-delete demo
     <% end %>
     nova secgroup-add-rule default tcp 1 65535 0.0.0.0/0
