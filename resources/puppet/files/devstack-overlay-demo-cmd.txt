@@ -1,28 +1,40 @@
-controller> cd /home/vagrant/devstack
-controller> . ./openrc admin admin
-controller> export IMAGE=cirros-0.3.3-x86_64-uec
+cd /home/vagrant/devstack
+. ./openrc admin admin
+export IMAGE=cirros-0.3.3-x86_64-uec
 
 ## 'gre1 => net1 => host1, host2'
-controller> neutron net-create gre1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 300
-controller> neutron subnet-create gre1 10.0.0.0/24 --name gre1-net1
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre1' | awk '{print $2}' | tail -n 1) gre1-net1-host2 --availability_zone=nova:devstack-compute
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre1' | awk '{print $2}' | tail -n 1) gre1-net1-host1 --availability_zone=nova:devstack-control
+neutron net-create gre1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 300
+neutron subnet-create gre1 10.0.0.0/24 --name gre1-net1 --dns-nameserver 8.8.8.8
+neutron router-create router-gre1-net1
+neutron router-gateway-set `neutron router-show router-gre1-net1 | awk '{if (NR == 8) {print $4}}'` public
+neutron router-interface-add `neutron router-show router-gre1-net1 | awk '{if (NR == 8) {print $4}}'` `neutron subnet-show gre1-net1 | awk '{if (NR == 10) {print $4}}'`
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre1' | awk '{print $2}' | tail -n 1) gre1-net1-host2 --availability_zone=nova:devstack-compute
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre1' | awk '{print $2}' | tail -n 1) gre1-net1-host1 --availability_zone=nova:devstack-control
 
 ## 'gre2 => net1 => host1, host2'
-controller> neutron net-create gre2 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 301
-controller> neutron subnet-create gre2 10.0.0.0/24 --name gre2-net1
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre2' | awk '{print $2}' | tail -n 1) gre2-net1-host2 --availability_zone=nova:devstack-compute
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre2' | awk '{print $2}' | tail -n 1) gre2-net1-host1 --availability_zone=nova:devstack-control
+neutron net-create gre2 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 301
+neutron subnet-create gre2 10.0.0.0/24 --name gre2-net1 --dns-nameserver 8.8.8.8
+neutron router-create router-gre2-net1
+neutron router-gateway-set `neutron router-show router-gre2-net1 | awk '{if (NR == 8) {print $4}}'` public
+neutron router-interface-add `neutron router-show router-gre2-net1 | awk '{if (NR == 8) {print $4}}'` `neutron subnet-show gre2-net1 | awk '{if (NR == 10) {print $4}}'`
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre2' | awk '{print $2}' | tail -n 1) gre2-net1-host2 --availability_zone=nova:devstack-compute
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep 'gre2' | awk '{print $2}' | tail -n 1) gre2-net1-host1 --availability_zone=nova:devstack-control
 
 ## 'vxlan1 => net1 => host1, host2'
-controller> neutron net-create vxlan1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1600
-controller> neutron subnet-create vxlan1 10.0.0.0/24 --name vxlan1-net1
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan1 | awk '{print $2}' | tail -n 1) vxlan1-net1-host2 --availability_zone=nova:devstack-compute
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan1 | awk '{print $2}' | tail -n 1) vxlan1-net1-host1 --availability_zone=nova:devstack-control
+neutron net-create vxlan1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1600
+neutron subnet-create vxlan1 10.0.0.0/24 --name vxlan1-net1 --dns-nameserver 8.8.8.8
+neutron router-create router-vxlan1-net1
+neutron router-gateway-set `neutron router-show router-vxlan1-net1 | awk '{if (NR == 8) {print $4}}'` public
+neutron router-interface-add `neutron router-show router-vxlan1-net1 | awk '{if (NR == 8) {print $4}}'` `neutron subnet-show vxlan1-net1 | awk '{if (NR == 10) {print $4}}'`
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan1 | awk '{print $2}' | tail -n 1) vxlan1-net1-host2 --availability_zone=nova:devstack-compute
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan1 | awk '{print $2}' | tail -n 1) vxlan1-net1-host1 --availability_zone=nova:devstack-control
 
 ## 'vxlan2 => net1 => host1, host2'
-controller> neutron net-create vxlan2 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1601
-controller> neutron subnet-create vxlan2 10.0.0.0/24 --name vxlan2-net1
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan2 | awk '{print $2}' | tail -n 1) vxlan2-net1-host2 --availability_zone=nova:devstack-compute
-controller> nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan2 | awk '{print $2}' | tail -n 1) vxlan2-net1-host1 --availability_zone=nova:devstack-control
+neutron net-create vxlan2 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type vxlan --provider:segmentation_id 1601
+neutron subnet-create vxlan2 10.0.0.0/24 --name vxlan2-net1 --dns-nameserver 8.8.8.8
+neutron router-create router-vxlan2-net1
+neutron router-gateway-set `neutron router-show router-vxlan2-net1 | awk '{if (NR == 8) {print $4}}'` public
+neutron router-interface-add `neutron router-show router-vxlan2-net1 | awk '{if (NR == 8) {print $4}}'` `neutron subnet-show vxlan2-net1 | awk '{if (NR == 10) {print $4}}'`
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan2 | awk '{print $2}' | tail -n 1) vxlan2-net1-host2 --availability_zone=nova:devstack-compute
+nova boot --flavor m1.nano --image $(nova image-list | grep $IMAGE'\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep vxlan2 | awk '{print $2}' | tail -n 1) vxlan2-net1-host1 --availability_zone=nova:devstack-control
 
