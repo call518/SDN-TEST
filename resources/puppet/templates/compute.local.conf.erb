@@ -72,11 +72,10 @@ enable_service odl-compute
 Q_PLUGIN=ml2
 Q_ML2_PLUGIN_MECHANISM_DRIVERS=opendaylight,logger
 ODL_MGR_IP=<%= @hosts['opendaylight-devstack']['ipaddress'] %>
-Q_ML2_TENANT_NETWORK_TYPE=vxlan
-
+#Q_ML2_TENANT_NETWORK_TYPE=vxlan
 ENABLE_TENANT_TUNNELS=True
-
-EXTRA_OPTS=(scheduler_default_filters=AllHostsFilter)
+#EXTRA_OPTS=(scheduler_default_filters=AllHostsFilter)
+EXTRA_OPTS=(scheduler_default_filters=ComputeCapabilitiesFilter)
 
 #SYSLOG=True
 #SYSLOG_HOST=$SERVICE_HOST
