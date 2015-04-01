@@ -1,6 +1,6 @@
 cd /home/vagrant/devstack
 . ./openrc admin admin
-export IMAGE=cirros-0.3.3-x86_64-uec
+export IMAGE=`glance image-list | grep cirros | grep ami | awk '{print $4}'`
 
 ## 'gre1 => net1 => host1, host2'
 neutron net-create gre1 --tenant_id $(keystone tenant-list | grep '\sadmin' | awk '{print $2}') --provider:network_type gre --provider:segmentation_id 300
