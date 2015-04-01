@@ -405,6 +405,7 @@ in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), pa
 
 # DevStack /w OpenDaylight
 
+* Edit is_enable_odl = "true/false" (in Vagrantfile)
 * Ref: http://networkstatic.net/opendaylight-openstack-integration-devstack-fedora-20/
 * (Note) *Order is important!*
 * OpenStack Nodes over L3
@@ -425,7 +426,7 @@ in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), pa
     * LAN2: 172.16.1.0/24
   * External Network
     * 172.20.20.0/24
-* (Note) Auto-Remove 'Demo' Project/Tenant
+* (Note) if ODL is enabled, Auto-Remove 'Demo' Project/Tenant
 
 ## OVSDB Neutron Architecture
 
@@ -436,8 +437,6 @@ in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), pa
 ![OpenStack Networking Architecture](etc-files/Neutron-PhysNet-Diagram.png)
 
 ## Start Vagrant
-
-(Note) *Order is important!*
 
 ```
 1. host> vagrant up devstack-control
