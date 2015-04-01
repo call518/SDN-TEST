@@ -5,7 +5,7 @@
     sudo ip addr flush dev eth3
     sudo ovs-vsctl add-port br-ex eth3
     sudo ip addr add 172.20.20.1/24 dev br-ex
-    <% if @is_enable_odl == "true" %>
+	<%# if @is_enable_odl == "true" %>
         neutron router-interface-delete router1 `neutron net-show private | awk '{if (NR == 13) {print $4}}'`
         neutron net-delete private
         neutron router-delete router1
@@ -14,7 +14,7 @@
             sudo ip netns del `sudo ip netns | grep "^qrouter"`; sleep 5
         done
         #keystone tenant-delete demo
-    <% end %>
+    <%# end %>
     nova secgroup-add-rule default tcp 1 65535 0.0.0.0/0
     nova secgroup-add-rule default udp 1 65535 0.0.0.0/0
     nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
