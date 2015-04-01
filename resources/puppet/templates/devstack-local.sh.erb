@@ -18,6 +18,9 @@
     nova secgroup-add-rule default tcp 1 65535 0.0.0.0/0
     nova secgroup-add-rule default udp 1 65535 0.0.0.0/0
     nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
+
+    nova keypair-add --pub-key /vagrant/resources/puppet/files/keypair-admin.pub admin
+    cp /vagrant/resources/puppet/files/keypair-admin /home/vagrant/devstack/keypair-admin
     
     ########### Config rsyslog ####################################
     sudo sed -i 's/^#\$ModLoad imudp/\$ModLoad imudp/g' /etc/rsyslog.conf
