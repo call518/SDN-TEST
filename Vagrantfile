@@ -411,8 +411,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ### Toggle /w OpenDaylight(Selective SDN)
-  is_enable_odl = "true" # true/false
-  #is_enable_odl = "false" # true/false
+  #is_enable_odl = "true" # true/false
+  is_enable_odl = "false" # true/false
 
   #is_enable_splunk = "true"
   is_enable_splunk = "false"
