@@ -426,7 +426,7 @@ in_port(3),eth(src=96:25:19:9e:00:01,dst=01:23:20:00:00:01),eth_type(0x88cc), pa
     * LAN2: 172.16.1.0/24
   * External Network
     * 172.20.20.0/24
-* (Note) if ODL is enabled, Auto-Remove 'Demo' Project/Tenant
+* (NOTE) if ODL is enabled, Auto-Remove 'Demo' Project/Tenant
 
 ## OVSDB Neutron Architecture
 
