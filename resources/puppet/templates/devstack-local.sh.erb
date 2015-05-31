@@ -22,7 +22,7 @@
     nova keypair-add --pub-key /vagrant/resources/puppet/files/keypair-admin.pub admin
     cp /vagrant/resources/puppet/files/keypair-admin.pem /home/vagrant/devstack/keypair-admin.pem
 
-    wget https://onedrive.live.com/download?resid=28f8f701dc29e4b9%217300 -O /home/vagrant/devstack/trusty-server-cloudimg-amd64-disk1.img
+    wget "https://onedrive.live.com/download?resid=28f8f701dc29e4b9%217300" -O /home/vagrant/devstack/trusty-server-cloudimg-amd64-disk1.img
     glance image-create --name trusty-server-cloudimg-amd64-disk1 --disk-format raw --container-format bare --is-public True --progress < /home/vagrant/devstack/trusty-server-cloudimg-amd64-disk1.img
     
     ########### Config rsyslog ####################################

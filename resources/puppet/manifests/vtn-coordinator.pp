@@ -41,19 +41,15 @@ package { $deps:
 if $odl_dist_name == "Hydrogen-Virtualization" {
     $odl_bin_name = "distributions-virtualization-0.1.1-osgipackage"
     $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-virtualization/0.1.1/${odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!241&authkey=!AP9s-ryTgshEp9w&ithint=file%2czip"
 } elsif $odl_dist_name == "Hydrogen-SP" {
     $odl_bin_name = "distributions-serviceprovider-0.1.1-osgipackage"
     $odl_bin_url = "https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/distributions-serviceprovider/0.1.1/${odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?download=28F8F701DC29E4B9!240&authkey=!ABFcfDnmOvCMaWU&ithint=file%2czip"
 } elsif $odl_dist_name == "Helium" {
     $odl_bin_name = "distribution-karaf-0.2.0-Helium"
     $odl_bin_url = "http://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.0-Helium/#{odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!242&authkey=!AA2peKBz6XGZ2I4&ithint=file%2czip "
 } elsif $odl_dist_name == "Helium-SR1" {
     $odl_bin_name = "distribution-karaf-0.2.1-Helium-SR1"
     $odl_bin_url = "https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.2.1-Helium-SR1/${odl_bin_name}.zip"
-    #$odl_bin_url = "https://onedrive.live.com/download?resid=28F8F701DC29E4B9!243&authkey=!APHJWRUwlPoA-eE&ithint=file%2czip"
 }
 
 exec { "Wget ODL-Helium":
