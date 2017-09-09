@@ -413,7 +413,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ### Toggle /w OpenDaylight(Selective SDN)
   is_enable_odl = "true" # true/false
   #is_enable_odl = "false" # true/false
-
+ 
   #is_enable_splunk = "true"
   is_enable_splunk = "false"
 
@@ -485,6 +485,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           puppet.hiera_config_path = "resources/puppet/hiera-devstack.yaml"
           puppet.manifests_path = "resources/puppet/manifests"
           puppet.manifest_file  = "java7.pp"
+          #puppet.manifest_file  = "java8.pp" ## Not Working!!!!
           #puppet.options = ["--verbose", "--debug"]
           puppet.options = "--verbose"
         end
