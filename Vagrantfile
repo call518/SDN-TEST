@@ -411,8 +411,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 #################################################################################################################
 
   ### Toggle /w OpenDaylight(Selective SDN)
-  #is_enable_odl = "true" # true/false
-  is_enable_odl = "false" # true/false
+  is_enable_odl = "true" # true/false
+  #is_enable_odl = "false" # true/false
 
   #is_enable_splunk = "true"
   is_enable_splunk = "false"
@@ -420,7 +420,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ### DevStack Branch
   #devstack_branch = "havana-eol" ## by tag
   #devstack_branch = "stable/icehouse"
-  devstack_branch = "stable/juno"
+  #devstack_branch = "stable/juno"
+  devstack_branch = "juno-eol"
 
   ### Devstack Control Node
   ## ip pre-configuration
